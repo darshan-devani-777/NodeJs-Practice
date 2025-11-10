@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "7969a0e3-94d4-492f-b609-a078f919e0ba",
+		"name": "Multi-Validator-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4377776",
+		"_collection_link": "https://low66tecocraft.postman.co/workspace/API's-Demo~f7841d29-542b-439c-8271-f834a7cfab02/collection/4377776-7969a0e3-94d4-492f-b609-a078f919e0ba?action=share&source=collection_link&creator=4377776"
+	},
+	"item": [
+		{
+			"name": "Register Validator",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Validator\",\n  \"email\": \"validator@example.com\",\n  \"password\": \"123456\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/register-validator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"register-validator"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register validator",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Validator\",\n  \"email\": \"validator@example.com\",\n  \"password\": \"123456\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/register-validator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"register-validator"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "214"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d6-GwNM77t2iIFG7TtQMBi5oWqYaXk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Nov 2025 10:09:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully...\",\n    \"method\": \"validator.js\",\n    \"data\": {\n        \"user\": {\n            \"name\": \"Validator\",\n            \"email\": \"validator@example.com\",\n            \"password\": \"123456\",\n            \"_id\": \"69087f4eb57f60ce235c83e8\",\n            \"__v\": 0\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Yup",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Yup\",\n  \"email\": \"yup@example.com\",\n  \"password\": \"123456\"\n}\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/register-yup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"register-yup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register Yup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Yup\",\n  \"email\": \"yup@example.com\",\n  \"password\": \"123456\"\n}\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/register-yup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"register-yup"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c1-b0HRwRpfX37JDK7rJ11LJWk6jj8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Nov 2025 10:13:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully...\",\n    \"method\": \"yup\",\n    \"data\": {\n        \"user\": {\n            \"name\": \"Yup\",\n            \"email\": \"yup@example.com\",\n            \"password\": \"123456\",\n            \"_id\": \"69088040d54dce2ae9d8d368\",\n            \"__v\": 0\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Joi",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Joi\",\n  \"email\": \"joi@example.com\",\n  \"password\": \"123456\"\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/register-joi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"register-joi"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register Joi",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Joi\",\n  \"email\": \"joi@example.com\",\n  \"password\": \"123456\"\n}\n\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/register-joi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"register-joi"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "190"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"be-RgYHtYBg0g7secfKqtdk15V23wM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Nov 2025 10:20:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully\",\n    \"method\": \"joi\",\n    \"data\": {\n        \"user\": {\n            \"name\": \"Joi\",\n            \"email\": \"joi@example.com\",\n            \"password\": \"123456\",\n            \"_id\": \"69088204dee41b02720ec1fe\",\n            \"__v\": 0\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Zod",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Zod\",\n  \"email\": \"zode@xample.com\",\n  \"password\": \"123456@Qe\"\n}\n\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/register-zod",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"register-zod"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register Zod",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Zod\",\n  \"email\": \"zode@xample.com\",\n  \"password\": \"123456@Qe\"\n}\n\n\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/users/register-zod",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"register-zod"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9b-Iz3HvHvsrjSWKorCBeIFAfMaWw8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Nov 2025 11:37:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"method\": \"zod\",\n    \"message\": \"User registered successfully...\",\n    \"user\": {\n        \"id\": \"69089401aa1be6ed7cd6e1be\",\n        \"name\": \"Zod\",\n        \"email\": \"zode@xample.com\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
