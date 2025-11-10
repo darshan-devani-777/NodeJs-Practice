@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Body, Patch, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, Patch, Delete, UseGuards  } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto, LoginUserDto } from './dto/user.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -14,7 +14,6 @@ export class UsersController {
 
   @Post('/login-user')
   login(@Body() loginUserDto: LoginUserDto) {
-    console.log(loginUserDto);
     return this.usersService.login(loginUserDto);
   }
   
@@ -27,7 +26,6 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('/get-specific-user/:id')
   getOne(@Param('id') id: string) {
-    console.log(typeof id, id); 
     return this.usersService.findOne(id);
   }
 

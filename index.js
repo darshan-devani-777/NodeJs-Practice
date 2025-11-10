@@ -548,14 +548,106 @@
               // - Asynchronous programming - Non-blocking manner         
               // - Powerful CLI - Project setup / code generation
 
-// Topics :-  // - Decorators - Create Controller / Routes / Middleware to handle easily readable
-              // - Interceptor - Handle req / res object - cross origin methods
-              // - Exception Filters - Privide user friendly error response
+// Topics :-  // - Decorators - 1. Class Decorator - @Controller(), @Module(), @Injectable() - Define nestjs structure
+                           //   2. Method Decorator - @Get(), @Post() - Define routes & handlers
+                           //   3. Parameter Decorator - @Body(), @Param() - Extract data from requests
+                           //   4. property Decorator - @Inject() - Inject dependencies
+                           //   5. Custom Decorator - @User() - Custom reusable logic
+              // - Controllers - Handling incoming request / Sending response with routing mechanism
+              // - Providers - Services / Helpers / Factories / Repositories - Injected as dependency
               // - Modules - root module - starting point of nest - application graph like internal structure
-              // - Providers - Services / Helpers / Factories / Repositories
-              // - Pipes - Manage Input validation data
-              // - Gaurds - Authorization process - Access control
-              // - Testing - Write unit test / end-to-end testing easily
+              // - Middlewares - Access to the request / response cycle
+              // - Exception Filters - Handle / customize error responses / logging tools
+              // - Interceptor - Handle req / res object - Transforming response in consistent mannner
+              // - Pipes - Modify / validate incoming data like DTO's 
+              // - Gaurds - Authorization / Permissions - Access control
+              // - Testing - Write unit test / end-to-end testing 
+
+// Circular dependency - Two or more module depend on each other
+                         //  - Userservice depends on Postsservice        
+                         //  - Postservice depends on Usersservice   
+                         
+// Module Reference - Programatically access / Use Providers, Services, Repositories
+                         // ModuleRef.get - give access for dependency injection
+                         // {strict:false} - allow outside module to current providers
+                         // onModuleinit() - Initialize dependency after the module is loaded
+                         
+// Lazy-loading -  Loading modules when they are needed or their route is accessed
+                   // -  Instead of loading all module when app starts                 
+                   // -  Use loadChildren with dynamic import() in RouterModule.register()
+
+// Execution context - Used inside Gaurds, Interceptors, exception filters
+                   // -  Access Request / Response / Contetextual data
+                   // context.getClass()      - Returns the controller class
+                   // context.getHandler()    - Returns the handler (method)
+                   // context.switchToHttp().getRequest()    - Returns the HTTP request
+                   // context.switchToHttp().getResponse()   - Returns the HTTP response
+                   // context.getType()	   - Returns the type (http, rpc, or ws)
+                   
+// Life-cycle events - when a module, provider, or controller is initialized
+                     //   - run code at specific points
+
+            // Hook	                 When it Runs	                                                Used In
+        // onModuleInit()	After Nest creates and initializes the module’s providers	Providers, Controllers
+        // onModuleDestroy()	Before the module is destroyed	                                Providers, Controllers
+        // onApplicationBootstrap()	After all modules are initialized	                Providers, Controllers
+        // onApplicationShutdown()	During application shutdown (graceful shutdown)	        Providers, Controllers
+        // beforeApplicationShutdown()	Right before application shutdown	         Providers, Controllers    
+        
+// Discovery service - Used for inspecting controllers / providers / metadata
+                       // - Used with Reflector, MetadataScanner
+                       // - Auto-registration / Dynamic modules or plugins / scheduled jobs 
+                       
+// Validation - validate incoming data
+                // - ValidationPipe, ParseIntPipe, ParseBoolPipe, ParseArrayPipe, ParseUUIDPipe
+                // - Uses class-validator and class-transformer with DTOs
+
+                // Pipe	                      Purpose	               Example Input	           Result / Error
+                // ValidationPipe	Validates DTO fields	     { "age": 10 }	           400 Bad Request
+                // ParseIntPipe	      Converts string → number	       "10" → 10	           400 if "abc"
+                // ParseBoolPipe	Converts string → boolean    "true" → true	           400 if "yes"
+                // ParseArrayPipe	Converts string → array	       "1,2,3" → [1,2,3]	   400 if invalid
+                // ParseUUIDPipe	Validates UUID format	         "uuid"	                   400 if not UUID
+
+// Serialization - Hide sensitive data (like passwords or internal fields)
+                  //  - Format data before sending (e.g., renaming properties or transforming values)
+                  //  - Control the shape of response objects
+                  //  - built-in ClassSerializerInterceptor, to handle serialization
+                  //  - together with the class-transformer package
+                  //  - Use decorators from class-transformer like @Exclude() and @Expose()
+
+             // Use Globally - every response in your app automatically goes through the serialization process
+             // Use Groups   - such as user roles (admin, public)
+
+             // Decorator / Feature	                                        Description
+             // @Expose()	                                   Include property in serialized output
+             // @Expose({ groups: [...] })	                   Include only when that group is active
+             // @Exclude()	                                   Always hide property
+             // @SerializeOptions({ groups: [...] })	           Apply group(s) at controller or route level
+             // ClassSerializerInterceptor	                   Performs the transformation automatically     
+
+// Versioning - manage different versions of your API endpoints
+                // - need to update or redesign endpoints
+
+                // Type	                        Description	                    Example
+                // URI	                     Version in URL path	           /v1/users
+                // HEADER	             Version in custom header	       X-API-Version: 2
+                // MEDIA_TYPE	             Version in Accept header	    Accept: application/json;v=2
+                // CUSTOM	     You define how version is extracted      ?version=2, cookie, etc.
+ 
+// Events - message or signal emitted with handled asynchronously
+           //  - Emitter: A part of your code that emits an event (e.g., when a user signs up).
+           //  - Listener: A function or class method that listens for that event and performs some action (e.g., sending a welcome email).
+
+        //    Concept	                                               Description
+        //    EventEmitterModule	                      Enables event-based communication
+        //    EventEmitter2	                              Used to emit events
+        //    @OnEvent()	                              Decorator to listen for specific events
+
+
+
+
+
 
 // Key Points – Node Advanced Concepts
 
