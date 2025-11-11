@@ -652,8 +652,8 @@
         //    | -------------------- | ---------------------------------------------------- |
         //    | **Module**           | `HttpModule` from `@nestjs/axios`                    |
         //    | **Service**          | `HttpService` (Axios-based)                          |
-        //    | **Return Type**      |  RxJS `Observable`                                    |
-        //    | **Common Functions** |  `get()`, `post()`, `put()`, `delete()`, etc.         |
+        //    | **Return Type**      |  RxJS `Observable`                                   |
+        //    | **Common Functions** | `get()`, `post()`, `put()`, `delete()`, etc.         |
         //    | **Configurable**     |  Yes — supports timeouts, interceptors, headers|
            
 

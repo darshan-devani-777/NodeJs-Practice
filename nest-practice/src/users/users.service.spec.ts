@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { JwtService } from '@nestjs/jwt';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -30,6 +31,10 @@ describe('UsersService', () => {
     verifyAsync: jest.fn(),
   };
 
+  const mockEventEmitter = {
+    emit: jest.fn(),
+  } as unknown as EventEmitter2;
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -41,6 +46,10 @@ describe('UsersService', () => {
         {
           provide: JwtService,
           useValue: mockJwtService,
+        },
+        {
+          provide: EventEmitter2,
+          useValue: mockEventEmitter,
         },
       ],
     }).compile();
