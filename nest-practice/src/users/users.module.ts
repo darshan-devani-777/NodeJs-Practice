@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { User, UserSchema } from './schemas/user.schema';
@@ -10,6 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule,
+    EventEmitterModule,
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     JwtModule.registerAsync({
       inject: [ConfigService],
@@ -21,7 +23,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
             : 3600;
 
         return {
-          secret: configService.get<string>('JWT_SECRET') ?? 'change-me',
+          secret: configService.get<string>('JWT_SECRET') ?? 'secret',
           signOptions: {
             expiresIn,
           },

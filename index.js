@@ -644,10 +644,46 @@
         //    EventEmitter2	                              Used to emit events
         //    @OnEvent()	                              Decorator to listen for specific events
 
+// HTTP Module - Allows to call external API's, microservices, other servers
+           //  - Wrapped around axios 
+           //  - Import HttpModule / Inject HttpService
+
+        //    | Feature              | Description                                          |
+        //    | -------------------- | ---------------------------------------------------- |
+        //    | **Module**           | `HttpModule` from `@nestjs/axios`                    |
+        //    | **Service**          | `HttpService` (Axios-based)                          |
+        //    | **Return Type**      |  RxJS `Observable`                                    |
+        //    | **Common Functions** |  `get()`, `post()`, `put()`, `delete()`, etc.         |
+        //    | **Configurable**     |  Yes — supports timeouts, interceptors, headers|
+           
+
+// File Uploading - way to handle file uploads using interceptors and Multer
+
+// | Feature          | Decorator/Interceptor                                                 | Description                    |
+// | ---------------- | --------------------------------------------------------------------- | ------------------------------ |
+// | Single File      | `FileInterceptor('file')`                                             | Upload one file                |
+// | Multiple Files   | `FilesInterceptor('files', maxCount)`                                 | Upload many files (same field) |
+// | Different Fields | `FileFieldsInterceptor([{ name: 'avatar' }, { name: 'background' }])` | Multiple named fields          |
+// | File Storage     | `diskStorage()`                                                       | Define path & filename         |
+// | File Validation  | `fileFilter`                                                          | Allow only certain MIME types  |
 
 
+// | Storage Type                 | Persistence             | Speed        | Scalability | Best Use Case                  |
+// | ---------------------------- | ----------------------- | ------------ | ----------- | ------------------------------ |
+// | **diskStorage**              | ✔️ Persistent (locally) | ⚡ Fast       | ❌ Low       | Local or small apps            |
+// | **memoryStorage**            | ❌ Temporary             | ⚡⚡ Very fast | ⚠️ Medium   | Processing before cloud upload |
+// | **Cloud Storage (S3, etc.)** | ✔️ Persistent (remote)  | ⚡ Medium     | ✅ High      | Production deployments         |
 
 
+// Streaming Files - Sending files to the client chunks
+                // - Instead of whole file
+
+                // | Approach                          | Use Case                               |
+                // | --------------------------------- | -------------------------------------- |
+                // | `fs.createReadStream().pipe(res)` | Simple streaming                       |
+                // | Handle `Range` header manually    | Video/audio playback                   |
+                // | `StreamableFile`                  | Clean, built-in abstraction (Nest v8+) |
+                          
 
 // Key Points – Node Advanced Concepts
 
