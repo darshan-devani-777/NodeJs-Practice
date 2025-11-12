@@ -6,6 +6,7 @@ import { UsersController } from './users.controller';
 import { User, UserSchema } from './schemas/user.schema';
 import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
@@ -32,7 +33,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [UsersController],
-  providers: [UsersService, JwtAuthGuard],
+  providers: [UsersService, JwtAuthGuard, RolesGuard],
   exports: [JwtModule],
 })
 export class UsersModule {}

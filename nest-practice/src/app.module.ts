@@ -6,12 +6,18 @@ import { EventsModule } from './events/events.module';
 import { Connection } from 'mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/nest_practice'),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60_000,
+        limit: 10,
+      },
+    ]),
     EventsModule,
     UsersModule,
   ],

@@ -1,5 +1,6 @@
-import { IsEmail, IsNotEmpty, MinLength, IsOptional } from 'class-validator';
+import { IsEmail, IsNotEmpty, MinLength, IsOptional, IsEnum } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
+import { UserRole } from '../schemas/user.schema';
 
 export class CreateUserDto {
   @IsNotEmpty({ message: 'Name is required' })
@@ -12,6 +13,10 @@ export class CreateUserDto {
   @MinLength(6, { message: 'Password must be at least 6 characters long' })
   @IsNotEmpty({ message: 'Password is required' })
   password: string;
+
+  @IsOptional()
+  @IsEnum(UserRole, { message: 'Role must be one of: user, admin, moderator' })
+  role?: UserRole;
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
