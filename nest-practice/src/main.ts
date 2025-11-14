@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { initializeWebsocketAdapterDemo } from './websockets/websocket-demo';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { AllExceptionsFilter } from './common/interceptors/all-exception.filter';
 
@@ -17,6 +18,7 @@ async function bootstrap() {
       transform: true, 
     }),
   );
+  initializeWebsocketAdapterDemo(app);
 
   await app.listen(process.env.PORT ?? 3000);
 }

@@ -23,11 +23,13 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const existingUser = await this.userModel.findOne({ email: createUserDto.email });
+    const existingUser = await this.userModel.findOne({
+      email: createUserDto.email,
+    });
     if (existingUser) {
       throw new BadRequestException('User with this email already exists');
     }
-  
+
     const newUser = new this.userModel(createUserDto);
     const savedUser = await newUser.save();
     const userObject = savedUser.toObject() as any;
@@ -46,7 +48,9 @@ export class UsersService {
     return savedUser;
   }
 
-  async login(loginUserDto: LoginUserDto): Promise<{ accessToken: string; user: Record<string, any> }> {
+  async login(
+    loginUserDto: LoginUserDto,
+  ): Promise<{ accessToken: string; user: Record<string, any> }> {
     const user = await this.userModel
       .findOne({ email: loginUserDto.email })
       .setOptions({ includePassword: true })
@@ -57,7 +61,10 @@ export class UsersService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const isPasswordValid = await bcrypt.compare(loginUserDto.password, user.password);
+    const isPasswordValid = await bcrypt.compare(
+      loginUserDto.password,
+      user.password,
+    );
 
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
@@ -86,14 +93,11 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     const users = await this.userModel.find().exec();
-    
+
     // Emit users retrieved event
     this.eventEmitter.emit(
       'users.retrieved',
-      new UsersRetrievedEvent(
-        users.length,
-        new Date(),
-      ),
+      new UsersRetrievedEvent(users.length, new Date()),
     );
 
     return users;
@@ -101,10 +105,10 @@ export class UsersService {
 
   async findOne(id: string): Promise<User | null> {
     const user = await this.userModel.findById(id).exec();
-    
+
     if (user) {
       const userObject = user.toObject() as any;
-      
+
       // Emit user retrieved event
       this.eventEmitter.emit(
         'user.retrieved',
@@ -120,15 +124,13 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User | null> {
-    const updatedUser = await this.userModel.findByIdAndUpdate(
-      id,
-      updateUserDto,
-      { new: true },
-    ).exec();
+    const updatedUser = await this.userModel
+      .findByIdAndUpdate(id, updateUserDto, { new: true })
+      .exec();
 
     if (updatedUser) {
       const userObject = updatedUser.toObject() as any;
-      
+
       // Emit user updated event
       this.eventEmitter.emit(
         'user.updated',
@@ -146,10 +148,10 @@ export class UsersService {
 
   async remove(id: string): Promise<{ deleted: boolean; user?: User | null }> {
     const result = await this.userModel.findByIdAndDelete(id).exec();
-  
+
     if (result) {
       const userObject = result.toObject();
-      
+
       // Emit user deleted event
       this.eventEmitter.emit(
         'user.deleted',
@@ -163,7 +165,7 @@ export class UsersService {
 
     return {
       deleted: !!result,
-      user: result || null, 
+      user: result || null,
     };
-  }  
+  }
 }

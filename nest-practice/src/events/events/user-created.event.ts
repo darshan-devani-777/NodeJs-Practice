@@ -6,4 +6,3 @@ export class UserCreatedEvent {
     public readonly createdAt: Date,
   ) {}
 }
-

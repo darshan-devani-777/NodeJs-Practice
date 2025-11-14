@@ -16,4 +16,3 @@ export class UserRetrievedListener {
     this.logger.log('------------------------------------------');
   }
 }
-

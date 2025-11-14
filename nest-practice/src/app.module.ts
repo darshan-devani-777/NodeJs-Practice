@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule, InjectConnection } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { EventsModule } from './events/events.module';
+import { WebsocketsModule } from './websockets/websockets.module';
 import { Connection } from 'mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,6 +21,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
     ]),
     EventsModule,
     UsersModule,
+    WebsocketsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

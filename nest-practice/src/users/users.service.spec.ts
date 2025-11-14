@@ -19,12 +19,18 @@ describe('UsersService', () => {
     toObject: jest.fn().mockReturnValue({}),
   };
 
-  const mockUserModel = jest.fn().mockImplementation(() => mockUserInstance) as any;
+  const mockUserModel = jest
+    .fn()
+    .mockImplementation(() => mockUserInstance) as any;
   mockUserModel.findOne = jest.fn().mockReturnValue(createMockQuery(null));
   mockUserModel.find = jest.fn().mockReturnValue(createMockQuery([]));
   mockUserModel.findById = jest.fn().mockReturnValue(createMockQuery(null));
-  mockUserModel.findByIdAndUpdate = jest.fn().mockReturnValue(createMockQuery(null));
-  mockUserModel.findByIdAndDelete = jest.fn().mockReturnValue(createMockQuery(null));
+  mockUserModel.findByIdAndUpdate = jest
+    .fn()
+    .mockReturnValue(createMockQuery(null));
+  mockUserModel.findByIdAndDelete = jest
+    .fn()
+    .mockReturnValue(createMockQuery(null));
 
   const mockJwtService = {
     signAsync: jest.fn(),

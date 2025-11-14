@@ -19,7 +19,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: (configService: ConfigService): JwtModuleOptions => {
         const expiresInSetting = configService.get<string>('JWT_EXPIRES_IN');
         const expiresIn =
-          expiresInSetting !== undefined && !Number.isNaN(Number(expiresInSetting))
+          expiresInSetting !== undefined &&
+          !Number.isNaN(Number(expiresInSetting))
             ? Number(expiresInSetting)
             : 3600;
 

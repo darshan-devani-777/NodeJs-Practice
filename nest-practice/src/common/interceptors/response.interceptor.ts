@@ -177,7 +177,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, any> {
       if (typeof id.toString === 'function' && !id.buffer) return id.toString();
 
       if (id.buffer && typeof id.buffer === 'object') {
-        const bytes = Object.values(id.buffer) as number[];
+        const bytes = Object.values(id.buffer);
         if (Array.isArray(bytes) && bytes.length === 12) {
           return Buffer.from(Uint8Array.from(bytes)).toString('hex');
         }

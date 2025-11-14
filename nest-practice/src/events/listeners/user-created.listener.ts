@@ -17,4 +17,3 @@ export class UserCreatedListener {
     this.logger.log('------------------------------------------');
   }
 }
-

@@ -5,4 +5,3 @@ export class UserLoggedInEvent {
     public readonly loginAt: Date,
   ) {}
 }
-

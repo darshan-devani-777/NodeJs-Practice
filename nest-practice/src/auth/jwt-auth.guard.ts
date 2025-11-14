@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -21,9 +26,9 @@ export class JwtAuthGuard implements CanActivate {
 
     try {
       const payload = await this.jwtService.verifyAsync(token);
-      
+
       const user = await this.userModel.findById(payload.sub).exec();
-      
+
       if (!user) {
         throw new UnauthorizedException('User not found');
       }
@@ -34,7 +39,7 @@ export class JwtAuthGuard implements CanActivate {
         role: user.role,
         ...payload,
       };
-      
+
       return true;
     } catch (error) {
       if (error instanceof UnauthorizedException) {
@@ -54,4 +59,3 @@ export class JwtAuthGuard implements CanActivate {
     return type === 'Bearer' && token ? token : null;
   }
 }
-

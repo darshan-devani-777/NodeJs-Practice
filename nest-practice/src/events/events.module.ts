@@ -29,4 +29,3 @@ import { UserRetrievedListener } from './listeners/user-retrieved.listener';
   exports: [EventEmitterModule],
 })
 export class EventsModule {}
-

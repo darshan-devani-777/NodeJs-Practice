@@ -1,6 +1,9 @@
 import { Injectable, ExecutionContext } from '@nestjs/common';
 import { ThrottlerGuard } from '@nestjs/throttler';
-import type { ThrottlerModuleOptions, ThrottlerStorage } from '@nestjs/throttler';
+import type {
+  ThrottlerModuleOptions,
+  ThrottlerStorage,
+} from '@nestjs/throttler';
 import { Reflector } from '@nestjs/core';
 
 @Injectable()
@@ -31,5 +34,3 @@ export class UserThrottlerGuard extends ThrottlerGuard {
     return super.canActivate(context);
   }
 }
-
-

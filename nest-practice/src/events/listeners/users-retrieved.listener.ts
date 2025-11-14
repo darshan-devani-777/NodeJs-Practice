@@ -15,4 +15,3 @@ export class UsersRetrievedListener {
     this.logger.log('------------------------------------------');
   }
 }
-

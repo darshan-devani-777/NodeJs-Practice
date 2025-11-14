@@ -5,4 +5,3 @@ export class UserDeletedEvent {
     public readonly deletedAt: Date,
   ) {}
 }
-

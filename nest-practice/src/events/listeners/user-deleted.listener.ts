@@ -16,4 +16,3 @@ export class UserDeletedListener {
     this.logger.log('------------------------------------------');
   }
 }
-

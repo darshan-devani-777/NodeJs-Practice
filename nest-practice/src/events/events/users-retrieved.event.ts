@@ -4,4 +4,3 @@ export class UsersRetrievedEvent {
     public readonly retrievedAt: Date,
   ) {}
 }
-

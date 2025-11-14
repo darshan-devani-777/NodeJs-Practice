@@ -683,7 +683,33 @@
                 // | `fs.createReadStream().pipe(res)` | Simple streaming                       |
                 // | Handle `Range` header manually    | Video/audio playback                   |
                 // | `StreamableFile`                  | Clean, built-in abstraction (Nest v8+) |
+
+// WebSockets :- Gateways, Exception Filters, Pipes, Guards, Interceptors, Adapters
+           // :- Gateways - Used to Handle Real-time (Chat App, Live notifications, Multiplayer games, real-time dashboards) 
+             // @WebSocketGateway() → makes the class a WebSocket gateway
+             // @WebSocketServer() → injects the Socket.IO server instance
+             // @SubscribeMessage('message') → listens to 'message' events from clients
+             // server.emit() → sends messages back to all connected clients   
+             
+// Adapters :- Tells the framework how to create / manage Websocket servers
+         // -  IoAdapter - Wraps Socket.IO
+         // -  WsAdaptor - Wraps ws (WebSocket Library)
+     // Adapters allow - Add custom validation logic
+                    // - Integrate third party Websocket systems
+                    // - override default Socket.Io // Ws
+                    
+     // Socket.IO Adapter :- part of the @nestjs/platform-socket.io package
+                      //  -  Boots a Socket.IO server
+                      //  -  Manages automatic reconnection, event broadcasting, rooms, events
+                      //  -  Works automatically with @WebSocketGateway()               
                           
+     // WS Library Adapter :- part of the @nestjs/platform-ws package
+                      //  -  Faster, No rooms/namespaces built-in, 
+                      //  -  Use of games, streaming
+
+     // Custom WebSocket Adapter :- Part of the WebSocketAdapter
+                      //  -  Integrating with a different WebSocket library                  
+    
 
 // Key Points – Node Advanced Concepts
 

@@ -16,4 +16,3 @@ export class UserLoggedInListener {
     this.logger.log('------------------------------------------');
   }
 }
-

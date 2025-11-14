@@ -22,5 +22,5 @@ describe('AppController', () => {
         data: null,
       });
     });
-  });  
+  });
 });

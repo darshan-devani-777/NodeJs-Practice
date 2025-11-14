@@ -12,9 +12,10 @@ export class UserUpdatedListener {
     this.logger.log('📢 User Updated Event Received');
     this.logger.log(`User ID: ${event.userId}`);
     this.logger.log(`Email: ${event.email}`);
-    this.logger.log(`Updated Fields: ${JSON.stringify(event.updatedFields, null, 2)}`);
+    this.logger.log(
+      `Updated Fields: ${JSON.stringify(event.updatedFields, null, 2)}`,
+    );
     this.logger.log(`Updated At: ${event.updatedAt}`);
     this.logger.log('------------------------------------------');
   }
 }
-

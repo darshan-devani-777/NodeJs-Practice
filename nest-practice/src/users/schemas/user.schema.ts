@@ -18,8 +18,8 @@ export enum UserRole {
       delete ret._id;
       delete ret.password;
       delete ret.__v;
-      return { id: ret.id, ...ret }; 
-    },    
+      return { id: ret.id, ...ret };
+    },
   },
   toObject: {
     virtuals: false,
@@ -29,11 +29,10 @@ export enum UserRole {
       delete ret._id;
       delete ret.password;
       delete ret.__v;
-      return { id: ret.id, ...ret }; 
-    },    
+      return { id: ret.id, ...ret };
+    },
   },
 })
-
 export class User extends Document {
   @Prop({ required: true })
   name: string;
@@ -44,18 +43,18 @@ export class User extends Document {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ 
-    type: String, 
-    enum: Object.values(UserRole), 
-    default: UserRole.USER 
+  @Prop({
+    type: String,
+    enum: Object.values(UserRole),
+    default: UserRole.USER,
   })
   role: UserRole;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-// Hash password 
- UserSchema.pre<User>('save', async function (next) {
+// Hash password
+UserSchema.pre<User>('save', async function (next) {
   if (!this.isModified('password')) return next();
 
   try {
