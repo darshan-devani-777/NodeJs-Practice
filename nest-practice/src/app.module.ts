@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { EventsModule } from './events/events.module';
 import { WebsocketsModule } from './websockets/websockets.module';
 import { Connection } from 'mongoose';
+import { DemoClientModule } from './microservices/demo/demo-client.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ThrottlerModule } from '@nestjs/throttler';
@@ -22,6 +23,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
     EventsModule,
     UsersModule,
     WebsocketsModule,
+    DemoClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],

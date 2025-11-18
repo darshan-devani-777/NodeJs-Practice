@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "6820d620-58df-42f6-99ca-aa7c573af60f",
+		"_postman_id": "ba1b8113-9adb-4831-b901-27472d5b97ac",
 		"name": "Practice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "11498457"
+		"_exporter_id": "4377776",
+		"_collection_link": "https://low66tecocraft.postman.co/workspace/API's-Demo~f7841d29-542b-439c-8271-f834a7cfab02/collection/4377776-ba1b8113-9adb-4831-b901-27472d5b97ac?action=share&source=collection_link&creator=4377776"
 	},
 	"item": [
 		{
@@ -3163,15 +3164,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users",
 											"protocol": "http",
@@ -3271,10 +3263,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users/role",
 											"protocol": "http",
@@ -3378,10 +3366,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users/68402c7b433c20dcf2b2a78b",
 											"protocol": "http",
@@ -3830,10 +3814,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users",
 											"protocol": "http",
@@ -3936,10 +3916,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users/684034c5433c20dcf2b2a7b7",
 											"protocol": "http",
@@ -4370,10 +4346,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users/68402c7b433c20dcf2b2a78b",
 											"protocol": "http",
@@ -4439,10 +4411,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users/68401f721931287371cba72b",
 											"protocol": "http",
@@ -4550,15 +4518,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/users",
 											"protocol": "http",
@@ -5027,15 +4986,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": "",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products",
 													"protocol": "http",
@@ -5138,10 +5088,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": ""
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products/categories",
 													"protocol": "http",
@@ -5245,10 +5191,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": ""
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products/6842b2dca77dd6e2cb50e998",
 													"protocol": "http",
@@ -5697,15 +5639,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": "",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products",
 													"protocol": "http",
@@ -5808,10 +5741,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": ""
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products/categories",
 													"protocol": "http",
@@ -5915,10 +5844,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": ""
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products/6842b2dca77dd6e2cb50e998",
 													"protocol": "http",
@@ -6254,15 +6179,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": "",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products",
 													"protocol": "http",
@@ -6365,10 +6281,6 @@
 														"type": "text"
 													}
 												],
-												"body": {
-													"mode": "raw",
-													"raw": ""
-												},
 												"url": {
 													"raw": "http://localhost:1212/api/products/categories",
 													"protocol": "http",
@@ -6595,15 +6507,6 @@
 												"type": "text"
 											}
 										],
-										"body": {
-											"mode": "raw",
-											"raw": "",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
 										"url": {
 											"raw": "http://localhost:1212/api/carts?userId=68401f721931287371cba72b",
 											"protocol": "http",
@@ -9390,10 +9293,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"email\": \"admin123@example.com\",\n  \"password\": \"Admin@123\"\n}"
-								},
 								"url": {
 									"raw": "http://localhost:3000/users/get-all-user",
 									"protocol": "http",
@@ -9792,7 +9691,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -9892,7 +9791,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -9987,7 +9886,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -10094,7 +9993,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -10201,7 +10100,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -10308,7 +10207,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -10415,7 +10314,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": null,
+							"_postman_previewlanguage": "Text",
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -10452,6 +10351,881 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"data\": {\n        \"deleteUser\": {\n            \"status\": \"SUCCESS\",\n            \"code\": \"USER_DELETED\",\n            \"message\": \"User deleted successfully...\",\n            \"data\": {\n                \"_id\": \"68c008b7e78690ef75e96664\",\n                \"name\": \"Jack J.\",\n                \"email\": \"jack@gmail.com\",\n                \"createdAt\": \"2025-09-09T11:00:07.236Z\",\n                \"updatedAt\": \"2025-09-09T11:00:07.236Z\",\n                \"__v\": 0\n            }\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Nest-Practice",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Admin A.\",\n    \"email\":\"admin@gmail.com\",\n    \"password\": \"123456\",\n    \"role\":\"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/create-user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"create-user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create User",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Admin A.\",\n    \"email\":\"admin@gmail.com\",\n    \"password\": \"123456\",\n    \"role\":\"admin\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/users/create-user",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"users",
+												"create-user"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "235"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"eb-LWFPv6S1eQQZiXO0qmfvlXEsfwY\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 12 Nov 2025 06:49:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"User created successfully...\",\n    \"data\": {\n        \"id\": \"69142dfa406f86ad7db9fcb5\",\n        \"name\": \"Admin A.\",\n        \"email\": \"admin@gmail.com\",\n        \"role\": \"admin\",\n        \"createdAt\": \"2025-11-12T06:49:30.992Z\",\n        \"updatedAt\": \"2025-11-12T06:49:30.992Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Login User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/login-user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"login-user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Login User",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\":\"admin@gmail.com\",\n    \"password\": \"123456\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/users/login-user",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"users",
+												"login-user"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "486"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e6-qulRNWP9DbkOiEkEHWMkusFMl2U\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 12 Nov 2025 06:50:05 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"User login successfully...\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTE0MmRmYTQwNmY4NmFkN2RiOWZjYjUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MjkzMDIwNSwiZXhwIjoxNzYyOTMzODA1fQ.bTimIxFacL965OJ_JIbmD1ugbZl6_DDhWADmYgddLd4\",\n        \"user\": {\n            \"id\": \"69142dfa406f86ad7db9fcb5\",\n            \"name\": \"Admin A.\",\n            \"email\": \"admin@gmail.com\",\n            \"role\": \"admin\",\n            \"createdAt\": \"2025-11-12T06:49:30.992Z\",\n            \"updatedAt\": \"2025-11-12T06:49:30.992Z\"\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get All Users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTBkOWZkMDYzMDBhZmQ2ZGY3NDYwNjkiLCJlbWFpbCI6ImRlbnZlckBnbWFpbC5jb20iLCJpYXQiOjE3NjI1MDU1MDQsImV4cCI6MTc2MjUwOTEwNH0.08DyMn2TtMCAAjbOXjkUc81ZiMeq_pA1GoBFJ-O5gKA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users/get-all-users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"get-all-users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Users",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Demo User\",\n    \"email\":\"demo@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/users/get-all-users",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"users",
+												"get-all-users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "402"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"192-Zw/B/poqb7txtHkGUA/A7+EBeqM\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 07 Nov 2025 05:46:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Resources fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"690d7f08f8a44f3899028634\",\n            \"name\": \"Demo User\",\n            \"email\": \"demo@gmail.com\",\n            \"createdAt\": \"2025-11-07T05:09:28.982Z\",\n            \"updatedAt\": \"2025-11-07T05:27:44.427Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"690d87af37e8b0966152bace\",\n            \"name\": \"Sample User\",\n            \"email\": \"sample@gmail.com\",\n            \"createdAt\": \"2025-11-07T05:46:23.917Z\",\n            \"updatedAt\": \"2025-11-07T05:46:23.917Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Specific User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTBkOWZkMDYzMDBhZmQ2ZGY3NDYwNjkiLCJlbWFpbCI6ImRlbnZlckBnbWFpbC5jb20iLCJpYXQiOjE3NjI1MDU1MDQsImV4cCI6MTc2MjUwOTEwNH0.08DyMn2TtMCAAjbOXjkUc81ZiMeq_pA1GoBFJ-O5gKA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users/get-specific-user/690d9fef6300afd6df74606c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"get-specific-user",
+										"690d9fef6300afd6df74606c"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Specific User",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Demo User\",\n    \"email\":\"demo@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/users/get-specific-user/690d7f08f8a44f3899028634",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"users",
+												"get-specific-user",
+												"690d7f08f8a44f3899028634"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "230"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"e6-yiIT3bHydSWvk8b+z+NNTOcXiHM\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 07 Nov 2025 05:47:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Resource fetched successfully\",\n    \"data\": {\n        \"_id\": \"690d7f08f8a44f3899028634\",\n        \"name\": \"Demo User\",\n        \"email\": \"demo@gmail.com\",\n        \"createdAt\": \"2025-11-07T05:09:28.982Z\",\n        \"updatedAt\": \"2025-11-07T05:27:44.427Z\",\n        \"__v\": 0\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTBkOWZkMDYzMDBhZmQ2ZGY3NDYwNjkiLCJlbWFpbCI6ImRlbnZlckBnbWFpbC5jb20iLCJpYXQiOjE3NjI1MDU1MDQsImV4cCI6MTc2MjUwOTEwNH0.08DyMn2TtMCAAjbOXjkUc81ZiMeq_pA1GoBFJ-O5gKA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Demoo\",\n    \"email\":\"demoo@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/update-user/690d9fef6300afd6df74606c",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"update-user",
+										"690d9fef6300afd6df74606c"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update User",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Demoo User\",\n    \"email\":\"demoo@gmail.com\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/users/update-user/690d7f08f8a44f3899028634",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"users",
+												"update-user",
+												"690d7f08f8a44f3899028634"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "232"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"e8-uDGmfbexlUkj/q0DEOdj9ZcPVWs\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 07 Nov 2025 05:47:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Resource updated successfully\",\n    \"data\": {\n        \"_id\": \"690d7f08f8a44f3899028634\",\n        \"name\": \"Demoo User\",\n        \"email\": \"demoo@gmail.com\",\n        \"createdAt\": \"2025-11-07T05:09:28.982Z\",\n        \"updatedAt\": \"2025-11-07T05:47:39.766Z\",\n        \"__v\": 0\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTE0MmRmYTQwNmY4NmFkN2RiOWZjYjUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MjkzMDYxOCwiZXhwIjoxNzYyOTM0MjE4fQ.3O3sjwmgDJzbHLYWRqKcRRG_1NfL_SrUi1y0z4Bjxts",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Demo User\",\n    \"email\":\"demo@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/delete-user/690ddf0275ee558ebe6b51cd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"delete-user",
+										"690ddf0275ee558ebe6b51cd"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete User",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Demo User\",\n    \"email\":\"demo@gmail.com\"\n}"
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/users/delete-user/690ddf0275ee558ebe6b51cd",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"users",
+												"delete-user",
+												"690ddf0275ee558ebe6b51cd"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "255"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"ff-O5NfB/rHeIJ9xfb6YgVFeSj/jo4\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 12 Nov 2025 06:56:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"User deleted successfully...\",\n    \"data\": {\n        \"deleted\": true,\n        \"user\": {\n            \"id\": \"690ddf0275ee558ebe6b51cd\",\n            \"role\": \"user\",\n            \"name\": \"Robin\",\n            \"email\": \"robin@gmail.com\",\n            \"createdAt\": \"2025-11-07T11:58:58.322Z\",\n            \"updatedAt\": \"2025-11-11T05:30:03.611Z\"\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Microservices",
+					"item": [
+						{
+							"name": "Test-Microservice",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n      \"values\": [1, 2, 3, 4]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/microservices-demo/sum",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"microservices-demo",
+										"sum"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Test-Microservice",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "    {\n      \"values\": [1, 2, 3, 4]\n    }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/microservices-demo/sum",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"microservices-demo",
+												"sum"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "121"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"79-mlZ6KWO3EYD0Yp4PNffyBGuQnX8\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Nov 2025 09:03:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"data\": {\n        \"pattern\": \"demo_sum\",\n        \"payload\": [\n            1,\n            2,\n            3,\n            4\n        ],\n        \"result\": 10\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Test-Microservicee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/microservices-demo/ping?paylload=health-check",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"microservices-demo",
+										"ping"
+									],
+									"query": [
+										{
+											"key": "paylload",
+											"value": "health-check"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Test-Microservicee",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "http://localhost:3000/api/microservices-demo/ping?paylload=health-check",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"microservices-demo",
+												"ping"
+											],
+											"query": [
+												{
+													"key": "paylload",
+													"value": "health-check"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "142"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"8e-7FrVfwGSIpEagZh3GouCO5Hcj9k\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 17 Nov 2025 09:13:34 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"List retrieved successfully\",\n    \"data\": {\n        \"pattern\": \"demo_ping\",\n        \"payload\": \"ping\",\n        \"result\": \"microservice-response:ping\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Admin Route",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTE0MmRmYTQwNmY4NmFkN2RiOWZjYjUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MjkzMDYxOCwiZXhwIjoxNzYyOTM0MjE4fQ.3O3sjwmgDJzbHLYWRqKcRRG_1NfL_SrUi1y0z4Bjxts",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/admin-only",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"admin-only"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Admin Route",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users/admin-only",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"admin-only"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-Tyko5LzcBn3+HyGjlcssangn2ts\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Nov 2025 06:57:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"List retrieved successfully\",\n    \"data\": {\n        \"message\": \"This is an admin/moderator only endpoint\"\n    }\n}"
 						}
 					]
 				}

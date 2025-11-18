@@ -686,8 +686,8 @@
 
 // WebSockets :- Gateways, Exception Filters, Pipes, Guards, Interceptors, Adapters
            // :- Gateways - Used to Handle Real-time (Chat App, Live notifications, Multiplayer games, real-time dashboards) 
-             // @WebSocketGateway() → makes the class a WebSocket gateway
-             // @WebSocketServer() → injects the Socket.IO server instance
+             // @WebSocketGateway() → Create a Websocket server
+             // @WebSocketServer() → injects the Socket.IO server / Give direct access 
              // @SubscribeMessage('message') → listens to 'message' events from clients
              // server.emit() → sends messages back to all connected clients   
              
