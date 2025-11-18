@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Nest Swagger Example')
+    .setTitle('Nest With Swagger')
     .setDescription('API documentation')
     .setVersion('1.0')
     .build();
@@ -20,7 +20,6 @@ async function bootstrap() {
   console.log(`🚀 Server Start on http://localhost:3000`);
   console.log(`📄 Swagger docs at http://localhost:3000/api`);
 
-  // MongoDB connection
   mongoose
     .connect('mongodb://localhost:27017/nest-swagger')
     .then(() => console.log('✅ MongoDB Connected...!'))
