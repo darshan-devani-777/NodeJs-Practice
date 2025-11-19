@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('Nest With Swagger')
     .setDescription('API documentation')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

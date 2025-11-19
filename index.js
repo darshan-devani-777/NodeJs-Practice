@@ -708,8 +708,32 @@
                       //  -  Use of games, streaming
 
      // Custom WebSocket Adapter :- Part of the WebSocketAdapter
-                      //  -  Integrating with a different WebSocket library                  
-    
+                      //  -  Integrating with a different WebSocket library     
+                      
+// OpenAPI :- Swagger - Generate interactive API documentation
+
+// Mapped types :- Helper utilities
+            //  -  Allow to transform existing classes - DTO's
+        //      Utility          |     What it does          |
+        // | --------------------| ------------------------- |
+        // |  PartialType        | Makes all fields optional |
+        // |  PickType           | Selects fields            |
+        // |  OmitType           | Excludes fields           |
+        // |  IntersectionType   | Combines two types        |
+        // |  RequiredType       | Makes fields required     |
+
+// HTTP Adapter :- Nest uses to communicate with the underlying HTTP server implementation
+             // -  allows Nest to run on different HTTP platforms without changing your application code
+        // | Adapter            | Package                    | Notes                   |
+        // | ------------------ | -------------------------- | ----------------------- |
+        // |  ExpressAdapter   | `@nestjs/platform-express` | Default, widely used    |
+        // |  FastifyAdapter   | `@nestjs/platform-fastify` | Faster & more efficient |
+        // |  Custom Adapter   | You can write your own     | For non-Express servers |
+
+        // Custom Adapter - Use HttpAdapterHost
+
+
+
 
 // Key Points – Node Advanced Concepts
 
