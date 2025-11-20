@@ -732,8 +732,10 @@
 
         // Custom Adapter - Use HttpAdapterHost
 
-
-
+// Read-Eval-Print-Loop (REPL) :- Allow to test & experiment app threw commandline
+                            //  - Test services / controllers / functions without run entire app
+                            //  - Quick debugging / Inspect app
+                            //  - give access app context - manipulate DB threw terminal
 
 // Key Points – Node Advanced Concepts
 

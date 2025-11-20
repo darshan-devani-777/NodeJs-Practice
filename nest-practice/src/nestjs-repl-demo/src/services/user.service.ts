@@ -90,15 +90,16 @@ export class UserService {
     }
   }
 
-  async deleteUser(id: string): Promise<void> {
+  async deleteUser(id: string): Promise<UserDocument | null> {
     const user = await this.findOne(id);
-
+  
     try {
       await this.userModel.deleteOne({ _id: id }).exec();
       this.logger.log(`User deleted: ${JSON.stringify(user)}`);
+      return user;  
     } catch (error) {
       this.logger.error(`Error deleting user with id ${id}`, error);
       throw new Error('Failed to delete user');
     }
-  }
+  }  
 }

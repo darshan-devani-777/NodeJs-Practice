@@ -2,7 +2,6 @@
 npm run start:repl
 
 <!-- REPL Execute Commands -->
-
 <!-- Create User -->
 await userService.createUser('Alice', 'alice@example.com')
 
