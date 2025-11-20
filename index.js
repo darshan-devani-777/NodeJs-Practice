@@ -737,6 +737,13 @@
                             //  - Quick debugging / Inspect app
                             //  - give access app context - manipulate DB threw terminal
 
+// Hot Reload :- Feature that allow watches for changes 
+            // - Typescript files / Re-compiles / Restart application    
+            // - "scripts": {
+                        //   "start:dev": "ts-node-dev --respawn --loader ts-node/esm src/main.ts"
+                        //  }
+
+            
 // Key Points – Node Advanced Concepts
 
 // 1. Performance & Scalability
