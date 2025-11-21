@@ -4,5 +4,5 @@ module.exports = {
   'config': path.resolve('src/config/sequelize.config.js'),
   'migrations-path': path.resolve('src/database/migrations'),
   'seeders-path': path.resolve('src/database/seeders'),
-  'models-path': path.resolve('src/models') // not required but harmless
+  'models-path': path.resolve('src/models') 
 };
