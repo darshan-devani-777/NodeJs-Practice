@@ -13,12 +13,49 @@ export class UsersService {
     return this.userModel.create(dto as Attributes<User>);
   }
 
-  findAll() {
-    return this.userModel.findAll();
+  async findAll() {
+    const users = await this.userModel.findAll({
+      attributes: { exclude: ['password'] },
+    });
+
+    const formattedUsers = users.map(user => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      createdAt: user.createdAt.toISOString().split('T')[0],
+      updatedAt: user.updatedAt.toISOString().split('T')[0],
+    }));
+
+    return {
+      status: 'success',
+      data: {
+        count: formattedUsers.length,
+        users: formattedUsers,
+      },
+    };
   }
 
-  findOne(id: number) {
-    return this.userModel.findByPk(id);
+  async findOne(id: number) {
+    const user = await this.userModel.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const formattedUser = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      createdAt: user.createdAt.toISOString().split('T')[0],
+      updatedAt: user.updatedAt.toISOString().split('T')[0],
+    };
+
+    return {
+      status: 'success',
+      data: formattedUser,
+    };
   }
 
   async update(id: number, dto: UpdateUserDto) {
