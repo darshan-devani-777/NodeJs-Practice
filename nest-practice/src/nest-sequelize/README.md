@@ -106,6 +106,7 @@ module.exports = {
 Run migrations :- npx sequelize-cli db:migrate
 Undo last migration :- npx sequelize-cli db:migrate:undo
 Undo all migrations :- npx sequelize-cli db:migrate:undo:all
+status :- npx sequelize-cli db:migrate:status
 
 🌱 6. Seeders
 
