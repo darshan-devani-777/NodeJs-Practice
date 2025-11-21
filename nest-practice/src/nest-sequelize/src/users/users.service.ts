@@ -18,7 +18,7 @@ export class UsersService {
       attributes: { exclude: ['password'] },
     });
 
-    const formattedUsers = users.map(user => ({
+    const formattedUsers = users.map((user) => ({
       id: user.id,
       name: user.name,
       email: user.email,

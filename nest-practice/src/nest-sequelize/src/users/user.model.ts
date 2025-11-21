@@ -3,29 +3,34 @@ import {
   Column,
   Model,
   DataType,
-  BeforeCreate,
+  BeforeCreate,                            
   BeforeUpdate,
 } from 'sequelize-typescript';
 import * as bcrypt from 'bcryptjs';
+
+const notEmptyString = {
+  allowNull: false,
+  validate: { notEmpty: true },
+};
 
 @Table
 export class User extends Model<User> {
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    ...notEmptyString,
   })
   declare name: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
     unique: true,
+    ...notEmptyString,
   })
   declare email: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    ...notEmptyString,
   })
   declare password: string;
 
