@@ -2436,7 +2436,7 @@ Task Name :- Nest.Js Framework
                     -   Overview of Sequelize ORM with NestJs 
 
 Please find today's work updates below:
-Date:21-11-2025 
+Date:24-11-2025 
 
 Task Name :- Nest.Js Framework
                     -  Setup the Sequelize ORM for managing the database and models
@@ -2445,3 +2445,14 @@ Task Name :- Nest.Js Framework
                     -  Overview about the Sequelize Migration 
                     -  Generated Migration file and applied using Sequelize-CLI to modify the database schema
                     -  Performed migration operations through the command line to apply, revert, and manage schema
+
+Please find today's work updates below:
+Date:21-11-2025 
+
+Task Name :- Nest.Js Framework
+                    -  Overview of the API Versioning 
+                    -  Added URI-based API versioning using NestJS
+                    -  Created separate v1 and v2 controllers for version-specific APIs
+                    -  Implemented shared routes available across multiple versions
+                    -  Integrated neutral versioning with routes accessible without any version
+                    -  Centralized logic into services to support multi-version responses                    
