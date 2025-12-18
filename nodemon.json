@@ -1,0 +1,7 @@
+{
+  "watch": ["app.js", "server.js", "routes", "views"],
+  "ext": "js,json,ejs",
+  "ignore": ["node_modules"],
+  "exec": "node -r dotenv/config --experimental-json-modules app.js",
+  "legacyWatch": true
+}

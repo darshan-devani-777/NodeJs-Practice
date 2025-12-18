@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PregaCenter-Admin</title>
+
+    <%- include('partial/scripts') %>
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <!-- Preloader -->
+      <div
+        class="preloader flex-column justify-content-center align-items-center"
+      >
+        <img
+          class="animation__shake"
+          src="/dist/img/AdminLTELogo.png"
+          alt="AdminLTELogo"
+          height="60"
+          width="60"
+        />
+      </div>
+
+      <!-- Navbar -->
+      <%- include('partial/navbar') %>
+
+      <!-- Sidebar -->
+      <%- include('partial/sidebar') %>
+
+      <!-- Content Wrapper -->
+      <div class="content-wrapper">
+        <!-- Header -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0">Dashboard</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <!-- User Registrations -->
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                  <div class="inner">
+                    <h3 id="total_registrations">0</h3>
+                    <p>User Registrations</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                  <a href="/users/admin/list" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Articles -->
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                  <div class="inner">
+                    <h3 id="total_articles">0</h3>
+                    <p>Total Articles</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-document-text"></i>
+                  </div>
+                  <a href="/articles/admin/list" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Blogs -->
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                  <div class="inner">
+                    <h3 id="total_blogs">0</h3>
+                    <p>Total Blogs</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-compose"></i>
+                  </div>
+                  <a href="/blog/admin/list" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Courses -->
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-primary">
+                  <div class="inner">
+                    <h3 id="total_courses">0</h3>
+                    <p>Total Courses</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-university"></i>
+                  </div>
+                  <a href="/courses/admin/list" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <%- include('partial/footer') %>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // Read cookies
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        const token = getCookie("accessToken");
+
+        // ---- User Registrations ----
+        $.ajax({
+          url: "/users?length=1",
+          type: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+          success: function (res) {
+            if (res && res.success && typeof res.recordsTotal !== "undefined") {
+              $("#total_registrations").text(res.recordsTotal);
+            } else {
+              $("#total_registrations").text("0");
+            }
+          },
+          error: function (err) {
+            console.error("Error fetching total registrations:", err);
+            $("#total_registrations").text("0");
+          },
+        });
+
+        // ---- Articles ----
+        $.ajax({
+          url: "/articles/getArticles",
+          type: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+          success: function (res) {
+            if (res && res.success && res.data && res.data.pagination) {
+              $("#total_articles").text(res.data.pagination.total_items);
+            } else {
+              $("#total_articles").text("0");
+            }
+          },
+          error: function (err) {
+            console.error("Error fetching total articles:", err);
+            $("#total_articles").text("0");
+          },
+        });
+
+        // ---- Blogs ----
+        $.ajax({
+          url: "/blog/getAllBlogs",
+          type: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+          success: function (res) {
+            if (res && res.success && res.data && res.data.pagination) {
+              $("#total_blogs").text(res.data.pagination.total_items);
+            } else {
+              $("#total_blogs").text("0");
+            }
+          },
+          error: function (err) {
+            console.error("Error fetching total blogs:", err);
+            $("#total_blogs").text("0");
+          },
+        });
+
+        // ---- Courses ----
+        $.ajax({
+          url: "/courses/fetch",
+          type: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+          success: function (res) {
+            if (res && res.success && res.data && res.data.pagination) {
+              $("#total_courses").text(res.data.pagination.total_items);
+            } else {
+              $("#total_courses").text("0");
+            }
+          },
+          error: function (err) {
+            console.error("Error fetching total courses:", err);
+            $("#total_courses").text("0");
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

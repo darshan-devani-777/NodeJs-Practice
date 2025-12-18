@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prega Center | Blogs</title>
+
+    <%- include('partial/scripts') %>
+
+    <!-- Import Nunito Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Custom fonts for Summernote editor */
+      .note-editable {
+        font-family: "Nunito", sans-serif;
+      }
+
+      .note-editable .font-nunito {
+        font-family: "Nunito", sans-serif !important;
+      }
+
+      /* Ensure fonts work in the editor */
+      .note-editable .font-arial {
+        font-family: "Arial", sans-serif !important;
+      }
+      .note-editable .font-arial-black {
+        font-family: "Arial Black", sans-serif !important;
+      }
+      .note-editable .font-comic-sans-ms {
+        font-family: "Comic Sans MS", cursive !important;
+      }
+      .note-editable .font-courier-new {
+        font-family: "Courier New", monospace !important;
+      }
+      .note-editable .font-georgia {
+        font-family: "Georgia", serif !important;
+      }
+      .note-editable .font-impact {
+        font-family: "Impact", sans-serif !important;
+      }
+      .note-editable .font-tahoma {
+        font-family: "Tahoma", sans-serif !important;
+      }
+      .note-editable .font-times-new-roman {
+        font-family: "Times New Roman", serif !important;
+      }
+      .note-editable .font-trebuchet-ms {
+        font-family: "Trebuchet MS", sans-serif !important;
+      }
+      .note-editable .font-verdana {
+        font-family: "Verdana", sans-serif !important;
+      }
+
+      /* Form validation styles */
+      .form-control.is-invalid {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+      }
+
+      .form-control.is-valid {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+      }
+
+      .invalid-feedback {
+        display: block;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #dc3545;
+      }
+
+      .valid-feedback {
+        display: block;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #28a745;
+      }
+
+      /* Summernote validation styling */
+      .note-editor.is-invalid .note-editing-area {
+        border-color: #dc3545;
+      }
+
+      .note-editor.is-valid .note-editing-area {
+        border-color: #28a745;
+      }
+
+      /* Ensure font size changes are applied properly */
+      .note-editable {
+        font-size: 16px;
+      }
+
+      /* Table horizontal scrolling styles */
+      .table-responsive {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      .table-responsive table {
+        min-width: 100%;
+        width: max-content;
+      }
+
+      .table-responsive th,
+      .table-responsive td {
+        white-space: nowrap;
+        min-width: 60px;
+      }
+
+      /* Specific column widths for better layout */
+      .table-responsive th:nth-child(1), /* Title */
+         .table-responsive td:nth-child(1) {
+        min-width: 120px;
+        max-width: 120px;
+      }
+
+      .table-responsive th:nth-child(2), /* Description */
+         .table-responsive td:nth-child(2) {
+        min-width: 150px;
+        max-width: 150px;
+      }
+
+      .table-responsive th:nth-child(3), /* Image */
+         .table-responsive td:nth-child(3) {
+        min-width: 80px;
+        max-width: 80px;
+      }
+
+      .table-responsive th:nth-child(4), /* Type */
+         .table-responsive td:nth-child(4) {
+        min-width: 80px;
+        max-width: 80px;
+      }
+
+      .table-responsive th:nth-child(5), /* Content */
+         .table-responsive td:nth-child(5) {
+        min-width: 200px;
+        max-width: 200px;
+      }
+
+      .table-responsive th:nth-child(6), /* Created at */
+         .table-responsive td:nth-child(6) {
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      .table-responsive th:nth-child(7), /* Author */
+         .table-responsive td:nth-child(7) {
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      .table-responsive th:nth-child(8), /* Status */
+         .table-responsive td:nth-child(8) {
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      .table-responsive th:nth-child(9), /* Action */
+         .table-responsive td:nth-child(9) {
+        min-width: 120px;
+        max-width: 120px;
+      }
+
+      /* DataTable specific scrolling and pagination styles */
+      .dataTables_wrapper {
+        /* overflow-x: auto; */
+        max-width: 100%;
+        position: relative;
+      }
+
+      .dataTables_wrapper .dataTable {
+        min-width: 100%;
+        width: max-content !important;
+      }
+
+      .dataTables_wrapper .dataTable th,
+      .dataTables_wrapper .dataTable td {
+        white-space: nowrap;
+        min-width: 100px;
+      }
+
+      /* Specific column widths for DataTable */
+      .dataTables_wrapper .dataTable th:nth-child(1),
+      .dataTables_wrapper .dataTable td:nth-child(1) {
+        min-width: 120px;
+        max-width: 120px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(2),
+      .dataTables_wrapper .dataTable td:nth-child(2) {
+        min-width: 150px;
+        max-width: 150px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(3),
+      .dataTables_wrapper .dataTable td:nth-child(3) {
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(4),
+      .dataTables_wrapper .dataTable td:nth-child(4) {
+        min-width: 80px;
+        max-width: 80px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(5),
+      .dataTables_wrapper .dataTable td:nth-child(5) {
+        min-width: 200px;
+        max-width: 200px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(6),
+      .dataTables_wrapper .dataTable td:nth-child(6) {
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(7),
+      .dataTables_wrapper .dataTable td:nth-child(7) {
+        min-width: 100px;
+        max-width: 100px;
+      }
+
+      .dataTables_wrapper .dataTables_wrapper .dataTable th:nth-child(8),
+      .dataTables_wrapper .dataTable td:nth-child(8) {
+        min-width: 80px;
+        max-width: 80px;
+      }
+
+      .dataTables_wrapper .dataTable th:nth-child(9),
+      .dataTables_wrapper .dataTable td:nth-child(9) {
+        min-width: 120px;
+        max-width: 120px;
+      }
+
+      /* Pagination positioning styles */
+      .dataTables_wrapper .dataTables_paginate {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 10px 0;
+        border-top: 1px solid #dee2e6;
+        z-index: 100;
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      .dataTables_wrapper .dataTables_info {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 10px 0;
+        border-top: 1px solid #dee2e6;
+        z-index: 100;
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      .dataTables_wrapper .dataTables_length,
+      .dataTables_wrapper .dataTables_filter {
+        position: sticky;
+        top: 0;
+        background: white;
+        padding: 10px 0;
+        border-bottom: 1px solid #dee2e6;
+        z-index: 100;
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      /* Ensure consistent scrolling across all pages */
+      .dataTables_wrapper .dataTables_scrollBody {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+      }
+
+      .dataTables_wrapper .dataTables_scrollHead {
+        overflow: visible !important;
+      }
+
+      /* Force horizontal scrollbar to always show */
+      .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+
+      .dataTables_wrapper
+        .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      /* Text truncation for long content */
+      .dataTables_wrapper .dataTable td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Ensure sticky elements work properly */
+      .dataTables_wrapper .dataTables_length,
+      .dataTables_wrapper .dataTables_filter,
+      .dataTables_wrapper .dataTables_info,
+      .dataTables_wrapper .dataTables_paginate {
+        position: -webkit-sticky;
+        position: sticky;
+      }
+
+      /* Container positioning for sticky elements */
+      .card-body {
+        position: relative;
+      }
+
+      /* Force table to respect column widths */
+      .dataTables_wrapper .dataTable {
+        table-layout: fixed;
+      }
+
+      .dataTables_wrapper .dataTable th,
+      .dataTables_wrapper .dataTable td {
+        box-sizing: border-box;
+      }
+      #blogs_table {
+        width: 100% !important;
+        max-width: none !important;
+        overflow: auto;
+      }
+
+      /* Ensure table takes full width on larger screens */
+      .dataTables_wrapper {
+        width: 100% !important;
+        max-width: none !important;
+      }
+
+      .dataTables_wrapper .dataTable {
+        width: 100% !important;
+        max-width: none !important;
+      }
+
+      /* Remove fixed column widths on larger screens */
+      @media (min-width: 1380px) {
+        .dataTables_wrapper .dataTable th,
+        .dataTables_wrapper .dataTable td {
+          min-width: 180px !important;
+          max-width: 180px !important;
+          width: auto !important;
+        }
+      }
+      @media (min-width: 2000px) {
+        .dataTables_wrapper .dataTable th,
+        .dataTables_wrapper .dataTable td {
+          min-width: 380px !important;
+          max-width: 380px !important;
+          width: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="hold-transition sidebar-mini">
+    <script src="/js/termsOfUse.js"></script>
+
+    <div class="wrapper">
+      <%- include('partial/navbar') %> <%- include('partial/sidebar') %>
+
+      <div class="content-wrapper">
+        <!-- Header -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6"><h1>Terms of Use</h1></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item">
+                    <a href="/users/admin/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active">Terms of Use</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="card">
+              <div
+                class="d-flex justify-content-between align-items-start"
+                style="margin: 20px"
+              >
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#modal-create"
+                >
+                  <i class="fas fa-plus-circle"></i> &nbsp;Create
+                </button>
+              </div>
+
+              <div class="card-body table-responsive">
+                <table
+                  id="terms_table"
+                  class="table table-bordered table-striped"
+                >
+                  <thead>
+                    <tr>
+                      <th>Main Heading</th>
+                      <th>Sections</th>
+                      <th>Created At</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Create Modal -->
+        <div class="modal fade" id="modal-create" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Create Terms of Use</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>×</span>
+                </button>
+              </div>
+              <form id="createTermsForm">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label>Main Heading</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="main_heading"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label>Sections (Content)</label>
+                    <textarea
+                      id="sections_create"
+                      name="sections"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div class="modal fade" id="modal-edit" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Terms of Use</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>×</span>
+                </button>
+              </div>
+              <form id="editTermsForm">
+                <input type="hidden" id="editTermsId" />
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label>Main Heading</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editMainHeading"
+                      name="main_heading"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label>Sections (Content)</label>
+                    <textarea
+                      id="editSections"
+                      name="sections"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Summernote -->
+    <script>
+      $(document).ready(function () {
+        $("#sections_create, #editSections").summernote({
+          height: 400,
+          toolbar: [
+            ["style", ["bold", "italic", "underline", "clear"]],
+            ["font", ["fontsize", "color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview"]],
+          ],
+        });
+
+        $("#modal-create").on("hidden.bs.modal", () =>
+          $("#sections_create").summernote("code", "")
+        );
+        $("#modal-edit").on("hidden.bs.modal", () =>
+          $("#editSections").summernote("code", "")
+        );
+      });
+    </script>
+  </body>
+</html>

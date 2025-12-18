@@ -1,0 +1,362 @@
+[
+  {
+    "article_topic_id": "01f5e396-721c-423f-b37f-a25b9eefbacb",
+    "topic": "Pregnancy Health",
+    "article_tag_id": "b525568c-b313-469c-a788-289afb5f14bb",
+    "lowercase_topic": "pregnancy-health"
+  },
+  {
+    "article_topic_id": "0215b777-6f70-40ef-98f0-05ec8ef3052d",
+    "topic": "Nursing Problems & Solutions",
+    "article_tag_id": "5fac6aff-cc94-4574-b487-34c9e423ab01",
+    "lowercase_topic": "nursing-problems-&-solutions"
+  },
+  {
+    "article_topic_id": "030d3de2-12ef-4a88-901e-4d18a83292d4",
+    "topic": "Sleep Basics",
+    "article_tag_id": "87b6fd03-3eb7-4781-bdff-c009e29057ea",
+    "lowercase_topic": "sleep-basics"
+  },
+  {
+    "article_topic_id": "0795f017-b57c-4bba-8637-32fa9873fd08",
+    "topic": "Children's Health",
+    "article_tag_id": "d72d802f-9b7d-4b6a-949a-20362f3b5868",
+    "lowercase_topic": "children's-health"
+  },
+  {
+    "article_topic_id": "07b1382f-8a26-4c4a-aa8c-607c4a1c8f8d",
+    "topic": "Baby Development Delays",
+    "article_tag_id": "710f5976-0a2a-4f56-823c-323f51b007d9",
+    "lowercase_topic": "baby-development-delays"
+  },
+  {
+    "article_topic_id": "09211d58-98ab-49e4-9b84-7e6fe35227a7",
+    "topic": "Baby bedtime routines",
+    "article_tag_id": "f07a36dc-09f5-4759-b707-71ebd53db198",
+    "lowercase_topic": "baby-bedtime-routines"
+  },
+  {
+    "article_topic_id": "09fb10e2-46d2-4c05-841d-26b87fb5fbea",
+    "topic": "The early weeks",
+    "article_tag_id": "2b01c064-dd91-4056-b8ea-7fb38ab039b7",
+    "lowercase_topic": "the-early-weeks"
+  },
+  {
+    "article_topic_id": "0e32ee50-6e59-4894-aae5-398d00572f3b",
+    "topic": "Identifying a Fertility Problems",
+    "article_tag_id": "61a0befc-a1ee-4c6a-81c1-c29804727a84",
+    "lowercase_topic": "identifying-a-fertility-problems"
+  },
+  {
+    "article_topic_id": "11f68693-7acc-41db-ae5b-7709a6299a3e",
+    "topic": "Your Baby's Developing Senses",
+    "article_tag_id": "710f5976-0a2a-4f56-823c-323f51b007d9",
+    "lowercase_topic": "your-baby's-developing-senses"
+  },
+  {
+    "article_topic_id": "1870d4f5-1516-48b4-859d-0fbef3469277",
+    "topic": "Breastfeeding Basics",
+    "article_tag_id": "563ce4ae-a1fe-4037-9359-b0d30079c41a",
+    "lowercase_topic": "breastfeeding-basics"
+  },
+  {
+    "article_topic_id": "1a983882-67d2-40cf-9115-c60fc1131b54",
+    "topic": "Chapter 1: Labor basics",
+    "article_tag_id": "dc61676a-8fbf-41cf-bd3a-e54b9cd3a95c",
+    "lowercase_topic": "chapter-1:-labor-basics"
+  },
+  {
+    "article_topic_id": "1b76553f-25c4-477a-9448-42006d210ef9",
+    "topic": "Toddler milestones",
+    "article_tag_id": "2b7dee91-8aa9-4b8f-9eef-e9efffa11597",
+    "lowercase_topic": "toddler-milestones"
+  },
+  {
+    "article_topic_id": "1e535fe0-cf05-4916-aadb-6fcdb80f190a",
+    "topic": "Sleep Problems & Solutions",
+    "article_tag_id": "87b6fd03-3eb7-4781-bdff-c009e29057ea",
+    "lowercase_topic": "sleep-problems-&-solutions"
+  },
+  {
+    "article_topic_id": "1f9dbf7d-8799-415a-806a-c6997383787e",
+    "topic": "Fetal Health",
+    "article_tag_id": "9ad54bdd-400f-4700-a361-fee08b3548ce",
+    "lowercase_topic": "fetal-health"
+  },
+  {
+    "article_topic_id": "22a58f72-850d-456d-a9e4-c8772477a6ef",
+    "topic": "Chapter 3: Managing labor pain",
+    "article_tag_id": "dc61676a-8fbf-41cf-bd3a-e54b9cd3a95c",
+    "lowercase_topic": "chapter-3:-managing-labor-pain"
+  },
+  {
+    "article_topic_id": "23995d37-568e-485a-890b-7acdd7085269",
+    "topic": "Bonding & Attachment",
+    "article_tag_id": "2d0aa6ed-d576-48a0-819f-45310fe97dc9",
+    "lowercase_topic": "bonding-&-attachment"
+  },
+  {
+    "article_topic_id": "286e7181-49ae-4efe-a608-daf5b4f048bf",
+    "topic": "First Trimester of Pregnancy",
+    "article_tag_id": "a9a8c920-7d67-4ef2-ae7b-834b30e3ce28",
+    "lowercase_topic": "first-trimester-of-pregnancy"
+  },
+  {
+    "article_topic_id": "2df58207-cf5a-49a8-b1be-72322575ccd5",
+    "topic": "Social & Emotional Development",
+    "article_tag_id": "710f5976-0a2a-4f56-823c-323f51b007d9",
+    "lowercase_topic": "social-&-emotional-development"
+  },
+  {
+    "article_topic_id": "2fcf64e2-6855-46ed-b207-bbc7a6f21d4f",
+    "topic": "Newborn Baby Sleep",
+    "article_tag_id": "2b01c064-dd91-4056-b8ea-7fb38ab039b7",
+    "lowercase_topic": "newborn-baby-sleep"
+  },
+  {
+    "article_topic_id": "3475ea85-aeb6-44d5-b54b-8786c27707a7",
+    "topic": "Coping with Infertility",
+    "article_tag_id": "61a0befc-a1ee-4c6a-81c1-c29804727a84",
+    "lowercase_topic": "coping-with-infertility"
+  },
+  {
+    "article_topic_id": "376323c9-bf40-40cf-8087-c357308e7221",
+    "topic": "Your Newborn",
+    "article_tag_id": "c2579e7d-8f76-4fce-ad51-45c37190d8e9",
+    "lowercase_topic": "your-newborn"
+  },
+  {
+    "article_topic_id": "381e8d7b-2312-49b8-878b-83e9ff14e462",
+    "topic": "Physical Development (12-24 mo.)",
+    "article_tag_id": "2b7dee91-8aa9-4b8f-9eef-e9efffa11597",
+    "lowercase_topic": "physical-development-(12-24-mo.)"
+  },
+  {
+    "article_topic_id": "3910e20f-d970-4bc5-89ae-6b396a669184",
+    "topic": "Activities for Newborn",
+    "article_tag_id": "fca7a843-4c8b-472d-adb8-4b203df9c647",
+    "lowercase_topic": "activities-for-newborn"
+  },
+  {
+    "article_topic_id": "393a1812-81da-4db6-94a3-a06b6a4f2faf",
+    "topic": "Games & Activities",
+    "article_tag_id": "758201d4-98eb-40c6-82ac-cd9faa11c664",
+    "lowercase_topic": "games-&-activities"
+  },
+  {
+    "article_topic_id": "3dd1d076-61cc-4982-a8c7-c1e6f49d5d31",
+    "topic": "Your Baby From 2 to 6 Months",
+    "article_tag_id": "c2579e7d-8f76-4fce-ad51-45c37190d8e9",
+    "lowercase_topic": "your-baby-from-2-to-6-months"
+  },
+  {
+    "article_topic_id": "3f42e69f-47fc-4808-9b00-e1c19f0cecac",
+    "topic": "Prenatal Care",
+    "article_tag_id": "b525568c-b313-469c-a788-289afb5f14bb",
+    "lowercase_topic": "prenatal-care"
+  },
+  {
+    "article_topic_id": "4b99bb54-71ce-48c9-8c2e-e769dbace339",
+    "topic": "Chapter 4: Medical procedures during labor and delivery",
+    "article_tag_id": "dc61676a-8fbf-41cf-bd3a-e54b9cd3a95c",
+    "lowercase_topic": "chapter-4:-medical-procedures-during-labor-and-delivery"
+  },
+  {
+    "article_topic_id": "50822c02-5581-474b-996a-b906d431ef82",
+    "topic": "Weaning",
+    "article_tag_id": "563ce4ae-a1fe-4037-9359-b0d30079c41a",
+    "lowercase_topic": "weaning"
+  },
+  {
+    "article_topic_id": "517bab70-9eee-428a-85dd-13b34ca12089",
+    "topic": "Supplements & Home Remedies",
+    "article_tag_id": "d72d802f-9b7d-4b6a-949a-20362f3b5868",
+    "lowercase_topic": "supplements-&-home-remedies"
+  },
+  {
+    "article_topic_id": "585b7e5c-4195-43d3-bc50-656941413635",
+    "topic": "Fertility Treatments",
+    "article_tag_id": "61a0befc-a1ee-4c6a-81c1-c29804727a84",
+    "lowercase_topic": "fertility-treatments"
+  },
+  {
+    "article_topic_id": "6123f2b9-20ba-488d-b5f7-04d874c933d8",
+    "topic": "Tests & Screening",
+    "article_tag_id": "b525568c-b313-469c-a788-289afb5f14bb",
+    "lowercase_topic": "tests-&-screening"
+  },
+  {
+    "article_topic_id": "65661601-2cce-457f-8073-a80de8d971d5",
+    "topic": "Safety & Childproofing",
+    "article_tag_id": "d72d802f-9b7d-4b6a-949a-20362f3b5868",
+    "lowercase_topic": "safety-&-childproofing"
+  },
+  {
+    "article_topic_id": "790e48c7-6295-4b55-911b-1b517cd656db",
+    "topic": "3D Fetal development by weekly",
+    "article_tag_id": "9ad54bdd-400f-4700-a361-fee08b3548ce",
+    "lowercase_topic": "3d-fetal-development-by-weekly"
+  },
+  {
+    "article_topic_id": "79cf353d-09f0-4ccc-adfd-6f4998f5f95f",
+    "topic": "Breast Pumping & Bottle Feeding",
+    "article_tag_id": "563ce4ae-a1fe-4037-9359-b0d30079c41a",
+    "lowercase_topic": "breast-pumping-&-bottle-feeding"
+  },
+  {
+    "article_topic_id": "7a350ea5-2259-4c2f-826d-a028f5e50a8c",
+    "topic": "Why Babies Cry",
+    "article_tag_id": "a1dd5956-51fc-49d8-b2d1-bea5fcaa368d",
+    "lowercase_topic": "why-babies-cry"
+  },
+  {
+    "article_topic_id": "7ba5381f-1422-4614-aa6e-d822ea774bb1",
+    "topic": "Chapter 2: Stages of labor",
+    "article_tag_id": "dc61676a-8fbf-41cf-bd3a-e54b9cd3a95c",
+    "lowercase_topic": "chapter-2:-stages-of-labor"
+  },
+  {
+    "article_topic_id": "7e78203b-ebe7-4d3c-9071-c775f9cb1d83",
+    "topic": "Breastfeeding",
+    "article_tag_id": "5fac6aff-cc94-4574-b487-34c9e423ab01",
+    "lowercase_topic": "breastfeeding"
+  },
+  {
+    "article_topic_id": "7ebf7caa-ed9c-4249-b25f-e349536372e8",
+    "topic": "Soothing Your Baby",
+    "article_tag_id": "a1dd5956-51fc-49d8-b2d1-bea5fcaa368d",
+    "lowercase_topic": "soothing-your-baby"
+  },
+  {
+    "article_topic_id": "80abe3a2-805e-44da-8f18-e536754553ec",
+    "topic": "Games for Toddlers",
+    "article_tag_id": "fca7a843-4c8b-472d-adb8-4b203df9c647",
+    "lowercase_topic": "games-for-toddlers"
+  },
+  {
+    "article_topic_id": "826c4db5-0d65-4466-a63f-d59fc70de77b",
+    "topic": "Weekly activities for 1 year old baby",
+    "article_tag_id": "fca7a843-4c8b-472d-adb8-4b203df9c647",
+    "lowercase_topic": "weekly-activities-for-1-year-old-baby"
+  },
+  {
+    "article_topic_id": "8be88e73-7c3a-4f8d-bab7-c63b50d00efa",
+    "topic": "Social & Emotional Development (12-24 mo.)",
+    "article_tag_id": "2b7dee91-8aa9-4b8f-9eef-e9efffa11597",
+    "lowercase_topic": "social-&-emotional-development-(12-24-mo.)"
+  },
+  {
+    "article_topic_id": "8e0793d6-67f5-4079-9a42-078fb4830d4f",
+    "topic": "Baby sleep lullabies",
+    "article_tag_id": "f07a36dc-09f5-4759-b707-71ebd53db198",
+    "lowercase_topic": "baby-sleep-lullabies"
+  },
+  {
+    "article_topic_id": "9676ded5-b415-454a-abb3-70756cbb0f9b",
+    "topic": "Concerns",
+    "article_tag_id": "2d0aa6ed-d576-48a0-819f-45310fe97dc9",
+    "lowercase_topic": "concerns"
+  },
+  {
+    "article_topic_id": "96d9443d-7028-44ce-b572-52c315678c29",
+    "topic": "Sleep Music",
+    "article_tag_id": "f07a36dc-09f5-4759-b707-71ebd53db198",
+    "lowercase_topic": "sleep-music"
+  },
+  {
+    "article_topic_id": "98014994-1a44-4ab0-8a47-efe2227fe9fc",
+    "topic": "Behavior Basics",
+    "article_tag_id": "2d0aa6ed-d576-48a0-819f-45310fe97dc9",
+    "lowercase_topic": "behavior-basics"
+  },
+  {
+    "article_topic_id": "995a38e1-f4f9-41aa-b112-1bf807c4b459",
+    "topic": "Parenting Styles",
+    "article_tag_id": "2b7dee91-8aa9-4b8f-9eef-e9efffa11597",
+    "lowercase_topic": "parenting-styles"
+  },
+  {
+    "article_topic_id": "a6ef0916-41d8-4ac7-a72e-260805be60c3",
+    "topic": "Nursing Problems & Solutions",
+    "article_tag_id": "563ce4ae-a1fe-4037-9359-b0d30079c41a",
+    "lowercase_topic": "nursing-problems-&-solutions"
+  },
+  {
+    "article_topic_id": "acd273e2-e809-47e5-a66a-e02998dfb8d6",
+    "topic": "Is It Safe: Breastfeeding",
+    "article_tag_id": "563ce4ae-a1fe-4037-9359-b0d30079c41a",
+    "lowercase_topic": "is-it-safe:-breastfeeding"
+  },
+  {
+    "article_topic_id": "ace405dc-3f9c-4e74-8bc4-0a73aad23b1e",
+    "topic": "Newborn Baby Care & Feeding",
+    "article_tag_id": "2b01c064-dd91-4056-b8ea-7fb38ab039b7",
+    "lowercase_topic": "newborn-baby-care-&-feeding"
+  },
+  {
+    "article_topic_id": "ad8c4257-e750-446d-bbfc-a2b7941add9f",
+    "topic": "Your Baby From 7 to 11 Months",
+    "article_tag_id": "c2579e7d-8f76-4fce-ad51-45c37190d8e9",
+    "lowercase_topic": "your-baby-from-7-to-11-months"
+  },
+  {
+    "article_topic_id": "c1819f27-5484-43da-86a0-73baed531205",
+    "topic": "Your Baby's Brain Development",
+    "article_tag_id": "710f5976-0a2a-4f56-823c-323f51b007d9",
+    "lowercase_topic": "your-baby's-brain-development"
+  },
+  {
+    "article_topic_id": "c3225d58-b074-4e8f-93ab-4c7a9ed185f2",
+    "topic": "Special Nursing Situations",
+    "article_tag_id": "563ce4ae-a1fe-4037-9359-b0d30079c41a",
+    "lowercase_topic": "special-nursing-situations"
+  },
+  {
+    "article_topic_id": "c95762ea-f10a-4f6f-b17b-efc8b44701fc",
+    "topic": "Your Baby's Naps",
+    "article_tag_id": "87b6fd03-3eb7-4781-bdff-c009e29057ea",
+    "lowercase_topic": "your-baby's-naps"
+  },
+  {
+    "article_topic_id": "d3d39697-ec58-4916-9252-197d02797de4",
+    "topic": "Activities for 1 year old baby",
+    "article_tag_id": "fca7a843-4c8b-472d-adb8-4b203df9c647",
+    "lowercase_topic": "activities-for-1-year-old-baby"
+  },
+  {
+    "article_topic_id": "dd9394f6-8d30-4beb-8d7f-ce2947be43f4",
+    "topic": "Bedtime Routines",
+    "article_tag_id": "87b6fd03-3eb7-4781-bdff-c009e29057ea",
+    "lowercase_topic": "bedtime-routines"
+  },
+  {
+    "article_topic_id": "ed3fb748-535b-4b3a-8e16-2f14a6fdd45b",
+    "topic": "Physical Development",
+    "article_tag_id": "710f5976-0a2a-4f56-823c-323f51b007d9",
+    "lowercase_topic": "physical-development"
+  },
+  {
+    "article_topic_id": "f6707dc4-bc67-4f23-8978-72addd8d36a8",
+    "topic": "Using Baby Formulas",
+    "article_tag_id": "5fac6aff-cc94-4574-b487-34c9e423ab01",
+    "lowercase_topic": "using-baby-formulas"
+  },
+  {
+    "article_topic_id": "f8c147b4-1f9c-42ce-9fa4-3c7d624e5ee5",
+    "topic": "Second Trimester of Pregnancy",
+    "article_tag_id": "a9a8c920-7d67-4ef2-ae7b-834b30e3ce28",
+    "lowercase_topic": "second-trimester-of-pregnancy"
+  },
+  {
+    "article_topic_id": "f9cbfb9d-c852-4057-9f68-1578b674e041",
+    "topic": "Complications",
+    "article_tag_id": "b525568c-b313-469c-a788-289afb5f14bb",
+    "lowercase_topic": "complications"
+  },
+  {
+    "article_topic_id": "fb4a05a5-82fd-405d-8d8e-67c0c3999349",
+    "topic": "Third Trimester of Pregnancy",
+    "article_tag_id": "a9a8c920-7d67-4ef2-ae7b-834b30e3ce28",
+    "lowercase_topic": "third-trimester-of-pregnancy"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "tag_id": "550e8400-e29b-41d4-a716-446655440005",
+    "tag_name": "Pregnancy"
+  },
+  { 
+    "tag_id": "550e8400-e29b-41d4-a716-446655440006",
+    "tag_name": "Baby"
+  },
+  {
+    "tag_id": "550e8400-e29b-41d4-a716-446655440007",
+    "tag_name": "Parenthood"
+  },
+  {
+    "tag_id": "550e8400-e29b-41d4-a716-446655440008",
+    "tag_name": "Family"
+  }
+]

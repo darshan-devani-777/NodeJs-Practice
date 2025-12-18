@@ -1,0 +1,8 @@
+node_modules
+# public/dist
+# public/jquery
+# public/plugins
+public/uploads
+public/temp
+.env
+package-lock.json

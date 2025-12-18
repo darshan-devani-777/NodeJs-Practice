@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prega Center | Users  </title>
+
+  <%- include('partial/scripts') %>
+
+</head>
+<body class="hold-transition sidebar-mini">
+  <script src="/js/users.js"></script>
+<div class="wrapper">
+  <!-- Navbar -->
+  <%- include('partial/navbar') %>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <%- include('partial/sidebar') %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Users</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/users/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Users</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <div class="col-12">
+            
+            <!-- /.card -->
+
+            <div class="card">
+              <!-- /.card-header -->
+              <div style="margin: 20px 20px 0 20px; display:flex; align-items: flex-start; justify-content: space-between;">
+                <button type="button" class="btn btn-block btn-primary col-sm-1 " data-toggle="modal" data-target="#modal-create">
+                  <i class="fas fa-user-plus"></i> &nbsp;
+                  <spna>Create</spna></button>
+                </div>
+                <div class="card-body">
+                <table id="users_table" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email address</th>
+                    <th>profile_image</th>
+                    <th>bio</th>
+                    <th>is_active</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+    <div class="modal fade" id="modal-delete" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete User</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete ?</p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id="btnDelete" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-create" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog" style="margin: 4% 28% auto;position: fixed;">
+        <div class="modal-content bg-default" style="width: 900px;">
+          <div class="modal-header">
+            <h4 class="modal-title">Create User</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>  
+          <div class="modal-body">
+            <form id="add-user-form">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">First Name</label>
+                        <input type="text" class="form-control" id="txtcreateFName" placeholder="Enter first name" name="first_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Last Name</label>
+                        <input type="text" class="form-control" id="txtcreateLName" placeholder="Enter last name" name="last_name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="txtcreateEmail" placeholder="Enter email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="password" class="form-control" id="txtcreatePassword" placeholder="Enter password" name="password" >
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputFile">Image</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" name="file" id="image" accept="image/*">
+                          <label class="custom-file-label" for="exampleInputFile" id="create_file_name">Choose file</label>
+                        </div>
+                      </div>
+                      <small id="create_file_error" class="text-danger d-none">Invalid file type. Only images are allowed.</small>
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="isActive" name="is_active">
+                        <label for="isActive" class="custom-control-label">Active</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Bio</label>
+                      <textarea id="txtcreateBio" name="bio" class="form-control"></textarea>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email Subscriptions</label><br>
+                          <div class="m-2">
+                            <input type="checkbox" class="email-chk" id="chk_1">
+                            <label class="form-check-label ml-1" for="chk_1">PregaCenter Getting Pregnant Highlights</label>
+                          </div>
+                          <div class="m-2">
+                            <input type="checkbox" class="email-chk" id="chk_2">
+                            <label class="form-check-label ml-1" for="chk_2">PregaCenter Featured Topic</label>
+                          </div>
+                          <div class="m-2">
+                            <input type="checkbox" class="email-chk" id="chk_3">
+                            <label class="form-check-label ml-1" for="chk_3">PregaCenter Shopping</label>
+                          </div>
+                          <div class="m-2">
+                            <input type="checkbox" class="email-chk" id="chk_4">
+                            <label class="form-check-label ml-1" for="chk_4">PregaCenter Partner Messages</label>
+                          </div>
+                          <div class="m-2">
+                            <input type="checkbox" class="email-chk" id="chk_5">
+                            <label class="form-check-label ml-1" for="chk_5">Freebies & Deals</label>
+                          </div>
+                          <div class="m-2">
+                            <input type="checkbox" class="email-chk" id="chk_6">
+                            <label class="form-check-label ml-1" for="chk_6">Community Daily Digest</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+              <!-- /.card-body -->
+               <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+            <button type="submit" id="btnAdd" class="btn btn-secondary">Save changes</button>
+          </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-update" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog" style="margin: 4% 28% auto;position: fixed;">
+        <div class="modal-content bg-default" style="width: 900px;">
+          <div class="modal-header">
+            <h4 class="modal-title">User Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="user-form">
+              <input type="hidden" id="txtId">
+                <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">First Name</label>
+                            <input type="text" class="form-control" id="txtFName" placeholder="Enter first name" name="first_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Last Name</label>
+                            <input type="text" class="form-control" id="txtLName" placeholder="Enter last name" name="last_name">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" class="form-control" id="txtEmail" placeholder="Enter email" name="email">
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="exampleInputEmail1">Password</label>
+                            <input type="password" class="form-control" id="txtPassword" placeholder="Enter password" name="password" >
+                          </div> -->
+                        <div class="form-group">
+                          <label for="exampleInputFile">Image</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" name="file" id="updimage" accept="image/*">
+                              <label class="custom-file-label" for="exampleInputFile" id="file_name">Choose file</label>
+                            </div>
+                          </div>
+                          <small id="file_error" class="text-danger d-none">Invalid file type. Only images are allowed.</small>
+                        </div>
+                        <div class="form-group">
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="updated_isActive" name="is_active">
+                            <label for="updated_isActive" class="custom-control-label">Active</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Bio</label>
+                          <textarea id="txtBio" name="bio" class="form-control"></textarea>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Email Subscriptions</label><br>
+                              <div class="m-2">
+                                <input type="checkbox" class="email-chk-upd" id="upd_chk_1">
+                                <label class="form-check-label ml-1" for="upd_chk_1">PregaCenter Getting Pregnant Highlights</label>
+                              </div>
+                              <div class="m-2">
+                                <input type="checkbox" class="email-chk-upd" id="upd_chk_2">
+                                <label class="form-check-label ml-1" for="upd_chk_2">PregaCenter Featured Topic</label>
+                              </div>
+                              <div class="m-2">
+                                <input type="checkbox" class="email-chk-upd" id="upd_chk_3">
+                                <label class="form-check-label ml-1" for="upd_chk_3">PregaCenter Shopping</label>
+                              </div>
+                              <div class="m-2">
+                                <input type="checkbox" class="email-chk-upd" id="upd_chk_4">
+                                <label class="form-check-label ml-1" for="upd_chk_4">PregaCenter Partner Messages</label>
+                              </div>
+                              <div class="m-2">
+                                <input type="checkbox" class="email-chk-upd" id="upd_chk_5">
+                                <label class="form-check-label ml-1" for="upd_chk_5">Freebies & Deals</label>
+                              </div>
+                              <div class="m-2">
+                                <input type="checkbox" class="email-chk-upd" id="upd_chk_6">
+                                <label class="form-check-label ml-1" for="upd_chk_6">Community Daily Digest</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              <!-- /.card-body -->
+               <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id="btnSubmit" class="btn btn-secondary">Save changes</button>
+          </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-overlay" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document" style="margin: 20% 45% auto;position: fixed;">
+        <div class="modal-content">
+          <div class="overlay">
+            <i class="fas fa-2x fa-sync fa-spin"></i>
+          </div>
+          <div class="modal-body">
+            <p><center>Adding a User...</center></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%- include('partial/footer') %>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<script>
+  $(function () {
+    bsCustomFileInput.init();
+    
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+  })
+</script>
+</body>
+</html>

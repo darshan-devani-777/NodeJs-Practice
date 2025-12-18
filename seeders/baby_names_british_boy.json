@@ -1,0 +1,3038 @@
+[
+  {
+    "name": "Adam",
+    "meaning": "Son of the red earth."
+  },
+  {
+    "name": "Aiden",
+    "meaning": "Little and fiery."
+  },
+  {
+    "name": "Alastair",
+    "meaning": "Defender of the people."
+  },
+  {
+    "name": "Albert",
+    "meaning": "Noble and bright."
+  },
+  {
+    "name": "Albie",
+    "meaning": "A diminutive of Albert, meaning 'noble and bright'."
+  },
+  {
+    "name": "Alex",
+    "meaning": "A diminutive of Alexander, meaning 'defender of the people'."
+  },
+  {
+    "name": "Alexander",
+    "meaning": "Defender of the people."
+  },
+  {
+    "name": "Alfie",
+    "meaning": "A diminutive of Alfred, meaning 'wise counsellor'."
+  },
+  {
+    "name": "Alfred",
+    "meaning": "Wise counsellor."
+  },
+  {
+    "name": "Alister",
+    "meaning": "A variant of Alastair, meaning 'defender of the people'."
+  },
+  {
+    "name": "Andrew",
+    "meaning": "Manly; Brave."
+  },
+  {
+    "name": "Angus",
+    "meaning": "One strength; Unique choice."
+  },
+  {
+    "name": "Anthony",
+    "meaning": "Priceless one."
+  },
+  {
+    "name": "Archibald",
+    "meaning": "Genuinely brave."
+  },
+  {
+    "name": "Archie",
+    "meaning": "A diminutive of Archibald, meaning 'genuinely brave'."
+  },
+  {
+    "name": "Arlo",
+    "meaning": "Fortified hill."
+  },
+  {
+    "name": "Arnold",
+    "meaning": "Eagle power."
+  },
+  {
+    "name": "Arthur",
+    "meaning": "Bear-man; Noble strength."
+  },
+  {
+    "name": "Asa",
+    "meaning": "Healer; Doctor."
+  },
+  {
+    "name": "Ashton",
+    "meaning": "From the ash tree town."
+  },
+  {
+    "name": "Aston",
+    "meaning": "East town."
+  },
+  {
+    "name": "Aubrey",
+    "meaning": "Elf ruler."
+  },
+  {
+    "name": "Auden",
+    "meaning": "Old friend."
+  },
+  {
+    "name": "August",
+    "meaning": "Great; Magnificent."
+  },
+  {
+    "name": "Augustus",
+    "meaning": "Great; Magnificent."
+  },
+  {
+    "name": "Austin",
+    "meaning": "A medieval form of Augustine, meaning 'great'."
+  },
+  {
+    "name": "Avery",
+    "meaning": "Ruler of the elves."
+  },
+  {
+    "name": "Axel",
+    "meaning": "Father of peace."
+  },
+  {
+    "name": "Ayaan",
+    "meaning": "Gift of God."
+  },
+  {
+    "name": "Ayrton",
+    "meaning": "From the farm on the River Ayr."
+  },
+  {
+    "name": "Barnaby",
+    "meaning": "Son of consolation."
+  },
+  {
+    "name": "Barney",
+    "meaning": "A diminutive of Barnaby."
+  },
+  {
+    "name": "Barrett",
+    "meaning": "Bear strength."
+  },
+  {
+    "name": "Barry",
+    "meaning": "Fair-haired."
+  },
+  {
+    "name": "Bartholomew",
+    "meaning": "Son of Talmai (the farmer)."
+  },
+  {
+    "name": "Basil",
+    "meaning": "Royal; Kingly."
+  },
+  {
+    "name": "Baxter",
+    "meaning": "Baker."
+  },
+  {
+    "name": "Beau",
+    "meaning": "Handsome."
+  },
+  {
+    "name": "Beckett",
+    "meaning": "Bee cottage."
+  },
+  {
+    "name": "Ben",
+    "meaning": "A diminutive of Benjamin or Benedict."
+  },
+  {
+    "name": "Benedict",
+    "meaning": "Blessed."
+  },
+  {
+    "name": "Benjamin",
+    "meaning": "Son of the right hand."
+  },
+  {
+    "name": "Bennett",
+    "meaning": "A medieval form of Benedict, meaning 'blessed'."
+  },
+  {
+    "name": "Bentley",
+    "meaning": "From the bent-grass meadow."
+  },
+  {
+    "name": "Bernard",
+    "meaning": "Brave as a bear."
+  },
+  {
+    "name": "Bertie",
+    "meaning": "A diminutive of Albert or Herbert."
+  },
+  {
+    "name": "Bertram",
+    "meaning": "Bright raven."
+  },
+  {
+    "name": "Blaine",
+    "meaning": "Slender; Yellow."
+  },
+  {
+    "name": "Blair",
+    "meaning": "Field; Plain."
+  },
+  {
+    "name": "Blake",
+    "meaning": "Dark-haired or fair-haired."
+  },
+  {
+    "name": "Bobby",
+    "meaning": "A diminutive of Robert, meaning 'bright fame'."
+  },
+  {
+    "name": "Boris",
+    "meaning": "To fight."
+  },
+  {
+    "name": "Boyd",
+    "meaning": "Blond."
+  },
+  {
+    "name": "Bradley",
+    "meaning": "Broad meadow."
+  },
+  {
+    "name": "Brandon",
+    "meaning": "From the broom-covered hill."
+  },
+  {
+    "name": "Brendan",
+    "meaning": "Prince."
+  },
+  {
+    "name": "Brian",
+    "meaning": "Strong; Noble."
+  },
+  {
+    "name": "Brody",
+    "meaning": "Ditch."
+  },
+  {
+    "name": "Brooklyn",
+    "meaning": "From the broken land."
+  },
+  {
+    "name": "Bruce",
+    "meaning": "From the brushwood thicket."
+  },
+  {
+    "name": "Caleb",
+    "meaning": "Devotion to God."
+  },
+  {
+    "name": "Callum",
+    "meaning": "Dove."
+  },
+  {
+    "name": "Calvin",
+    "meaning": "Bald."
+  },
+  {
+    "name": "Cameron",
+    "meaning": "Crooked nose."
+  },
+  {
+    "name": "Carl",
+    "meaning": "Free man."
+  },
+  {
+    "name": "Carlton",
+    "meaning": "From the town of free men."
+  },
+  {
+    "name": "Carter",
+    "meaning": "Transporter of goods by cart."
+  },
+  {
+    "name": "Cary",
+    "meaning": "Pleasant stream."
+  },
+  {
+    "name": "Casey",
+    "meaning": "Vigilant in war."
+  },
+  {
+    "name": "Cecil",
+    "meaning": "Blind."
+  },
+  {
+    "name": "Cedric",
+    "meaning": "Bounty; Kindly."
+  },
+  {
+    "name": "Charles",
+    "meaning": "Free man."
+  },
+  {
+    "name": "Charlie",
+    "meaning": "A diminutive of Charles, meaning 'free man'."
+  },
+  {
+    "name": "Chester",
+    "meaning": "Fortress; Walled town."
+  },
+  {
+    "name": "Chris",
+    "meaning": "A diminutive of Christopher."
+  },
+  {
+    "name": "Christian",
+    "meaning": "Follower of Christ."
+  },
+  {
+    "name": "Christopher",
+    "meaning": "Bearer of Christ."
+  },
+  {
+    "name": "Ciaran",
+    "meaning": "Little dark one."
+  },
+  {
+    "name": "Clark",
+    "meaning": "Clerk; Scholar."
+  },
+  {
+    "name": "Clayton",
+    "meaning": "From the clay town."
+  },
+  {
+    "name": "Clifford",
+    "meaning": "Ford by a cliff."
+  },
+  {
+    "name": "Clive",
+    "meaning": "Cliff."
+  },
+  {
+    "name": "Cody",
+    "meaning": "Helpful."
+  },
+  {
+    "name": "Colin",
+    "meaning": "Whelp; Cub."
+  },
+  {
+    "name": "Connor",
+    "meaning": "Lover of hounds."
+  },
+  {
+    "name": "Conrad",
+    "meaning": "Brave counsel."
+  },
+  {
+    "name": "Corey",
+    "meaning": "From the hollow."
+  },
+  {
+    "name": "Craig",
+    "meaning": "Rock."
+  },
+  {
+    "name": "Curtis",
+    "meaning": "Courteous; Polite."
+  },
+  {
+    "name": "Cyril",
+    "meaning": "Lordly."
+  },
+  {
+    "name": "Dale",
+    "meaning": "Valley."
+  },
+  {
+    "name": "Damian",
+    "meaning": "To tame."
+  },
+  {
+    "name": "Daniel",
+    "meaning": "God is my judge."
+  },
+  {
+    "name": "Darcy",
+    "meaning": "Dark one."
+  },
+  {
+    "name": "Darian",
+    "meaning": "Upholder of the good."
+  },
+  {
+    "name": "Darren",
+    "meaning": "Great."
+  },
+  {
+    "name": "David",
+    "meaning": "Beloved."
+  },
+  {
+    "name": "Dean",
+    "meaning": "Valley."
+  },
+  {
+    "name": "Declan",
+    "meaning": "Man of prayer."
+  },
+  {
+    "name": "Dennis",
+    "meaning": "Follower of Dionysius."
+  },
+  {
+    "name": "Derek",
+    "meaning": "Ruler of the people."
+  },
+  {
+    "name": "Dermot",
+    "meaning": "Free from envy."
+  },
+  {
+    "name": "Desmond",
+    "meaning": "From South Munster."
+  },
+  {
+    "name": "Dexter",
+    "meaning": "Right-handed; Skilful."
+  },
+  {
+    "name": "Digby",
+    "meaning": "From the town by the ditch."
+  },
+  {
+    "name": "Dilan",
+    "meaning": "Like a lion."
+  },
+  {
+    "name": "Dillon",
+    "meaning": "Like a lion."
+  },
+  {
+    "name": "Dominic",
+    "meaning": "Belonging to the Lord."
+  },
+  {
+    "name": "Donald",
+    "meaning": "Ruler of the world."
+  },
+  {
+    "name": "Donovan",
+    "meaning": "Dark warrior."
+  },
+  {
+    "name": "Douglas",
+    "meaning": "From the dark water."
+  },
+  {
+    "name": "Drew",
+    "meaning": "A diminutive of Andrew, meaning 'manly'."
+  },
+  {
+    "name": "Dudley",
+    "meaning": "From Dudda's meadow."
+  },
+  {
+    "name": "Duke",
+    "meaning": "Leader."
+  },
+  {
+    "name": "Duncan",
+    "meaning": "Dark warrior."
+  },
+  {
+    "name": "Dustin",
+    "meaning": "Brave warrior."
+  },
+  {
+    "name": "Dwayne",
+    "meaning": "Dark; Swarthy."
+  },
+  {
+    "name": "Dylan",
+    "meaning": "Son of the sea."
+  },
+  {
+    "name": "Eamon",
+    "meaning": "Rich protector."
+  },
+  {
+    "name": "Earle",
+    "meaning": "Nobleman."
+  },
+  {
+    "name": "Eddie",
+    "meaning": "A diminutive of Edward or Edgar."
+  },
+  {
+    "name": "Eden",
+    "meaning": "Place of pleasure; Delight."
+  },
+  {
+    "name": "Edgar",
+    "meaning": "Wealthy spearman."
+  },
+  {
+    "name": "Edmund",
+    "meaning": "Fortunate protector."
+  },
+  {
+    "name": "Edward",
+    "meaning": "Rich guard."
+  },
+  {
+    "name": "Edwin",
+    "meaning": "Rich friend."
+  },
+  {
+    "name": "Egan",
+    "meaning": "Little and fiery."
+  },
+  {
+    "name": "Elijah",
+    "meaning": "My God is Yahweh."
+  },
+  {
+    "name": "Elliot",
+    "meaning": "The Lord is my God."
+  },
+  {
+    "name": "Ellis",
+    "meaning": "The Lord is my God."
+  },
+  {
+    "name": "Elton",
+    "meaning": "From the old town."
+  },
+  {
+    "name": "Elvis",
+    "meaning": "All-wise."
+  },
+  {
+    "name": "Emerson",
+    "meaning": "Son of Emery."
+  },
+  {
+    "name": "Emery",
+    "meaning": "Industrious ruler."
+  },
+  {
+    "name": "Emil",
+    "meaning": "To strive or excel."
+  },
+  {
+    "name": "Emmett",
+    "meaning": "Universal."
+  },
+  {
+    "name": "Eric",
+    "meaning": "Ever ruler."
+  },
+  {
+    "name": "Ernest",
+    "meaning": "Serious; Resolute."
+  },
+  {
+    "name": "Errol",
+    "meaning": "Nobleman; Warrior."
+  },
+  {
+    "name": "Ethan",
+    "meaning": "Strong; Enduring."
+  },
+  {
+    "name": "Eugene",
+    "meaning": "Well-born; Noble."
+  },
+  {
+    "name": "Evan",
+    "meaning": "The Lord is gracious."
+  },
+  {
+    "name": "Ewan",
+    "meaning": "Born of the yew tree."
+  },
+  {
+    "name": "Ezekiel",
+    "meaning": "God strengthens."
+  },
+  {
+    "name": "Ezra",
+    "meaning": "Help."
+  },
+  {
+    "name": "Fabian",
+    "meaning": "Bean grower."
+  },
+  {
+    "name": "Farley",
+    "meaning": "From the sheep meadow."
+  },
+  {
+    "name": "Farrell",
+    "meaning": "Man of valor."
+  },
+  {
+    "name": "Felix",
+    "meaning": "Lucky; Successful."
+  },
+  {
+    "name": "Fenton",
+    "meaning": "From the marsh town."
+  },
+  {
+    "name": "Ferdinand",
+    "meaning": "Brave journey."
+  },
+  {
+    "name": "Fergus",
+    "meaning": "Man of vigor."
+  },
+  {
+    "name": "Finbar",
+    "meaning": "Fair-haired."
+  },
+  {
+    "name": "Findlay",
+    "meaning": "Fair warrior."
+  },
+  {
+    "name": "Finian",
+    "meaning": "Fair."
+  },
+  {
+    "name": "Finlay",
+    "meaning": "Fair warrior."
+  },
+  {
+    "name": "Finn",
+    "meaning": "Fair."
+  },
+  {
+    "name": "Finnian",
+    "meaning": "Fair."
+  },
+  {
+    "name": "Finnegan",
+    "meaning": "Son of the fair-haired one."
+  },
+  {
+    "name": "Fionn",
+    "meaning": "Fair."
+  },
+  {
+    "name": "Fletcher",
+    "meaning": "Arrow-maker."
+  },
+  {
+    "name": "Flint",
+    "meaning": "A hard stone."
+  },
+  {
+    "name": "Florian",
+    "meaning": "Flowering."
+  },
+  {
+    "name": "Floyd",
+    "meaning": "Gray-haired."
+  },
+  {
+    "name": "Flynn",
+    "meaning": "Son of the red-haired one."
+  },
+  {
+    "name": "Forbes",
+    "meaning": "Field."
+  },
+  {
+    "name": "Ford",
+    "meaning": "River crossing."
+  },
+  {
+    "name": "Forrest",
+    "meaning": "Of the forest."
+  },
+  {
+    "name": "Foster",
+    "meaning": "Forester."
+  },
+  {
+    "name": "Fox",
+    "meaning": "Fox."
+  },
+  {
+    "name": "Francis",
+    "meaning": "Frenchman; Free man."
+  },
+  {
+    "name": "Frank",
+    "meaning": "A diminutive of Francis."
+  },
+  {
+    "name": "Franklin",
+    "meaning": "Free landholder."
+  },
+  {
+    "name": "Fraser",
+    "meaning": "Of the forest men."
+  },
+  {
+    "name": "Frederick",
+    "meaning": "Peaceful ruler."
+  },
+  {
+    "name": "Gabriel",
+    "meaning": "God is my strength."
+  },
+  {
+    "name": "Gael",
+    "meaning": "A Gaelic person."
+  },
+  {
+    "name": "Gale",
+    "meaning": "Lively."
+  },
+  {
+    "name": "Gallagher",
+    "meaning": "Foreign helper."
+  },
+  {
+    "name": "Gannon",
+    "meaning": "Fair-skinned."
+  },
+  {
+    "name": "Gareth",
+    "meaning": "Gentle."
+  },
+  {
+    "name": "Garland",
+    "meaning": "Wreath."
+  },
+  {
+    "name": "Garrett",
+    "meaning": "Spear strength."
+  },
+  {
+    "name": "Garrick",
+    "meaning": "Spear king."
+  },
+  {
+    "name": "Garry",
+    "meaning": "A variant of Gary, meaning 'spear'."
+  },
+  {
+    "name": "Garth",
+    "meaning": "Enclosed garden."
+  },
+  {
+    "name": "Gary",
+    "meaning": "Spear."
+  },
+  {
+    "name": "Gavin",
+    "meaning": "White hawk."
+  },
+  {
+    "name": "Geoffrey",
+    "meaning": "God's peace."
+  },
+  {
+    "name": "George",
+    "meaning": "Farmer."
+  },
+  {
+    "name": "Gerald",
+    "meaning": "Ruler with a spear."
+  },
+  {
+    "name": "Gerard",
+    "meaning": "Brave with a spear."
+  },
+  {
+    "name": "Gideon",
+    "meaning": "Great warrior."
+  },
+  {
+    "name": "Giles",
+    "meaning": "Young goat."
+  },
+  {
+    "name": "Glen",
+    "meaning": "A narrow valley."
+  },
+  {
+    "name": "Godfrey",
+    "meaning": "God's peace."
+  },
+  {
+    "name": "Gordon",
+    "meaning": "From the spacious fort."
+  },
+  {
+    "name": "Graeme",
+    "meaning": "A variant of Graham, meaning 'gravelly homestead'."
+  },
+  {
+    "name": "Graham",
+    "meaning": "Gravelly homestead."
+  },
+  {
+    "name": "Grant",
+    "meaning": "Large."
+  },
+  {
+    "name": "Grayson",
+    "meaning": "Son of the steward."
+  },
+  {
+    "name": "Gregory",
+    "meaning": "Watchful."
+  },
+  {
+    "name": "Gresham",
+    "meaning": "From the grazing village."
+  },
+  {
+    "name": "Griffin",
+    "meaning": "Strong lord; A mythical creature."
+  },
+  {
+    "name": "Guy",
+    "meaning": "Guide; Wood."
+  },
+  {
+    "name": "Hadley",
+    "meaning": "From the heather field."
+  },
+  {
+    "name": "Hamish",
+    "meaning": "Supplanter (a Scottish form of James)."
+  },
+  {
+    "name": "Harley",
+    "meaning": "From the hare's meadow."
+  },
+  {
+    "name": "Harold",
+    "meaning": "Army ruler."
+  },
+  {
+    "name": "Harris",
+    "meaning": "Son of Harry."
+  },
+  {
+    "name": "Harrison",
+    "meaning": "Son of Harry."
+  },
+  {
+    "name": "Harry",
+    "meaning": "Estate ruler."
+  },
+  {
+    "name": "Harvey",
+    "meaning": "Battle worthy."
+  },
+  {
+    "name": "Hayden",
+    "meaning": "From the hay valley."
+  },
+  {
+    "name": "Heath",
+    "meaning": "From the heathland."
+  },
+  {
+    "name": "Hector",
+    "meaning": "To hold fast."
+  },
+  {
+    "name": "Henry",
+    "meaning": "Estate ruler."
+  },
+  {
+    "name": "Herbert",
+    "meaning": "Bright army."
+  },
+  {
+    "name": "Hilary",
+    "meaning": "Cheerful."
+  },
+  {
+    "name": "Horace",
+    "meaning": "Timekeeper."
+  },
+  {
+    "name": "Horatio",
+    "meaning": "Timekeeper."
+  },
+  {
+    "name": "Howard",
+    "meaning": "High guardian."
+  },
+  {
+    "name": "Hubert",
+    "meaning": "Bright heart."
+  },
+  {
+    "name": "Hudson",
+    "meaning": "Son of Hud."
+  },
+  {
+    "name": "Hugh",
+    "meaning": "Heart; Mind; Spirit."
+  },
+  {
+    "name": "Hugo",
+    "meaning": "A Latinized form of Hugh."
+  },
+  {
+    "name": "Humphrey",
+    "meaning": "Peaceful warrior."
+  },
+  {
+    "name": "Hunter",
+    "meaning": "One who hunts."
+  },
+  {
+    "name": "Huxley",
+    "meaning": "From Huck's meadow."
+  },
+  {
+    "name": "Hywel",
+    "meaning": "Eminent."
+  },
+  {
+    "name": "Iain",
+    "meaning": "A Scottish form of John, meaning 'God is gracious'."
+  },
+  {
+    "name": "Ian",
+    "meaning": "A Scottish form of John, meaning 'God is gracious'."
+  },
+  {
+    "name": "Idris",
+    "meaning": "Ardent lord."
+  },
+  {
+    "name": "Iestyn",
+    "meaning": "Just."
+  },
+  {
+    "name": "Ieuan",
+    "meaning": "A Welsh form of John, meaning 'God is gracious'."
+  },
+  {
+    "name": "Ifor",
+    "meaning": "Bow warrior."
+  },
+  {
+    "name": "Ignatius",
+    "meaning": "Fiery."
+  },
+  {
+    "name": "Ike",
+    "meaning": "A diminutive of Isaac."
+  },
+  {
+    "name": "Imran",
+    "meaning": "Prosperity."
+  },
+  {
+    "name": "Inigo",
+    "meaning": "My little love."
+  },
+  {
+    "name": "Innes",
+    "meaning": "From the river island."
+  },
+  {
+    "name": "Iolo",
+    "meaning": "Lord."
+  },
+  {
+    "name": "Ivor",
+    "meaning": "Bow warrior."
+  },
+  {
+    "name": "Isaac",
+    "meaning": "Laughter."
+  },
+  {
+    "name": "Isaiah",
+    "meaning": "Salvation of the Lord."
+  },
+  {
+    "name": "Isambard",
+    "meaning": "Iron-bright."
+  },
+  {
+    "name": "Ishmael",
+    "meaning": "God will hear."
+  },
+  {
+    "name": "Isidore",
+    "meaning": "Gift of Isis."
+  },
+  {
+    "name": "Israel",
+    "meaning": "He who struggles with God."
+  },
+  {
+    "name": "Ivan",
+    "meaning": "A form of John, meaning 'God is gracious'."
+  },
+  {
+    "name": "Ives",
+    "meaning": "Yew wood."
+  },
+  {
+    "name": "Iwan",
+    "meaning": "A Welsh form of John, meaning 'God is gracious'."
+  },
+  {
+    "name": "Jack",
+    "meaning": "God is gracious."
+  },
+  {
+    "name": "Jacob",
+    "meaning": "Supplanter."
+  },
+  {
+    "name": "Jago",
+    "meaning": "A Cornish form of James, meaning 'supplanter'."
+  },
+  {
+    "name": "Jake",
+    "meaning": "A diminutive of Jacob."
+  },
+  {
+    "name": "James",
+    "meaning": "Supplanter."
+  },
+  {
+    "name": "Jamie",
+    "meaning": "A diminutive of James."
+  },
+  {
+    "name": "Jared",
+    "meaning": "To descend."
+  },
+  {
+    "name": "Jarvis",
+    "meaning": "Spear."
+  },
+  {
+    "name": "Jason",
+    "meaning": "To heal."
+  },
+  {
+    "name": "Jasper",
+    "meaning": "Bringer of treasure."
+  },
+  {
+    "name": "Jax",
+    "meaning": "A modern invented name."
+  },
+  {
+    "name": "Jay",
+    "meaning": "A jaybird."
+  },
+  {
+    "name": "Jayden",
+    "meaning": "Thankful."
+  },
+  {
+    "name": "Jedediah",
+    "meaning": "Beloved of the Lord."
+  },
+  {
+    "name": "Jeff",
+    "meaning": "A diminutive of Jeffrey."
+  },
+  {
+    "name": "Jefferson",
+    "meaning": "Son of Jeffrey."
+  },
+  {
+    "name": "Jeffrey",
+    "meaning": "God's peace."
+  },
+  {
+    "name": "Jensen",
+    "meaning": "Son of Jen."
+  },
+  {
+    "name": "Jeremiah",
+    "meaning": "Appointed by God."
+  },
+  {
+    "name": "Jeremy",
+    "meaning": "A form of Jeremiah."
+  },
+  {
+    "name": "Jerome",
+    "meaning": "Sacred name."
+  },
+  {
+    "name": "Jesse",
+    "meaning": "Gift."
+  },
+  {
+    "name": "Jethro",
+    "meaning": "Excellence."
+  },
+  {
+    "name": "Jocelyn",
+    "meaning": "Member of the Gauts tribe."
+  },
+  {
+    "name": "Jody",
+    "meaning": "A diminutive of Joseph."
+  },
+  {
+    "name": "Joe",
+    "meaning": "A diminutive of Joseph."
+  },
+  {
+    "name": "Joel",
+    "meaning": "Yahweh is God."
+  },
+  {
+    "name": "John",
+    "meaning": "God is gracious."
+  },
+  {
+    "name": "Jonathan",
+    "meaning": "Gift of God."
+  },
+  {
+    "name": "Kane",
+    "meaning": "Warrior."
+  },
+  {
+    "name": "Kay",
+    "meaning": "Rejoicer."
+  },
+  {
+    "name": "Keane",
+    "meaning": "Ancient."
+  },
+  {
+    "name": "Keaton",
+    "meaning": "From the town where hawks are flown."
+  },
+  {
+    "name": "Keegan",
+    "meaning": "Son of Egan."
+  },
+  {
+    "name": "Keir",
+    "meaning": "Dark-skinned."
+  },
+  {
+    "name": "Keith",
+    "meaning": "Wood."
+  },
+  {
+    "name": "Kellan",
+    "meaning": "Slender."
+  },
+  {
+    "name": "Kelvin",
+    "meaning": "From the narrow river."
+  },
+  {
+    "name": "Ken",
+    "meaning": "A diminutive of Kenneth."
+  },
+  {
+    "name": "Kendrick",
+    "meaning": "Royal ruler."
+  },
+  {
+    "name": "Kenneth",
+    "meaning": "Born of fire; Handsome."
+  },
+  {
+    "name": "Kenny",
+    "meaning": "A diminutive of Kenneth."
+  },
+  {
+    "name": "Kent",
+    "meaning": "Edge; Border."
+  },
+  {
+    "name": "Kenton",
+    "meaning": "From the royal town."
+  },
+  {
+    "name": "Kenyon",
+    "meaning": "Blond."
+  },
+  {
+    "name": "Kermit",
+    "meaning": "Free man."
+  },
+  {
+    "name": "Kerr",
+    "meaning": "From the rough ground."
+  },
+  {
+    "name": "Kerry",
+    "meaning": "People of Ciar."
+  },
+  {
+    "name": "Kevin",
+    "meaning": "Handsome birth."
+  },
+  {
+    "name": "Kian",
+    "meaning": "Ancient."
+  },
+  {
+    "name": "Kieran",
+    "meaning": "Little dark one."
+  },
+  {
+    "name": "Killian",
+    "meaning": "Church."
+  },
+  {
+    "name": "Kim",
+    "meaning": "Noble; Brave."
+  },
+  {
+    "name": "Kingsley",
+    "meaning": "From the king's meadow."
+  },
+  {
+    "name": "Kingston",
+    "meaning": "From the king's town."
+  },
+  {
+    "name": "Kirk",
+    "meaning": "Church."
+  },
+  {
+    "name": "Kit",
+    "meaning": "A diminutive of Christopher."
+  },
+  {
+    "name": "Knox",
+    "meaning": "From the round hill."
+  },
+  {
+    "name": "Kyle",
+    "meaning": "A narrow strait."
+  },
+  {
+    "name": "Lachlan",
+    "meaning": "From the land of lakes."
+  },
+  {
+    "name": "Laird",
+    "meaning": "Lord."
+  },
+  {
+    "name": "Lambert",
+    "meaning": "Land-bright."
+  },
+  {
+    "name": "Lamont",
+    "meaning": "Law man."
+  },
+  {
+    "name": "Lance",
+    "meaning": "Land."
+  },
+  {
+    "name": "Landon",
+    "meaning": "From the long hill."
+  },
+  {
+    "name": "Lane",
+    "meaning": "A narrow road."
+  },
+  {
+    "name": "Langley",
+    "meaning": "From the long meadow."
+  },
+  {
+    "name": "Laurence",
+    "meaning": "From Laurentum."
+  },
+  {
+    "name": "Lawrence",
+    "meaning": "A variant of Laurence."
+  },
+  {
+    "name": "Lawson",
+    "meaning": "Son of Lawrence."
+  },
+  {
+    "name": "Leander",
+    "meaning": "Lion-man."
+  },
+  {
+    "name": "Lee",
+    "meaning": "Meadow."
+  },
+  {
+    "name": "Leighton",
+    "meaning": "From the leek town."
+  },
+  {
+    "name": "Leland",
+    "meaning": "From the fallow land."
+  },
+  {
+    "name": "Lennon",
+    "meaning": "Lover."
+  },
+  {
+    "name": "Lennox",
+    "meaning": "With many elm trees."
+  },
+  {
+    "name": "Leo",
+    "meaning": "Lion."
+  },
+  {
+    "name": "Leon",
+    "meaning": "Lion."
+  },
+  {
+    "name": "Leonard",
+    "meaning": "Brave lion."
+  },
+  {
+    "name": "Leopold",
+    "meaning": "Brave people."
+  },
+  {
+    "name": "Leslie",
+    "meaning": "From the holly garden."
+  },
+  {
+    "name": "Lester",
+    "meaning": "From Leicester."
+  },
+  {
+    "name": "Lewis",
+    "meaning": "Renowned warrior."
+  },
+  {
+    "name": "Liam",
+    "meaning": "Resolute protection."
+  },
+  {
+    "name": "Lincoln",
+    "meaning": "From the town by the pool."
+  },
+  {
+    "name": "Lindsay",
+    "meaning": "From the island of linden trees."
+  },
+  {
+    "name": "Linus",
+    "meaning": "Flax-colored."
+  },
+  {
+    "name": "Lionel",
+    "meaning": "Young lion."
+  },
+  {
+    "name": "Llewellyn",
+    "meaning": "Leader; Lion-like."
+  },
+  {
+    "name": "Lloyd",
+    "meaning": "Gray."
+  },
+  {
+    "name": "Lochlan",
+    "meaning": "A variant of Lachlan."
+  },
+  {
+    "name": "Logan",
+    "meaning": "Little hollow."
+  },
+  {
+    "name": "Louis",
+    "meaning": "Renowned warrior."
+  },
+  {
+    "name": "Lowell",
+    "meaning": "Young wolf."
+  },
+  {
+    "name": "Lucan",
+    "meaning": "From Lucania."
+  },
+  {
+    "name": "Lucas",
+    "meaning": "Light."
+  },
+  {
+    "name": "Lucian",
+    "meaning": "Light."
+  },
+  {
+    "name": "Ludovic",
+    "meaning": "Famous warrior."
+  },
+  {
+    "name": "Ludo",
+    "meaning": "A diminutive of Ludovic."
+  },
+  {
+    "name": "Luke",
+    "meaning": "Light-giving."
+  },
+  {
+    "name": "Luther",
+    "meaning": "Army people."
+  },
+  {
+    "name": "Lyle",
+    "meaning": "From the island."
+  },
+  {
+    "name": "Lyndon",
+    "meaning": "From the linden tree hill."
+  },
+  {
+    "name": "Lysander",
+    "meaning": "Liberator."
+  },
+  {
+    "name": "Macaulay",
+    "meaning": "Son of Olaf."
+  },
+  {
+    "name": "Mack",
+    "meaning": "Son of."
+  },
+  {
+    "name": "Maddox",
+    "meaning": "Son of Madoc."
+  },
+  {
+    "name": "Magnus",
+    "meaning": "Great."
+  },
+  {
+    "name": "Maitland",
+    "meaning": "From the bad land."
+  },
+  {
+    "name": "Malachi",
+    "meaning": "My messenger."
+  },
+  {
+    "name": "Malcolm",
+    "meaning": "Devotee of Saint Columba."
+  },
+  {
+    "name": "Malik",
+    "meaning": "King."
+  },
+  {
+    "name": "Malory",
+    "meaning": "Unlucky."
+  },
+  {
+    "name": "Manning",
+    "meaning": "Strong; Valiant."
+  },
+  {
+    "name": "Mansell",
+    "meaning": "From Le Mans, France."
+  },
+  {
+    "name": "Mansfield",
+    "meaning": "From the field by the small river."
+  },
+  {
+    "name": "Marcus",
+    "meaning": "Warlike."
+  },
+  {
+    "name": "Marius",
+    "meaning": "Male; Dedicated to Mars."
+  },
+  {
+    "name": "Mark",
+    "meaning": "Warlike."
+  },
+  {
+    "name": "Marlon",
+    "meaning": "Little hawk."
+  },
+  {
+    "name": "Marlowe",
+    "meaning": "From the driftwood."
+  },
+  {
+    "name": "Marshall",
+    "meaning": "Horse-servant."
+  },
+  {
+    "name": "Martin",
+    "meaning": "Warlike."
+  },
+  {
+    "name": "Marvin",
+    "meaning": "Sea-friend."
+  },
+  {
+    "name": "Mason",
+    "meaning": "Stone-worker."
+  },
+  {
+    "name": "Matthew",
+    "meaning": "Gift of God."
+  },
+  {
+    "name": "Maurice",
+    "meaning": "Dark-skinned."
+  },
+  {
+    "name": "Max",
+    "meaning": "Greatest."
+  },
+  {
+    "name": "Maximilian",
+    "meaning": "Greatest."
+  },
+  {
+    "name": "Maxwell",
+    "meaning": "From the great spring."
+  },
+  {
+    "name": "Maynard",
+    "meaning": "Brave strength."
+  },
+  {
+    "name": "Melvin",
+    "meaning": "Council-friend."
+  },
+  {
+    "name": "Meredith",
+    "meaning": "Great lord."
+  },
+  {
+    "name": "Merlin",
+    "meaning": "Sea fortress."
+  },
+  {
+    "name": "Mervyn",
+    "meaning": "Sea-friend."
+  },
+  {
+    "name": "Micah",
+    "meaning": "Who is like God."
+  },
+  {
+    "name": "Michael",
+    "meaning": "Who is like God."
+  },
+  {
+    "name": "Miles",
+    "meaning": "Soldier."
+  },
+  {
+    "name": "Milo",
+    "meaning": "Soldier."
+  },
+  {
+    "name": "Milton",
+    "meaning": "From the mill town."
+  },
+  {
+    "name": "Mitchell",
+    "meaning": "A form of Michael."
+  },
+  {
+    "name": "Monty",
+    "meaning": "A diminutive of Montgomery."
+  },
+  {
+    "name": "Montgomery",
+    "meaning": "From the rich man's mountain."
+  },
+  {
+    "name": "Morgan",
+    "meaning": "Sea-born."
+  },
+  {
+    "name": "Morris",
+    "meaning": "Dark-skinned."
+  },
+  {
+    "name": "Mortimer",
+    "meaning": "From the still water."
+  },
+  {
+    "name": "Morton",
+    "meaning": "From the moor town."
+  },
+  {
+    "name": "Moses",
+    "meaning": "Drawn from the water."
+  },
+  {
+    "name": "Mungo",
+    "meaning": "Beloved."
+  },
+  {
+    "name": "Munro",
+    "meaning": "From the mouth of the River Roe."
+  },
+  {
+    "name": "Murdo",
+    "meaning": "Sea-warrior."
+  },
+  {
+    "name": "Murdock",
+    "meaning": "Sea-warrior."
+  },
+  {
+    "name": "Murray",
+    "meaning": "From the sea-settlement."
+  },
+  {
+    "name": "Myron",
+    "meaning": "Fragrant oil."
+  },
+  {
+    "name": "Nairn",
+    "meaning": "River with alder trees."
+  },
+  {
+    "name": "Nathan",
+    "meaning": "He gave."
+  },
+  {
+    "name": "Nathaniel",
+    "meaning": "Gift of God."
+  },
+  {
+    "name": "Neal",
+    "meaning": "Champion."
+  },
+  {
+    "name": "Niall",
+    "meaning": "Champion."
+  },
+  {
+    "name": "Ned",
+    "meaning": "A diminutive of Edward."
+  },
+  {
+    "name": "Neville",
+    "meaning": "From the new town."
+  },
+  {
+    "name": "Newell",
+    "meaning": "From the new hall."
+  },
+  {
+    "name": "Newman",
+    "meaning": "New man."
+  },
+  {
+    "name": "Newton",
+    "meaning": "From the new town."
+  },
+  {
+    "name": "Nicholas",
+    "meaning": "Victory of the people."
+  },
+  {
+    "name": "Nick",
+    "meaning": "A diminutive of Nicholas."
+  },
+  {
+    "name": "Nico",
+    "meaning": "A diminutive of Nicholas."
+  },
+  {
+    "name": "Nigel",
+    "meaning": "Champion; Black."
+  },
+  {
+    "name": "Noah",
+    "meaning": "Rest; Comfort."
+  },
+  {
+    "name": "Noel",
+    "meaning": "Christmas."
+  },
+  {
+    "name": "Nolan",
+    "meaning": "Champion; Noble."
+  },
+  {
+    "name": "Norbert",
+    "meaning": "Northern brightness."
+  },
+  {
+    "name": "Norman",
+    "meaning": "North man."
+  },
+  {
+    "name": "Norris",
+    "meaning": "From the north."
+  },
+  {
+    "name": "Norton",
+    "meaning": "From the north town."
+  },
+  {
+    "name": "Norwood",
+    "meaning": "From the north wood."
+  },
+  {
+    "name": "Nye",
+    "meaning": "Honor."
+  },
+  {
+    "name": "Oakley",
+    "meaning": "From the oak meadow."
+  },
+  {
+    "name": "Oden",
+    "meaning": "Rich."
+  },
+  {
+    "name": "Odell",
+    "meaning": "Woad hill."
+  },
+  {
+    "name": "Ogden",
+    "meaning": "From the oak valley."
+  },
+  {
+    "name": "Ogilvy",
+    "meaning": "From the high peak."
+  },
+  {
+    "name": "Oisin",
+    "meaning": "Little deer."
+  },
+  {
+    "name": "Olaf",
+    "meaning": "Ancestor's relic."
+  },
+  {
+    "name": "Olcan",
+    "meaning": "Wolf."
+  },
+  {
+    "name": "Oliver",
+    "meaning": "Olive tree."
+  },
+  {
+    "name": "Ollie",
+    "meaning": "A diminutive of Oliver."
+  },
+  {
+    "name": "Oran",
+    "meaning": "Pale green."
+  },
+  {
+    "name": "Orion",
+    "meaning": "A constellation."
+  },
+  {
+    "name": "Orlando",
+    "meaning": "Famous throughout the land."
+  },
+  {
+    "name": "Ormond",
+    "meaning": "Sea-man."
+  },
+  {
+    "name": "Orson",
+    "meaning": "Bear cub."
+  },
+  {
+    "name": "Orville",
+    "meaning": "From the golden city."
+  },
+  {
+    "name": "Osbert",
+    "meaning": "Divinely bright."
+  },
+  {
+    "name": "Osborn",
+    "meaning": "Divine bear."
+  },
+  {
+    "name": "Oscar",
+    "meaning": "Deer-friend."
+  },
+  {
+    "name": "Osgood",
+    "meaning": "Divinely good."
+  },
+  {
+    "name": "Osian",
+    "meaning": "A variant of Oisin."
+  },
+  {
+    "name": "Osmond",
+    "meaning": "Divine protection."
+  },
+  {
+    "name": "Oswald",
+    "meaning": "Divine power."
+  },
+  {
+    "name": "Otis",
+    "meaning": "Wealthy."
+  },
+  {
+    "name": "Otto",
+    "meaning": "Wealth."
+  },
+  {
+    "name": "Owen",
+    "meaning": "Well-born; Noble."
+  },
+  {
+    "name": "Oxford",
+    "meaning": "From the ford of the oxen."
+  },
+  {
+    "name": "Ozias",
+    "meaning": "Salvation."
+  },
+  {
+    "name": "Paddy",
+    "meaning": "A diminutive of Patrick."
+  },
+  {
+    "name": "Padraig",
+    "meaning": "A form of Patrick."
+  },
+  {
+    "name": "Palmer",
+    "meaning": "Palm-bearer; Pilgrim."
+  },
+  {
+    "name": "Parker",
+    "meaning": "Park keeper."
+  },
+  {
+    "name": "Parlan",
+    "meaning": "A form of Bartholomew."
+  },
+  {
+    "name": "Parry",
+    "meaning": "Son of Harry."
+  },
+  {
+    "name": "Pascal",
+    "meaning": "Relating to Easter."
+  },
+  {
+    "name": "Patrick",
+    "meaning": "Nobleman."
+  },
+  {
+    "name": "Paul",
+    "meaning": "Small."
+  },
+  {
+    "name": "Paxton",
+    "meaning": "From the peaceful town."
+  },
+  {
+    "name": "Payton",
+    "meaning": "From the fighting man's estate."
+  },
+  {
+    "name": "Pearce",
+    "meaning": "Rock."
+  },
+  {
+    "name": "Pembroke",
+    "meaning": "From the headland."
+  },
+  {
+    "name": "Pendleton",
+    "meaning": "From the overhanging town."
+  },
+  {
+    "name": "Penn",
+    "meaning": "Enclosure."
+  },
+  {
+    "name": "Percival",
+    "meaning": "To pierce the valley."
+  },
+  {
+    "name": "Percy",
+    "meaning": "A diminutive of Percival."
+  },
+  {
+    "name": "Peregrine",
+    "meaning": "Traveler; Pilgrim."
+  },
+  {
+    "name": "Perry",
+    "meaning": "Pear tree."
+  },
+  {
+    "name": "Peter",
+    "meaning": "Rock."
+  },
+  {
+    "name": "Peyton",
+    "meaning": "A variant of Payton."
+  },
+  {
+    "name": "Philip",
+    "meaning": "Lover of horses."
+  },
+  {
+    "name": "Philemon",
+    "meaning": "Loving."
+  },
+  {
+    "name": "Phineas",
+    "meaning": "Oracle."
+  },
+  {
+    "name": "Pierce",
+    "meaning": "A variant of Pearce."
+  },
+  {
+    "name": "Piers",
+    "meaning": "A form of Peter."
+  },
+  {
+    "name": "Pip",
+    "meaning": "A diminutive of Philip."
+  },
+  {
+    "name": "Porter",
+    "meaning": "Gatekeeper."
+  },
+  {
+    "name": "Prentice",
+    "meaning": "Apprentice."
+  },
+  {
+    "name": "Preston",
+    "meaning": "From the priest's town."
+  },
+  {
+    "name": "Quentin",
+    "meaning": "The fifth."
+  },
+  {
+    "name": "Quill",
+    "meaning": "From the wood."
+  },
+  {
+    "name": "Quillan",
+    "meaning": "Cub."
+  },
+  {
+    "name": "Quimby",
+    "meaning": "From the woman's estate."
+  },
+  {
+    "name": "Quincy",
+    "meaning": "Estate of the fifth son."
+  },
+  {
+    "name": "Quinlan",
+    "meaning": "Well-shaped; Strong."
+  },
+  {
+    "name": "Quinn",
+    "meaning": "Counsel; Chief."
+  },
+  {
+    "name": "Quintin",
+    "meaning": "A variant of Quentin."
+  },
+  {
+    "name": "Quinton",
+    "meaning": "From the queen's town."
+  },
+  {
+    "name": "Radcliffe",
+    "meaning": "From the red cliff."
+  },
+  {
+    "name": "Raeburn",
+    "meaning": "From the stream where roe-deer drink."
+  },
+  {
+    "name": "Rafael",
+    "meaning": "God has healed."
+  },
+  {
+    "name": "Rafferty",
+    "meaning": "Prosperous."
+  },
+  {
+    "name": "Ralph",
+    "meaning": "Wolf-counsel."
+  },
+  {
+    "name": "Ramsay",
+    "meaning": "From the wild-garlic island."
+  },
+  {
+    "name": "Randall",
+    "meaning": "Shield-wolf."
+  },
+  {
+    "name": "Randolph",
+    "meaning": "A variant of Randall."
+  },
+  {
+    "name": "Raphael",
+    "meaning": "God has healed."
+  },
+  {
+    "name": "Ray",
+    "meaning": "A diminutive of Raymond."
+  },
+  {
+    "name": "Raymond",
+    "meaning": "Wise protector."
+  },
+  {
+    "name": "Reagan",
+    "meaning": "Little king."
+  },
+  {
+    "name": "Redford",
+    "meaning": "From the red ford."
+  },
+  {
+    "name": "Redmond",
+    "meaning": "A form of Raymond."
+  },
+  {
+    "name": "Reece",
+    "meaning": "Ardor; Passion."
+  },
+  {
+    "name": "Reed",
+    "meaning": "Red-haired."
+  },
+  {
+    "name": "Regan",
+    "meaning": "A variant of Reagan."
+  },
+  {
+    "name": "Reggie",
+    "meaning": "A diminutive of Reginald."
+  },
+  {
+    "name": "Reginald",
+    "meaning": "Ruler's counsel."
+  },
+  {
+    "name": "Reid",
+    "meaning": "A variant of Reed."
+  },
+  {
+    "name": "Remington",
+    "meaning": "From the raven town."
+  },
+  {
+    "name": "Remy",
+    "meaning": "Oarsman."
+  },
+  {
+    "name": "Reuben",
+    "meaning": "Behold, a son."
+  },
+  {
+    "name": "Rex",
+    "meaning": "King."
+  },
+  {
+    "name": "Reynold",
+    "meaning": "A form of Reginald."
+  },
+  {
+    "name": "Rhett",
+    "meaning": "Counsel."
+  },
+  {
+    "name": "Rhys",
+    "meaning": "Ardor; Passion."
+  },
+  {
+    "name": "Rhydian",
+    "meaning": "Red."
+  },
+  {
+    "name": "Richard",
+    "meaning": "Brave ruler."
+  },
+  {
+    "name": "Richmond",
+    "meaning": "From the rich hill."
+  },
+  {
+    "name": "Rick",
+    "meaning": "A diminutive of Richard."
+  },
+  {
+    "name": "Ricky",
+    "meaning": "A diminutive of Richard."
+  },
+  {
+    "name": "Rico",
+    "meaning": "Brave ruler."
+  },
+  {
+    "name": "Rider",
+    "meaning": "Horseman."
+  },
+  {
+    "name": "Ridley",
+    "meaning": "From the reed meadow."
+  },
+  {
+    "name": "Rigby",
+    "meaning": "From the ridge farm."
+  },
+  {
+    "name": "Riley",
+    "meaning": "From the rye meadow."
+  },
+  {
+    "name": "Rio",
+    "meaning": "River."
+  },
+  {
+    "name": "Riordan",
+    "meaning": "Royal poet."
+  },
+  {
+    "name": "Ripley",
+    "meaning": "From the clearing in the woods."
+  },
+  {
+    "name": "River",
+    "meaning": "A flowing body of water."
+  },
+  {
+    "name": "Roan",
+    "meaning": "Red-haired."
+  },
+  {
+    "name": "Robert",
+    "meaning": "Bright fame."
+  },
+  {
+    "name": "Robin",
+    "meaning": "A diminutive of Robert."
+  },
+  {
+    "name": "Rocco",
+    "meaning": "Rest."
+  },
+  {
+    "name": "Roderick",
+    "meaning": "Famous ruler."
+  },
+  {
+    "name": "Rodney",
+    "meaning": "From Hroda's island."
+  },
+  {
+    "name": "Roger",
+    "meaning": "Famous spear."
+  },
+  {
+    "name": "Roland",
+    "meaning": "Famous throughout the land."
+  },
+  {
+    "name": "Rolf",
+    "meaning": "Famous wolf."
+  },
+  {
+    "name": "Rollo",
+    "meaning": "A form of Roland."
+  },
+  {
+    "name": "Roman",
+    "meaning": "From Rome."
+  },
+  {
+    "name": "Romeo",
+    "meaning": "Pilgrim to Rome."
+  },
+  {
+    "name": "Ronan",
+    "meaning": "Little seal."
+  },
+  {
+    "name": "Ronald",
+    "meaning": "Ruler's counsel."
+  },
+  {
+    "name": "Ronnie",
+    "meaning": "A diminutive of Ronald."
+  },
+  {
+    "name": "Rory",
+    "meaning": "Red king."
+  },
+  {
+    "name": "Roscoe",
+    "meaning": "From the deer wood."
+  },
+  {
+    "name": "Ross",
+    "meaning": "Headland."
+  },
+  {
+    "name": "Rowan",
+    "meaning": "Little redhead; The rowan tree."
+  },
+  {
+    "name": "Roy",
+    "meaning": "Red-haired."
+  },
+  {
+    "name": "Royal",
+    "meaning": "Of the king."
+  },
+  {
+    "name": "Royce",
+    "meaning": "Son of the king."
+  },
+  {
+    "name": "Royston",
+    "meaning": "From Royse's town."
+  },
+  {
+    "name": "Ruairi",
+    "meaning": "A form of Rory."
+  },
+  {
+    "name": "Ruan",
+    "meaning": "Little redhead."
+  },
+  {
+    "name": "Rudolph",
+    "meaning": "Famous wolf."
+  },
+  {
+    "name": "Rudy",
+    "meaning": "A diminutive of Rudolph."
+  },
+  {
+    "name": "Rufus",
+    "meaning": "Red-haired."
+  },
+  {
+    "name": "Rupert",
+    "meaning": "Bright fame."
+  },
+  {
+    "name": "Russell",
+    "meaning": "Little red one."
+  },
+  {
+    "name": "Ryan",
+    "meaning": "Little king."
+  },
+  {
+    "name": "Ryder",
+    "meaning": "A variant of Rider."
+  },
+  {
+    "name": "Rylan",
+    "meaning": "From the rye land."
+  },
+  {
+    "name": "Ryland",
+    "meaning": "From the rye land."
+  },
+  {
+    "name": "Sacha",
+    "meaning": "A form of Alexander."
+  },
+  {
+    "name": "Salvador",
+    "meaning": "Savior."
+  },
+  {
+    "name": "Salvatore",
+    "meaning": "Savior."
+  },
+  {
+    "name": "Sam",
+    "meaning": "A diminutive of Samuel or Samson."
+  },
+  {
+    "name": "Samson",
+    "meaning": "Sun."
+  },
+  {
+    "name": "Samuel",
+    "meaning": "Told by God."
+  },
+  {
+    "name": "Sandeep",
+    "meaning": "A lighted lamp."
+  },
+  {
+    "name": "Sanders",
+    "meaning": "Son of Alexander."
+  },
+  {
+    "name": "Sandy",
+    "meaning": "A diminutive of Alexander."
+  },
+  {
+    "name": "Sanford",
+    "meaning": "From the sandy ford."
+  },
+  {
+    "name": "Saul",
+    "meaning": "Prayed for."
+  },
+  {
+    "name": "Sawyer",
+    "meaning": "Woodcutter."
+  },
+  {
+    "name": "Saxon",
+    "meaning": "People of the short sword."
+  },
+  {
+    "name": "Scott",
+    "meaning": "From Scotland."
+  },
+  {
+    "name": "Seamus",
+    "meaning": "An Irish form of James."
+  },
+  {
+    "name": "Sean",
+    "meaning": "An Irish form of John."
+  },
+  {
+    "name": "Sebastian",
+    "meaning": "Venerable."
+  },
+  {
+    "name": "Seth",
+    "meaning": "Appointed."
+  },
+  {
+    "name": "Shaun",
+    "meaning": "A variant of Sean."
+  },
+  {
+    "name": "Shawn",
+    "meaning": "A variant of Sean."
+  },
+  {
+    "name": "Shay",
+    "meaning": "The stately one."
+  },
+  {
+    "name": "Shea",
+    "meaning": "A variant of Shay."
+  },
+  {
+    "name": "Sheldon",
+    "meaning": "From the steep-sided valley."
+  },
+  {
+    "name": "Shelley",
+    "meaning": "From the clearing on a ledge."
+  },
+  {
+    "name": "Shelton",
+    "meaning": "From the town on a ledge."
+  },
+  {
+    "name": "Sheridan",
+    "meaning": "Searcher."
+  },
+  {
+    "name": "Sherlock",
+    "meaning": "Fair-haired."
+  },
+  {
+    "name": "Sherman",
+    "meaning": "Shearer of wool."
+  },
+  {
+    "name": "Sherwin",
+    "meaning": "Swift runner."
+  },
+  {
+    "name": "Sherwood",
+    "meaning": "From the bright forest."
+  },
+  {
+    "name": "Sidney",
+    "meaning": "From the wide island."
+  },
+  {
+    "name": "Silas",
+    "meaning": "Forest; Woods."
+  },
+  {
+    "name": "Simeon",
+    "meaning": "He has heard."
+  },
+  {
+    "name": "Simon",
+    "meaning": "He has heard."
+  },
+  {
+    "name": "Sinclair",
+    "meaning": "From Saint-Clair."
+  },
+  {
+    "name": "Sloane",
+    "meaning": "Raider."
+  },
+  {
+    "name": "Solomon",
+    "meaning": "Peace."
+  },
+  {
+    "name": "Sonny",
+    "meaning": "Son."
+  },
+  {
+    "name": "Soren",
+    "meaning": "Stern."
+  },
+  {
+    "name": "Spencer",
+    "meaning": "Steward; Butler."
+  },
+  {
+    "name": "Spike",
+    "meaning": "Long, heavy nail."
+  },
+  {
+    "name": "Stanley",
+    "meaning": "From the stony meadow."
+  },
+  {
+    "name": "Stefan",
+    "meaning": "A form of Stephen."
+  },
+  {
+    "name": "Stephen",
+    "meaning": "Crown."
+  },
+  {
+    "name": "Sterling",
+    "meaning": "Of high quality."
+  },
+  {
+    "name": "Steve",
+    "meaning": "A diminutive of Stephen."
+  },
+  {
+    "name": "Steven",
+    "meaning": "A variant of Stephen."
+  },
+  {
+    "name": "Stewart",
+    "meaning": "Steward."
+  },
+  {
+    "name": "Stirling",
+    "meaning": "A variant of Sterling."
+  },
+  {
+    "name": "Stuart",
+    "meaning": "A variant of Stewart."
+  },
+  {
+    "name": "Sullivan",
+    "meaning": "Dark-eyed."
+  },
+  {
+    "name": "Sutton",
+    "meaning": "From the south town."
+  },
+  {
+    "name": "Sven",
+    "meaning": "Youth."
+  },
+  {
+    "name": "Sylvester",
+    "meaning": "From the forest."
+  },
+  {
+    "name": "Tad",
+    "meaning": "A diminutive of Thaddeus."
+  },
+  {
+    "name": "Tadhg",
+    "meaning": "Poet."
+  },
+  {
+    "name": "Talbot",
+    "meaning": "Messenger of destruction."
+  },
+  {
+    "name": "Tallis",
+    "meaning": "Forest."
+  },
+  {
+    "name": "Talon",
+    "meaning": "Claw."
+  },
+  {
+    "name": "Tanner",
+    "meaning": "Leather-tanner."
+  },
+  {
+    "name": "Tate",
+    "meaning": "Cheerful."
+  },
+  {
+    "name": "Tatum",
+    "meaning": "From Tata's homestead."
+  },
+  {
+    "name": "Tavish",
+    "meaning": "Twin."
+  },
+  {
+    "name": "Taylor",
+    "meaning": "Tailor."
+  },
+  {
+    "name": "Ted",
+    "meaning": "A diminutive of Edward or Theodore."
+  },
+  {
+    "name": "Teddy",
+    "meaning": "A diminutive of Edward or Theodore."
+  },
+  {
+    "name": "Terence",
+    "meaning": "Smooth."
+  },
+  {
+    "name": "Ternan",
+    "meaning": "A saint's name."
+  },
+  {
+    "name": "Terry",
+    "meaning": "A diminutive of Terence."
+  },
+  {
+    "name": "Thaddeus",
+    "meaning": "Gift of God."
+  },
+  {
+    "name": "Thatcher",
+    "meaning": "Roof-thatcher."
+  },
+  {
+    "name": "Theo",
+    "meaning": "A diminutive of Theodore."
+  },
+  {
+    "name": "Theobald",
+    "meaning": "Brave people."
+  },
+  {
+    "name": "Theodore",
+    "meaning": "Gift of God."
+  },
+  {
+    "name": "Thomas",
+    "meaning": "Twin."
+  },
+  {
+    "name": "Thornton",
+    "meaning": "From the thorn-bush town."
+  },
+  {
+    "name": "Tiernan",
+    "meaning": "Little lord."
+  },
+  {
+    "name": "Tim",
+    "meaning": "A diminutive of Timothy."
+  },
+  {
+    "name": "Timothy",
+    "meaning": "Honoring God."
+  },
+  {
+    "name": "Titus",
+    "meaning": "Title of honor."
+  },
+  {
+    "name": "Tobias",
+    "meaning": "God is good."
+  },
+  {
+    "name": "Toby",
+    "meaning": "A diminutive of Tobias."
+  },
+  {
+    "name": "Todd",
+    "meaning": "Fox."
+  },
+  {
+    "name": "Tom",
+    "meaning": "A diminutive of Thomas."
+  },
+  {
+    "name": "Tommy",
+    "meaning": "A diminutive of Thomas."
+  },
+  {
+    "name": "Tony",
+    "meaning": "A diminutive of Anthony."
+  },
+  {
+    "name": "Torin",
+    "meaning": "Chief."
+  },
+  {
+    "name": "Travis",
+    "meaning": "Toll-collector."
+  },
+  {
+    "name": "Trevor",
+    "meaning": "From the large village."
+  },
+  {
+    "name": "Tristan",
+    "meaning": "Noise; Tumult."
+  },
+  {
+    "name": "Troy",
+    "meaning": "From Troyes, France."
+  },
+  {
+    "name": "Truman",
+    "meaning": "Trusty man."
+  },
+  {
+    "name": "Tudor",
+    "meaning": "Ruler of the people."
+  },
+  {
+    "name": "Turner",
+    "meaning": "Lathe-worker."
+  },
+  {
+    "name": "Tyler",
+    "meaning": "Tile-maker."
+  },
+  {
+    "name": "Tyrone",
+    "meaning": "From the land of the yew tree."
+  },
+  {
+    "name": "Tyson",
+    "meaning": "Son of a German."
+  },
+  {
+    "name": "Uhtred",
+    "meaning": "Pre-dawn counsel."
+  },
+  {
+    "name": "Ulick",
+    "meaning": "Heart; Mind."
+  },
+  {
+    "name": "Ulysses",
+    "meaning": "To be angry."
+  },
+  {
+    "name": "Upton",
+    "meaning": "From the upper town."
+  },
+  {
+    "name": "Urban",
+    "meaning": "From the city."
+  },
+  {
+    "name": "Uriah",
+    "meaning": "God is my light."
+  },
+  {
+    "name": "Urian",
+    "meaning": "From the city."
+  },
+  {
+    "name": "Usher",
+    "meaning": "Doorkeeper."
+  },
+  {
+    "name": "Uther",
+    "meaning": "Terrible."
+  },
+  {
+    "name": "Vail",
+    "meaning": "Valley."
+  },
+  {
+    "name": "Valentine",
+    "meaning": "Strong; Healthy."
+  },
+  {
+    "name": "Valerian",
+    "meaning": "Strong."
+  },
+  {
+    "name": "Vance",
+    "meaning": "From the marshland."
+  },
+  {
+    "name": "Vaughan",
+    "meaning": "Little."
+  },
+  {
+    "name": "Vaughn",
+    "meaning": "A variant of Vaughan."
+  },
+  {
+    "name": "Vernon",
+    "meaning": "From the alder tree grove."
+  },
+  {
+    "name": "Victor",
+    "meaning": "Conqueror."
+  },
+  {
+    "name": "Vidal",
+    "meaning": "Life."
+  },
+  {
+    "name": "Vince",
+    "meaning": "A diminutive of Vincent."
+  },
+  {
+    "name": "Vincent",
+    "meaning": "To conquer."
+  },
+  {
+    "name": "Vinson",
+    "meaning": "Son of Vincent."
+  },
+  {
+    "name": "Virgil",
+    "meaning": "Staff-bearer."
+  },
+  {
+    "name": "Vito",
+    "meaning": "Life."
+  },
+  {
+    "name": "Vivian",
+    "meaning": "Lively."
+  },
+  {
+    "name": "Wade",
+    "meaning": "To go; From the river ford."
+  },
+  {
+    "name": "Walden",
+    "meaning": "From the wooded valley."
+  },
+  {
+    "name": "Waldo",
+    "meaning": "To rule."
+  },
+  {
+    "name": "Walker",
+    "meaning": "Fuller of cloth."
+  },
+  {
+    "name": "Wallace",
+    "meaning": "Foreigner."
+  },
+  {
+    "name": "Wally",
+    "meaning": "A diminutive of Wallace or Walter."
+  },
+  {
+    "name": "Walter",
+    "meaning": "Power of the army."
+  },
+  {
+    "name": "Walton",
+    "meaning": "From the walled town."
+  },
+  {
+    "name": "Ward",
+    "meaning": "Guardian."
+  },
+  {
+    "name": "Warner",
+    "meaning": "Army guard."
+  },
+  {
+    "name": "Warren",
+    "meaning": "Park-keeper."
+  },
+  {
+    "name": "Warwick",
+    "meaning": "From the dwellings by the weir."
+  },
+  {
+    "name": "Washington",
+    "meaning": "From the town of Wassa's people."
+  },
+  {
+    "name": "Watson",
+    "meaning": "Son of Walter."
+  },
+  {
+    "name": "Wayland",
+    "meaning": "From the land by the road."
+  },
+  {
+    "name": "Wayne",
+    "meaning": "Wagon-maker."
+  },
+  {
+    "name": "Webster",
+    "meaning": "Weaver."
+  },
+  {
+    "name": "Weldon",
+    "meaning": "From the hill by a spring."
+  },
+  {
+    "name": "Wellington",
+    "meaning": "From the wealthy estate."
+  },
+  {
+    "name": "Wendell",
+    "meaning": "To wander."
+  },
+  {
+    "name": "Wesley",
+    "meaning": "From the west meadow."
+  },
+  {
+    "name": "Weston",
+    "meaning": "From the west town."
+  },
+  {
+    "name": "Whitby",
+    "meaning": "From the white farm."
+  },
+  {
+    "name": "Wilbert",
+    "meaning": "Bright will."
+  },
+  {
+    "name": "Wilbur",
+    "meaning": "From the wild boar enclosure."
+  },
+  {
+    "name": "Wilfred",
+    "meaning": "Desiring peace."
+  },
+  {
+    "name": "Will",
+    "meaning": "A diminutive of William."
+  },
+  {
+    "name": "Willard",
+    "meaning": "Resolutely brave."
+  },
+  {
+    "name": "William",
+    "meaning": "Resolute protection."
+  },
+  {
+    "name": "Willis",
+    "meaning": "Son of William."
+  },
+  {
+    "name": "Wilson",
+    "meaning": "Son of William."
+  },
+  {
+    "name": "Wilton",
+    "meaning": "From the willow tree town."
+  },
+  {
+    "name": "Windsor",
+    "meaning": "From the riverbank with a winch."
+  },
+  {
+    "name": "Winfield",
+    "meaning": "From the friendly field."
+  },
+  {
+    "name": "Wingate",
+    "meaning": "From the winding gate."
+  },
+  {
+    "name": "Winston",
+    "meaning": "From the friendly town."
+  },
+  {
+    "name": "Winter",
+    "meaning": "The season."
+  },
+  {
+    "name": "Winthrop",
+    "meaning": "From the friendly village."
+  },
+  {
+    "name": "Wolf",
+    "meaning": "Wolf."
+  },
+  {
+    "name": "Wolfgang",
+    "meaning": "Path of the wolf."
+  },
+  {
+    "name": "Woodrow",
+    "meaning": "From the row of houses by a wood."
+  },
+  {
+    "name": "Wyatt",
+    "meaning": "Brave in war."
+  },
+  {
+    "name": "Wycliffe",
+    "meaning": "From the white cliff."
+  },
+  {
+    "name": "Wylie",
+    "meaning": "Charming."
+  },
+  {
+    "name": "Wyndham",
+    "meaning": "From the village with a winding path."
+  },
+  {
+    "name": "Wynn",
+    "meaning": "Fair; White."
+  },
+  {
+    "name": "Xander",
+    "meaning": "A diminutive of Alexander."
+  },
+  {
+    "name": "Xavier",
+    "meaning": "New house."
+  },
+  {
+    "name": "Xenon",
+    "meaning": "Foreigner."
+  },
+  {
+    "name": "Xerxes",
+    "meaning": "Ruler over heroes."
+  },
+  {
+    "name": "Yale",
+    "meaning": "From the fertile upland."
+  },
+  {
+    "name": "Yardley",
+    "meaning": "From the enclosed meadow."
+  },
+  {
+    "name": "Yates",
+    "meaning": "Gates."
+  },
+  {
+    "name": "York",
+    "meaning": "From the yew tree estate."
+  },
+  {
+    "name": "Yule",
+    "meaning": "Winter solstice."
+  },
+  {
+    "name": "Zachary",
+    "meaning": "The Lord has remembered."
+  },
+  {
+    "name": "Zachariah",
+    "meaning": "A variant of Zachary."
+  },
+  {
+    "name": "Zack",
+    "meaning": "A diminutive of Zachary."
+  },
+  {
+    "name": "Zadoc",
+    "meaning": "Just; Righteous."
+  },
+  {
+    "name": "Zain",
+    "meaning": "Beauty; Grace."
+  },
+  {
+    "name": "Zander",
+    "meaning": "A variant of Xander."
+  },
+  {
+    "name": "Zane",
+    "meaning": "God is gracious."
+  },
+  {
+    "name": "Zebediah",
+    "meaning": "Gift of the Lord."
+  },
+  {
+    "name": "Zebulon",
+    "meaning": "To exalt; To honor."
+  },
+  {
+    "name": "Zedekiah",
+    "meaning": "Justice of the Lord."
+  },
+  {
+    "name": "Zeke",
+    "meaning": "A diminutive of Ezekiel."
+  },
+  {
+    "name": "Zephaniah",
+    "meaning": "The Lord has hidden."
+  }
+]

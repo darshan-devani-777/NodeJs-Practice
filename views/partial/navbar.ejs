@@ -1,0 +1,32 @@
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link breadcrumb-item" id="admin_name" href="#" role="button" style="font-weight: bold;">
+          User
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#" style="padding-top: 0;">
+            <!-- <i class="fa-solid fas fa-user fa-lg"></i> -->
+            <img id="admin_image" src="/public/dist/img/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle" style="width: 40px; height: 40px; object-fit: cover;">
+        </a>
+        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+          <a href="/users/admin/profile" class="dropdown-item">
+            <i class="fas fa-address-card"></i> &nbsp; Profile
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="/users/admin/change-password" class="dropdown-item">
+            <i class="fas fa-lock"></i> &nbsp; Change Password
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="/users/admin/logout" class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i> &nbsp; Sign out
+          </a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <script src="/js/navbar.js"></script>

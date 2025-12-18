@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prega Center | Blogs</title>
+
+    <%- include('partial/scripts') %>
+    
+    <!-- Import Nunito Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom fonts for Summernote editor */
+        .note-editable {
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .note-editable .font-nunito {
+            font-family: 'Nunito', sans-serif !important;
+        }
+        
+        /* Ensure fonts work in the editor */
+        .note-editable .font-arial { font-family: 'Arial', sans-serif !important; }
+        .note-editable .font-arial-black { font-family: 'Arial Black', sans-serif !important; }
+        .note-editable .font-comic-sans-ms { font-family: 'Comic Sans MS', cursive !important; }
+        .note-editable .font-courier-new { font-family: 'Courier New', monospace !important; }
+        .note-editable .font-georgia { font-family: 'Georgia', serif !important; }
+        .note-editable .font-impact { font-family: 'Impact', sans-serif !important; }
+        .note-editable .font-tahoma { font-family: 'Tahoma', sans-serif !important; }
+        .note-editable .font-times-new-roman { font-family: 'Times New Roman', serif !important; }
+        .note-editable .font-trebuchet-ms { font-family: 'Trebuchet MS', sans-serif !important; }
+        .note-editable .font-verdana { font-family: 'Verdana', sans-serif !important; }
+        
+        /* Form validation styles */
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+        }
+        
+        .form-control.is-valid {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+        
+        .invalid-feedback {
+            display: block;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 80%;
+            color: #dc3545;
+        }
+        
+        .valid-feedback {
+            display: block;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 80%;
+            color: #28a745;
+        }
+        
+        /* Summernote validation styling */
+        .note-editor.is-invalid .note-editing-area {
+            border-color: #dc3545;
+        }
+        
+        .note-editor.is-valid .note-editing-area {
+            border-color: #28a745;
+        }
+        
+                 /* Ensure font size changes are applied properly */
+         .note-editable {
+             font-size: 16px;
+         }
+         
+                  /* Table horizontal scrolling styles */
+         .table-responsive {
+             overflow-x: auto;
+             overflow-y: hidden;
+             white-space: nowrap;
+             max-width: 100%;
+         }
+         
+         .table-responsive table {
+             min-width: 100%;
+             width: max-content;
+         }
+         
+         .table-responsive th,
+         .table-responsive td {
+             white-space: nowrap;
+             min-width: 60px;
+         }
+         
+         /* Specific column widths for better layout */
+         .table-responsive th:nth-child(1), /* Title */
+         .table-responsive td:nth-child(1) {
+             min-width: 120px;
+             max-width: 120px;
+         }
+         
+         .table-responsive th:nth-child(2), /* Description */
+         .table-responsive td:nth-child(2) {
+             min-width: 150px;
+             max-width: 150px;
+         }
+         
+         .table-responsive th:nth-child(3), /* Image */
+         .table-responsive td:nth-child(3) {
+             min-width: 80px;
+             max-width: 80px;
+         }
+         
+         .table-responsive th:nth-child(4), /* Type */
+         .table-responsive td:nth-child(4) {
+             min-width: 80px;
+             max-width: 80px;
+         }
+         
+         .table-responsive th:nth-child(5), /* Content */
+         .table-responsive td:nth-child(5) {
+             min-width: 200px;
+             max-width: 200px;
+         }
+         
+         .table-responsive th:nth-child(6), /* Created at */
+         .table-responsive td:nth-child(6) {
+             min-width: 100px;
+             max-width: 100px;
+         }
+         
+         .table-responsive th:nth-child(7), /* Author */
+         .table-responsive td:nth-child(7) {
+             min-width: 100px;
+             max-width: 100px;
+         }
+         
+         .table-responsive th:nth-child(8), /* Status */
+         .table-responsive td:nth-child(8) {
+             min-width: 100px;
+             max-width: 100px;
+         }
+         
+         .table-responsive th:nth-child(9), /* Action */
+         .table-responsive td:nth-child(9) {
+             min-width: 120px;
+             max-width: 120px;
+         }
+         
+         /* DataTable specific scrolling and pagination styles */
+         .dataTables_wrapper {
+             /* overflow-x: auto; */
+             max-width: 100%;
+             position: relative;
+         }
+         
+         .dataTables_wrapper .dataTable {
+             min-width: 100%;
+             width: max-content !important;
+         }
+         
+         .dataTables_wrapper .dataTable th,
+         .dataTables_wrapper .dataTable td {
+             white-space: nowrap;
+             min-width: 100px;
+         }
+         
+         /* Specific column widths for DataTable */
+         .dataTables_wrapper .dataTable th:nth-child(1),
+         .dataTables_wrapper .dataTable td:nth-child(1) {
+             min-width: 120px;
+             max-width: 120px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(2),
+         .dataTables_wrapper .dataTable td:nth-child(2) {
+             min-width: 150px;
+             max-width: 150px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(3),
+         .dataTables_wrapper .dataTable td:nth-child(3) {
+             min-width: 100px;
+             max-width: 100px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(4),
+         .dataTables_wrapper .dataTable td:nth-child(4) {
+             min-width: 80px;
+             max-width: 80px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(5),
+         .dataTables_wrapper .dataTable td:nth-child(5) {
+             min-width: 200px;
+             max-width: 200px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(6),
+         .dataTables_wrapper .dataTable td:nth-child(6) {
+             min-width: 100px;
+             max-width: 100px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(7),
+         .dataTables_wrapper .dataTable td:nth-child(7) {
+             min-width: 100px;
+             max-width: 100px;
+         }
+         
+         .dataTables_wrapper .dataTables_wrapper .dataTable th:nth-child(8),
+         .dataTables_wrapper .dataTable td:nth-child(8) {
+             min-width: 80px;
+             max-width: 80px;
+         }
+         
+         .dataTables_wrapper .dataTable th:nth-child(9),
+         .dataTables_wrapper .dataTable td:nth-child(9) {
+             min-width: 120px;
+             max-width: 120px;
+         }
+         
+         /* Pagination positioning styles */
+         .dataTables_wrapper .dataTables_paginate {
+             position: sticky;
+             bottom: 0;
+             background: white;
+             padding: 10px 0;
+             border-top: 1px solid #dee2e6;
+             z-index: 100;
+             width: 100%;
+             left: 0;
+             right: 0;
+         }
+         
+         .dataTables_wrapper .dataTables_info {
+             position: sticky;
+             bottom: 0;
+             background: white;
+             padding: 10px 0;
+             border-top: 1px solid #dee2e6;
+             z-index: 100;
+             width: 100%;
+             left: 0;
+             right: 0;
+         }
+         
+         .dataTables_wrapper .dataTables_length,
+         .dataTables_wrapper .dataTables_filter {
+             position: sticky;
+             top: 0;
+             background: white;
+             padding: 10px 0;
+             border-bottom: 1px solid #dee2e6;
+             z-index: 100;
+             width: 100%;
+             left: 0;
+             right: 0;
+         }
+         
+         /* Ensure consistent scrolling across all pages */
+         .dataTables_wrapper .dataTables_scrollBody {
+             overflow-x: auto !important;
+             overflow-y: auto !important;
+         }
+         
+         .dataTables_wrapper .dataTables_scrollHead {
+             overflow: visible !important;
+         }
+         
+         /* Force horizontal scrollbar to always show */
+         .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar {
+             height: 8px;
+         }
+         
+         .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar-track {
+             background: #f1f1f1;
+         }
+         
+         .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar-thumb {
+             background: #888;
+             border-radius: 4px;
+         }
+         
+         .dataTables_wrapper .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+             background: #555;
+         }
+         
+         /* Text truncation for long content */
+         .dataTables_wrapper .dataTable td {
+             overflow: hidden;
+             text-overflow: ellipsis;
+             white-space: nowrap;
+         }
+         
+         /* Ensure sticky elements work properly */
+         .dataTables_wrapper .dataTables_length,
+         .dataTables_wrapper .dataTables_filter,
+         .dataTables_wrapper .dataTables_info,
+         .dataTables_wrapper .dataTables_paginate {
+             position: -webkit-sticky;
+             position: sticky;
+         }
+         
+         /* Container positioning for sticky elements */
+         .card-body {
+             position: relative;
+         }
+         
+         /* Force table to respect column widths */
+         .dataTables_wrapper .dataTable {
+             table-layout: fixed;
+         }
+         
+         .dataTables_wrapper .dataTable th,
+         .dataTables_wrapper .dataTable td {
+             box-sizing: border-box;
+         }
+            #blogs_table{
+           width: 100% !important;
+           max-width: none !important;
+           overflow: auto;
+          }
+          
+          /* Ensure table takes full width on larger screens */
+          .dataTables_wrapper {
+              width: 100% !important;
+              max-width: none !important;
+          }
+          
+          .dataTables_wrapper .dataTable {
+              width: 100% !important;
+              max-width: none !important;
+          }
+          
+          /* Remove fixed column widths on larger screens */
+          @media (min-width: 1380px) {
+              .dataTables_wrapper .dataTable th,
+              .dataTables_wrapper .dataTable td {
+                  min-width: 180px !important;
+                  max-width: 180px !important;
+                  width: auto !important;
+              }
+          }
+          @media (min-width: 2000px) {
+            .dataTables_wrapper .dataTable th,
+            .dataTables_wrapper .dataTable td {
+                min-width: 380px !important;
+                max-width: 380px !important;
+                width: auto !important;
+            }
+          }
+    </style>
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <script src="/js/blogs.js"></script>
+    <div class="wrapper">
+      <%- include('partial/navbar') %> <%- include('partial/sidebar') %>
+      <div class="content-wrapper">
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Blogs</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item">
+                    <a href="/users/admin/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active">Blogs</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    style="
+                      margin: 20px 20px 0 20px;
+                      display: flex;
+                      align-items: flex-start;
+                      justify-content: space-between;
+                    "
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-block btn-primary col-sm-1"
+                      data-toggle="modal"
+                      data-target="#modal-create"
+                    >
+                      <i class="fas fa-user-plus"></i> &nbsp;
+                      <spna>Create</spna>
+                    </button>
+                  </div>
+                  <div class="card-body">
+                    <div class="">
+                      <table
+                        id="blogs_table"
+                        class="table-responsive table table-bordered table-striped"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Type</th>
+                            <th>content</th>
+                            <th>created_at</th>
+                            <th>Author</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="modal fade" id="modal-create" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-xl">  
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create Blog</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form id="createBlogForm" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea class="form-control" id="content" name="content" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="type">Type</label>
+                                <select class="form-control" id="type" name="type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="baby">Baby</option>
+                                    <option value="pregnancy">Pregnancy</option>
+                                    <option value="parenthood">Parenthood</option>
+                                    <option value="family">Family</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="file">Image</label>
+                                <input type="file" class="form-control-file" id="file" name="file" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-edit" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Blog</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form id="editBlogForm" enctype="multipart/form-data">
+                        <input type="hidden" id="editBlogId" name="blog_id">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="editTitle">Title</label>
+                                <input type="text" class="form-control" id="editTitle" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDescription">Description</label>
+                                <textarea class="form-control" id="editDescription" name="description" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="editContent">Content</label>
+                                <textarea class="form-control" id="editContent" name="content" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="editType">Type</label>
+                                <select class="form-control" id="editType" name="type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="baby">Baby</option>
+                                    <option value="pregnancy">Pregnancy</option>
+                                    <option value="parenthood">Parenthood</option>
+                                    <option value="family">Family</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editIsPublished">Published</label>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="editIsPublished">
+                                    <input type="hidden" name="is_published" id="editIsPublishedHidden" value="false">
+                                    <label class="custom-control-label" for="editIsPublished">Publish this blog</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editFile">New Image (optional)</label>
+                                <input type="file" class="form-control-file" id="editFile" name="file" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label>Current Image</label>
+                                <div id="editImagePreview"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+             // Initialize Summernote for create form
+             $('#content').summernote({
+                 height: 400,
+                 toolbar: [
+                     ['style', ['bold', 'italic', 'underline', 'clear']],
+                     ['font', ['strikethrough', 'superscript', 'subscript']],
+                     ['fontsize', ['fontsize']],
+                     ['color', ['color']],
+                     ['para', ['ul', 'ol', 'paragraph']],
+                     ['height', ['height']],
+                     ['table', ['table']],
+                     ['insert', ['link', 'picture', 'video']],
+                     ['view', ['fullscreen', 'codeview', 'help']]
+                 ],
+                 fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '24', '36'],
+                 callbacks: {
+                     onInit: function() {
+                         console.log('Summernote initialized');
+                     },
+                     onImageUpload: function(files) {
+                         console.log('Image upload:', files);
+                     }
+                 }
+             });
+
+                            // Initialize Summernote for edit form
+              $('#editContent').summernote({
+                  height: 400,
+                  toolbar: [
+                      ['style', ['bold', 'italic', 'underline', 'clear']],
+                      ['font', ['strikethrough', 'superscript', 'subscript']],
+                      ['fontsize', ['fontsize']],
+                      ['color', ['color']],
+                      ['para', ['ul', 'ol', 'paragraph']],
+                      ['height', ['height']],
+                      ['table', ['table']],
+                      ['insert', ['link', 'picture', 'video']],
+                      ['view', ['fullscreen', 'codeview', 'help']]
+                  ],
+                  fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '24', '36'],
+                  callbacks: {
+                      onInit: function() {
+                          console.log('Summernote initialized');
+                      },
+                      onImageUpload: function(files) {
+                          console.log('Image upload:', files);
+                      }
+                  }
+              });
+
+            // Handle modal close to reset Summernote
+            $('#modal-create').on('hidden.bs.modal', function () {
+                $('#content').summernote('code', '');
+            });
+
+            $('#modal-edit').on('hidden.bs.modal', function () {
+                $('#editContent').summernote('code', '');
+            });
+            
+
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/users/admin/dashboard" class="brand-link">
+      <img src="/public/dist/img/logo.jpg" alt="PregaCenter Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Prega Center</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="/users/admin/dashboard" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'index') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/users/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'users') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Users
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/articles/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'articles') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Articles
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/blog/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'blogs') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-blog"></i>
+              <p>
+                Blogs
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/courses/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'courses') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
+              <p>
+                Courses
+              </p>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'transactions') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-cash-register"></i>
+              <p>
+                Transactions
+              </p>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a href="/feedbacks/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'feedbacks') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-comment-dots"></i>
+              <p>
+                Feedbacks
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/faqs/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'faqs') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-question-circle"></i>
+              <p>
+                FAQ
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/tags/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'tags') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-tag"></i>
+              <p>
+                TAG
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/coupons/admin/list" class="nav-link" <% if (typeof currentPage != 'undefined' && currentPage === 'coupons') { %> style="background-color: rgba(255, 255, 255, .9);color: #343a40;" <% } %>>
+              <i class="nav-icon fas fa-ticket-alt"></i>
+              <p>
+                Coupons
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/aboutUs/admin/list" class="nav-link" 
+              <% if (typeof currentPage !== 'undefined' && currentPage === 'about-Us') { %> 
+                style="background-color: rgba(255, 255, 255, .9); color: #343a40;" 
+              <% } %>>
+              <i class="nav-icon fas fa-info-circle"></i>
+              <p>About Us</p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="/privacyPolicy/admin/list" class="nav-link" 
+              <% if (typeof currentPage !== 'undefined' && currentPage === 'privacy-policy') { %> 
+                style="background-color: rgba(255, 255, 255, .9); color: #343a40;" 
+              <% } %>>
+              <i class="nav-icon fas fa-info-circle"></i>
+              <p>Privacy Policy</p>
+            </a>
+          </li>      
+          <li class="nav-item">
+            <a href="/termsOfUse/admin/list" class="nav-link" 
+              <% if (typeof currentPage !== 'undefined' && currentPage === 'terms-of-use') { %> 
+                style="background-color: rgba(255, 255, 255, .9); color: #343a40;" 
+              <% } %>>
+              <i class="nav-icon fas fa-info-circle"></i>
+              <p>Terms Of Use</p>
+            </a>
+          </li>                    
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prega Center | Courses</title>
+
+    <%- include('partial/scripts') %>
+
+    <!-- Import Nunito Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Same styling as blog table (for consistency) */
+      .note-editable {
+        font-family: "Nunito", sans-serif;
+        font-size: 16px;
+      }
+
+      .form-control.is-invalid {
+        border-color: #dc3545;
+      }
+      .form-control.is-valid {
+        border-color: #28a745;
+      }
+      .invalid-feedback {
+        color: #dc3545;
+        display: block;
+      }
+      .valid-feedback {
+        color: #28a745;
+        display: block;
+      }
+
+      .table-responsive {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      #courses_table {
+        width: 100% !important;
+        max-width: none !important;
+      }
+
+      @media (min-width: 1380px) {
+        .dataTables_wrapper .dataTable th,
+        .dataTables_wrapper .dataTable td {
+          min-width: 180px !important;
+          max-width: 180px !important;
+          width: auto !important;
+        }
+      }
+
+      @media (min-width: 2000px) {
+        .dataTables_wrapper .dataTable th,
+        .dataTables_wrapper .dataTable td {
+          min-width: 380px !important;
+          max-width: 380px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="hold-transition sidebar-mini">
+    <script src="/js/courses.js"></script>
+
+    <div class="wrapper">
+      <%- include('partial/navbar') %> <%- include('partial/sidebar') %>
+
+      <div class="content-wrapper">
+        <!-- Page Header -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Courses</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item">
+                    <a href="/users/admin/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item active">Courses</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Page Content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div
+                    style="
+                      margin: 20px 20px 0 20px;
+                      display: flex;
+                      align-items: flex-start;
+                      justify-content: space-between;
+                    "
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-block btn-primary col-sm-1"
+                      data-toggle="modal"
+                      data-target="#modal-create"
+                    >
+                      <i class="fas fa-plus-circle"></i> &nbsp;
+                      <span>Create</span>
+                    </button>
+                  </div>
+
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        id="courses_table"
+                        class="table table-bordered table-striped"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Price (₹)</th>
+                            <th>Content</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Create Modal -->
+        <div
+          class="modal fade"
+          id="modal-create"
+          style="display: none"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Create Course</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <form id="createCourseForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="title"
+                      name="title"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea
+                      class="form-control"
+                      id="description"
+                      name="description"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="price">Price (₹)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="price"
+                      name="price"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea
+                      class="form-control"
+                      id="content"
+                      name="content"
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="thumbnail">Image</label>
+                    <input
+                      type="file"
+                      class="form-control-file"
+                      id="thumbnail"
+                      name="thumbnail"
+                      accept="image/*"
+                    />
+                  </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div
+          class="modal fade"
+          id="modal-edit"
+          style="display: none"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Course</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <form id="editCourseForm" enctype="multipart/form-data">
+                <input type="hidden" id="editCourseId" name="course_id" />
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="editTitle">Title</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editTitle"
+                      name="title"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <textarea
+                      class="form-control"
+                      id="editDescription"
+                      name="description"
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="editPrice">Price (₹)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="editPrice"
+                      name="price"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="editContent">Content</label>
+                    <textarea
+                      class="form-control"
+                      id="editContent"
+                      name="content"
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="editIsPublished">Published</label>
+                    <div class="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="editIsPublished"
+                      />
+                      <input
+                        type="hidden"
+                        name="is_published"
+                        id="editIsPublishedHidden"
+                        value="false"
+                      />
+                      <label class="custom-control-label" for="editIsPublished"
+                        >Publish this course</label
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="editThumbnail">New Image (optional)</label>
+                    <input
+                      type="file"
+                      class="form-control-file"
+                      id="editThumbnail"
+                      name="thumbnail"
+                      accept="image/*"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label>Current Image</label>
+                    <div id="editImagePreview"></div>
+                  </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize Summernote -->
+    <script>
+      $(document).ready(function () {
+        // Create editor
+        $("#content").summernote({
+          height: 400,
+          toolbar: [
+            ["style", ["bold", "italic", "underline", "clear"]],
+            ["font", ["fontsize", "color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview"]],
+          ],
+        });
+
+        // Edit editor
+        $("#editContent").summernote({
+          height: 400,
+          toolbar: [
+            ["style", ["bold", "italic", "underline", "clear"]],
+            ["font", ["fontsize", "color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview"]],
+          ],
+        });
+
+        // Reset create modal content
+        $("#modal-create").on("hidden.bs.modal", function () {
+          $("#content").summernote("code", "");
+        });
+
+        // Reset edit modal content when closed
+        $("#modal-edit").on("hidden.bs.modal", function () {
+          $("#editContent").summernote("code", "");
+          $("#editContent").removeData("original-content");
+        });
+
+        // ✅ When edit modal is opened, store the original content
+        $("#modal-edit").on("show.bs.modal", function () {
+          const currentContent = $("#editContent").summernote("code");
+          $("#editContent").data("original-content", currentContent);
+        });
+      });
+    </script>
+  </body>
+</html>

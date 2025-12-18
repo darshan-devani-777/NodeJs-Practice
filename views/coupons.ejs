@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prega Center | Coupons  </title>
+
+  <%- include('partial/scripts') %>
+
+</head>
+<body class="hold-transition sidebar-mini">
+  <script src="/js/coupons.js"></script>
+<div class="wrapper">
+  <!-- Navbar -->
+  <%- include('partial/navbar') %>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <%- include('partial/sidebar') %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Coupons</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/users/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Coupons</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <div class="col-12">
+            
+            <!-- /.card -->
+
+            <div class="card">
+              <!-- /.card-header -->
+              <div style="margin: 20px 20px 0 20px; display:flex; align-items: flex-start; justify-content: space-between;">
+                <button type="button" class="btn btn-block btn-primary col-sm-1 " data-toggle="modal" data-target="#modal-create">
+                  <i class="fas fa-user-plus"></i> &nbsp;
+                  <spna>Create</spna></button>
+                </div>
+                <div class="card-body">
+                <table id="coupons_table" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Discount</th>
+                    <th>Exipres on</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+    <div class="modal fade" id="modal-delete" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Coupon</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete ?</p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id="btnDelete" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-create" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-default" style="width: 600px;">
+          <div class="modal-header">
+            <h4 class="modal-title">Create Coupon</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>  
+          <div class="modal-body">
+            <form id="add-coupon-form">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Name</label>
+                  <input type="text" class="form-control" id="create_coupon_name" placeholder="Enter Name" name="coupon_name" />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Discount (In percentage) </label>
+                  <input type="text" class="form-control" id="create_discount" placeholder="Enter Discount" name="discount" />
+                </div>
+                <div class="form-group">
+                  <label for="date_filter">Expiry Date</label>
+                  <div class="input-group" id="reservationdate" data-target-input="nearest">
+                      <input type="text" name="end_date" class="form-control datetimepicker-input" id="date_filter" data-target="#reservationdate" placeholder="Select Expiry Date" />
+                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                      </div>
+                  </div>
+              </div>
+              
+              </div>
+              <!-- /.card-body -->
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                <button type="submit" id="btnAdd" class="btn btn-secondary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-update" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-default" style="width: 600px;">
+          <div class="modal-header">
+            <h4 class="modal-title">Coupon Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="faq-form">
+              <input type="hidden" id="txtId">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Question</label>
+                    <textarea class="form-control" id="question" placeholder="Enter Question" name="question"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Answer</label>
+                    <textarea class="form-control" id="answer" placeholder="Enter Answer" name="answer"></textarea>
+                  </div>
+                </div>
+              <!-- /.card-body -->
+               <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id="btnSubmit" class="btn btn-secondary">Save changes</button>
+          </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="modal-overlay" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document" style="margin: 20% 45% auto;position: fixed;">
+        <div class="modal-content">
+          <div class="overlay">
+            <i class="fas fa-2x fa-sync fa-spin"></i>
+          </div>
+          <div class="modal-body">
+            <p><center>Adding a Coupon...</center></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%- include('partial/footer') %>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<script>
+  $(function () {
+
+    $('#reservationdate').datetimepicker({
+      format: 'L'
+    });
+    $('#date_filter').on('focus', function() {
+      $('#reservationdate').datetimepicker('show');
+    });
+  })
+</script>
+</body>
+</html>
