@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    container_name: api_gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-service
+      - product-service
+    networks:
+      - microservices-network
+      
+  user-service:
+    build: ./user-service
+    container_name: user_service
+    ports:
+      - "3000:3000"
+    networks:
+      - microservices-network
+
+  product-service:
+    build: ./product-service
+    container_name: product_service
+    ports:
+      - "4000:4000"
+    depends_on:
+      - user-service
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
+
+
+# Docker file run command :-
+
+# docker-compose build     - 	Build all microservice images
+# docker-compose up	       -  Run both services together
+# docker-compose up -d     -	Run in background
+# docker-compose down	     -  Stop and remove containers
+# docker logs <container>	 -  View logs

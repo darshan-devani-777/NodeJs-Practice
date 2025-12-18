@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Users with Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-r from-blue-50 via-indigo-50 to-gray-100 min-h-screen text-gray-800">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-3xl font-semibold text-center text-black mb-12 underline">📦 Users and Their Products</h1>
+
+    <% if (users.length === 0) { %>
+      <p class="text-center text-red-600 font-semibold text-lg">No users or products found.</p>
+    <% } %>
+
+    <!-- User Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <% users.forEach(user => { %>
+        <div class="bg-white shadow-lg rounded-xl p-6 border border-gray-200 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+          <!-- User Info -->
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-800 hover:text-indigo-900 transition-all duration-200">👤 <%= user.name %></h2>
+            <p class="text-xs text-gray-500 italic my-2">🆔 User ID: <%= user.id %></p>
+            <p class="text-sm text-gray-600 mb-4">Email: <%= user.email %></p>
+          </div>
+
+          <!-- Product List -->
+          <% if (user.products.length > 0) { %>
+            <div class="space-y-6">
+              <% user.products.forEach(product => { %>
+                <div class="bg-indigo-50 p-5 rounded-lg hover:bg-indigo-100 transition-colors duration-300 border border-indigo-200 shadow-md transform hover:scale-105">
+                  <h3 class="text-lg font-semibold text-indigo-600 mb-2 hover:text-indigo-900 transition-colors duration-200"><%= product.name %></h3>
+                  <p class="text-sm text-gray-700">💰 ₹ <%= product.price %></p>
+                  <p class="text-sm text-gray-500 italic mt-1">📝 <%= product.description %></p>
+                </div>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <p class="text-gray-400 italic text-sm">No products found for this user.</p>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
