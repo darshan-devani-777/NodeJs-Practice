@@ -565,6 +565,19 @@ curl -X GET http://localhost:6000/posts/1 \
 
 ---
 
+### ✅ **Drizzle Studio**
+- Drizzle Kit is a CLI tool for managing SQL database
+npm i -D drizzle-kit 
+
+- Create drizzle.config.js file
+use db credentials & schema & dialect
+
+- Run Drizzle Studio
+npx drizzle-kit studio
+
+- starting Drizzle Studio, the web interface (by default, it should be at http://localhost:3000/)
+
+
 ## 4. Drizzle ORM Features Demonstrated
 
 This project showcases the following **Drizzle ORM features**:
