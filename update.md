@@ -2622,3 +2622,50 @@ Task Name :- OpenAI-Middleware
                     -  Generate the required secret keys and initialization vectors (IVs)
                     -  Register the OpenAI API in the server and use it for generating responses based on user input
                     -  Tested the OpenAPI functionality
+
+Please find today's work updates below:
+Date:15-12-2025
+
+Task Name :- OpenAI-Middleware
+                    -  Created getPrompts functionality to dynamically access user prompts
+                    -   Declared the Prompt Type, Sub-Type, and User Input fields 
+                    -   Registered the getPrompts function in the chat request functionality
+                    -   Applied Stream flow in the OpenAI response to manage large data in a chunked manner
+                    -   Tested the OpenAI API functionality with its logs
+                    
+ Misc - Reviewed the DrizzleORM Documentation
+
+Please find today's work updates below:
+Date:16-12-2025
+
+Task Name :- DrizzleORM Documentation
+                    -  Overview of DrizzleORM installation, database connection with SQL drivers
+                    -  Reviewed defining models and columns with decorators
+                    -  Explored type-safe methods for creating, reading, updating, and deleting records
+                    -  R&D on DrizzleORM's relational decorators (One-to-Many, Many-to-Many)
+                    -  Overviewed Querying with Filtering / Sorting functionality
+                    -  Explored Drizzle Studio to visually manage the database schema
+
+
+Please find today's work updates below:
+Date:18-12-2025
+                    
+Task Name :- DrizzleORM Concepts
+                    -  Setup the MVC structure with MySQL + DrizzleORM
+                    -  Implemented an authentication flow with validated credentials 
+                    -  Added Drizzle-powered user queries to handle raw SQL strings
+                    -  Integrated Drizzle-based soft delete functionality for records
+                    -  Applied Pagination and Search with Drizzle’s query builder
+                    -  Created Drizzle aggregate stats endpoint to retrieve user stats
+
+Please find today's work updates below:
+Date:19-12-2025
+
+Task Name :- DrizzleORM Concepts
+                    -  Integrated Fields param to select specific columns with their data
+                    -  Declared Posts table with relations / joins to the Users table
+                    -  Implemented Batch insert functionality for inserting multiple users 
+                    -  Created Indexes in the schema for to improve query performance
+                    -  Added Date-based grouping for users including aggregations pipelines 
+                    -  Generated Transactions for automatic rollback on failure
+                    -  Built the drizzle.config.ts file to launch Drizzle Studio for visual database interactions                    
