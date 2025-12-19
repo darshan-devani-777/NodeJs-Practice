@@ -7,6 +7,7 @@ const {
   getUserById,
   deleteUser,
   getUserStats,
+  updateUser,
 } = require("../../src/controllers/userController");
 
 const router = express.Router();
@@ -18,6 +19,8 @@ router.post("/login", loginUser);
 router.get("/", verifyToken, getAllUsers);
 
 router.get("/:id", verifyToken, getUserById);
+
+router.put("/:id", verifyToken, updateUser);
 
 router.delete("/:id", verifyToken, deleteUser);
 

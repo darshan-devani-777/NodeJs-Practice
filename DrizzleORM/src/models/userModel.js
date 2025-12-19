@@ -6,7 +6,7 @@ const {
   varchar,
   timestamp,
 } = require("drizzle-orm/mysql-core");
-const { eq, and, or, like, isNull, sql } = require("drizzle-orm");
+const { eq, and, or, like, isNull, sql, desc, asc } = require("drizzle-orm");
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
@@ -29,7 +29,7 @@ const users = mysqlTable("users", {
 });
 
 class UserModel {
-  async findAll({ page, limit, search } = {}) {
+  async findAll({ page, limit, search, sortBy, order, fields } = {}) {
     const baseWhere = isNull(users.deletedAt);
 
     let whereClause = baseWhere;
@@ -41,7 +41,42 @@ class UserModel {
       );
     }
 
-    let query = db.select().from(users).where(whereClause);
+    let selectQuery;
+    if (fields && Array.isArray(fields) && fields.length > 0) {
+      const selectObj = {};
+      const allowedFields = ["id", "name", "email", "createdAt", "updatedAt"];
+      fields.forEach((field) => {
+        if (allowedFields.includes(field)) {
+          selectObj[field] = users[field];
+        }
+      });
+      if (Object.keys(selectObj).length === 0) {
+        selectQuery = db.select().from(users);
+      } else {
+        selectQuery = db.select(selectObj).from(users);
+      }
+    } else {
+      selectQuery = db.select().from(users);
+    }
+
+    let query = selectQuery.where(whereClause);
+
+    if (sortBy) {
+      const allowedSortFields = [
+        "id",
+        "name",
+        "email",
+        "createdAt",
+        "updatedAt",
+      ];
+      if (allowedSortFields.includes(sortBy)) {
+        const orderDirection =
+          order === "desc" ? desc(users[sortBy]) : asc(users[sortBy]);
+        query = query.orderBy(orderDirection);
+      }
+    } else {
+      query = query.orderBy(desc(users.createdAt));
+    }
 
     if (limit && Number(limit) > 0) {
       const pageNum = Number(page) > 0 ? Number(page) : 1;
@@ -77,6 +112,24 @@ class UserModel {
 
     const id = result.insertId;
     return { id, name, email };
+  }
+
+  async update(id, { name, email }) {
+    const updateData = {};
+    if (name !== undefined) updateData.name = name;
+    if (email !== undefined) updateData.email = email;
+
+    if (Object.keys(updateData).length === 0) {
+      throw new Error("No fields to update");
+    }
+
+    await db
+      .update(users)
+      .set(updateData)
+      .where(and(eq(users.id, id), isNull(users.deletedAt)))
+      .execute();
+
+    return this.findOne(id);
   }
 
   async softDelete(id) {

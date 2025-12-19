@@ -87,9 +87,30 @@ async function loginUser(req, res) {
 
 async function getAllUsers(req, res) {
   try {
-    const { page, limit, search } = req.query;
-    const users = await userModel.findAll({ page, limit, search });
-    const sanitized = users.map(({ password, ...rest }) => rest);
+    const { page, limit, search, sortBy, order, fields } = req.query;
+
+    let fieldsArray = null;
+    if (fields) {
+      fieldsArray =
+        typeof fields === "string"
+          ? fields.split(",").map((f) => f.trim())
+          : fields;
+    }
+
+    const users = await userModel.findAll({
+      page,
+      limit,
+      search,
+      sortBy,
+      order,
+      fields: fieldsArray,
+    });
+
+    const sanitized = users.map((user) => {
+      const { password, ...rest } = user;
+      return rest;
+    });
+
     res
       .status(200)
       .json({ message: "Fetched users successfully", data: sanitized });
@@ -111,6 +132,51 @@ async function getUserById(req, res) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to fetch user" });
+  }
+}
+
+async function updateUser(req, res) {
+  const userId = parseInt(req.params.id, 10);
+  const { name, email } = req.body;
+
+  if (!Number.isFinite(userId)) {
+    return res.status(400).json({ message: "Invalid user id" });
+  }
+
+  if (!name && !email) {
+    return res
+      .status(400)
+      .json({ message: "At least one field (name or email) is required" });
+  }
+
+  if (email) {
+    try {
+      const existing = await userModel.findByEmail(email);
+      if (existing && existing.id !== userId) {
+        return res.status(409).json({ message: "Email already registered" });
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Failed to check email" });
+    }
+  }
+
+  try {
+    const user = await userModel.findOne(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const updatedUser = await userModel.update(userId, { name, email });
+    const { password, ...rest } = updatedUser;
+
+    res.status(200).json({
+      message: "User updated successfully",
+      data: rest,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to update user" });
   }
 }
 
@@ -155,6 +221,7 @@ module.exports = {
   loginUser,
   getAllUsers,
   getUserById,
+  updateUser,
   deleteUser,
   getUserStats,
 };
