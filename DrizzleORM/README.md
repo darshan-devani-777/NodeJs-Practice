@@ -12,13 +12,15 @@ Server runs on: `http://localhost:6000`
 
 npm install(Already in `package.json`: `express`, `drizzle-orm`, `mysql2`, `bcryptjs`, `jsonwebtoken`, `dotenv`)
 
-### 1.2. MySQL database & table
+### 1.2. MySQL database & tables
 
-Create database and `users` table:
+Create database and tables:
 
+```sql
 CREATE DATABASE drizzle_demo;
 USE drizzle_demo;
 
+-- Users table
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -26,8 +28,25 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  deletedAt TIMESTAMP NULL
+  deletedAt TIMESTAMP NULL,
+  INDEX email_idx (email),
+  INDEX created_at_idx (createdAt)
 );
+
+-- Posts table (for Relations/Joins demo)
+CREATE TABLE posts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deletedAt TIMESTAMP NULL,
+  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX user_id_idx (userId),
+  INDEX post_created_at_idx (createdAt)
+);
+```
 
 ### 1.3. Environment variables
 
@@ -301,6 +320,251 @@ Example response:
 
 ---
 
+### 3.8. Get User Count (Protected, Drizzle count query) – `GET /users/count`
+
+- **Feature:** Demonstrates Drizzle **separate count queries** (different from stats).
+- Returns total count of users matching search criteria.
+- Uses Drizzle `sql\`COUNT(*)\`` with same filters as `findAll`.
+
+```bash
+TOKEN=put_your_token_here
+
+# Get total count
+curl -X GET "http://localhost:6000/users/count" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+
+# Get count with search filter
+curl -X GET "http://localhost:6000/users/count?search=test" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+```
+
+Example response:
+
+```json
+{
+  "message": "User count fetched successfully",
+  "data": { "count": 10 }
+}
+```
+
+---
+
+### 3.9. Batch Create Users (Protected, Drizzle batch insert) – `POST /users/batch`
+
+- **Feature:** Demonstrates Drizzle **batch insert** - insert multiple records at once.
+- Uses Drizzle `.insert(users).values([{...}, {...}])` for performance.
+
+```bash
+TOKEN=put_your_token_here
+
+curl -X POST http://localhost:6000/users/batch \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "users": [
+      { "name": "User 1", "email": "user1@example.com", "password": "pass123" },
+      { "name": "User 2", "email": "user2@example.com", "password": "pass123" },
+      { "name": "User 3", "email": "user3@example.com", "password": "pass123" }
+    ]
+  }' | jq
+```
+
+Example response:
+
+```json
+{
+  "message": "Users created successfully",
+  "data": { "insertedCount": 3 }
+}
+```
+
+**Why Drizzle?**  
+Batch insert is much faster than individual inserts. Drizzle's `.values([...])` makes it easy to insert multiple records in a single query.
+
+---
+
+### 3.10. Register User with Post (Drizzle Transactions) – `POST /users/register-with-post`
+
+- **Feature:** Demonstrates Drizzle **transactions** - atomic operations.
+- Creates user + default post in a transaction (if one fails, both rollback).
+- Uses Drizzle `db.transaction(async (tx) => { ... })`.
+
+```bash
+curl -X POST http://localhost:6000/users/register-with-post \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "mypassword",
+    "createDefaultPost": true
+  }' | jq
+```
+
+**Why Drizzle?**  
+Transactions ensure data integrity. If user creation succeeds but post creation fails, the entire operation rolls back automatically.
+
+---
+
+### 3.11. Get User Posts (Protected, Drizzle Relations/Joins) – `GET /users/:id/posts`
+
+- **Feature:** Demonstrates Drizzle **relations with `innerJoin`**.
+- Returns all posts for a user with user details included.
+- Uses Drizzle `.innerJoin(users, eq(posts.userId, users.id))`.
+
+```bash
+TOKEN=put_your_token_here
+
+# Get all posts for user
+curl -X GET "http://localhost:6000/users/1/posts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+
+# With pagination and sorting
+curl -X GET "http://localhost:6000/users/1/posts?page=1&limit=5&sortBy=createdAt&order=desc" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+```
+
+Example response:
+
+```json
+{
+  "message": "User posts fetched successfully",
+  "data": [
+    {
+      "id": 1,
+      "title": "My First Post",
+      "content": "This is my first post!",
+      "userId": 1,
+      "createdAt": "...",
+      "updatedAt": "...",
+      "user": {
+        "id": 1,
+        "name": "Test User",
+        "email": "test@example.com"
+      }
+    }
+  ]
+}
+```
+
+**Why Drizzle?**  
+Drizzle's join API is type-safe and composable. You can join multiple tables and select specific columns from each.
+
+---
+
+### 3.12. Get Posts Grouped by User (Protected, Drizzle Group By) – `GET /users/posts/grouped-by-user`
+
+- **Feature:** Demonstrates Drizzle **`groupBy()` and `having()`**.
+- Groups posts by user and counts posts per user.
+- Uses Drizzle `.groupBy(posts.userId).having(sql\`COUNT(*) > 0\`)`.
+
+```bash
+TOKEN=put_your_token_here
+
+curl -X GET http://localhost:6000/users/posts/grouped-by-user \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+```
+
+Example response:
+
+```json
+{
+  "message": "Posts grouped by user fetched successfully",
+  "data": [
+    {
+      "userId": 1,
+      "userName": "Test User",
+      "userEmail": "test@example.com",
+      "postCount": 5
+    },
+    {
+      "userId": 2,
+      "userName": "Another User",
+      "userEmail": "another@example.com",
+      "postCount": 3
+    }
+  ]
+}
+```
+
+**Why Drizzle?**  
+Group by operations are common in analytics. Drizzle's `groupBy()` and `having()` make it easy to aggregate data.
+
+---
+
+### 3.13. Get Users Grouped by Creation Date (Protected, Drizzle Group By) – `GET /users/grouped-by-date`
+
+- **Feature:** Demonstrates Drizzle **`groupBy()` with date functions**.
+- Groups users by creation date and counts users per day.
+- Uses Drizzle `.groupBy(sql\`DATE(createdAt)\`)`.
+
+```bash
+TOKEN=put_your_token_here
+
+curl -X GET http://localhost:6000/users/grouped-by-date \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+```
+
+Example response:
+
+```json
+{
+  "message": "Users grouped by creation date fetched successfully",
+  "data": [
+    {
+      "date": "2024-01-15",
+      "userCount": 5
+    },
+    {
+      "date": "2024-01-16",
+      "userCount": 3
+    }
+  ]
+}
+```
+
+---
+
+### 3.14. Create Post (Protected, Drizzle Relations) – `POST /posts`
+
+- **Feature:** Demonstrates Drizzle **foreign key relationships**.
+- Creates a post linked to a user via `userId` foreign key.
+
+```bash
+TOKEN=put_your_token_here
+
+curl -X POST http://localhost:6000/posts \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "userId": 1,
+    "title": "My Post Title",
+    "content": "This is the post content"
+  }' | jq
+```
+
+---
+
+### 3.15. Get Post by ID (Protected, Drizzle Join) – `GET /posts/:id`
+
+- **Feature:** Demonstrates Drizzle **join with user data**.
+- Returns post with user information included.
+
+```bash
+TOKEN=put_your_token_here
+
+curl -X GET http://localhost:6000/posts/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" | jq
+```
+
+---
+
 ## 4. Drizzle ORM Features Demonstrated
 
 This project showcases the following **Drizzle ORM features**:
@@ -311,11 +575,21 @@ This project showcases the following **Drizzle ORM features**:
 - **`where()`** – Conditional filtering with `eq`, `and`, `or`, `like`, `isNull`
 - **`orderBy()`** – Sorting with `asc()` and `desc()`
 - **`limit()` & `offset()`** – Pagination
-- **`insert().values()`** – Insert operations
+- **`insert().values()`** – Insert operations (single & batch)
 - **`update().set()`** – Update operations with conditional field updates
 - **`sql\`\``** – Raw SQL expressions for aggregates
 
+### ✅ **Relations & Joins:**
+- **`innerJoin()`** – Inner joins between tables
+- **Foreign Keys** – Referential integrity with `references()`
+- **Relations** – One-to-many relationships (users → posts)
+
 ### ✅ **Advanced Features:**
+- **Transactions** – `db.transaction()` for atomic operations
+- **Batch Operations** – Insert multiple records at once
+- **Count Queries** – Separate count methods
+- **Group By / Having** – `groupBy()` and `having()` for aggregations
+- **Indexes** – Performance optimization with `index()`
 - **Soft Delete Pattern** – Using `deletedAt` with automatic filtering
 - **Dynamic Query Building** – Composing queries based on request parameters
 - **Column Projection** – Selecting only specific fields for performance
@@ -327,3 +601,70 @@ This project showcases the following **Drizzle ORM features**:
 3. **SQL-like Syntax** – Familiar API that maps directly to SQL
 4. **Flexible** – Mix typed queries with raw SQL when needed
 5. **No Runtime Overhead** – Generates optimized SQL queries
+
+### **Implemented Drizzle ORM features — summary**
+
+**Core features**
+**Setup MVC structure with MySQL + Drizzle ORM**
+Separated models, controllers, routes
+Centralized schema in schema.js with table definitions
+Connected Drizzle to MySQL using mysql2 pool
+
+**Implemented authentication flow with bcrypt + JWT**
+**Added user registration with password hashing
+Added login with credential validation and JWT token generation
+Created verifyToken middleware for protected routes
+
+**Query builder features**
+**Added Drizzle-powered user queries**
+Implemented findAll, findOne, findByEmail using Drizzle select, where, eq
+Replaced raw SQL strings with Drizzle column references
+
+**Integrated Drizzle-based soft delete**
+Added softDelete using update().set({ deletedAt })
+Auto-filtered soft-deleted records in all queries with isNull(deletedAt)
+
+**Applied pagination and search with Drizzle query builder**
+**Added limit, offset for pagination
+Implemented search with like, or, and operators
+
+**Created Drizzle aggregate stats endpoint**
+Used sql\\`` for COUNT(*) and conditional SUM() aggregations
+
+**Advanced Drizzle features**
+**Implemented update user profile with Drizzle update().set()**
+Conditional field updates (name and/or email)
+Dynamic update object building without raw SQL
+
+**Added ordering/sorting with Drizzle orderBy**
+Implemented sortBy and order params using asc() and desc()
+Default sorting by createdAt DESC
+
+**Applied column projection for performance**
+Added fields param to select specific columns
+Dynamic select({ id: users.id, name: users.name, ... }) building
+
+**Implemented relations/joins with Drizzle**
+Created posts table with foreign key to users
+Added innerJoin to fetch user posts with user details
+Demonstrated one-to-many relationships
+
+**Added transactions for atomic operations**
+Implemented db.transaction() for user + post creation
+Automatic rollback on 
+
+**Created batch insert functionality**
+Added batchCreate using .insert().values([...])
+Insert multiple users in a single query
+
+**Implemented separate count queries**
+Added count() method with same filters as findAll
+Uses sql\COUNT()\`` for efficient counting
+
+**Applied Group By / Having aggregations**
+Implemented groupBy() and having() for posts grouped by user
+Added date-based grouping for users with GROUP_CONCAT
+
+**Added indexes in schema for performance**
+Defined indexes on email, createdAt, userId columns
+Used Drizzle index() function in schema definition

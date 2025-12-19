@@ -1,32 +1,5 @@
-const mysql = require("mysql2/promise");
-const { drizzle } = require("drizzle-orm/mysql2");
-const {
-  mysqlTable,
-  int,
-  varchar,
-  timestamp,
-} = require("drizzle-orm/mysql-core");
 const { eq, and, or, like, isNull, sql, desc, asc } = require("drizzle-orm");
-
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || "localhost",
-  port: Number(process.env.DB_PORT) || 3306,
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "drizzle_demo",
-});
-
-const db = drizzle(pool);
-
-const users = mysqlTable("users", {
-  id: int("id").primaryKey().autoincrement(),
-  name: varchar("name", { length: 255 }).notNull(),
-  email: varchar("email", { length: 255 }).notNull(),
-  password: varchar("password", { length: 255 }).notNull(),
-  createdAt: timestamp("createdAt").notNull().defaultNow(),
-  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
-  deletedAt: timestamp("deletedAt").default(null),
-});
+const { db, users } = require("./schema");
 
 class UserModel {
   async findAll({ page, limit, search, sortBy, order, fields } = {}) {
@@ -149,6 +122,80 @@ class UserModel {
       .from(users);
 
     return row;
+  }
+
+  async count({ search } = {}) {
+    const baseWhere = isNull(users.deletedAt);
+
+    let whereClause = baseWhere;
+    if (search) {
+      const pattern = `%${search}%`;
+      whereClause = and(
+        baseWhere,
+        or(like(users.name, pattern), like(users.email, pattern))
+      );
+    }
+
+    const [row] = await db
+      .select({
+        count: sql`COUNT(*)`,
+      })
+      .from(users)
+      .where(whereClause);
+
+    return row.count;
+  }
+
+  async batchCreate(usersData) {
+    const [results] = await db.insert(users).values(usersData).execute();
+
+    return results;
+  }
+
+  async createWithTransaction({
+    name,
+    email,
+    password,
+    createDefaultPost = false,
+  }) {
+    return db.transaction(async (tx) => {
+      const [userResult] = await tx
+        .insert(users)
+        .values({ name, email, password })
+        .execute();
+
+      const userId = userResult.insertId;
+
+      if (createDefaultPost) {
+        const { posts } = require("./schema");
+        await tx
+          .insert(posts)
+          .values({
+            userId,
+            title: "Welcome Post",
+            content: "This is your first post!",
+          })
+          .execute();
+      }
+
+      return { id: userId, name, email };
+    });
+  }
+
+  async getUsersGroupedByCreationDate() {
+    return db
+      .select({
+        date: sql`DATE(${users.createdAt})`.as("date"),
+        userCount: sql`COUNT(${users.id})`.as("userCount"),
+        userIds: sql`GROUP_CONCAT(${users.id})`.as("userIds"),
+        userNames: sql`GROUP_CONCAT(${users.name})`.as("userNames"),
+        userEmails: sql`GROUP_CONCAT(${users.email})`.as("userEmails"),
+      })
+      .from(users)
+      .where(isNull(users.deletedAt))
+      .groupBy(sql`DATE(${users.createdAt})`)
+      .having(sql`COUNT(${users.id}) > 0`)
+      .orderBy(desc(sql`DATE(${users.createdAt})`));
   }
 }
 
