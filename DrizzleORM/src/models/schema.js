@@ -26,6 +26,7 @@ const users = mysqlTable(
     name: varchar("name", { length: 255 }).notNull(),
     email: varchar("email", { length: 255 }).notNull(),
     password: varchar("password", { length: 255 }).notNull(),
+    isSeeded: int("isSeeded").notNull().default(0),
     createdAt: timestamp("createdAt").notNull().defaultNow(),
     updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
     deletedAt: timestamp("deletedAt").default(null),
@@ -45,6 +46,7 @@ const posts = mysqlTable(
       .references(() => users.id, { onDelete: "cascade" }),
     title: varchar("title", { length: 255 }).notNull(),
     content: text("content").notNull(),
+    isSeeded: int("isSeeded").notNull().default(0),
     createdAt: timestamp("createdAt").notNull().defaultNow(),
     updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
     deletedAt: timestamp("deletedAt").default(null),
@@ -56,4 +58,3 @@ const posts = mysqlTable(
 );
 
 module.exports = { db, users, posts };
-
