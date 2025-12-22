@@ -29,7 +29,7 @@ const users = mysqlTable(
     isSeeded: int("isSeeded").notNull().default(0),
     createdAt: timestamp("createdAt").notNull().defaultNow(),
     updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
-    deletedAt: timestamp("deletedAt").default(null),
+    deletedAt: timestamp("deletedAt"),
   },
   (table) => ({
     emailIdx: index("email_idx").on(table.email),
@@ -49,7 +49,7 @@ const posts = mysqlTable(
     isSeeded: int("isSeeded").notNull().default(0),
     createdAt: timestamp("createdAt").notNull().defaultNow(),
     updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
-    deletedAt: timestamp("deletedAt").default(null),
+    deletedAt: timestamp("deletedAt"),
   },
   (table) => ({
     userIdIdx: index("user_id_idx").on(table.userId),

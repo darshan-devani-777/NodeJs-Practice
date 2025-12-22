@@ -681,3 +681,58 @@ Added date-based grouping for users with GROUP_CONCAT
 **Added indexes in schema for performance**
 Defined indexes on email, createdAt, userId columns
 Used Drizzle index() function in schema definition
+
+
+**Generate Seeder Files**
+- create user & post seeder files
+- create index.js file and require both user & post seeder files
+- const { faker } = require("@faker-js/faker"); 
+  -  use faker library to generate dummy content data
+
+<!-- Apply Seeder commands -->
+npm run seed - node src/seeders/index.js
+
+log details :-
+<!-- 🌱 Seeder started...
+🌍 ENV: development
+🧹 Cleaning OLD seeded users & posts...
+🗑️ Deleting posts marked as seeded...
+🗑️ Deleting seeded users...
+✅ Seeded users & posts deleted successfully
+👤 [USER] Creating 20 seeded users...
+✅ [USER] 20 seeded users inserted
+📝 [POST] Creating EXACT 1 hacker-style post per seeded user...
+📝 [POST] 20 seeded users found
+✅ [POST] 20 seeded posts created
+🎉 Seeder finished successfully -->
+
+**Database & Migrations**
+<!-- 1. Generate migration -->
+npx drizzle-kit generate
+
+
+Reads src/models/schema.js
+
+Detects changes in tables (users, posts)
+
+Generates SQL migration file in drizzle/ folder
+
+<!-- 2. Apply migration -->
+npx drizzle-kit push
+
+
+<!-- ✅ Creates tables automatically in your database: -->
+
+<!-- users -->
+
+Fields: id, name, email, password, isSeeded, createdAt, updatedAt, deletedAt
+
+Indexes: email, createdAt
+
+<!-- posts -->
+
+Fields: id, userId, title, content, isSeeded, createdAt, updatedAt, deletedAt
+
+Indexes: userId, createdAt
+
+Foreign key: userId → users.id with ON DELETE CASCADE
