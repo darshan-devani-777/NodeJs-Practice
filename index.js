@@ -1026,3 +1026,191 @@
 // Fully private / on-premise, no cloud required.
  
 // Free & open-source.
+
+
+// Git Branch :- 
+// 1️⃣ Repo clone karo (agar pehle se nahi hai)
+// git clone <repo-url>
+// cd <repo-folder-name>
+
+// 2️⃣ Current branch check karo
+// git branch
+
+
+// 👉 * wali branch aapki current branch hoti hai (usually main ya master)
+
+// 3️⃣ Nayi branch banao
+// git branch new-branch-name
+
+
+// Example:
+
+// git branch feature-login
+
+// 4️⃣ Nayi branch pe switch karo
+// git checkout feature-login
+
+
+// 💡 Short trick (branch banana + switch ek saath):
+
+// git checkout -b feature-login
+
+// 5️⃣ Confirm karo ki aap nayi branch pe ho
+// git branch
+
+
+// 👉 Aapko aisa dikhega:
+
+// * feature-login
+//   main
+
+// 6️⃣ Ab coding karo (safe 🎉)
+
+// Files edit karo
+
+// New code likho
+
+// Main branch bilkul safe rahegi
+
+// 7️⃣ Changes save (commit) karo
+// git status
+// git add .
+// git commit -m "Login feature added"
+
+// 8️⃣ Remote pe branch push karo (agar GitHub/GitLab pe chahiye)
+// git push origin feature-login
+
+// 9️⃣ Kabhi main branch pe wapas jana ho
+// git checkout main
+
+
+// hum new branch ko existing (main/master) branch ke sath merge karenge. Step-by-step dekho 👇
+
+// 🔁 Branch merge karne ke steps
+// 1️⃣ Pehle main branch pe jao
+// git checkout main
+
+
+// (ya master — jo bhi aapki main branch ho)
+
+// 2️⃣ Latest code pull kar lo (important)
+// git pull origin main
+
+
+// 👉 Isse ensure hoga ki main branch updated hai
+
+// 3️⃣ Ab apni new branch merge karo
+// git merge feature-login
+
+
+// (feature-login = aapki new branch ka naam)
+
+// ✅ Agar koi conflict NAHI aaya
+
+// Git bolega:
+
+// Merge made successfully
+
+
+// 🎉 Done! Branch merge ho gayi
+
+// ⚠️ Agar merge conflict aa jaye
+
+// Git bolega:
+
+// CONFLICT (content): Merge conflict in file-name
+
+// Conflict solve karne ka tarika:
+
+// Conflict wali file open karo
+
+// Aisa code dikhega:
+
+// <<<<<<< HEAD
+// (main branch code)
+// =======
+// (feature branch code)
+// >>>>>>> feature-login
+
+
+// Decide karo kaunsa code rakhna hai
+
+// <<<<<<< ======= >>>>>>> wali lines delete karo
+
+// File save karo
+
+// Phir:
+// git add .
+// git commit -m "Merge conflict resolved"
+
+// 4️⃣ Merge ke baad main branch push karo
+// git push origin main
+
+// 🧹 (Optional) Branch delete kar sakte ho
+
+// Agar kaam complete ho gaya:
+
+// git branch -d feature-login
+
+
+// Remote se delete:
+
+// git push origin --delete feature-login
+
+// 🧠 Summary (short)
+// git checkout main
+// git pull origin main
+// git merge feature-login
+// git push origin main
+
+
+// Aap feature-login branch pe kaam kar rahe ho aur kisi aur ne main branch me changes push kar diye.
+// Ab aapko apni branch ko latest main ke sath update karna hai — bina apna code kharab kiye.
+
+// ✅ Best & Safe Tarika (RECOMMENDED)
+// 1️⃣ Apni feature branch pe hi raho
+// git checkout feature-login
+
+// 2️⃣ Main ke latest changes fetch karo
+// git fetch origin
+
+// 3️⃣ Main branch ko apni branch me merge karo
+// git merge origin/main
+
+
+// 👉 Isse:
+
+// Main ke latest changes aapki feature branch me aa jayenge
+
+// Aapka feature code safe rahega
+
+// ⚠️ Agar conflict aaye
+
+// Same process:
+
+// Conflict wali files open karo
+
+// Conflict resolve karo
+
+// Phir:
+
+// git add .
+// git commit -m "Merge main into feature-login"
+
+// 🔁 Alternative (Advanced) – Rebase (Clean history)
+
+// Tab use karo jab Git samajh aa jaye
+
+// git checkout feature-login
+// git fetch origin
+// git rebase origin/main
+
+
+// Agar conflict aaye:
+
+// git add .
+// git rebase --continue
+
+
+// ⚠️ Warning:
+// Rebase shared branch pe mat karna (agar branch already push ho chuki ho aur team use kar rahi ho).
