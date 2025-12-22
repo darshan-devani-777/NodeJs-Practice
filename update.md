@@ -2669,3 +2669,14 @@ Task Name :- DrizzleORM Concepts
                     -  Added Date-based grouping for users including aggregations pipelines 
                     -  Generated Transactions for automatic rollback on failure
                     -  Built the drizzle.config.ts file to launch Drizzle Studio for visual database interactions                    
+
+Please find today's work updates below:
+Date:22-12-2025
+
+Task Name :- DrizzleORM Concepts
+                    -  Created seeder files for the User and Post modules
+                    -  Built a rollback-safe seeding mechanism using isSeeded flags
+                    -  Designed cleanup seeders to remove only seeded data without affecting real records
+                    -  Implemented Batch insert operations for efficient bulk seeding of users and posts
+                    -  Applied migrations using the Drizzle-Kit CLI 
+                    -  Generated User / Post sections migration files                    
