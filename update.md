@@ -2680,3 +2680,13 @@ Task Name :- DrizzleORM Concepts
                     -  Implemented Batch insert operations for efficient bulk seeding of users and posts
                     -  Applied migrations using the Drizzle-Kit CLI 
                     -  Generated User / Post sections migration files                    
+
+Please find today's work updates below:
+Date:23-12-2025
+
+Task Name :- Chat App ( Socket-IO )
+                    -  Created WebSocket server and integrated with Socket-IO
+                    -  Handled WebSocket connections using Socket-IO methods
+                    -  Implemented authentication flows using JWT Tokens
+                    -  Attached authenticated user data to the socket functionality
+                    -  Managed various events like joinRoom, sendMessage, connects and disconnects                     
