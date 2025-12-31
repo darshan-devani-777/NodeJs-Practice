@@ -2690,3 +2690,77 @@ Task Name :- Chat App ( Socket-IO )
                     -  Implemented authentication flows using JWT Tokens
                     -  Attached authenticated user data to the socket functionality
                     -  Managed various events like joinRoom, sendMessage, connects and disconnects                     
+
+Please find today's work updates below:
+Date:24-12-2025
+
+Task Name :- Chat App ( Socket-IO )
+                    -  Fetched and sorted room messages by timestamp based on messageID
+                    -  Retrieved and sorted user messages by userID and timestamp
+                    -  Allowed editing of text/images and clearing of images in the edit message endpoint
+                    -  Enabled message deletion and removal of associated images
+                    -  Integrated frontend functionality for registration, login, and profile pages
+                    -  Set up AuthContext to manage user token and data  
+
+Please find today's work updates below:
+Date:25-12-2025
+
+Task Name :- Chat App ( Socket-IO )
+                    -  Implemented a Join Room module with form validation logic
+                    -  Developed a dynamic Chat Room UI showing users and messages 
+                    -  Integrated Chat APIs to handle real-time message flow
+                    -  Enabled real-time typing indicators triggered by input events
+                    -  Added emoji and image selection using the EmojiPicker library
+                    -  Handled Active / Inactive functionality based on user status 
+
+Please find today's work updates below:
+Date:26-12-2025
+
+Task Name :- Chat App ( Socket-IO )
+                    -  Added split-screen functionality to separate public and private chat sections
+                   -   Integrated group chat and one-to-one private messaging
+                   -   Refined UI with improvements in the message update/edit section
+                   -   Implemented a user sidebar displaying chat rooms and conversations
+                   -   Added user profile pictures with active status indicators in the sidebar
+                   -   Displayed real-time online/offline status and active user count 
+                
+Please find today's work updates below:
+Date:29-12-2025
+
+Task Name :- Location Tracking ( Frontend Side )
+                    -  Implemented live location tracking using @react-google-maps/api
+                    -  Integrated Google Maps API to user location details
+                    -  Built tracking and send location updates to the backend
+                    -  Displayed real-time location info on the map
+
+                    :- Location Tracking ( Backend Side )
+                    -  Generated Socket.IO connection for real-time location data 
+                    -  Integrated Google Maps API to fetch location info from Latitude/Longitude wise
+                    -  Used Redis for caching location data for faster access
+                    -  Stored location details (country, state, city, area) in the database
+
+Please find today's work updates below:
+Date:30-12-2025
+
+Task Name :- Location Tracking ( Frontend Side )
+                    -  Generated interactive map using Mapbox-GL JS 
+                    -  Built route between start and end locations using Mapbox Directions API
+                    -  Added live location tracking using browser Geolocation API
+                    -  Displayed moving live marker on the map in real time
+                    -  Implemented clear route functionality to reset map state
+
+                    :- Location Tracking ( Backend Side )
+                    -  Integrated Mapbox Directions API to calculate route, distance, and duration
+                    -  Designed separate schemas for route history and live location tracking
+                      -  Implemented cron jobs to periodically save live location snapshots
+                     -  Cached live location data in memory / Redis
+
+Please find today's work updates below:
+Date:31-12-2025
+
+Task Name :- Live Location Tracking
+                    -  Refined existing functionality with updated MapBox features
+                    -  Integrated MapBox access token and map initialization
+                    -  Added OpenStreetMap API for converting raw location data into map-readable coordinates
+                    -  Implemented FitBounds functionality to automatically map zoom / centering
+                    -  Tested live location tracking through browser GPS                    
