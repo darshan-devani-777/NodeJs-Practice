@@ -1,0 +1,21 @@
+require("dotenv").config();
+const http = require("http");
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./src/config/db");
+require("./src/crons/location.cron");
+
+const initSocket = require("./src/sockets/sockets");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+connectDB();
+
+const server = http.createServer(app);
+initSocket(server);
+
+server.listen(process.env.PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${process.env.PORT}`);
+});
