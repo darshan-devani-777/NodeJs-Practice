@@ -16,6 +16,6 @@ connectDB();
 const server = http.createServer(app);
 initSocket(server);
 
-server.listen(process.env.PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${process.env.PORT}`);
+server.listen(process.env.PORT, "0.0.0.0", () => {
+  console.log(`🚀 Server running on http://0.0.0.0:${process.env.PORT}`);
 });

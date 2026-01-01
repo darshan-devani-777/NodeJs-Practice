@@ -1,3 +1,5 @@
+// ******************* Node Core Concepts ********************//
+
 // NODE CORE-CONCEPTS
 // 1. Event-driven architecture - Handle Multiple Requests Con-currently
                             //  - Trigger Event Emitter 
@@ -13,6 +15,8 @@
 // 7. Error Handling - Try-catch block
 // 8. Streams - Data Handling Process / Large File
 // 9. Buffers - Store Binary Data 
+
+// ******************* Node Advanced Concepts ********************//
 
 // Node.js - Privide Runtime Environment
         // - Execute Javascript server-side
@@ -228,7 +232,9 @@
 // TYPE ASSERTIONS :- Treat value as a specific type
               // - Use when typescript can't infer type
               // let value: any = "Hello, World!";
-              // let strLength: number = (value as string).length;              
+              // let strLength: number = (value as string).length;           
+              
+// ******************* Express.JS Concepts ********************//
 
 // EXPRESS.JS :-
 // Middleware :-
@@ -253,6 +259,8 @@
 // res.redirect(url)  -	Redirects to another URL
 // res.sendFile(path) - Sends a file as a response
 // res.end()	      - Ends the response process
+
+// ******************* Database Integration (NoSQL) ********************//
                      
 // NOSQL DATABASE :-
 // NOSQL :- (Not Only sql) - Non-Relational Format
@@ -265,7 +273,9 @@
      // - Fixed Schema                             -  Flexible Schema 
      // - Structured Data                          -  Semi-Structured Data
      // - Vertical Scalability                     -  Horizontally Scalability
-     // - E-Commerce , Finanacial                  -  Social Media , Real-Time Analytics         
+     // - E-Commerce , Finanacial                  -  Social Media , Real-Time Analytics    
+     
+// ******************* Mongoose Relationships ********************//
 
 // MONGOOSE RELATIONSHIPS :-
 // ONE TO MANY RELATIONSHIP ( ObjectID )     
@@ -338,8 +348,9 @@
             // - Middleware - Keep Route Handler
             // - Token based - Session Management
             // - Role based - Specific Role Access 
-                             
 
+// ******************* Database Integration (SQL) ********************//
+                             
 // SQL :- Manage RDBMS system
      // - Allow user to Modify / Tranform Data
      
@@ -352,7 +363,9 @@
                  // - Other - BOOLEAN / BINARY / VARBINARY / JSON / XML / GEOMETRY
                  
 // SQL RELATIONSHIP :- 
-// 1. ONE-TO-ONE    2. ONE-TO-MANY    3. MANY-TO-MANY    4. SELF-REFERENCING                
+// 1. ONE-TO-ONE    2. ONE-TO-MANY    3. MANY-TO-MANY    4. SELF-REFERENCING      
+
+// ******************* TypeORM vs Prisma ********************//
 
 // TYPEORM VS PRISMA
 // TYPEORM :- Classed based Schema-file
@@ -366,6 +379,8 @@
         // - Use Client API
         // - Extremely Strong Type Safety
         // - Powerful Migration Engine         
+
+// ******************* Sequelize Concepts ********************//
 
 // SEQUELIZE :- Node.js ORM Library
            // - Support SQL Dialects - PostgreSQL / MySQL / SQLite
@@ -410,29 +425,41 @@
 
 // RAW QUERY :- sequelize.query():- Execute any SQL Query that is not directly support 
                              // - Return Promise based
-                             // - Useful for complex query            
+                             // - Useful for complex query   
+                             
+// ******************* Swagger Concepts ********************//
 
 // SWAGGER :- Node.js Framework 
          // - Designing / Building / Documenting API
          // - Uses OpenAPI Specification (OAS)
          // - Define API endpoints / request,response formats
          // - Allows automated documentation or code generation , API testing  
+
+// ******************* Supertest Concepts ********************//
          
 // SUPERTEST :- Node.js library 
           // -  Testing HTTP Request to API Endpoints
-          // -  Using With Jest framework         
+          // -  Using With Jest framework      
+          
+// ******************* Helmet Concepts ********************//
 
 // HELMET :- Middleware Function
         // - Set HTTP Headers
         // - Secure against threats like - XSS attacks , clickjacking
+
+// ******************* CORS Concepts ********************//
         
 // CORS :- (Cross Origin Resource Sharing)
         // - Middleware Function
         // - Manage Cross-Origin Requests
 
+// ******************* WebSockets Concepts ********************//
+
 // WEBSOCKETS :- Allow Real-time / Bidirectional communication 
             // - Client and Server side / Manage Connections
-            // - Chat app , Online Games , Live Data        
+            // - Chat app , Online Games , Live Data      
+            
+// ******************* Next.JS Concepts ********************//
 
 // NEXT.JS :- 
 // NextAuth :- ( Auth.Js ) - Authentication Library
@@ -443,6 +470,8 @@
            // Free Tier
            // CSRF Token / Cookie Security
            // Google Auth / Email / Credentials Login
+
+// ******************* Clerk Concepts ********************//
 
 // Clerk :- Authentication As a Service / Pre-built Components
          // Suport Next.Js / React / Vue and More
@@ -460,6 +489,8 @@
 // ESLINT - ( Javascript Linter )    
        // - Identify Pattern in Javascript 
        // Avoid bugs / code consistency
+
+// ******************* PostgreSQL Concepts ********************//
 
 // POSTGRESQL :- (ORDBMS) - Object relational database management system
            // - Support SQL ( Relational ) / Json queries ( Non-Relational )   
@@ -499,6 +530,8 @@
        // - Debug / Log ( Reported Server Side )   
 // Exception Handling - User defined / System Defined 
                    // - Create Custom error handling       
+
+// ******************* Prisma Concepts ********************//
                    
 // PRISMA (ORM) :- Database Interaction for Node.js
               // - Typescript Support 
@@ -538,6 +571,8 @@
         // node src/server.js
 
     // Required Packages :- express , prisma , @prisma/client , dotenv    
+
+// ******************* Nest.JS Concepts ********************//
         
 // Nest.Js :- NodeJS framework
          // - Building efficient / scalable / high-grade architecture backend / server-side app
@@ -760,7 +795,8 @@
                         //   "start:dev": "ts-node-dev --respawn --loader ts-node/esm src/main.ts"
                         //  }
 
-            
+// ******************* Node Advanced Concepts ********************//
+
 // Key Points – Node Advanced Concepts
 
 // 1. Performance & Scalability
@@ -822,6 +858,7 @@
 // https://docs.google.com/spreadsheets/d/1WgJNofNBsIh1clmOh6x_Z3A0YSPIeibwUpmCy5ULtF4/edit?gid=0#gid=0
 
 // Nest.JS Task :-
+// ******************* Nest.JS Task ********************//
 
 // Authentication & User Management
 
@@ -898,6 +935,7 @@
 // new event is posted
 // booked event is updated
 
+// ******************* face_recognition Library ********************//
  
 // face_recognition library :- Face Detection
 
@@ -921,6 +959,7 @@
 // Use OpenCV to capture the video stream from a webcam or any other video source. 
 // OpenCV provides functionality to grab frames in real-time.
 
+// ******************* CompreFace Library ********************//
 
 // Exadel CompreFace – Face Detection
 
@@ -1027,6 +1066,7 @@
  
 // Free & open-source.
 
+// ******************* MapBox Library ********************//
 
 // Leaflet.Js / MapBox Library :- Use to tracking real time live location 
 // MAPBOX_TOKEN=pk.eyJ1IjoiamF5MDAxIiwiYSI6ImNtYWMxdGl5OTI3NG8ya3NibDNxbWFxbW8ifQ.Dnj5BcnOy36tvKY0AHrlvA
@@ -1223,7 +1263,7 @@
 // ⚠️ Warning:
 // Rebase shared branch pe mat karna (agar branch already push ho chuki ho aur team use kar rahi ho).
 
-
+// ******************* Backend Developer Concepts ********************//
 
 // New & Emerging Backend Developer Concepts :-
 
@@ -1271,3 +1311,447 @@
 // Architecture: Microservices, Serverless, Event-Driven
 // Security: Zero Trust, OAuth2, JWT, mTLS
 // Observability: OpenTelemetry, Prometheus, Grafana
+
+// ******************* AI Concepts for Backend Devs ********************//
+
+// Must-Learn AI Concepts for Backend Devs :-
+
+// 1️⃣ LLM Basics (Very Easy)
+// What is an LLM?
+
+// LLM = Large Language Model
+
+// An LLM is an AI model trained on massive amounts of text so it can:
+
+// Understand text
+// Generate text
+// Answer questions
+// Write code
+// Summarize, translate, classify, etc.
+
+// Examples you already know
+
+// ChatGPT → by OpenAI
+// Claude → by Anthropic
+// Gemini → by Google
+
+// 📌 Think of an LLM as:
+
+// A super-smart text prediction engine
+// It doesn’t “think” like a human — it predicts the next best word based on context.
+// How LLMs are used by backend developers
+
+// As a backend dev, you don’t train LLMs.
+// You call them via APIs just like:
+
+// Payment gateways (Stripe)
+// Email services (SendGrid)
+// SMS services (Twilio)
+
+// Example use cases:
+
+// Chatbots
+// Code assistants
+// Auto-reply systems
+// Data summarization
+// Log analysis
+// AI search
+
+// 👉 LLM = another backend service
+
+// Tokens (Very Important but Simple)
+
+// LLMs don’t read words, they read tokens.
+
+// What is a token?
+// A token ≈ part of a word
+
+// Example:
+// "ChatGPT is awesome"  
+
+// Tokens might be:
+// ["Chat", "GPT", " is", " awesome"]
+
+
+// 📌 Rule of thumb:
+
+// 1 token ≈ 4 characters in English
+// 1000 tokens ≈ 750 words
+// Why tokens matter (backend mindset)
+
+// Tokens affect:
+
+// Cost 💰 (you pay per token)
+// Speed ⚡
+// Limits 🚧
+
+// As a backend dev, you must:
+
+// Limit input size
+// Trim unnecessary text
+// Control output length
+// Context Window (Super Important)
+
+// What is context window?
+
+// It’s the maximum number of tokens the model can “remember” at one time.
+
+// Example:
+
+// Model context window: 16k tokens
+
+// Input + output must fit inside that limit
+
+// 📌 If context is too big:
+
+// Old messages get forgotten
+// Model gives wrong or incomplete answers
+
+// Backend example
+
+// If you send:
+
+// User message
+// Previous chat history
+// System instructions
+// API data
+// All of that counts toward the context window.
+
+// 👉 Backend responsibility:
+
+// Store chat history
+// Send only important messages
+// Summarize old data
+
+// Prompt Engineering (Backend-Style)
+// What is a prompt?
+// A prompt is simply the instruction you send to the LLM.
+
+// Bad prompt:
+// Explain JWT
+
+// Good backend-style prompt:
+
+// Explain JWT in simple terms.
+// Audience: Junior backend developer.
+// Output: Bullet points.
+// Length: Under 150 words.
+
+// 📌 Prompt engineering = writing clear instructions
+
+// Backend-Style Prompt Structure (Golden Rule)
+
+// Think like an API request:
+
+// ROLE:
+// You are a senior Node.js backend engineer.
+
+// TASK:
+// Explain JWT authentication.
+
+// CONSTRAINTS:
+// - No more than 150 words
+// - Use simple language
+// - No math
+
+// OUTPUT FORMAT:
+// - Bullet points
+
+// This makes responses:
+
+// Predictable
+// Consistent
+// Easy to parse
+
+// Why prompt engineering matters for backend devs
+
+// You want consistent JSON outputs
+// You want less hallucination
+// You want machine-readable responses
+
+// Example:
+
+// Return output strictly in JSON.
+// Do not include explanations.
+
+// This is backend gold 🥇
+
+// Mental Model (Remember This)
+
+// LLM is like:
+
+// A function
+// Input = prompt (text)
+// Output = response (text/JSON)
+// const response = await llm(prompt);
+
+// What you should remember (Summary)
+
+// ✅ LLM = text prediction engine
+// ✅ You use LLMs via APIs, not training
+// ✅ Tokens = cost + limits
+// ✅ Context window = memory
+// ✅ Prompt engineering = clear instructions
+// ✅ Backend devs focus on structure & constraints
+
+// 2️⃣ AI APIs (MOST IMPORTANT)
+
+// Start with:
+
+// OpenAI API (or similar)
+
+// Text → response
+// JSON structured output
+// Function calling / tools
+
+// Example use cases:
+
+// Auto reply system
+// AI chatbot backend
+// Smart search
+// Code generation backend
+// AI customer support
+
+//****************** AI Basics & Tasks ********************//
+
+// Week 1: AI Basics (No Math)
+
+// What to Learn
+// What is AI, LLM, Generative AI
+// How ChatGPT / LLMs work (high-level)
+// Tokens, temperature, context window
+// Prompt engineering for backend
+
+// Hands-on
+
+// Write prompts for:
+
+// Summarization
+
+// Q&A
+// JSON output
+// Compare good vs bad prompts
+
+// Deliverable
+// Markdown file with prompt templates
+
+// Week 2: OpenAI API + Node.js
+
+// What to Learn
+
+// OpenAI API basics
+// Chat completions
+// Structured JSON responses
+// Error handling & retries
+
+// Hands-on
+
+// Node.js + Express API
+
+// Endpoint:
+
+// POST /ai/chat
+
+// Save chat history in MongoDB
+
+// Deliverable
+// AI Chat API (basic)
+
+// Week 3: Authentication, Rate Limiting & Cost Control
+
+// What to Learn
+// JWT auth
+// API rate limiting
+// Token usage optimization
+// AI request caching (Redis)
+
+// Hands-on
+
+// Secure AI endpoints
+// Limit requests per user
+// Cache AI responses
+
+// Deliverable
+// Production-ready AI API with auth
+
+// Week 4: Async AI Jobs & Queues
+
+// What to Learn
+// Why AI must be async
+// BullMQ / Redis queues
+// Background processing
+
+// Hands-on
+
+// Long AI tasks in background
+// Job status API
+// Error retry logic
+// Deliverable
+// AI Task Queue System
+
+// 📅 MONTH 2: Vector Databases + RAG (🔥 MOST IMPORTANT)
+// Week 5: Embeddings & Vector DB
+
+// What to Learn
+
+// What are embeddings
+// Similarity search
+// Vector databases
+// Tools
+// pgvector (PostgreSQL) OR Pinecone
+
+// Hands-on
+
+// Convert text → embeddings
+// Store in DB
+// Search similar content
+
+// Deliverable
+// Vector Search API
+
+// Week 6: RAG (Retrieval Augmented Generation)
+
+// What to Learn
+// RAG architecture
+// Chunking strategies
+// Context injection
+
+// Hands-on
+
+// User asks question
+// Backend retrieves relevant docs
+// Sends to LLM
+// Deliverable
+// RAG-powered Q&A API
+
+// Week 7: Document AI (Real-World Use Case)
+
+// What to Learn
+
+// PDF/Text ingestion
+// Chunking large files
+// Background indexing
+
+// Hands-on
+
+// Upload PDF
+// Convert to embeddings
+// Ask questions from document
+// Deliverable
+// AI Document Search System
+
+// Week 8: Chat Memory & Context Management
+
+// What to Learn
+// Conversation memory
+// Short vs long-term memory
+// Token optimization
+
+// Hands-on
+
+// Store chat history
+// Use vector memory
+// Clean old messages
+// Deliverable
+// Chatbot with memory
+
+// 📅 MONTH 3: Production-Level AI Systems
+// Week 9: AI Security (VERY IMPORTANT)
+
+// What to Learn
+
+// Prompt injection attacks
+// Jailbreak attempts
+// Input sanitization
+// Role-based prompts
+
+// Hands-on
+
+// Secure prompts
+// Prevent malicious inputs
+// Deliverable
+// Secure AI backend layer
+
+// Week 10: AI System Design
+
+// What to Learn
+// AI backend architecture
+// Scaling AI APIs
+// Cost optimization strategies
+
+// Hands-on
+
+// Design diagrams
+// Load handling
+// Redis + queues + DB
+
+// Deliverable
+
+// AI System Design Doc
+
+// Week 11: Final Project (Resume Gold)
+
+// Choose ONE:
+
+// Option A: AI Customer Support Backend
+
+// Auto replies
+// Knowledge base
+// Human escalation
+
+// Option B: AI Developer Assistant
+
+// Code explanation
+// Bug detection
+// PR review
+
+// Option C: AI SaaS Backend
+
+// Auth
+// Payments mock
+// Usage tracking
+// Deliverable
+// Full backend repo
+
+// README + architecture
+
+// Week 12: Interview Prep + Portfolio
+
+// What to Learn
+
+// AI backend interview questions
+
+// Explain RAG clearly
+
+// System design discussions
+
+// Hands-on
+
+// Write case studies
+
+// Update resume
+// Deploy project (Railway / AWS)
+// Deliverable
+// Deployed AI project
+
+// Updated resume
+
+// 🛠️ Tech Stack You’ll Use
+
+// Node.js / Express / Fastify
+// MongoDB / PostgreSQL
+// Redis
+// BullMQ
+// OpenAI API
+// pgvector / Pinecone
+// Docker
+
+// 🧾 Resume Keywords (After 3 Months)
+
+// You can honestly write:
+
+// AI-Enabled Backend Developer
+// LLM API Integration
+// RAG Architecture
+// Vector Databases
+// AI Security & Cost Optimization
