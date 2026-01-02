@@ -2764,3 +2764,22 @@ Task Name :- Live Location Tracking
                     -  Added OpenStreetMap API for converting raw location data into map-readable coordinates
                     -  Implemented FitBounds functionality to automatically map zoom / centering
                     -  Tested live location tracking through browser GPS                    
+
+Please find today's work updates below:
+Date:01-01-2026
+
+Task :- Overview of AI basics and LLM architectures
+         -  Explored tokens, creativity levels, and context window concepts
+         -  Reviewed AI-driven prompt techniques for write accurate prompt
+         -  Overview vector databases and their search functionalities
+         -  Understood text-to-embedding workflow
+
+Please find today's work updates below:
+Date:02-01-2026
+
+Task Name :-  AI Fundamentals
+                     -  Explored RAG architecture for question-answering systems
+                     -  Reviewed vector-based retrieval to fetch relevant responses
+                     -  Studied common AI security threats, including prompt injection
+                     -  Monitored AI request lifecycle using logs and tracing 
+                     -  Overview prompt versioning strategies to safely roll back prompt changes                    
