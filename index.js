@@ -1755,3 +1755,237 @@
 // RAG Architecture
 // Vector Databases
 // AI Security & Cost Optimization
+
+// ******************* RAG Architecture ********************//
+
+// RAG (Retrieval-Augmented Generation)
+// 🧠 What is RAG (Quick Mental Model)
+
+// RAG = Search + LLM
+
+// Instead of asking the LLM everything, you:
+
+// Store knowledge in a database (docs, PDFs, FAQs)
+
+// Retrieve only relevant chunks
+
+// Inject them into the LLM prompt
+
+// Get accurate, grounded answers
+
+// User Question
+//    ↓
+// Embedding
+//    ↓
+// Vector Search
+//    ↓
+// Relevant Chunks
+//    ↓
+// LLM (with context)
+//    ↓
+// Answer
+
+// 1️⃣ RAG Architecture (Must Know)
+// Core Components
+// Component	                         Purpose
+// Document Loader	           Load PDFs, text, DB data
+// Chunker	                       Split documents
+// Embedding Model	              Convert text → vectors
+// Vector DB	                     Store & search embeddings
+// Retriever	                       Fetch relevant chunks
+
+// LLM	Generate final answer
+// 2️⃣ Chunking Strategies (VERY Important)
+
+// Bad chunking = bad answers ❌
+
+// Common Strategies
+// 🔹 Fixed-size chunking (Start here)
+// chunkSize: 500 tokens
+// overlap: 50 tokens
+
+
+// ✅ Simple
+// ❌ Can break meaning
+
+// 🔹 Semantic chunking (Advanced)
+
+// Split by:
+
+// Headings
+// Paragraphs
+// Sentences
+
+// ✅ Best quality
+// ❌ Slightly complex
+
+// 🔹 Rule of Thumb
+// Short docs → smaller chunks
+// Long docs → larger chunks
+
+
+// 📌 Recommended for beginners
+
+// 400–600 tokens with 50–100 overlap
+
+// 3️⃣ Context Injection (Prompt Design)
+
+// This is where backend devs shine.
+
+// ❌ Bad Prompt
+// Answer the user's question
+
+// ✅ Good RAG Prompt
+// You are a helpful assistant.
+// Use ONLY the provided context to answer.
+
+// Context:
+// {retrieved_docs}
+
+// Question:
+// {user_question}
+
+// If the answer is not in context, say:
+// "I don't know based on the provided data."
+
+// 📌 This prevents hallucinations.
+
+// 🛠 Step-by-Step Implementation
+// Step 1: Ingest Documents
+// const docs = loadDocuments("./docs");
+
+// const chunks = splitText(docs, {
+//   chunkSize: 500,
+//   overlap: 50
+// });
+
+// Step 2: Create Embeddings
+// const embeddings = await openai.embeddings.create({
+//   model: "text-embedding-3-small",
+//   input: chunks
+// });
+
+// Step 3: Store in Vector DB
+// await vectorDB.upsert({ 
+//   id,
+//   embedding,
+//   metadata: { text: chunk }
+// });
+
+// Step 4: User Question → Embedding
+// const queryEmbedding = await openai.embeddings.create({
+//   model: "text-embedding-3-small",
+//   input: userQuestion
+// });
+
+// Step 5: Retrieve Relevant Chunks
+// const results = await vectorDB.query({
+//   vector: queryEmbedding,
+//   topK: 5
+// });
+
+// Step 6: Inject Context into LLM
+// const context = results.map(r => r.metadata.text).join("\n");
+
+// const response = await openai.chat.completions.create({
+//   model: "gpt-4o-mini",
+//   messages: [
+//     {
+//       role: "system",
+//       content: "Use the context to answer accurately."
+//     },
+//     {
+//       role: "user",
+//       content: `Context:\n${context}\n\nQuestion:\n${userQuestion}`
+//     }
+//   ]
+// });
+
+// 5️⃣ Deliverable: RAG-Powered Q&A API
+// API Design
+// POST /ask
+// {
+//   "question": "What is the refund policy?"
+// }
+
+// Response
+// {
+//   "answer": "The refund policy allows returns within 30 days..."
+// }
+
+// ✅ Overlap ka solution
+
+// overlap bolta hai:
+
+// Next chunk thoda sa previous chunk ka text repeat kare
+
+// chunkSize: 500,
+// overlap: 50
+
+
+// ➡️ Har next chunk me last 50 tokens repeat honge
+
+// Example:
+
+// Chunk 1: [0 – 500]
+// Chunk 2: [450 – 950]  ← 50 tokens overlap
+// Chunk 3: [900 – 1400]
+
+// Original text:
+
+// Node.js is a runtime built on Chrome's V8 engine.
+// It is used for building scalable backend services.
+
+// Agar chunk yahan se toot gaya:
+
+// Chunk 1: Node.js is a runtime built on Chrome's
+// Chunk 2: V8 engine. It is used for building scalable backend services.
+
+// ✅ topK: 5 ka matlab
+
+// Top 5 sabse relevant chunks lao
+
+// const results = await vectorDB.query({
+//   vector: queryEmbedding,
+//   topK: 5
+// });
+
+// Matlab:
+
+// 1️⃣ Chunk about refund rules
+// 2️⃣ Chunk about cancellation
+// 3️⃣ Chunk about payment policy
+// 4️⃣ Chunk about exceptions
+// 5️⃣ Chunk about timelines
+
+// LLM ko ye 5 chunks context me milte hain.
+
+// ******************* OpenAI-API ********************//
+
+// OpenAI Models :- gpt-3.5-turbo
+// OpenAI API Key :- stored in environment variable (OPENAI_API_KEY)
+// OpenAI API URL :- https://api.openai.com/v1
+// OpenAI API Endpoint :- /chat/completions
+// OpenAI API Method :- POST
+// OpenAI API Headers :- Authorization: Bearer <OPENAI_API_KEY>
+// OpenAI API Body :- {
+//   "model": "gpt-3.5-turbo",
+//   "messages": [
+//     { "role": "user", "content": "Hello, how are you?" }
+//   ]
+// }
+
+// ******************* GroqAI-API ********************//
+
+// GroqAI Models :- llama-3.1-8b-instant
+// GroqAI API Key :- stored in environment variable (GROQ_API_KEY)
+// GroqAI API URL :- https://api.groq.com/v1
+// GroqAI API Endpoint :- /chat/completions
+// GroqAI API Method :- POST
+// GroqAI API Headers :- Authorization: Bearer <GROQ_API_KEY>
+// GroqAI API Body :- {
+//   "model": "llama-3.1-8b-instant",
+//   "messages": [
+//     { "role": "user", "content": "Hello, how are you?" }
+//   ]
+// }
