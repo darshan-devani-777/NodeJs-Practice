@@ -2100,3 +2100,18 @@
 // Redis (cache)
 // Docker
 // AWS (Lambda / ECS)
+
+// ******************* AI Concepts ********************//
+
+// Topic	                    Why it exists
+
+// LLMs	                       Add intelligence to backend
+// Tokens	                 Control cost & speed
+// Context window	            Manage memory
+// Creativity	                   Control randomness
+// Embeddings	                 Search by meaning
+// Vector DB	                   Store AI memory
+// RAG	                          Use real data safely
+// AI Security	                     Prevent misuse
+// Monitoring	                 Control quality & cost
+// Prompt versioning	         Stable production AI
