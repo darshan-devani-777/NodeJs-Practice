@@ -1989,3 +1989,114 @@
 //     { "role": "user", "content": "Hello, how are you?" }
 //   ]
 // }
+
+
+
+// ******************* AI Foundations ********************//
+
+// 1️⃣ AI Foundations (Fast – 2 weeks)
+
+// Focus ONLY on:
+
+// What is LLM
+// Tokens, context window
+// Temperature / top-p
+// Embeddings kya hoti hai
+// Why hallucinations happen
+
+// 👉 Tum ye already start kar chuke ho ✅
+
+// 2️⃣ LLM Integration with Node.js (MOST IMPORTANT)
+
+// Tumhara core weapon ⚔️
+
+// Seekho:
+// OpenAI / Azure OpenAI / open-source LLM APIs
+// Streaming responses (SSE / WebSockets)
+// Rate limiting & retries
+// Prompt templates & versioning
+
+// Node stack:
+
+// Express / Fastify
+// LangChain.js
+// Zod (schema validation)
+// 📌 Skill = “AI ko backend ke through control karna”
+
+// 3️⃣ RAG = GOLD SKILL 🥇
+
+// High salary ka main reason yahi hai.
+
+// Seekho:
+
+// Text → Embeddings
+// Vector DB:
+// FAISS (local)
+// Pinecone / Weaviate
+// Chunking strategies
+// Hybrid search (keyword + vector)
+
+// 🔑 Real use:
+
+// Company ke internal data pe chatbot
+
+// 4️⃣ AI Security & Cost Control (VERY RARE SKILL)
+
+// 90% devs yaha weak hote hain.
+
+// Seekho:
+// Prompt injection prevention
+// Input sanitization
+// PII masking
+// Token usage optimization
+// Caching LLM responses
+// 💰 Companies ko paise bachane wale AI devs chahiye.
+
+// 5️⃣ AI System Design (Senior-level skill)
+
+// Interview me game changer 🎯
+
+// Topics:
+
+// LLM latency handling
+// Async job queues (BullMQ)
+// Fallback models
+// Observability (logs, traces)
+// Model versioning
+
+// 🧩 Tumhare liye PERFECT Project Ideas
+// 🚀 Project 1: AI Support Agent
+
+// Node.js backend
+
+// RAG on company docs
+
+// Auth + rate limits
+
+// Admin panel for prompts
+
+// 🚀 Project 2: AI Resume Screener
+
+// Upload PDFs
+
+// Embeddings + scoring
+
+// Cost-efficient pipeline
+
+// 🚀 Project 3: AI Code Review Bot
+
+// GitHub PR → LLM
+
+// Rule-based + AI output
+
+// Hallucination control
+
+// 🧠 Tech Stack (Resume-Ready)
+// Node.js / TypeScript
+// Fastify / Express
+// LLM APIs (OpenAI / OSS)
+// LangChain.js
+// Vector DB (FAISS / Pinecone)
+// Redis (cache)
+// Docker
+// AWS (Lambda / ECS)
