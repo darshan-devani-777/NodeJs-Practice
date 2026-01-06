@@ -2782,4 +2782,15 @@ Task Name :-  AI Fundamentals
                      -  Reviewed vector-based retrieval to fetch relevant responses
                      -  Studied common AI security threats, including prompt injection
                      -  Monitored AI request lifecycle using logs and tracing 
-                     -  Overview prompt versioning strategies to safely roll back prompt changes                    
+                     -  Overview prompt versioning strategies to safely roll back prompt changes   
+
+Please find today's work updates below:
+Date:05-01-2026
+
+Task Name :- AI Fundamentals ( VectorDB ) 
+                    -  Created a system to store and search documents using AI-generated embeddings
+                    -  Converted text into vectors and stored them in Qdrant database 
+                    -  Developed Express REST APIs for document insertion and semantic search
+                    -  Applied cosine similarity thresholds to filter queries 
+                    -  Added payload-based retrieval, numeric ID validation, and request-level logging
+                    -  Configured the vector database connection using IP-based networking to avoid localhost issues                     
