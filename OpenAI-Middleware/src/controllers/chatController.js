@@ -3,6 +3,11 @@ const Groq = require("groq-sdk");
 const { decrypt } = require("../models/encryptDecrypt");
 const { getPrompt } = require("./getPrompts");
 
+console.log("🔍 ENV CHECK:", {
+  SC: !!process.env.SC_GROQ_API_KEY_ENCRYPTED,
+  TB: !!process.env.TB_GROQ_API_KEY_ENCRYPTED,
+});
+
 const algorithm = process.env.CRYPTO_ALGORITHM;
 
 /* ================= STREAM FUNCTION ================= */
