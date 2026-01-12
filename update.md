@@ -2793,4 +2793,48 @@ Task Name :- AI Fundamentals ( VectorDB )
                     -  Developed Express REST APIs for document insertion and semantic search
                     -  Applied cosine similarity thresholds to filter queries 
                     -  Added payload-based retrieval, numeric ID validation, and request-level logging
-                    -  Configured the vector database connection using IP-based networking to avoid localhost issues                     
+                    -  Configured the vector database connection using IP-based networking to avoid localhost issues 
+
+Please find today's work updates below:
+Date:06-01-2026
+
+Task Name :- AI Fundamentals ( pgVector )
+                    -  Implemented a pgvector-based retrieval search in PostgreSQL
+                    -  Created the pgvector extension in PostgreSQL to enable vectors
+                    -  Converted text into embeddings and stored them using pgvector
+                    -  Added raw documents data to test search operations
+                    -  Returned matched text with similarity scores for verification
+                    -  Set up a PostgreSQL connection for remote access 
+
+Please find today's work updates below:
+Date:07-01-2026
+
+Project Name :- OpenAI-Middleware
+                        -  Refined getPrompt functionality to resolve prompts from prompts.json based on Type and Sub-Type
+                          -   Implemented auto-detection logic to support both encrypted token flow and direct raw JSON input
+                          -   Applied SSE (Server-Sent Events) streaming flow to deliver AI responses token-by-token in real time
+                        -   Tested SC (Summarizer) and TB (Text Builder / Grammar Checker / Paraphraser) flows    
+                        -   Created HTML template and integrated OpenAI API to verify real-time progressive response 
+
+Please find today's work updates below:
+Date:08-01-2026
+
+Task Name :- AI Fundamentals ( Groq LLM Architecture )
+                    -  Designed and built an AI-powered API using Node.Js and Express
+                    -  Integrated Groq LLM (OpenAI-compatible API) for fast text generation
+                    -  Implemented role-based prompts (Admin/User/Guest) to control AI behavior
+                    -  Created prompt filtering using keyword and pattern forms 
+                    -  Tracked token usage (prompt, completion, total) from Groq response metadata
+                    -  Tested All conditions based on various prompt inputs
+
+Please find today's work updates below:
+Date:09-01-2026
+
+Project Name :- PDF-To-PPT 
+                        -  Built an AI-driven PDF-to-PPT API using GroqAI tool
+                        -  Integrated Groq LLM to convert PDF text into structured slide JSON
+                        -  Created a fallback parser to generate slides when AI output fails
+                        -  Parsed PDF text and layout using pdf-lib, pdfjs-dist library 
+                        -  Configured PptxGenJS library for dynamic slide creation, preserving layout and style
+                        -  Monitored AI response and PDF parsing errors
+                        -  Tested all scenarios : AI mode, clone mode, fallback, and large PDFs                                        
