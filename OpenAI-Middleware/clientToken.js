@@ -24,8 +24,6 @@ const data = {
   iv_key: ivKey,
   task: {
     type: "SC",
-    // Must be in the format "<tool>.<variant>"
-    //   "summarizer.long"   -> prompts.SC.summarizer.long
     sub_type: "summarizer.short",
     user_input: "Technology is changing the world.",
   },

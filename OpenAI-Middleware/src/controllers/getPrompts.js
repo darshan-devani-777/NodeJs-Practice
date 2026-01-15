@@ -1,16 +1,5 @@
-// Structure example (prompts.json):
-// {
-//   "SC": { "summarizer": { "long": "...INPUT_TEXT" } },
-//   "TB": { "grammar_checker": { "grammar_checker": "...INPUT_TEXT" } }
-// }
 const prompts = require("../../prompts.json");
 
-/**
- * @param {string} type     
- * @param {string} sub_type 
- *                         
- * @param {string} user_input
- */
 function getPrompt(type, sub_type, user_input) {
   return new Promise((resolve, reject) => {
     try {
