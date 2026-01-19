@@ -2837,4 +2837,59 @@ Project Name :- PDF-To-PPT
                         -  Parsed PDF text and layout using pdf-lib, pdfjs-dist library 
                         -  Configured PptxGenJS library for dynamic slide creation, preserving layout and style
                         -  Monitored AI response and PDF parsing errors
-                        -  Tested all scenarios : AI mode, clone mode, fallback, and large PDFs                                        
+                        -  Tested all scenarios : AI mode, clone mode, fallback, and large PDFs  
+
+Please find today's work updates below:
+Date:12-01-2026
+
+Project Name :- File Convertor 
+                        -  Refined PDF Auto-Conversion API using Groq LLM, supporting PPT, Word, and Excel outputs from a single endpoint
+                        -  Implemented auto-type detection via REST endpoints (/pdf-to/:type)
+                        -  Configured Word (DOCX) and Excel (XLSX) generators for document and tabular exports
+
+Task Name :- AI Fundamentals 
+                    -  Overview of AI system design
+                    -  ( Scan AI API’s / Reduce Token Cost / Cache AI responses )
+                    -  Explored TTL - (Time To Live) strategy to expire AI responses based on certain time limit
+
+Please find today's work updates below:
+Date:13-01-2026
+
+Project Name :- File Convertor 
+                        -  Created reverse conversion API
+                        -  Supported PPT → PDF / DOC → PDF / XLS → PDF
+                        -  Configured conversion engine using ZibreOffice for generated PDF’s
+                        -  Implemented unified endpoint with automatic file type detection
+                        -  Integrated temp file management with automatic cleanup after PDF generation
+
+Task Name :- AI Fundamentals ( RAG vs Fine-Tuning )
+                    -  Overview of RAG vs Fine-Tuning approaches
+                    -  Analyzed trade-offs, including data needs and model flexibility
+
+Please find today's work updates below:
+Date:15-01-2026
+                        
+Task Name :- AI Fundamentals 
+                    -  Overview of API calling an LLM with Timeout and Retry mechanisms   
+                    -  Learned API Gateway Layer for managing request validation 
+                    -  Explored Queue System ( BullMQ ) to handle events lifecycle 
+                    -  Overview about Dead-Letter Queue (DLQ) for request monitoring 
+                    -  Read documentation of Queue System ( BullMQ ) 
+
+Please find today's work updates below:
+Date:16-01-2026     
+
+Task Name :- AI Fundamentals
+                    -  Implemented API key–based authentication middleware
+                    -  Created a caching layer using Redis with BullMQ connection
+                    -  Designed an asynchronous job Queue system using BullMQ  
+                    -  Built a Dead-Letter Queue (DLQ) for failed queues and recovery
+                    -  Created DLQ management APIs (list, inspect, retry, clear) queues
+                    -  Tested system behavior under high requests and failure scenarios
+
+Please find today's work updates below:
+Date:17-01-2026 
+
+Project Name :- File Convertor 
+                        -  Refined PDF conversion API with secure file serving routes 
+                        -  Added automatic generation of previewUrl and downloadUrl in API response                                                              
