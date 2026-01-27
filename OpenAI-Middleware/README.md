@@ -475,3 +475,17 @@ Provider: Hugging Face Inference API
 Upload: Multer (memory storage)
 
 Processing: Vision labels → sentence composition
+
+Text → [stabilityai/stable-diffusion-xl-base-1.0]      **→ Generated Image**
+      *Platform*: Hugging Face Inference API
+      *Company*: Stability AI
+      *Task*: Text → Image generation
+      *Type*: Diffusion / Generative AI
+      *Output*: High-quality, realistic images
+          ↓
+      [google/vit-base-patch16-224]                    **→ Image Analysis**
+      *Platform*: Hugging Face Inference API
+      *Company*: Google
+      *Task*: Image → Understanding / Features
+      *Type*: Vision Transformer / Computer Vision
+      *Output*: Image features, classification, analysis
