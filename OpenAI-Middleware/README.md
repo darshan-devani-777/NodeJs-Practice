@@ -476,16 +476,17 @@ Upload: Multer (memory storage)
 
 Processing: Vision labels → sentence composition
 
-Text → [stabilityai/stable-diffusion-xl-base-1.0]      **→ Generated Image**
-      *Platform*: Hugging Face Inference API
-      *Company*: Stability AI
-      *Task*: Text → Image generation
-      *Type*: Diffusion / Generative AI
-      *Output*: High-quality, realistic images
-          ↓
-      [google/vit-base-patch16-224]                    **→ Image Analysis**
-      *Platform*: Hugging Face Inference API
-      *Company*: Google
-      *Task*: Image → Understanding / Features
-      *Type*: Vision Transformer / Computer Vision
-      *Output*: Image features, classification, analysis
+<!-- # Model Overview -->
+
+| **Feature**               | **Stable Diffusion XL Base 1.0**                           | **Google ViT Base Patch16-224**                 |
+| ------------------------- | ---------------------------------------------------------- | ----------------------------------------------- |
+| **Access**                | Free via Hugging Face Inference API                        | Free via Hugging Face Inference API             |
+| **Free Tier Rate Limits** | ~500 requests/hour (anonymous), ~1,000/day (signed-up)     | Shared with SDXL (~500/hour, ~1,000/day)        |
+| **PRO Tier Rate Limits**  | ~20,000 requests/day                                       | Shared with SDXL (~20,000/day)                  |
+| **Platform**              | Hugging Face Inference API                                 | Hugging Face Inference API                      |
+| **Company / Maintainer**  | Stability AI                                               | Google                                          |
+| **Task / Use Case**       | Text → Image generation                                    | Image → Feature extraction / analysis           |
+| **Type / Category**       | Diffusion / Generative AI                                  | Vision Transformer / Computer Vision            |
+| **Output**                | High-quality images                                        | Image features, classification                  |
+| **Limitations**           | May distort faces/text; complex prompts can fail           | Not a caption generator; needs downstream model |
+| **Recommended Use**       | Creative image generation, prototyping                     | Image analysis, embeddings for AI               |
