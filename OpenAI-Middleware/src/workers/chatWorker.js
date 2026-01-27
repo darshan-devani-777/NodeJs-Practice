@@ -8,9 +8,7 @@ const { searchSimilarDocuments, rerankDocuments } = require("../lib/ragPipeline"
 
 let worker;
 
-/**
- * Process chat job with LLM, RAG, and re-ranking
- */
+// PROCESS CHAT JOB - LLM, RAG, RE-RENKING
 async function processChatJob(job) {
   const { data } = job;
   const startTime = Date.now();
@@ -32,7 +30,6 @@ async function processChatJob(job) {
       throw new Error("Task type is missing (encrypted or raw)");
     }
 
-    // Get crypto config
     const algorithm = process.env.CRYPTO_ALGORITHM;
     const secretKey = process.env[`${type}_CRYPTO_SECRET_KEY`];
     const ivKey = process.env[`${type}_CRYPTO_IV`];
@@ -45,7 +42,6 @@ async function processChatJob(job) {
       hasApiKey: !!encryptedApiKey,
     });
 
-    // Decrypt API key
     const decryptedApiKey = decrypt(
       encryptedApiKey,
       secretKey,
@@ -62,7 +58,6 @@ async function processChatJob(job) {
       apiKeyPreview: decryptedApiKey.data.slice(0, 12) + "...",
     });
 
-    // Decrypt token if encrypted mode
     let tokenData;
     if (token) {
       console.log("🔓 [WORKER] Decrypting token", {
@@ -96,7 +91,7 @@ async function processChatJob(job) {
     try {
       console.log("🔍 [WORKER] Starting RAG search", { jobId: job.id });
       const similarDocs = await searchSimilarDocuments(user_input);
-      
+
       if (similarDocs && similarDocs.length > 0) {
         console.log("📚 [WORKER] Found similar documents", {
           jobId: job.id,
@@ -124,7 +119,6 @@ async function processChatJob(job) {
         jobId: job.id,
         error: ragError.message,
       });
-      // Continue without RAG context
     }
 
     // Generate prompt
@@ -184,7 +178,6 @@ async function processChatJob(job) {
       processingTimeMs: processingTime,
     });
 
-    // If this was the last attempt, move to DLQ
     if (job.attemptsMade >= job.opts.attempts - 1) {
       console.log("💀 [WORKER] Max attempts reached, moving to DLQ", {
         jobId: job.id,
@@ -206,9 +199,7 @@ async function processChatJob(job) {
   }
 }
 
-/**
- * Initialize chat worker
- */
+// INITIALIZE CHAT WORKER
 function startChatWorker() {
   if (worker) {
     console.log("⚠️ [WORKER] Worker already running");
@@ -234,7 +225,7 @@ function startChatWorker() {
       concurrency,
       limiter: {
         max: Number(process.env.WORKER_RATE_LIMIT || 10),
-        duration: Number(process.env.WORKER_RATE_DURATION || 1000), // per second
+        duration: Number(process.env.WORKER_RATE_DURATION || 1000),
       },
     }
   );
@@ -275,9 +266,7 @@ function startChatWorker() {
   return worker;
 }
 
-/**
- * Stop chat worker gracefully
- */
+// STOP CHAT WORKER
 async function stopChatWorker() {
   if (!worker) {
     console.log("⚠️ [WORKER] No worker to stop");

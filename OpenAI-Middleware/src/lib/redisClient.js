@@ -3,9 +3,7 @@ const Redis = require("ioredis");
 let client;
 let bullmqClient;
 
-/**
- * Get Redis client for general use (cache, rate limiting)
- */
+// GET REDIS CLIENT
 function getRedisClient() {
   if (client) return client;
 
@@ -20,9 +18,9 @@ function getRedisClient() {
   const connectionOptions = redisUrl
     ? { url: redisUrl }
     : {
-        host: process.env.REDIS_HOST || "127.0.0.1",
-        port: Number(process.env.REDIS_PORT || 6379),
-      };
+      host: process.env.REDIS_HOST || "127.0.0.1",
+      port: Number(process.env.REDIS_PORT || 6379),
+    };
 
   client = new Redis(connectionOptions);
 
@@ -37,9 +35,7 @@ function getRedisClient() {
   return client;
 }
 
-/**
- * Get Redis connection for BullMQ (requires maxRetriesPerRequest: null)
- */
+// GET REDIS CONNECTION FOR BULLMQ
 function getBullMQConnection() {
   if (bullmqClient) return bullmqClient;
 
@@ -51,17 +47,15 @@ function getBullMQConnection() {
     port: Number(process.env.REDIS_PORT || 6379),
   });
 
-  // BullMQ requires maxRetriesPerRequest: null
-  // If using URL, pass it directly; otherwise use connection options
   if (redisUrl) {
     bullmqClient = new Redis(redisUrl, {
-      maxRetriesPerRequest: null, // Required by BullMQ
+      maxRetriesPerRequest: null,
     });
   } else {
     bullmqClient = new Redis({
       host: process.env.REDIS_HOST || "127.0.0.1",
       port: Number(process.env.REDIS_PORT || 6379),
-      maxRetriesPerRequest: null, // Required by BullMQ
+      maxRetriesPerRequest: null,
     });
   }
 

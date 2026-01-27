@@ -1,14 +1,9 @@
 /**
- * Request validation middleware for /api/chatGPT-style payloads.
- *
  * Supports both:
  *  - Encrypted mode: { token: string, type: string }
  *  - Raw mode: { type: string, task: { type, sub_type, user_input } }
- *
- * Skips validation for GET requests and other methods without bodies.
  */
 function validateRequest(req, res, next) {
-  // Skip validation for GET, HEAD, OPTIONS requests (no body)
   if (["GET", "HEAD", "OPTIONS"].includes(req.method)) {
     console.log("🧩 [VALIDATE] Skipping validation for", {
       method: req.method,
@@ -38,7 +33,6 @@ function validateRequest(req, res, next) {
     });
   }
 
-  // Encrypted mode: require token string.
   if (token) {
     if (typeof token !== "string") {
       console.warn("🧩 [VALIDATE] Token provided but not a string");
@@ -51,7 +45,6 @@ function validateRequest(req, res, next) {
     return next();
   }
 
-  // Raw mode: validate task object.
   if (!task || typeof task !== "object") {
     console.warn("🧩 [VALIDATE] Raw mode without valid task object");
     return res.status(400).json({

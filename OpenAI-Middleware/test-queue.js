@@ -198,7 +198,7 @@ async function testMonitorQueue(durationSeconds = 10) {
         "yellow"
       );
     }
-    await sleep(2000); // Check every 2 seconds
+    await sleep(2000); 
   }
 }
 

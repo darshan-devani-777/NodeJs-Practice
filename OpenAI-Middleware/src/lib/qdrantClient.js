@@ -28,12 +28,12 @@ function getQdrantClient() {
   try {
     client = qdrantApiKey
       ? new QdrantClient({
-          url: qdrantUrl,
-          apiKey: qdrantApiKey,
-        })
+        url: qdrantUrl,
+        apiKey: qdrantApiKey,
+      })
       : new QdrantClient({
-          url: qdrantUrl,
-        });
+        url: qdrantUrl,
+      });
 
     console.log("✅ [QDRANT] Client initialized successfully");
     return client;
@@ -43,9 +43,6 @@ function getQdrantClient() {
   }
 }
 
-/**
- * Check if Qdrant is available and healthy
- */
 async function checkQdrantHealth() {
   const qdrant = getQdrantClient();
   if (!qdrant) {
@@ -53,7 +50,6 @@ async function checkQdrantHealth() {
   }
 
   try {
-    // Try to get collections list as a health check
     await qdrant.getCollections();
     return { available: true, message: "Qdrant is healthy" };
   } catch (error) {

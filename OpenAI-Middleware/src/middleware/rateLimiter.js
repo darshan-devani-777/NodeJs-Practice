@@ -10,7 +10,6 @@ async function rateLimiter(req, res, next) {
   const windowSec = Number(process.env.RATE_LIMIT_WINDOW_SEC || 60);
   const maxRequests = Number(process.env.RATE_LIMIT_MAX || 60);
 
-  // Use client ID if provided, otherwise IP + route.
   const clientId =
     req.header("x-client-id") ||
     req.ip ||
@@ -65,7 +64,6 @@ async function rateLimiter(req, res, next) {
     return next();
   } catch (err) {
     console.error("❌ Rate limiter error:", err.message);
-    // Fail open if Redis is unavailable.
     return next();
   }
 }

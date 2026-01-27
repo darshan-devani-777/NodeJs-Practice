@@ -10,6 +10,16 @@ console.log("🔍 ENV CHECK:", {
 
 const algorithm = process.env.CRYPTO_ALGORITHM;
 
+/* ================= HELPER ================= */
+
+const getClientIp = (req) => {
+  return (
+    req.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
+    req.socket?.remoteAddress ||
+    req.ip
+  );
+};
+
 /* ================= STREAM FUNCTION ================= */
 
 async function streamGroqResponse(prompt, apiKey, res) {
@@ -66,6 +76,10 @@ const chatController = {
   async handleChatRequest(req, res) {
     try {
       console.log("\n===== NEW CHAT REQUEST =====\n");
+
+      // --------- CLIENT IP LOGGING ----------
+      const clientIp = getClientIp(req);
+      console.log("🌍 Client IP:", clientIp);
 
       console.log("➡️ Request Body:", {
         type: req.body.type || req.body?.task?.type,

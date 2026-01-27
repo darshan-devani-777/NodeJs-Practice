@@ -14,7 +14,7 @@ const { getQdrantClient } = require("./qdrantClient");
  */
 async function searchSimilarDocuments(query, collectionName = "documents", limit = 5) {
   const qdrant = getQdrantClient();
-  
+
   if (!qdrant) {
     console.warn("⚠️ [RAG] Qdrant not available, skipping vector search");
     return [];
@@ -26,18 +26,6 @@ async function searchSimilarDocuments(query, collectionName = "documents", limit
       collectionName,
       limit,
     });
-
-    // Note: In a real implementation, you'd need to:
-    // 1. Convert query text to vector using an embedding model
-    // 2. Search Qdrant with that vector
-    // For now, this is a placeholder structure
-
-    // Example structure (you'll need to implement actual vector search):
-    // const queryVector = await generateEmbedding(query);
-    // const results = await qdrant.search(collectionName, {
-    //   vector: queryVector,
-    //   limit: limit,
-    // });
 
     console.log("✅ [RAG] Vector search completed");
     return [];
@@ -54,7 +42,7 @@ async function searchSimilarDocuments(query, collectionName = "documents", limit
  */
 async function storeDocuments(collectionName, documents) {
   const qdrant = getQdrantClient();
-  
+
   if (!qdrant) {
     console.warn("⚠️ [RAG] Qdrant not available, skipping document storage");
     return;
@@ -65,17 +53,6 @@ async function storeDocuments(collectionName, documents) {
       collectionName,
       count: documents.length,
     });
-
-    // Note: In a real implementation, you'd:
-    // 1. Ensure collection exists
-    // 2. Upsert documents with their vectors
-    // await qdrant.upsert(collectionName, {
-    //   points: documents.map(doc => ({
-    //     id: doc.id,
-    //     vector: doc.vector,
-    //     payload: { text: doc.text }
-    //   }))
-    // });
 
     console.log("✅ [RAG] Documents stored successfully");
   } catch (error) {
@@ -95,14 +72,8 @@ async function rerankDocuments(query, documents) {
     documentCount: documents.length,
   });
 
-  // Placeholder for re-ranking logic
-  // In production, you'd use a re-ranking model like:
-  // - Cohere Rerank API
-  // - Sentence Transformers cross-encoder
-  // - Custom re-ranking service
-
   console.log("✅ [RERANK] Re-ranking completed");
-  return documents; // Return as-is for now
+  return documents;
 }
 
 module.exports = {

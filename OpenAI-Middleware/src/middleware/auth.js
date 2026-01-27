@@ -1,8 +1,7 @@
 require("dotenv").config();
 
 /**
- * Simple API Gateway auth middleware.
- * Expects `x-api-key` header to match `API_GATEWAY_KEY` env var.
+ * `x-api-key` = `API_GATEWAY_KEY` env 
  */
 function authMiddleware(req, res, next) {
   console.log("🛡️ [AUTH] Incoming request", {
@@ -13,7 +12,6 @@ function authMiddleware(req, res, next) {
 
   const configuredKey = process.env.API_GATEWAY_KEY;
 
-  // If no key is configured, skip auth (useful for local/dev).
   if (!configuredKey) {
     console.log("🛡️ [AUTH] No API_GATEWAY_KEY configured, skipping auth");
     return next();

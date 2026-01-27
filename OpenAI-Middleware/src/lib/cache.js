@@ -1,6 +1,6 @@
 const { getRedisClient } = require("./redisClient");
 
-const DEFAULT_TTL_SECONDS = Number(process.env.CACHE_TTL_SECONDS || 60 * 10); // 10 minutes
+const DEFAULT_TTL_SECONDS = Number(process.env.CACHE_TTL_SECONDS || 60 * 10);
 
 async function getCache(key) {
   try {

@@ -1,9 +1,7 @@
 const { getDLQ, getChatQueue } = require("../lib/queue");
 const { addJobToQueue } = require("../lib/queue");
 
-/**
- * Get all jobs in DLQ
- */
+// GET DLQ JOBS
 async function getDLQJobs(req, res) {
   try {
     const dlq = getDLQ();
@@ -83,9 +81,7 @@ async function getDLQJobs(req, res) {
   }
 }
 
-/**
- * Get specific DLQ job details
- */
+// GET SPECIFIC DLQ JOB
 async function getDLQJob(req, res) {
   try {
     const { jobId } = req.params;
@@ -145,9 +141,7 @@ async function getDLQJob(req, res) {
   }
 }
 
-/**
- * Retry a job from DLQ
- */
+// RETRY DLQ JOBS
 async function retryDLQJob(req, res) {
   try {
     const { jobId } = req.params;
@@ -181,7 +175,7 @@ async function retryDLQJob(req, res) {
 
     // Add job back to main queue
     const newJob = await addJobToQueue(originalJobData, {
-      priority: 1, // Higher priority for retries
+      priority: 1,
     });
 
     console.log("✅ [DLQ] Job retried successfully", {
@@ -219,9 +213,7 @@ async function retryDLQJob(req, res) {
   }
 }
 
-/**
- * Clear DLQ (remove all jobs)
- */
+// CLEAR DLQ JOBS
 async function clearDLQ(req, res) {
   try {
     const dlq = getDLQ();
@@ -276,9 +268,7 @@ async function clearDLQ(req, res) {
   }
 }
 
-/**
- * Get DLQ statistics
- */
+// GET DLQ JOBS STATS
 async function getDLQStats(req, res) {
   try {
     const dlq = getDLQ();

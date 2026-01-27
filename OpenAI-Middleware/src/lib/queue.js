@@ -6,9 +6,7 @@ let dlqQueue;
 let chatQueueEvents;
 let dlqQueueEvents;
 
-/**
- * Initialize main chat queue with DLQ support
- */
+// INITIALIZE MAIN CHAT QUEUE
 function getChatQueue() {
   if (chatQueue) return chatQueue;
 
@@ -31,7 +29,7 @@ function getChatQueue() {
         age: Number(process.env.QUEUE_COMPLETE_TTL || 3600), // 1 hour
         count: Number(process.env.QUEUE_COMPLETE_COUNT || 100),
       },
-      removeOnFail: false, // Keep failed jobs for DLQ
+      removeOnFail: false,
     },
   });
 
@@ -68,9 +66,7 @@ function getChatQueue() {
   return chatQueue;
 }
 
-/**
- * Initialize Dead-Letter Queue (DLQ)
- */
+// INITIALIZE DLQ
 function getDLQ() {
   if (dlqQueue) return dlqQueue;
 
@@ -84,7 +80,7 @@ function getDLQ() {
   dlqQueue = new Queue("chat-processing-dlq", {
     connection: redis,
     defaultJobOptions: {
-      removeOnComplete: false, // Keep DLQ jobs for manual review
+      removeOnComplete: false, 
       removeOnFail: false,
     },
   });
@@ -114,9 +110,7 @@ function getDLQ() {
   return dlqQueue;
 }
 
-/**
- * Add job to main queue
- */
+// ADD JOB TO QUEUE
 async function addJobToQueue(jobData, options = {}) {
   const queue = getChatQueue();
 
@@ -133,7 +127,7 @@ async function addJobToQueue(jobData, options = {}) {
     const job = await queue.add("process-chat", jobData, {
       priority: options.priority || 0,
       delay: options.delay || 0,
-      jobId: options.jobId, // Optional custom job ID
+      jobId: options.jobId, 
       ...options,
     });
 
@@ -156,9 +150,7 @@ async function addJobToQueue(jobData, options = {}) {
   }
 }
 
-/**
- * Move failed job to DLQ
- */
+// MOVE JOB TO DLQ
 async function moveToDLQ(failedJob, error) {
   const dlq = getDLQ();
 
@@ -200,9 +192,7 @@ async function moveToDLQ(failedJob, error) {
   }
 }
 
-/**
- * Get queue statistics
- */
+// GET QUEUE STATS
 async function getQueueStats() {
   const queue = getChatQueue();
   const dlq = getDLQ();

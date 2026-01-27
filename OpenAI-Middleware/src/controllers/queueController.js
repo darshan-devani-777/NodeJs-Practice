@@ -1,8 +1,6 @@
 const { addJobToQueue, getQueueStats, getChatQueue } = require("../lib/queue");
 
-/**
- * Add chat request to queue (non-streaming)
- */
+// QUEUE CHAT REQUEST
 async function queueChatRequest(req, res) {
   try {
     console.log("📥 [QUEUE] Queue chat request received", {
@@ -11,7 +9,6 @@ async function queueChatRequest(req, res) {
       hasToken: !!req.body.token,
     });
 
-    // Add job to queue
     const job = await addJobToQueue(req.body, {
       priority: req.body.priority || 0,
       delay: req.body.delay || 0,
@@ -44,9 +41,7 @@ async function queueChatRequest(req, res) {
   }
 }
 
-/**
- * Get queue statistics with detailed information
- */
+// GET QUEUE STATASTICS
 async function getQueueStatistics(req, res) {
   try {
     console.log("📊 [QUEUE] Fetching queue statistics", {
@@ -56,7 +51,6 @@ async function getQueueStatistics(req, res) {
     const queue = getChatQueue();
     const stats = await getQueueStats();
 
-    // Get sample jobs for more details
     const [waitingJobs, activeJobs, failedJobs] = await Promise.all([
       queue.getJobs(["waiting"], 0, 4),
       queue.getJobs(["active"], 0, 4),
@@ -113,9 +107,7 @@ async function getQueueStatistics(req, res) {
   }
 }
 
-/**
- * Get job status by ID
- */
+// GET JOB STATUS BY ID
 async function getJobStatus(req, res) {
   try {
     const { jobId } = req.params;

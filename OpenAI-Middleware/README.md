@@ -2,26 +2,47 @@
 
 --> **Create a .env file in the root directory**
 
-PORT=PORT
+PORT=9090
 
-# **Encryption algorithm**
-CRYPTO_ALGORITHM=aes-256-cbc
+**# Encryption algorithm**
+CRYPTO_ALGORITHM=CRYPTO_ALGORITHM
 
-SC_CRYPTO_SECRET_KEY=SC_CRYPTO_SECRET_KEY  
-SC_CRYPTO_IV=SC_CRYPTO_KEY             
+**# For SC Type**
+SC_CRYPTO_SECRET_KEY=SC_CRYPTO_SECRET_KEY
+SC_CRYPTO_IV=SC_CRYPTO_IV        
 
-# **GroqAI API Key**
+**# For TB Type**
+TB_CRYPTO_SECRET_KEY=TB_CRYPTO_SECRET_KEY
+TB_CRYPTO_IV=TB_CRYPTO_IV
+
+**# GroqAI API Key**
 SC_GROQ_API_KEY_ENCRYPTED=SC_GROQ_API_KEY_ENCRYPTED
+TB_GROQ_API_KEY_ENCRYPTED=TB_GROQ_API_KEY_ENCRYPTED
+GROQ_API_KEY=GROQ_API_KEY
 
-  **OR**
-
-# **OpenAI API key** 
+**# OpenAI API key** 
 SC_OPENAI_API_KEY_ENCRYPTED=SC_OPENAI_API_KEY_ENCRYPTED
+TB_OPENAI_API_KEY_ENCRYPTED=TB_OPENAI_API_KEY_ENCRYPTED
 
-# **For TC (Theoretical Content)**
-TC_CRYPTO_SECRET_KEY=TC_CRYPTO_SECRET_KEY
-TC_CRYPTO_IV=TC_CRYPTO_IV
-TC_OPENAI_API_KEY_ENCRYPTED=TC_OPENAI_API_KEY_ENCRYPTED
+**# API Gateway Key**
+API_GATEWAY_KEY=API_GATEWAY_KEY
+
+**# Queue **Configuration**
+QUEUE_MAX_ATTEMPTS=3              # Retry attempts before DLQ
+QUEUE_BACKOFF_DELAY=2000          # Initial backoff delay (ms)
+QUEUE_COMPLETE_TTL=3600           # Keep completed jobs (seconds)
+QUEUE_COMPLETE_COUNT=100          # Max completed jobs to keep
+
+**# Worker Configuration**
+WORKER_CONCURRENCY=5              # Jobs processed simultaneously
+WORKER_RATE_LIMIT=10              # Jobs per second
+WORKER_RATE_DURATION=1000         # Rate limit window (ms)
+
+**# Stability API Key**
+STABILITY_API_KEY=STABILITY_API_KEY
+
+**# HiggingFace API Key**
+HUGGINGFACE_API_KEY=STABILITY_API_KEY
 
 <!-- Create prompts.json: -->
 
@@ -75,6 +96,65 @@ type: Type of task (SC or TC).
   "message": "The response has been successfully encrypted...",
   "data": "encrypted-response-here"
 }
+
+<!-- AI Image Generation API -->
+
+## 🎨 AI Image Generation API
+
+**POST** `/api/imageGenerate`  
+**Endpoint**: `http://localhost:3000/api/imageGenerate`
+
+**This endpoint generates AI images using Hugging Face's StabilityAI Stable Diffusion XL model.**
+
+### Request Body:
+```json
+{
+  "prompt": "A beautiful landscape with mountains and a lake at sunset"
+}
+```
+
+### Response (Success):
+```json
+{
+  "success": true,
+  "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "rateLimit": {
+    "remaining": 95,
+    "limit": 100,
+    "reset": "2024-01-20T15:30:00Z"
+  }
+}
+```
+
+### Response (Error):
+```json
+{
+  "success": false,
+  "error": "Hugging Face API error",
+  "raw": "API response details...",
+  "rateLimit": {
+    "remaining": 0,
+    "limit": 100,
+    "reset": "2024-01-20T15:30:00Z"
+  }
+}
+```
+
+### Features:
+- 🎨 Uses StabilityAI's Stable Diffusion XL Base 1.0 model
+- 📊 Rate limit monitoring and reporting
+- 🖼️ Base64 encoded image response
+- ⚡ Direct integration with Hugging Face Inference API
+- 🛡️ Comprehensive error handling
+
+### Frontend Integration:
+The web interface (`/index.html`) includes a dedicated image generation button that:
+- Shows loading animations during generation
+- Displays generated images inline with chat
+- Handles errors gracefully
+- Maintains chat flow continuity
+
+---
 
 <!-- # Implementation Summary - New Features Added -->
 
@@ -181,11 +261,12 @@ type: Type of task (SC or TC).
 
 ## 📊 Summary Statistics
 
-- **New Files Created**: 15+
-- **New Endpoints**: 9
+- **New Files Created**: 16+ (including image generation)
+- **New Endpoints**: 10 (9 chat/queue + 1 image generation)
 - **New Middleware**: 3 (Auth, Rate Limit, Validation)
-- **New Libraries Integrated**: 3 (BullMQ, ioredis, @qdrant/js-client-rest)
-- **Lines of Code Added**: ~2000+
+- **New Libraries Integrated**: 4 (BullMQ, ioredis, @qdrant/js-client-rest, Hugging Face)
+- **AI Features**: ChatGPT API + AI Image Generation
+- **Lines of Code Added**: ~2200+
 - **Documentation Files**: 6
 
 ---
@@ -199,8 +280,10 @@ Client → Express → Chat Controller → Groq API → SSE Stream → Client
 
 ### After (New Implementation):
 ```
-Client
-  ↓
+Client (Web + API)
+  ├── Chat Interface → Express → Chat Controller → Groq/OpenAI → SSE Stream
+  └── Image Generation → Express → Image Controller → Hugging Face API → Base64 Image
+       ↓
 API Gateway
   ├── Auth (x-api-key)
   ├── Rate Limiting (Redis)
@@ -213,7 +296,8 @@ Node.js API (Stateless)
   └── SSE Streaming
        ↓
 Worker Pool
-  ├── LLM Calls
+  ├── LLM Calls (Chat)
+  ├── AI Image Generation
   ├── RAG Pipeline
   ├── Re-ranking
   └── Response Cache
@@ -227,13 +311,16 @@ Dead-Letter Queue (DLQ)
 ## ✅ Key Features
 
 1. **API Gateway**: Auth, rate limiting, validation
-2. **Queue System**: Async job processing with retry logic
-3. **Worker Pool**: Concurrent processing with rate limiting
-4. **Dead-Letter Queue**: Failed job management and retry
-5. **Vector DB**: Qdrant integration for RAG
-6. **Caching**: Redis-based response caching
-7. **Monitoring**: Comprehensive logging and statistics
-8. **Error Handling**: Graceful degradation and DLQ
+2. **ChatGPT Integration**: Encrypted streaming chat with Groq/OpenAI
+3. **🎨 AI Image Generation**: Hugging Face + StabilityAI integration
+4. **Queue System**: Async job processing with retry logic
+5. **Worker Pool**: Concurrent processing with rate limiting
+6. **Dead-Letter Queue**: Failed job management and retry
+7. **Vector DB**: Qdrant integration for RAG
+8. **Caching**: Redis-based response caching
+9. **Monitoring**: Comprehensive logging and statistics
+10. **Error Handling**: Graceful degradation and DLQ
+11. **Web Interface**: Complete chat + image generation UI
 
 ---
 
@@ -244,3 +331,147 @@ Dead-Letter Queue (DLQ)
 ✅ **Documented**: Comprehensive documentation created
 ✅ **Production Ready**: Error handling and logging in place
 
+<!-- AI Image Generation Implementation -->
+
+## 🎨 AI Image Generation
+
+### Implementation Details
+
+**Framework**: Hugging Face Inference API  
+**Model**: StabilityAI Stable Diffusion XL Base 1.0  
+**Endpoint**: `POST /api/imageGenerate`
+
+### Features Implemented
+
+- ✅ **Hugging Face Integration**: Direct API calls to Hugging Face's inference router
+- ✅ **StabilityAI Models**: Uses high-quality Stable Diffusion XL models
+- ✅ **Base64 Image Response**: Images returned as base64-encoded data URLs
+- ✅ **Rate Limit Monitoring**: Tracks API usage and rate limits
+- ✅ **Error Handling**: Comprehensive error handling with detailed logging
+- ✅ **Web Interface**: Integrated image generation button in chat interface
+- ✅ **Real-time Generation**: Visual loading states and progress indicators
+
+### API Usage
+
+**Request:**
+```json
+{
+  "prompt": "A beautiful sunset over mountains"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "rateLimit": {
+    "remaining": 95,
+    "limit": 100,
+    "reset": "2024-01-20T15:30:00Z"
+  }
+}
+```
+
+### Environment Variables
+
+```env
+# Required for image generation
+HUGGINGFACE_API_KEY=your-huggingface-api-key
+```
+
+### Supported Models
+
+1. **Stable Diffusion XL Base 1.0** (Currently Implemented)
+   - High-quality image generation
+   - 1024x1024 resolution capability
+   - Via Hugging Face Inference API
+
+2. **Stable Image Core** (Referenced for future implementation)
+   - StabilityAI's optimized model
+   - Alternative API endpoint available
+
+### Frontend Integration
+
+The web interface includes:
+- 🎨 Image generation button in chat input
+- 🖼️ Visual loading placeholder with animations
+- 📏 Responsive image display (400px max width)
+- ⚡ Real-time image loading with fade-in effects
+- ❌ Error handling with user-friendly messages
+
+### Rate Limiting
+
+- Tracks remaining API calls
+- Logs rate limit headers from Hugging Face
+- Graceful error handling when limits are exceeded
+
+---
+
+<!-- Legacy Model References -->
+
+**Additional StabilityAI Models Available:**
+- **Stable Image Core**: https://api.stability.ai/v2beta/stable-image/generate/core
+- **Stable Diffusion XL Base 1.0**: https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0
+
+
+<!-- **Image Upload → Text Generation API** -->
+
+- Client Uploads Image
+- User uploads an image via frontend (input[type=file]).
+- Image is sent to backend using multipart/form-data.
+- API Endpoint Receives Image
+
+Endpoint: POST /api/imageToText
+
+- Middleware: multer (memory storage)
+- Image is available as req.file.buffer.
+- Hugging Face Vision Model Call
+- Raw image buffer is sent to Hugging Face Inference API.
+
+Model used: google/vit-base-patch16-224.
+
+Content-Type: application/octet-stream.
+
+- AI Image Analysis
+- Model returns an array of labels with confidence scores.
+
+Example labels: dog, grass, outdoor.
+
+- Text Generation Logic
+- Labels are extracted and combined into a readable sentence:
+
+"This image likely contains: dog, grass, outdoor."
+
+- Response to Client
+- Backend sends structured JSON response.
+- Frontend replaces loading animation with AI-generated text.
+
+<!-- 📌 API Endpoint -->
+
+POST /api/imageToText
+
+<!-- 📥 Request -->
+
+Content-Type: multipart/form-data
+
+Field: image
+
+curl -X POST http://localhost:3000/api/imageToText \
+  -F "image=@photo.jpg"
+
+<!-- 📤 Response (Success) -->
+{
+  "success": true,
+  "text": "This image likely contains: dog, grass, outdoor."
+}
+
+<!-- ⚙️ Implementation -->
+
+Model: google/vit-base-patch16-224
+
+Provider: Hugging Face Inference API
+
+Upload: Multer (memory storage)
+
+Processing: Vision labels → sentence composition
