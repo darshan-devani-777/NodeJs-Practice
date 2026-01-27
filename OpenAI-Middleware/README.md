@@ -478,7 +478,14 @@ Processing: Vision labels → sentence composition
 
 <!-- # Model Overview -->
 
-| **Feature**               | **Stable Diffusion XL Base 1.0**                           | **Google ViT Base Patch16-224**                 |
+| **Feature**                     | **Groq `llama‑3.1‑8b‑instant`**                                                       |
+| ------------------------------- | ------------------------------------------------------------------------------------- |
+| **Access**                      | Free via GroqCloud API (API key required)                                             |
+| **Free Tier Rate Limits**       | ~30 requests/minute (RPM), <br>~14,400 requests/day (RPD) ([GroqCloud][1])            |
+| **PRO / Developer Tier Limits** | Up to ~1,000 RPM, ~500,000 RPD (approx, varies) ([Browser Operator Documentation][2]) |
+
+
+| **Feature**               | **`Stable Diffusion XL Base 1.0` **                        | **`Google ViT Base Patch16-224`**               |
 | ------------------------- | ---------------------------------------------------------- | ----------------------------------------------- |
 | **Access**                | Free via Hugging Face Inference API                        | Free via Hugging Face Inference API             |
 | **Free Tier Rate Limits** | ~500 requests/hour (anonymous), ~1,000/day (signed-up)     | Shared with SDXL (~500/hour, ~1,000/day)        |
