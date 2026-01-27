@@ -478,7 +478,7 @@ Processing: Vision labels → sentence composition
 
 <!-- # Model Overview -->
 
-| **Feature**                     | **Groq `llama‑3.1‑8b‑instant`**                                                       |
+| **Feature**                     | **Groq `llama‑3.1‑8b‑instant`** OR `llama-3.3-70b-versatile`                          |
 | ------------------------------- | ------------------------------------------------------------------------------------- |
 | **Access**                      | Free via GroqCloud API (API key required)                                             |
 | **Free Tier Rate Limits**       | ~30 requests/minute (RPM), <br>~14,400 requests/day (RPD) ([GroqCloud][1])            |
