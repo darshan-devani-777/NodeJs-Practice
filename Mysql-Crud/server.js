@@ -8,7 +8,12 @@ const userController = require('./src/Controller/user.controller');
 const productController = require('./src/Controller/product.controller');
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src', 'views'));
+app.set('views', path.join(__dirname, 'src', 'Views'));
+
+app.get('/ping', (req, res) => {
+  res.send('Server alive ✅');
+});
+
 
 // ROUTES
 app.get('/addUser', userController.showAddUserForm);   
@@ -19,7 +24,7 @@ app.post('/addProduct', productController.addProduct);
 
 app.get('/getProducts' , userController.getUsersWithProducts);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 7777;
 app.listen(port, () => {
   console.log(`🚀 Server Start At http://localhost:${port}`);
 });
