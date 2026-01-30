@@ -2891,5 +2891,85 @@ Please find today's work updates below:
 Date:17-01-2026 
 
 Project Name :- File Convertor 
-                        -  Refined PDF conversion API with secure file serving routes 
-                        -  Added automatic generation of previewUrl and downloadUrl in API response                                                              
+                        -  Refined PDF conversion API with secure file-serving routes 
+                        -  Added automatic generation of previewUrl and downloadUrl in API response
+
+Task Name :- AI Fundamentals 
+                    -  Overview of RabbitMQ message broker concepts
+                    -  Built an event-driven job processing system using RabbitMQ
+                    -  Designed DLQ recovery workflows to safely reprocess failed jobs
+                    -  Verified queue flow and message lifecycle using RabbitMQ Management UI
+
+Please find today's work updates below:
+Date:21-01-2026
+
+Task Name :- Kafka ( Event Streaming Process )
+                    -  Read the documentation of Kafka event streaming concepts
+                    -  Implemented Express.js REST API integrated with Kafka
+                    -  Built a Kafka Producer using KafkaJS for publishing events
+                    -  Built a Kafka Consumer for async event processing
+                    -  Enabled CLI-based Kafka event inspection without Docker or UI
+                    -  Created Kafka helper scripts for message  creation, consumption, and status checks
+
+Please find today's work updates below:
+Date:22-01-2026
+
+Task Name :- End-to-End Testing 
+                    -  Reviewed e2e testing concepts (Unit, Integration, API E2E, Browser E2E)
+                    -  Implemented Unit tests using Jest for models and services
+                    -  Built Integration tests using Jest and Supertest for API routes
+                    -  Implemented API E2E tests for complete user workflows (create, login, update, delete)
+                    -  Implemented browser E2E tests using Playwright for real user interactions
+                    -  Validated full flow from UI → API → Database using automated tests
+                  
+Please find today's work updates below:
+Date:23-01-2026  
+
+Project Name :- OpenAI-Middleware
+                        -  Overview of AI-based (Text / Image / Audio / Video) Generation
+                          -  Configured Image generation using Stability AI generation API
+                          -  Implemented validation for image prompts and request payloads
+                        -  Built a HTML chat interface and integrated AI APIs 
+                        -  Displayed text responses and image outputs in chat flow
+                        -  Tested Text / Image based generation APIs 
+
+Please find today's work updates below:
+Date:26-01-2026  
+
+Project Name :- OpenAI-Middleware
+                        -  Overview of the HuggingFace library 
+                        -  Refined existing funciionalities with the Stable Diffusion AI model 
+                        -  Implemented Text-To-Image flow in backend side
+                        -  Configured AI models and integrated HuggingFace APIs into client side
+                        -  Tested both AI model API’s with their responses 
+
+Please find today's work updates below:
+Date:27-01-2026  
+
+Project Name :- OpenAI-Middleware
+                        -  Integrated Hugging Face vit-base-patch16-224 model for Image-To-Text generation
+                        -  Handled image uploads and validated file presence/type
+                        -  Sent images to API and parsed predicted labels into readable text
+                        -  Implemented chat UI to display images and AI-generated descriptions
+                        -  Tested end-to-end workflow for image analysis
+
+Please find today's work updates below:
+Date:28-01-2026
+
+Project Name :- Admin Dashboard
+                         - Implemented flow of auth API’s (Register / Login / Forgot / Reset)
+                         - Configured email reset link generation using Gmail SMTP service
+                           - Built EJS template pages - register, login, forgot password, reset password
+                         - Added inline validation messages and success notifications
+                         - Integrated Dashboard page with real-time stats: total registered users / charts / users table list
+                         - Tested the authentication flow of users
+
+Please find today's work updates below:
+Date:29-01-2026
+
+Project Name :- Admin Dashboard
+                        -  Created responsive sidebar navigation with mobile toggle
+                        -  Highlighted active sidebar links dynamically based on current page
+                        -  Added footer with responsive links: Privacy Policy, Terms of Service, Contact
+                        -  Implemented settings page with site info and registration options
+                        -  Developed Users Table with real-time display of user details                                                             
