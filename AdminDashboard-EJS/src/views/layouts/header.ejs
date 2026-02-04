@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex min-h-screen bg-gray-100 overflow-x-hidden">
+
+  <!-- Sidebar -->
+  <% if (user) { %>
+    <aside id="sidebar"
+      class="fixed left-0 top-0 w-64 h-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white shadow-xl
+           transform -translate-x-64 md:translate-x-0 transition-all duration-500 z-[60] flex flex-col overflow-y-auto overflow-x-hidden"
+      style="scroll-behavior: smooth;">
+
+      <div class="flex items-center justify-between p-3 border-b border-gray-700 sticky top-0 z-[70] bg-gray-900/95">
+        <h1
+          class="font-semibold text-2xl tracking-wide w-full transition-all duration-300 sidebar-header-text select-none">
+          <%= user.role==='admin' ? 'Admin Panel' : 'User Panel' %>
+        </h1>
+        <button id="sidebarToggleBtn" type="button"
+          class="hidden md:inline-flex text-gray-300 hover:text-white text-lg absolute right-5 top-4 items-center justify-center p-0"
+          aria-label="Toggle sidebar collapse" style="width:24px;height:24px" onclick="toggleSidebarCollapsed(event)">
+          <svg id="sidebarToggleIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path id="toggleArrowLeft" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 19l-7-7 7-7" />
+            <path id="toggleArrowRight" style="display:none" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <button class="md:hidden text-gray-300 hover:text-white text-lg absolute right-5 top-4"
+          aria-label="Close sidebar" onclick="closeSidebar()">
+          <svg class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 8.586l4.95-4.95a1 1 0 111.415 1.415L11.414 10l4.95 4.95a1 1 0 01-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 01-1.414-1.415l4.95-4.95-4.95-4.95A1 1 0 015.05 3.636l4.95 4.95z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex-1 overflow-y-auto p-4 space-y-3 mt-3 sidebar-nav" id="sidebarNav">
+        <a href="/dashboard" data-active="dashboard"
+          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2"
+          onclick="sidebarLinkClick(event)">
+          <span class="sidebar-link-icon flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"></path>
+            </svg>
+          </span>
+          <span class="sidebar-link-label">Dashboard</span>
+        </a>
+        <% if (user.role==='admin' ) { %>
+          <a href="/users" data-active="users"
+            class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2"
+            onclick="sidebarLinkClick(event)">
+            <span class="sidebar-link-icon flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17 20h5V10H2v10h5m10 0a2 2 0 11-4 0 2 2 0 014 0zm-6-4V6a2 2 0 012-2 2 2 0 012 2v10m2 0v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2">
+                </path>
+              </svg>
+            </span>
+            <span class="sidebar-link-label">Users</span>
+          </a>
+        <% } %>
+        <a href="/settings" data-active="settings"
+          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2"
+          onclick="sidebarLinkClick(event)">
+          <span class="sidebar-link-icon flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z">
+              </path>
+            </svg>
+          </span>
+          <span class="sidebar-link-label">Settings</span>
+        </a>
+        <% if (user.role==='admin' ) { %>
+          <a href="/activity-logs" data-active="activity-logs"
+            class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2"
+            onclick="sidebarLinkClick(event)">
+            <span class="sidebar-link-icon flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18"></path>
+              </svg>
+            </span>
+            <span class="sidebar-link-label">Activity Logs</span>
+          </a>
+        <% } %>
+      </nav>
+      <!-- Keep logout at bottom -->
+      <div class="border-t border-gray-700 p-4 pb-6 flex justify-start">
+        <a href="/logout"
+          class="block px-4 py-2 rounded-lg text-red-400 hover:bg-red-500/20 hover:text-red-300 transition font-medium w-full text-left flex items-center gap-2 sidebar-logout-link"
+          onclick="sidebarLinkClick(event)">
+          <span class="sidebar-link-icon flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"></path>
+            </svg>
+          </span>
+          <span class="sidebar-link-label">Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/40 hidden z-50 md:hidden" onclick="closeSidebar()"></div>
+  <% } %>
+
+  <!-- Main content -->
+  <div class="flex-1 flex flex-col w-full overflow-x-hidden <%= user ? 'md:ml-64' : '' %>" id="mainContent">
+    <!-- Top Navbar -->
+    <nav
+      class="bg-gradient-to-br from-blue-50 via-white to-slate-100 backdrop-blur-md shadow-lg flex items-center justify-between p-2 sticky top-0 z-40 border-b border-gray-200">
+
+      <% if (!user) { %>
+        <div class="flex items-center min-w-0">
+          <a href="/"
+            class="text-xl font-bold px-4 py-2 rounded-lg mr-4 transition focus:outline-none text-blue-600 hover:text-blue-800 bg-blue-100"
+            id="navbar-admin-panel-link">
+            Admin Panel
+          </a>
+        </div>
+      <% } else { %>
+        <div></div>
+      <% } %>
+
+      <% if (user) { %>
+        <div id="breadcrumb" class="flex-1 flex items-center space-x-2 text-gray-500 text-sm">
+        </div>
+      <% } else { %>
+        <div></div>
+      <% } %>
+
+      <div class="flex items-center space-x-4 ml-4">
+        <% if (!user) { %>
+          <a href="/login"
+            class="text-gray-600 hover:text-blue-600 font-semibold transition px-3 py-1 rounded-lg hover:bg-blue-100"
+            id="navbar-login-link">
+            Login
+          </a>
+          <a href="/register"
+            class="text-gray-600 hover:text-blue-600 font-semibold transition px-3 py-1 rounded-lg hover:bg-blue-100"
+            id="navbar-register-link">
+            Register
+          </a>
+        <% } else { %>
+          <a href="/settings"
+            class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-gray-200 transition font-medium text-gray-700"
+            id="navbar-settings-link" title="Profile">
+            <span
+              class="inline-block w-8 h-8 bg-blue-200 text-blue-900 font-bold flex items-center justify-center rounded-full text-base">
+              <%= user && user.name && user.name.trim().length> 0 ? user.name.trim()[0].toUpperCase() : 'U' %>
+            </span>
+            <span class="font-medium">Profile</span>
+          </a>
+          <a href="/logout"
+            class="px-3 py-1 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition font-semibold text-sm hover:shadow-lg"
+            id="navbar-logout-link">
+            Logout
+          </a>
+        <% } %>
+      </div>
+      <script>
+        (function () {
+          var path = window.location.pathname;
+          var map = [
+            { id: "navbar-admin-panel-link", match: "/", color: "bg-blue-100 text-blue-700 ring-2 ring-blue-500" },
+            { id: "navbar-login-link", match: "/login", color: "bg-blue-100 text-blue-700 ring-2 ring-blue-400" },
+            { id: "navbar-register-link", match: "/register", color: "bg-blue-100 text-blue-700 ring-2 ring-blue-400" },
+            { id: "navbar-settings-link", match: "/settings", color: "bg-blue-100 text-blue-700 ring-2 ring-blue-600" },
+            { id: "navbar-logout-link", match: "/logout", color: "ring-2 ring-red-600" },
+          ];
+          for (var i = 0; i < map.length; ++i) {
+            var lnk = document.getElementById(map[i].id);
+            var showForUser = <%= !!user %>;
+            if (
+              lnk && (
+                (map[i].id !== "navbar-admin-panel-link") ||
+                (map[i].id === "navbar-admin-panel-link" && !showForUser)
+              )
+            ) {
+              if (
+                (map[i].match === "/settings" && path.startsWith("/settings")) ||
+                (map[i].match === "/" && path === "/") ||
+                (map[i].match !== "/settings" && map[i].match !== "/" && path === map[i].match)
+              ) {
+                lnk.classList.add.apply(lnk.classList, map[i].color.split(" "));
+              }
+            }
+        })();
+      </script>
+      <% if(user){ %>
+        <button
+          class="md:hidden text-gray-600 hover:text-gray-900 transition duration-300 text-xl p-2 rounded-lg hover:bg-gray-100 ml-2"
+          onclick="openSidebar()">☰</button>
+      <% } %>
+    </nav>
+
+    <% if (success) { %>
+      <div class="flex justify-center mt-4">
+        <div id="logoutMsg"
+          class="bg-green-100 border border-green-400 text-green-700 px-6 py-2 rounded-lg shadow-lg w-fit max-w-[90%] font-medium transition">
+          <%= success %>
+        </div>
+      </div>
+    <% } %>
+
+    <script>
+      function openSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        if (!sidebar) return;
+
+        sidebar.classList.remove('-translate-x-64');
+        overlay.classList.remove('hidden');
+
+        sidebar.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+        if (window.innerWidth < 768) {
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        if (!sidebar) return;
+
+        sidebar.classList.add('-translate-x-64');
+        overlay.classList.add('hidden');
+
+        document.body.style.overflow = '';
+      }
+
+      function toggleSidebarCollapsed(ev) {
+        ev && ev.preventDefault && ev.preventDefault();
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const headerText = sidebar.querySelector('.sidebar-header-text');
+        const navLabels = sidebar.querySelectorAll('.sidebar-link-label');
+        const icons = sidebar.querySelectorAll('.sidebar-link-icon');
+        const sidebarNav = sidebar.querySelector('.sidebar-nav');
+        const toggleArrowLeft = document.getElementById('toggleArrowLeft');
+        const toggleArrowRight = document.getElementById('toggleArrowRight');
+        const sidebarLogout = sidebar.querySelector('.sidebar-logout-link');
+        if (!sidebar) return;
+
+        sidebar.classList.toggle('sidebar-collapsed');
+
+        sidebar.style.scrollBehavior = "smooth";
+        sidebar.scrollTo({ top: 0, behavior: 'smooth' });
+
+        if (sidebar.classList.contains('sidebar-collapsed')) {
+          sidebar.classList.remove('w-64');
+          sidebar.classList.add('w-16');
+          sidebar.style.overflowX = 'hidden';
+          if (mainContent) mainContent.classList.remove('md:ml-64'), mainContent.classList.add('md:ml-16');
+
+          headerText && (headerText.style.opacity = '0');
+          navLabels.forEach(lab => lab.style.display = 'none');
+          toggleArrowLeft && (toggleArrowLeft.style.display = 'none');
+          toggleArrowRight && (toggleArrowRight.style.display = '');
+          sidebarNav && sidebarNav.classList.replace('p-4', 'p-2');
+          sidebar.classList.add('sidebar-is-really-collapsed');
+          if (sidebarLogout) {
+            sidebarLogout.style.paddingLeft = "0.5rem";
+            sidebarLogout.style.paddingRight = "0.5rem";
+          }
+        } else {
+          sidebar.classList.remove('w-16');
+          sidebar.classList.add('w-64');
+          sidebar.style.overflowX = 'hidden';
+          if (mainContent) mainContent.classList.remove('md:ml-16'), mainContent.classList.add('md:ml-64');
+
+          headerText && (headerText.style.opacity = '1');
+          navLabels.forEach(lab => lab.style.display = '');
+          toggleArrowLeft && (toggleArrowLeft.style.display = '');
+          toggleArrowRight && (toggleArrowRight.style.display = 'none');
+          sidebar.classList.remove('sidebar-is-really-collapsed');
+          sidebarNav && sidebarNav.classList.replace('p-2', 'p-4');
+          if (sidebarLogout) {
+            sidebarLogout.style.paddingLeft = "";
+            sidebarLogout.style.paddingRight = "";
+          }
+        }
+      }
+
+      window.addEventListener('resize', function () {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+        if (!sidebar) return;
+        sidebar.style.overflowX = 'hidden';
+        if (window.innerWidth < 768) {
+          sidebar.classList.remove('sidebar-collapsed', 'w-16');
+          sidebar.classList.add('w-64');
+          sidebarToggleBtn && (sidebarToggleBtn.style.display = "none");
+          if (mainContent) {
+            mainContent.classList.remove('md:ml-16');
+            mainContent.classList.add('md:ml-64');
+          }
+        } else {
+          sidebarToggleBtn && (sidebarToggleBtn.style.display = "inline-flex");
+        }
+      });
+      window.dispatchEvent(new Event('resize'));
+
+      function sidebarLinkClick(e) {
+        if (window.innerWidth < 768) {
+          closeSidebar();
+        }
+      }
+
+      const sidebarEl = document.getElementById('sidebar');
+      if (sidebarEl) {
+        sidebarEl.style.overflowX = 'hidden';
+        const links = sidebarEl.querySelectorAll('a[data-active], .sidebar-logout-link');
+        links.forEach(link => {
+          if (link.hasAttribute('data-active') && window.location.pathname.includes(link.getAttribute('data-active'))) {
+            link.classList.add('bg-blue-100', 'text-blue-600');
+          }
+          if (link.classList.contains('sidebar-logout-link')) {
+          }
+        });
+      }
+
+      const logoutMsg = document.getElementById('logoutMsg');
+      if (logoutMsg) setTimeout(() => logoutMsg.style.display = 'none', 2000);
+
+      <% if (user) { %>
+      (function () {
+        const mapping = [
+          { path: /^\/dashboard\/?$/, name: "Dashboard", url: "/dashboard" },
+          { path: /^\/users(\/.*)?$/, name: "Users", url: "/users" },
+          { path: /^\/settings\/?$/, name: "Settings", url: "/settings" },
+          { path: /^\/activity-logs(\/.*)?$/, name: "Activity Logs", url: "/activity-logs" },
+          { path: /^\/$/, name: "Home", url: "/" },
+        ];
+
+        function getBreadcrumbs() {
+          const path = window.location.pathname;
+          const trail = [{ name: "Home", url: "/" }];
+          for (let i = 0; i < mapping.length; i++) {
+            if (mapping[i].path.test(path)) {
+              if (mapping[i].name !== "Home") {
+                trail.push({
+                  name: mapping[i].name,
+                  url: mapping[i].url
+                });
+              }
+              break;
+            }
+          }
+          if (/^\/users\/\d+/.test(path)) {
+            trail.push({ name: "User Details", url: path });
+          }
+          if (/^\/activity-logs\/\d+/.test(path)) {
+            trail.push({ name: "Log Details", url: path });
+          }
+          return trail;
+        }
+
+        function renderBreadcrumbs() {
+          const bc = document.getElementById('breadcrumb');
+          if (!bc) return;
+          const trail = getBreadcrumbs();
+          let html = trail.map((item, idx) => {
+            if (idx < trail.length - 1) {
+              return `<a href="${item.url}" class="hover:underline text-blue-600">${item.name}</a> <span class="mx-1 opacity-60">/</span>`;
+            }
+            return `<span>${item.name}</span>`;
+          }).join('');
+          bc.innerHTML = html;
+        }
+
+        renderBreadcrumbs();
+      })();
+      <% } %>
+    </script>
+    <style>
+      #sidebar {
+        transition-property: width, transform, top, opacity;
+        scroll-behavior: smooth;
+        overflow-x: hidden !important;
+      }
+
+      #sidebar.sidebar-collapsed {
+        width: 4rem !important;
+        min-width: 4rem !important;
+        max-width: 4rem !important;
+        overflow-x: hidden !important;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-header-text {
+        transition: opacity 0.2s;
+        opacity: 0;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-link-label {
+        display: none !important;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-nav {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-link-icon svg {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-link-icon {
+        justify-content: center;
+        min-width: 1.25rem;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-logout-link {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        width: 100%;
+        justify-content: flex-start;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-logout-link .sidebar-link-label {
+        display: none !important;
+      }
+
+      #sidebarToggleBtn {
+        min-width: 24px;
+        min-height: 24px;
+        transition: opacity 0.2s;
+      }
+    </style>

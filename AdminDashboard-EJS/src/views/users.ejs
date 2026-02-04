@@ -1,0 +1,435 @@
+<%- include('layouts/header') %>
+
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+
+  <!-- Enhanced Top Bar -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
+    <div>
+      <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+        <i class="fas fa-users text-blue-400 animate-pulse"></i>
+        <span>Users Management</span>
+      </h1>
+      <span class="text-base text-gray-600 font-semibold">Manage team members, roles, & statuses easily</span>
+    </div>
+    <div class="flex gap-2 mt-4 sm:mt-0">
+      <button onclick="showBulkCreateModal()"
+        class="bg-purple-600 text-white px-4 py-2 text-sm rounded hover:bg-purple-700 font-semibold tracking-wide shadow transition">
+        <i class="fas fa-layer-group mr-2"></i>Bulk Create
+      </button>
+      <button onclick="bulkActivate()"
+        class="bg-green-600 text-white px-4 py-2 text-sm rounded hover:bg-green-700 font-semibold shadow transition">
+        <i class="fas fa-toggle-on mr-1"></i>Activate Selected
+      </button>
+      <button onclick="bulkDeactivate()"
+        class="bg-gray-600 text-white px-4 py-2 text-sm rounded hover:bg-gray-700 font-semibold shadow transition">
+        <i class="fas fa-toggle-off mr-1"></i>Deactivate
+      </button>
+      <button onclick="bulkDelete()"
+        class="bg-red-600 text-white px-4 py-2 text-sm rounded hover:bg-red-700 font-semibold shadow transition">
+        <i class="fas fa-trash mr-1"></i>Delete
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats Cards (Enhanced) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+    <div class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs text-blue-100 font-bold">Total Users</p>
+          <span id="totalUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+        </div>
+        <i class="fas fa-users text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"></i>
+      </div>
+    </div>
+    <div class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs text-green-100 font-bold">Active Users</p>
+          <span id="activeUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+        </div>
+        <i class="fas fa-user-check text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"></i>
+      </div>
+    </div>
+    <div class="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-100 font-bold">Inactive Users</p>
+          <span id="inactiveUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+        </div>
+        <i class="fas fa-user-slash text-5xl text-slate-200 opacity-80 group-hover:scale-125 transition"></i>
+      </div>
+    </div>
+    <div class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs text-indigo-100 font-bold">New Users (Today)</p>
+          <span id="newUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+        </div>
+        <i class="fas fa-user-plus text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search + Sort -->
+  <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-7">
+    <div class="flex gap-2 w-full sm:w-auto">
+      <input type="text" id="searchInput"
+        class="border border-blue-200 rounded px-3 py-2 sm:py-1 w-full sm:w-64 text-sm bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Search name or email..." />
+      <select id="sortSelect"
+        class="border border-blue-200 rounded px-2 py-2 sm:py-1 text-xs bg-blue-50 text-blue-700 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-400 font-mono cursor-pointer">
+        <option value="asc">Sort: Ascending</option>
+        <option value="desc">Sort: Descending</option>
+      </select>
+      <button onclick="onSearch()"
+        class="bg-blue-600 text-white px-4 py-2 sm:py-1 rounded text-sm hover:bg-blue-800 transition">
+        <i class="fas fa-search mr-1"></i>Search
+      </button>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
+    <table class="w-full min-w-[600px] border border-gray-200 text-sm">
+      <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white border-b border-gray-200">
+        <tr>
+          <th class="px-4 py-2">
+            <input type="checkbox" id="selectAll" onclick="toggleSelectAll(this)" class="cursor-pointer accent-blue-500">
+          </th>
+          <th class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest font-mono">#</th>
+          <th class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">Name</th>
+          <th class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">Email</th>
+          <th class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">Registered At</th>
+          <% if (user.role === 'admin') { %>
+            <th class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">Role</th>
+            <th class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">Status</th>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody id="usersTable" class="divide-y font-mono"></tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 text-center">
+    <button id="loadMoreBtn" onclick="fetchUsers()"
+      class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-2 rounded-lg text-sm font-semibold shadow hover:scale-105 hover:bg-blue-900 transition hidden w-full sm:w-auto">
+      Load More
+    </button>
+  </div>
+
+  <!-- Bulk Create Modal -->
+  <div id="bulkCreateModal"
+    class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div class="bg-white rounded-xl p-4 sm:p-6 w-[95%] max-w-md sm:max-w-lg shadow-2xl border border-blue-100">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold text-blue-900">Bulk Create Users</h2>
+        <button onclick="closeBulkCreateModal()" class="text-gray-400 hover:text-gray-700 text-lg">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <textarea id="bulkUsersInput"
+        class="w-full border border-blue-200 rounded p-2 text-sm h-32 resize-none bg-blue-50 font-mono"
+        placeholder='Example:
+[
+  {"name":"John","email":"john@test.com"},
+  {"name":"Jane","email":"jane@test.com"}
+]'></textarea>
+      <div class="flex flex-col sm:flex-row justify-end gap-2 mt-4">
+        <button onclick="closeBulkCreateModal()"
+          class="bg-gray-400 text-white px-3 py-2 sm:py-1 rounded text-sm hover:bg-gray-500 w-full sm:w-auto">
+          Cancel
+        </button>
+        <button onclick="submitBulkCreate()" 
+          class="bg-green-600 text-white px-3 py-2 sm:py-1 rounded text-sm hover:bg-green-700 w-full sm:w-auto font-bold shadow">
+          <i class="fas fa-plus-circle mr-1"></i>Create
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"></div>
+
+</div>
+
+<script>
+  const isAdmin = "<%= user.role %>" === "admin";
+  let cursor = null;
+  let search = '';
+  let indexOffset = 0;
+  const limit = 5;
+
+  async function safeParseJSON(res) {
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch (err) {
+      showToast('Session expired or server error. Please refresh!', 'error');
+      throw new Error('Invalid JSON: ' + text.slice(0, 100));
+    }
+  }
+
+  async function fetchUserStats() {
+    try {
+      const res = await fetch('/api/auth/all-users?limit=10000', {
+        headers: { 'Accept': 'application/json' }
+      });
+      const parsed = await safeParseJSON(res);
+
+      const { data = [], success } = parsed;
+      if (!success || !Array.isArray(data)) throw new Error("Stats failed");
+
+      // Stat counts
+      const total = data.length;
+      const active = data.filter(u => u.isActive).length;
+      const inactive = total - active;
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const newUsers = data.filter(u => (u.createdAt||'').slice(0, 10) === todayStr).length;
+
+      animateNumber('totalUsers', 0, total);
+      animateNumber('activeUsers', 0, active);
+      animateNumber('inactiveUsers', 0, inactive);
+      animateNumber('newUsers', 0, newUsers);
+
+    } catch (e) {
+      document.getElementById('totalUsers').textContent = '0';
+      document.getElementById('activeUsers').textContent = '0';
+      document.getElementById('inactiveUsers').textContent = '0';
+      document.getElementById('newUsers').textContent = '0';
+      showToast('Failed to fetch user stats', 'error');
+    }
+  }
+
+  // Animated counting helper
+  function animateNumber(id, from, to, duration = 900) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let start = null;
+    from = Number(from);
+    to = Number(to);
+    function step(ts) {
+      if (!start) start = ts;
+      let p = Math.min((ts - start) / duration, 1);
+      let val = Math.floor(from + (to - from) * p);
+      el.textContent = val;
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = to;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function escapeHTML(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#039;");
+  }
+
+  /* ================= FETCH USERS ================= */
+  async function fetchUsers(reset = false) {
+    const sort = document.getElementById('sortSelect').value;
+    let url = `/api/auth/all-users?limit=${limit}&sort=${sort}`;
+    if (cursor) url += `&cursor=${encodeURIComponent(cursor)}`;
+    if (search) url += `&search=${encodeURIComponent(search)}`;
+
+    try {
+      const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      const data = await safeParseJSON(res);
+
+      const tbody = document.getElementById('usersTable');
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+      if (!data.success) {
+        showToast('Failed to load users', 'error');
+        if (reset) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="${isAdmin ? 7 : 5}" class="text-center py-6 bg-white font-semibold text-red-600">
+                Failed to load users
+              </td>
+            </tr>
+          `;
+          loadMoreBtn.classList.add('hidden');
+        }
+        return;
+      }
+
+      if (reset) {
+        tbody.innerHTML = '';
+        indexOffset = 0;
+      }
+
+      if (data.data.length === 0 && reset) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="${isAdmin ? 7 : 5}" class="text-center py-6 bg-white text-gray-500 font-semibold">
+              User not found
+            </td>
+          </tr>
+        `;
+        loadMoreBtn.classList.add('hidden');
+        return;
+      }
+
+      data.data.forEach((user, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="px-4 py-3 align-middle">
+            <input type="checkbox" class="selectUser cursor-pointer accent-blue-500" data-user-id="${escapeHTML(user._id)}">
+          </td>
+          <td class="px-4 py-3 font-mono text-xs text-blue-900">${indexOffset + i + 1}.</td>
+          <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700 max-w-[120px] truncate" title="${escapeHTML(user.name)}">${escapeHTML(user.name)}</td>
+          <td class="px-4 py-3 font-mono text-sm text-blue-800 max-w-[180px] truncate" title="${escapeHTML(user.email)}">${escapeHTML(user.email)}</td>
+          <td class="px-4 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">${user.createdAt ? new Date(user.createdAt).toLocaleString() : '-'}</td>
+          ${isAdmin ? `
+            <td class="px-4 py-3 text-xs font-semibold text-blue-800 capitalize">${escapeHTML(user.role)}</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 text-xs rounded font-bold tracking-wider ${user.isActive ? 'bg-green-600 text-white' : 'bg-gray-400 text-white'}">
+                ${user.isActive ? 'Active' : 'Inactive'}
+              </span>
+            </td>
+          ` : ''}
+        `;
+        tbody.appendChild(tr);
+      });
+
+      indexOffset += data.data.length;
+      cursor = data.pageInfo && data.pageInfo.nextCursor || null;
+      loadMoreBtn.classList.toggle('hidden', !(data.pageInfo && data.pageInfo.hasNextPage));
+
+      if (reset) fetchUserStats();
+    } catch (e) {
+      showToast('Session expired or server error. Please refresh!', 'error');
+      const tbody = document.getElementById('usersTable');
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      if (reset) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="${isAdmin ? 7 : 5}" class="text-center py-6 bg-white font-semibold text-red-600">
+              Failed to load users
+            </td>
+          </tr>
+        `;
+        loadMoreBtn.classList.add('hidden');
+      }
+    }
+  }
+
+  /* ================= SEARCH ================= */
+  function onSearch() {
+    search = document.getElementById('searchInput').value.trim();
+    cursor = null;
+    fetchUsers(true);
+  }
+
+  /* ================= SELECT ================= */
+  function toggleSelectAll(master) {
+    document.querySelectorAll('.selectUser').forEach(cb => cb.checked = master.checked);
+  }
+
+  function getSelectedUserIds() {
+    return [...document.querySelectorAll('.selectUser:checked')]
+      .map(cb => cb.dataset.userId);
+  }
+
+  /* ================= BULK ACTION CORE ================= */
+  async function bulkAction(action) {
+    const ids = getSelectedUserIds();
+    if (!ids.length) {
+      showToast('Select at least one user', 'error');
+      return;
+    }
+    try {
+      const res = await fetch(`/api/auth/bulk-${action}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ userIds: ids })
+      });
+      const data = await safeParseJSON(res);
+      if (!data.success) {
+        showToast(`Bulk ${action} failed`, 'error');
+        return;
+      }
+      showToast(`Bulk ${action} successful`, 'success');
+      fetchUsers(true);
+    } catch {
+      showToast(`Bulk ${action} failed (server error)`, 'error');
+    }
+  }
+
+  /* ================= BULK FUNCTIONS (FIXED) ================= */
+  function bulkActivate() {
+    bulkAction('activate');
+  }
+  function bulkDeactivate() {
+    bulkAction('deactivate');
+  }
+  function bulkDelete() {
+    if (!confirm('Are you sure you want to delete selected users?')) return;
+    bulkAction('delete');
+  }
+
+  /* ================= TOAST ================= */
+  function showToast(msg, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = `fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow text-sm z-50 
+      ${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white`;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), 3000);
+  }
+
+  /* ================= BULK CREATE MODAL ================= */
+  function showBulkCreateModal() {
+    document.getElementById('bulkCreateModal').classList.remove('hidden');
+  }
+
+  function closeBulkCreateModal() {
+    document.getElementById('bulkCreateModal').classList.add('hidden');
+    document.getElementById('bulkUsersInput').value = '';
+  }
+
+  async function submitBulkCreate() {
+    const input = document.getElementById('bulkUsersInput').value.trim();
+    if (!input) {
+      showToast('Please enter users JSON', 'error');
+      return;
+    }
+
+    let users;
+    try { users = JSON.parse(input); }
+    catch {
+      showToast('Invalid JSON', 'error');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/auth/bulk-create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ users })
+      });
+      const data = await safeParseJSON(res);
+      if (!data.success) {
+        showToast('Bulk create failed', 'error');
+        return;
+      }
+      showToast('Users created successfully', 'success');
+      closeBulkCreateModal();
+      fetchUsers(true);
+    } catch {
+      showToast('Bulk create failed (server)', 'error');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchUsers(true);
+    fetchUserStats();
+  });
+
+</script>
+
+<%- include('layouts/footer') %>
