@@ -1,0 +1,432 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6"
+>
+  <div
+    class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3"
+  >
+    <div>
+      <h1
+        class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md"
+      >
+        <i class="fas fa-tachometer-alt text-blue-300 animate-pulse"></i>
+        <span>
+          <%= user.role==='admin' ? 'Admin Control Panel' : 'User Dashboard' %>
+        </span>
+      </h1>
+      <span class="text-base text-gray-600 font-semibold"
+        >Stay on top of your app, with live data & insights</span
+      >
+    </div>
+  </div>
+
+  <% if(user.role==='admin' ) { %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 mb-10">
+    <!-- Total Users -->
+    <div
+      class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden"
+    >
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold text-blue-100 drop-shadow">
+            Total Users
+          </p>
+          <span
+            id="totalUsers"
+            class="text-4xl font-extrabold text-white font-mono transition-all animate-pulse"
+            >0</span
+          >
+        </div>
+        <i
+          class="fas fa-users text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"
+        ></i>
+      </div>
+      <a
+        href="/users"
+        class="absolute right-2 bottom-2 text-xs text-blue-100 hover:underline"
+        >View All</a
+      >
+    </div>
+    <!-- Today's Registrations -->
+    <div
+      class="bg-gradient-to-br from-green-400 via-green-500 to-emerald-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden"
+    >
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold text-green-100 drop-shadow">
+            New Today
+          </p>
+          <span
+            id="newUsers"
+            class="text-4xl font-extrabold text-white font-mono transition-all animate-pulse"
+            >0</span
+          >
+        </div>
+        <i
+          class="fas fa-user-plus text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"
+        ></i>
+      </div>
+      <a
+        href="/users"
+        class="absolute right-2 bottom-2 text-xs text-green-100 hover:underline"
+        >View Details</a
+      >
+    </div>
+    <!-- Your Role -->
+    <div
+      class="bg-gradient-to-br from-yellow-400 via-orange-300 to-yellow-600 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden"
+    >
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold text-yellow-50 drop-shadow">Role</p>
+          <span
+            class="text-2xl font-bold text-yellow-50 capitalize font-mono tracking-wide bg-yellow-800/60 px-2 py-0.5 rounded"
+          >
+            <%= user.role %>
+          </span>
+        </div>
+        <i
+          class="fas fa-user-tag text-5xl text-yellow-200 opacity-80 group-hover:scale-125 transition"
+        ></i>
+      </div>
+      <a
+        href="/settings"
+        class="absolute right-2 bottom-2 text-xs text-yellow-50 hover:underline"
+        >Manage</a
+      >
+    </div>
+    <!-- Activity Logs (shortcut) -->
+    <div
+      class="bg-gradient-to-br from-slate-400 via-gray-400 to-blue-400 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden"
+    >
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold text-gray-100 drop-shadow">
+            Activity Logs
+          </p>
+          <span
+            id="totalLogs"
+            class="text-4xl font-extrabold text-white font-mono transition animate-pulse"
+            >-</span
+          >
+        </div>
+        <i
+          class="fas fa-clipboard-list text-5xl text-gray-200 opacity-80 group-hover:scale-125 transition"
+        ></i>
+      </div>
+      <a
+        href="/activity-logs"
+        class="absolute right-2 bottom-2 text-xs text-gray-100 hover:underline"
+        >Go to Logs</a
+      >
+    </div>
+  </div>
+  <% } %>
+
+  <!-- User Welcome Section -->
+  <div
+    class="bg-gradient-to-br from-white to-blue-50 rounded-3xl px-8 py-10 shadow-lg border-2 border-blue-100 mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-8"
+  >
+    <div>
+      <h2
+        class="text-2xl md:text-3xl font-extrabold text-blue-900 mb-2 flex items-center gap-3"
+      >
+        Welcome back, <span class="text-blue-600"> <%= user.name %> </span>!
+      </h2>
+      <p class="text-gray-600 text-base mb-1">
+        Here's a personalized snapshot of your account and the latest updates.
+      </p>
+      <div class="mt-3 flex flex-wrap gap-3">
+        <div
+          class="flex items-center gap-2 px-3 py-1 bg-blue-100 rounded-lg text-blue-900 font-mono text-xs"
+        >
+          <i class="fas fa-envelope text-blue-400"></i>
+          <%= user.email %>
+        </div>
+        <div
+          class="flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-lg text-blue-800 font-mono text-xs capitalize"
+        >
+          <i class="fas fa-user-shield"></i>
+          <%= user.role %>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:gap-14 mt-6 sm:mt-0 items-start">
+      <div class="text-sm mb-2">
+        <span class="block text-gray-400 font-semibold mb-1">Email</span>
+        <span class="font-mono text-blue-800"> <%= user.email %> </span>
+      </div>
+      <div class="text-sm">
+        <span class="block text-gray-400 font-semibold mb-1">Role</span>
+        <span class="capitalize font-mono text-blue-800">
+          <%= user.role %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <% if(user.role==='admin' ) { %>
+  <!-- Section: Latest Registered Users -->
+  <div class="bg-white rounded-xl shadow-lg p-7 mb-9 border border-blue-100">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+        <i class="fas fa-users text-blue-400"></i> Recent Users
+      </h2>
+      <a
+        href="/users"
+        class="font-medium text-blue-600 hover:text-blue-800 underline text-sm transition duration-300"
+        >Show All</a
+      >
+    </div>
+    <table
+      class="w-full min-w-[560px] border border-gray-200 rounded-lg overflow-hidden"
+    >
+      <thead
+        class="bg-gradient-to-r from-blue-50 via-blue-100 to-white border-b border-gray-200"
+      >
+        <tr>
+          <th
+            class="px-4 py-2 text-xs text-blue-600 font-bold uppercase text-left tracking-widest"
+          >
+            #
+          </th>
+          <th
+            class="px-4 py-2 text-xs text-blue-600 font-bold uppercase text-left tracking-widest"
+          >
+            Name
+          </th>
+          <th
+            class="px-4 py-2 text-xs text-blue-600 font-bold uppercase text-left tracking-widest"
+          >
+            Email
+          </th>
+          <th
+            class="px-4 py-2 text-xs text-blue-600 font-bold uppercase text-left tracking-widest"
+          >
+            Registered
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        id="usersTable"
+        class="bg-white divide-y divide-blue-50 text-sm rounded-b-xl"
+      ></tbody>
+    </table>
+    <p
+      id="noDataMsg"
+      class="text-center text-gray-500 py-4 hidden text-base font-mono"
+    >
+      No users found.
+    </p>
+  </div>
+
+  <!-- Section: User Registrations Chart -->
+  <div
+    class="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-lg border border-blue-100 p-7 mb-7"
+  >
+    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+      <i class="fas fa-chart-line text-blue-400"></i> Registrations Trend
+      <span class="text-gray-400 text-sm">(Last 7 Days)</span>
+    </h2>
+    <canvas
+      id="registrationsChart"
+      class="w-full h-56 sm:h-64 rounded"
+    ></canvas>
+  </div>
+  <% } %>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<% if (user.role==='admin' ) { %>
+<script>
+  // Shimmer skeletons on load
+  function showUserTableLoader() {
+    const tbody = document.getElementById("usersTable");
+    let skeletons = "";
+    for (let i = 0; i < 6; i++) {
+      skeletons += `<tr>
+        <td class="px-4 py-3"><div class="h-4 w-6 bg-blue-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-24 bg-blue-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-36 bg-blue-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-24 bg-blue-100 animate-pulse rounded"></div></td>
+      </tr>`;
+    }
+    tbody.innerHTML = skeletons;
+    document.getElementById("noDataMsg").classList.add("hidden");
+  }
+
+  async function fetchUsersAndMetrics() {
+    try {
+      showUserTableLoader();
+
+      // Users Data
+      const userRes = await fetch("/api/auth/all-users?limit=50");
+      const userData = await userRes.json();
+      if (!userData.success) {
+        document.getElementById("totalUsers").textContent = "0";
+        document.getElementById("newUsers").textContent = "0";
+        document.getElementById("usersTable").innerHTML = "";
+        document.getElementById("noDataMsg").classList.remove("hidden");
+        return;
+      }
+      const users = userData.data || [];
+
+      // Total users & today registrations
+      animateNumber("totalUsers", 0, users.length);
+      const today = new Date().toISOString().slice(0, 10);
+      const todayCount = users.filter(
+        (u) => u.createdAt && u.createdAt.slice(0, 10) === today
+      ).length;
+      animateNumber("newUsers", 0, todayCount);
+
+      // Latest users in table
+      const tbody = document.getElementById("usersTable");
+      const noDataMsg = document.getElementById("noDataMsg");
+      tbody.innerHTML = "";
+      if (users.length === 0) {
+        noDataMsg.classList.remove("hidden");
+      } else {
+        noDataMsg.classList.add("hidden");
+        const latestUsers = [...users]
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .slice(0, 6);
+        latestUsers.forEach((user, idx) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="px-4 py-3 font-mono text-xs text-blue-900">${
+              idx + 1
+            }.</td>
+            <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700">${escapeHTML(
+              user.name
+            )}</td>
+            <td class="px-4 py-3 font-mono text-sm text-blue-800">${escapeHTML(
+              user.email
+            )}</td>
+            <td class="px-4 py-3 font-mono text-xs text-slate-600">${
+              user.createdAt ? new Date(user.createdAt).toLocaleString() : "-"
+            }</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Registrations trend for last 7 days
+      const labels = [];
+      const counts = [];
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const dayStr = d.toISOString().slice(0, 10);
+        labels.push(dayStr);
+        counts.push(
+          users.filter(
+            (u) => u.createdAt && u.createdAt.slice(0, 10) === dayStr
+          ).length
+        );
+      }
+
+      const ctx = document.getElementById("registrationsChart");
+      if (window._regChart) window._regChart.destroy();
+      window._regChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Registrations",
+              data: counts,
+              fill: true,
+              backgroundColor: "rgba(59,130,246,0.13)",
+              borderColor: "rgba(59,130,246,1)",
+              borderWidth: 2,
+              tension: 0.32,
+              pointBackgroundColor: "rgba(59,130,246,0.90)",
+              pointRadius: 3,
+              pointHoverRadius: 3,
+              borderDash: [4, 0],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true, backgroundColor: "#2563eb" },
+          },
+          elements: {
+            point: { radius: 3, borderWidth: 2, borderColor: "white" },
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: "#2563eb",
+                font: { size: 13, family: "monospace", weight: "bold" },
+              },
+              grid: { color: "#e0e7ef33" },
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: "#dbeafe77" },
+              ticks: {
+                stepSize: 1,
+                color: "#334155",
+                font: { size: 13, family: "monospace" },
+              },
+            },
+          },
+        },
+      });
+
+      try {
+        const logsRes = await fetch("/api/auth/all-activity-logs");
+        const logsData = await logsRes.json();
+        animateNumber(
+          "totalLogs",
+          0,
+          logsData.success && Array.isArray(logsData.data)
+            ? logsData.data.length
+            : 0
+        );
+      } catch {
+        document.getElementById("totalLogs").textContent = "0";
+      }
+    } catch (e) {
+      document.getElementById("totalUsers").textContent = "0";
+      document.getElementById("newUsers").textContent = "0";
+      document.getElementById("totalLogs").textContent = "0";
+      document.getElementById("usersTable").innerHTML = "";
+      document.getElementById("noDataMsg").classList.remove("hidden");
+      console.error(e);
+    }
+  }
+
+  // Animated counting helper
+  function animateNumber(id, from, to, duration = 900) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let start = null;
+    from = Number(from);
+    to = Number(to);
+    function step(ts) {
+      if (!start) start = ts;
+      let p = Math.min((ts - start) / duration, 1);
+      let val = Math.floor(from + (to - from) * p);
+      el.textContent = val;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = to;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function escapeHTML(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  fetchUsersAndMetrics();
+</script>
+<% } %>

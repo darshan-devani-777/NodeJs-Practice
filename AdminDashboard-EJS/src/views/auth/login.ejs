@@ -1,200 +1,312 @@
-<%- include('../layouts/header') %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
   <!-- Toast Container -->
-  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col space-y-2"></div>
+  <div
+    id="toastContainer"
+    class="fixed top-4 right-4 z-50 flex flex-col space-y-2"
+  ></div>
 
-  <div class="flex justify-center items-center flex-grow p-4 sm:p-6">
-    <div class="w-full max-w-sm sm:max-w-md bg-white p-4 sm:p-6 rounded-xl shadow-lg">
+  <!-- Main Content -->
+  <div
+    class="flex items-center justify-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen overflow-hidden"
+  >
+    <div
+      class="w-full max-w-md bg-white/90 backdrop-blur-lg p-7 rounded-2xl shadow-2xl border border-gray-100 max-h-screen overflow-auto"
+    >
+      <!-- Logo / Heading -->
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-semibold text-gray-800">Login</h2>
+        <p class="text-sm text-gray-500 mt-1">
+          Login to continue to your dashboard
+        </p>
+      </div>
+
       <% if (expired) { %>
-        <div id="sessionExpiredMsg"
-          class="mb-4 p-3 text-sm text-yellow-800 bg-yellow-100 border border-yellow-300 rounded-md text-center">
-          🔒 Your session has expired. Please login again.
-        </div>
+      <div
+        id="sessionExpiredMsg"
+        class="mb-4 p-3 text-sm text-yellow-800 bg-yellow-100 border border-yellow-300 rounded-md text-center"
+      >
+        🔒 Your session has expired. Please login again.
+      </div>
+      <% } %> <% if (invalid) { %>
+      <div
+        class="mb-4 p-3 text-sm text-red-800 bg-red-100 border border-red-300 rounded-md text-center"
+      >
+        ⚠️ Invalid session. Please login again.
+      </div>
       <% } %>
-
-      <% if (invalid) { %>
-        <div class="mb-4 p-3 text-sm text-red-800 bg-red-100 border border-red-300 rounded-md text-center">
-          ⚠️ Invalid session. Please login again.
-        </div>
-      <% } %>
-
-      <h2 class="text-xl font-bold text-center mb-4 underline">Login</h2>
 
       <form id="loginForm" class="space-y-4">
         <!-- Email -->
         <div>
-          <input name="email" id="email" type="email" placeholder="Email"
-            class="w-full p-2 border rounded-md text-sm">
+          <label class="text-sm font-medium text-gray-600">Email</label>
+          <input
+            name="email"
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            class="mt-1 w-full p-2 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          />
           <p class="text-red-600 text-xs mt-1 hidden" id="emailError"></p>
         </div>
 
-        <!-- Password with Eye Icon -->
+        <!-- Password -->
         <div class="relative">
-          <input name="password" id="password" type="password" placeholder="Password"
-            class="w-full p-2 border rounded-md text-sm pr-10">
+          <label class="text-sm font-medium text-gray-600">Password</label>
+          <input
+            name="password"
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            class="mt-1 w-full p-2 border border-gray-300 rounded-lg text-sm pr-10 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+          />
 
-          <button type="button" id="togglePassword"
-            class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-900">
-            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          <button
+            type="button"
+            id="togglePassword"
+            class="absolute right-1 top-[38px] text-gray-500 hover:text-gray-800"
+          >
+            <svg
+              id="eyeIcon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
             </svg>
           </button>
 
           <p class="text-red-600 text-xs mt-1 hidden" id="passwordError"></p>
         </div>
 
-        <!-- Submit -->
-        <button type="submit"
-          class="w-full bg-blue-600 text-white py-2 rounded-md text-sm hover:bg-blue-700 transition">Login</button>
-        <!-- Removed inline success message -->
+        <!-- Login Button -->
+        <button
+          type="submit"
+          id="loginBtn"
+          class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg text-sm font-semibold hover:scale-[1.02] hover:shadow-lg transition flex items-center justify-center gap-2"
+        >
+          <svg
+            id="loginSpinner"
+            class="hidden animate-spin h-4 w-4 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            />
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v8z"
+            />
+          </svg>
+
+          <span id="loginBtnText">Login</span>
+        </button>
       </form>
 
-      <p class="text-center mt-4 text-sm">
-        <a href="/forgot-password" class="text-blue-600 hover:underline">Forgot password?</a>
-      </p>
+      <!-- Footer links -->
+      <div class="text-center mt-2 text-[13px]">
+        <a href="/forgot-password" class="text-blue-600 hover:underline"
+          >Forgot password?</a
+        >
+      </div>
     </div>
   </div>
 
   <script>
-    // --- Toast Functionality ---
-    function showToast(message, type = "info") {
-      const toastContainer = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className =
-        "px-4 py-2 rounded shadow text-sm animate-fade-in " +
-        (type === "success"
-          ? "bg-green-600 text-white"
-          : type === "error"
-          ? "bg-red-600 text-white"
-          : "bg-gray-800 text-white");
-      toast.textContent = message;
+        // --- Toast Functionality ---
+        function showToast(message, type = "info") {
+          const toastContainer = document.getElementById('toastContainer');
+          const toast = document.createElement('div');
+          toast.className =
+            "px-4 py-2 rounded shadow text-sm animate-fade-in " +
+            (type === "success"
+              ? "bg-green-600 text-white"
+              : type === "error"
+                ? "bg-red-600 text-white"
+                : "bg-gray-800 text-white");
+          toast.textContent = message;
 
-      toastContainer.appendChild(toast);
+          toastContainer.appendChild(toast);
 
-      setTimeout(() => {
-        toast.classList.add('animate-fade-out');
-        setTimeout(() => toast.remove(), 400);
-      }, 2400); // Show toast for 2.4s
-    }
+          setTimeout(() => {
+            toast.classList.add('animate-fade-out');
+            setTimeout(() => toast.remove(), 400);
+          }, 2400);
+        }
 
-    // Animations for toast
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0);} }
-      @keyframes fadeOut { from { opacity: 1;} to { opacity: 0; transform: translateY(-10px);} }
-      .animate-fade-in { animation: fadeIn 0.25s ease;}
-      .animate-fade-out { animation: fadeOut 0.4s ease forwards;}
-    `;
-    document.head.appendChild(style);
+        // Animations for toast
+        const style = document.createElement('style');
+        style.innerHTML = `
+          @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0);} }
+          @keyframes fadeOut { from { opacity: 1;} to { opacity: 0; transform: translateY(-10px);} }
+          .animate-fade-in { animation: fadeIn 0.25s ease;}
+          .animate-fade-out { animation: fadeOut 0.4s ease forwards;}
+        `;
+        document.head.appendChild(style);
 
-    // --- Toggle Password Show/Hide ---
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-    const eyeIcon = document.getElementById('eyeIcon');
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("reset") === "success") {
+          showToast("Password changed successfully. Please login 🔐", "success");
 
-    togglePassword.addEventListener('click', () => {
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.957 9.957 0 012.347-3.672m1.464-1.464A9.957 9.957 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.958 9.958 0 01-4.97 5.946M3 3l18 18"/>`;
-      } else {
-        passwordInput.type = 'password';
-        eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round"
-        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path stroke-linecap="round" stroke-linejoin="round"
-        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />`;
-      }
-    });
+          const url = new URL(window.location);
+          url.searchParams.delete("reset");
+          window.history.replaceState({}, document.title, url.pathname);
+        }
 
-    // --- Form Submission & Validation ---
-    const loginForm = document.getElementById('loginForm');
+        // --- Toggle Password Show/Hide ---
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
 
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      ['emailError', 'passwordError'].forEach(id => document.getElementById(id).classList.add('hidden'));
-      ['email', 'password'].forEach(id => document.getElementById(id).classList.remove('border-red-500'));
-
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-
-      let hasError = false;
-
-      if (!email) {
-        const el = document.getElementById('emailError');
-        el.textContent = 'Email is required';
-        el.classList.remove('hidden');
-        document.getElementById('email').classList.add('border-red-500');
-        showToast('Email is required', 'error');
-        hasError = true;
-      }
-
-      if (!password) {
-        const el = document.getElementById('passwordError');
-        el.textContent = 'Password is required';
-        el.classList.remove('hidden');
-        document.getElementById('password').classList.add('border-red-500');
-        showToast('Password is required', 'error');
-        hasError = true;
-      }
-
-      if (hasError) return;
-
-      try {
-        const res = await fetch('/api/auth/login-user', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+        togglePassword.addEventListener('click', () => {
+          if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.957 9.957 0 012.347-3.672m1.464-1.464A9.957 9.957 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.958 9.958 0 01-4.97 5.946M3 3l18 18"/>`;
+          } else {
+            passwordInput.type = 'password';
+            eyeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />`;
+          }
         });
 
-        const data = await res.json();
+        // --- Form Submission & Validation ---
+        const loginForm = document.getElementById('loginForm');
 
-        if (data.success) {
-          showToast(data.message, 'success');
-          Array.from(loginForm.elements).forEach(el => el.disabled = true);
-          setTimeout(() => {
-            window.location.href = '/dashboard';
-          }, 1500);
-        } else {
-          const msg = data.message.toLowerCase();
-          if (msg.includes('email')) {
+        loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          ['emailError', 'passwordError'].forEach(id => document.getElementById(id).classList.add('hidden'));
+          ['email', 'password'].forEach(id => document.getElementById(id).classList.remove('border-red-500'));
+
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value;
+
+          let hasError = false;
+
+          if (!email) {
             const el = document.getElementById('emailError');
-            el.textContent = data.message;
+            el.textContent = 'Email is required';
             el.classList.remove('hidden');
             document.getElementById('email').classList.add('border-red-500');
-            showToast(data.message, 'error');
-          } else if (msg.includes('password')) {
+            showToast('Email is required', 'error');
+            hasError = true;
+          }
+
+          if (!password) {
             const el = document.getElementById('passwordError');
-            el.textContent = data.message;
+            el.textContent = 'Password is required';
             el.classList.remove('hidden');
             document.getElementById('password').classList.add('border-red-500');
-            showToast(data.message, 'error');
-          } else {
-            showToast(data.message, 'error');
-            alert(data.message);
+            showToast('Password is required', 'error');
+            hasError = true;
           }
-        }
-      } catch (err) {
-        showToast('Server error', 'error');
-        alert('Server error');
-      }
-    });
 
-    const expiredMsg = document.getElementById('sessionExpiredMsg');
-    <% if (expired) { %>
-      showToast('Your session has expired. Please login again.', 'error');
+          if (hasError) return;
+
+          const loginBtn = document.getElementById('loginBtn');
+          const loginBtnText = document.getElementById('loginBtnText');
+          const spinner = document.getElementById('loginSpinner');
+
+          loginBtn.disabled = true;
+          spinner.classList.remove('hidden');
+          loginBtnText.textContent = "Logging...";
+
+          try {
+            const res = await fetch('/api/auth/login-user', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+              setTimeout(() => {
+                window.location.href = '/dashboard';
+              }, 1500);
+            }
+            else {
+              loginBtn.disabled = false;
+              spinner.classList.add('hidden');
+              loginBtnText.textContent = "Login";
+
+              const msg = data.message.toLowerCase();
+              if (msg.includes('email')) {
+                const el = document.getElementById('emailError');
+                el.textContent = data.message;
+                el.classList.remove('hidden');
+                document.getElementById('email').classList.add('border-red-500');
+                showToast(data.message, 'error');
+              } else if (msg.includes('password')) {
+                const el = document.getElementById('passwordError');
+                el.textContent = data.message;
+                el.classList.remove('hidden');
+                document.getElementById('password').classList.add('border-red-500');
+                showToast(data.message, 'error');
+              } else {
+                showToast(data.message, 'error');
+                alert(data.message);
+              }
+            }
+          } catch (err) {
+            loginBtn.disabled = false;
+            spinner.classList.add('hidden');
+            loginBtnText.textContent = "Login";
+
+            showToast('Server error', 'error');
+            alert('Server error');
+          }
+        });
+
+        const expiredMsg = document.getElementById('sessionExpiredMsg');
+        <% if (expired) { %>
+          showToast('Your session has expired. Please login again.', 'error');
+        <% } %>
+        <% if (invalid) { %>
+          showToast('Invalid session. Please login again.', 'error');
+        <% } %>
+        <% if (success) { %>
+          showToast('<%= success %>', 'success');
+
+          const url = new URL(window.location);
+          url.searchParams.delete('success');
+          window.history.replaceState({}, document.title, url.pathname);
     <% } %>
-    <% if (invalid) { %>
-      showToast('Invalid session. Please login again.', 'error');
-    <% } %>
-    if (expiredMsg) {
-      setTimeout(() => {
-        expiredMsg.classList.add('hidden');
-        const url = new URL(window.location);
-        url.searchParams.delete('expired');
-        window.history.replaceState({}, document.title, url.pathname);
-      }, 3000);
-    }
+        if (expiredMsg) {
+          setTimeout(() => {
+            expiredMsg.classList.add('hidden');
+            const url = new URL(window.location);
+            url.searchParams.delete('expired');
+            window.history.replaceState({}, document.title, url.pathname);
+          }, 3000);
+        }
   </script>
+</html>

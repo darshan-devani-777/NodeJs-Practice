@@ -1,15 +1,15 @@
-const User = require('../models/User');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const getValidationError = require('../utils/getValidationError');
-const nodemailer = require('nodemailer');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const logActivity = require('../utils/activityLogger');
-const Activitylogs = require('../models/Activitylogs');
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const getValidationError = require("../utils/getValidationError");
+const nodemailer = require("nodemailer");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const logActivity = require("../utils/activityLogger");
+const Activitylogs = require("../models/Activitylogs");
 
 const generateToken = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
 /* ------------------- REGISTER USER ------------------- */
 exports.registerUser = async (req, res) => {
@@ -18,15 +18,15 @@ exports.registerUser = async (req, res) => {
 
     await logActivity({
       user: user._id,
-      action: 'REGISTER',
+      action: "REGISTER",
       description: `User registered with email ${user.email}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
     return res.status(201).json({
       success: true,
-      message: 'User registered successfully',
+      message: "User registered successfully",
       data: { id: user._id, name: user.name, email: user.email },
     });
   } catch (error) {
@@ -34,10 +34,10 @@ exports.registerUser = async (req, res) => {
     const message = getValidationError(error);
     await logActivity({
       user: null,
-      action: 'REGISTER',
+      action: "REGISTER",
       description: `User registration failed with email ${req.body.email}`,
       req,
-      status: 'failed'
+      status: "failed",
     });
     return res.status(400).json({ success: false, message });
   }
@@ -51,41 +51,41 @@ exports.loginUser = async (req, res) => {
     if (!email || !password)
       return res
         .status(400)
-        .json({ success: false, message: 'All fields are required' });
+        .json({ success: false, message: "All fields are required" });
 
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select("+password");
 
     if (!user || !(await user.matchPassword(password)))
       return res
         .status(400)
-        .json({ success: false, message: 'Invalid email or password' });
+        .json({ success: false, message: "Invalid email or password" });
 
     const token = generateToken(user._id);
-    res.cookie('token', token, { httpOnly: true });
+    res.cookie("token", token, { httpOnly: true });
 
     await logActivity({
       user: user._id,
-      action: 'LOGIN',
+      action: "LOGIN",
       description: `User logged in with email ${user.email}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
     return res.status(200).json({
       success: true,
-      message: 'User login successfully',
+      message: "User login successfully",
       data: { id: user._id, name: user.name, email: user.email, token },
     });
   } catch (error) {
     console.error(error);
     await logActivity({
       user: null,
-      action: 'LOGIN',
+      action: "LOGIN",
       description: `User login failed with email ${req.body.email}`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    return res.status(500).json({ success: false, message: 'Server error' });
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -97,22 +97,24 @@ exports.forgotPassword = async (req, res) => {
     if (!email)
       return res
         .status(400)
-        .json({ success: false, message: 'Email is required' });
+        .json({ success: false, message: "Email is required" });
 
     const user = await User.findOne({ email });
     if (!user)
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
 
-    const resetToken = crypto.randomBytes(20).toString('hex');
+    const resetToken = crypto.randomBytes(20).toString("hex");
     user.resetPasswordToken = crypto
-      .createHash('sha256')
+      .createHash("sha256")
       .update(resetToken)
-      .digest('hex');
+      .digest("hex");
     user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 min
     await user.save();
 
     const resetUrl = `${req.protocol}://${req.get(
-      'host'
+      "host"
     )}/reset-password/${resetToken}`;
 
     const transporter = nodemailer.createTransport({
@@ -136,16 +138,16 @@ exports.forgotPassword = async (req, res) => {
     await transporter.sendMail({
       from: `"Admin Dashboard" <${process.env.EMAIL_USER}>`,
       to: user.email,
-      subject: 'Password Reset Request',
+      subject: "Password Reset Request",
       html: message,
     });
 
     await logActivity({
       user: user._id,
-      action: 'FORGOT_PASSWORD',
+      action: "FORGOT_PASSWORD",
       description: `Password reset link sent to ${user.email}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
     return res.status(200).json({
@@ -156,12 +158,12 @@ exports.forgotPassword = async (req, res) => {
     console.error(error);
     await logActivity({
       user: null,
-      action: 'FORGOT_PASSWORD',
+      action: "FORGOT_PASSWORD",
       description: `Password reset link failed to send to ${req.body.email}`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    return res.status(500).json({ success: false, message: 'Server error' });
+    return res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -170,29 +172,29 @@ exports.resetPassword = async (req, res) => {
   try {
     const { password, confirmPassword } = req.body;
     const resetPasswordToken = crypto
-      .createHash('sha256')
+      .createHash("sha256")
       .update(req.params.token)
-      .digest('hex');
+      .digest("hex");
 
     const user = await User.findOne({
       resetPasswordToken,
       resetPasswordExpire: { $gt: Date.now() },
-    }).select('+password');
+    }).select("+password");
 
     if (!user)
       return res
         .status(400)
-        .json({ success: false, message: 'Invalid or expired token' });
+        .json({ success: false, message: "Invalid or expired token" });
 
     if (!password || !confirmPassword)
       return res
         .status(400)
-        .json({ success: false, message: 'All fields are required' });
+        .json({ success: false, message: "All fields are required" });
 
     if (password !== confirmPassword)
       return res
         .status(400)
-        .json({ success: false, message: 'Passwords do not match' });
+        .json({ success: false, message: "Passwords do not match" });
 
     user.password = password;
     user.resetPasswordToken = undefined;
@@ -202,24 +204,24 @@ exports.resetPassword = async (req, res) => {
 
     await logActivity({
       user: user._id,
-      action: 'RESET_PASSWORD',
+      action: "RESET_PASSWORD",
       description: `Password updated for user ${user.email}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
     return res
       .status(200)
-      .json({ success: true, message: 'Password updated successfully' });
+      .json({ success: true, message: "Password updated successfully" });
   } catch (error) {
     console.error(error);
     const message = getValidationError(error);
     await logActivity({
       user: null,
-      action: 'RESET_PASSWORD',
+      action: "RESET_PASSWORD",
       description: `Password update failed for user ${req.body.email}`,
       req,
-      status: 'failed'
+      status: "failed",
     });
     return res.status(400).json({ success: false, message });
   }
@@ -230,15 +232,15 @@ exports.getAllUsers = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 5;
     const cursor = req.query.cursor;
-    const search = req.query.search || '';
-    const order = req.query.sort === 'asc' ? 1 : -1;
+    const search = req.query.search || "";
+    const order = req.query.sort === "asc" ? 1 : -1;
 
     const query = {};
 
     if (search) {
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { email: { $regex: search, $options: 'i' } },
+        { name: { $regex: search, $options: "i" } },
+        { email: { $regex: search, $options: "i" } },
       ];
     }
 
@@ -250,7 +252,7 @@ exports.getAllUsers = async (req, res) => {
     }
 
     const users = await User.find(query)
-      .select('_id name email role isActive createdAt')
+      .select("_id name email role isActive createdAt")
       .sort({ _id: order })
       .limit(limit + 1);
 
@@ -265,12 +267,11 @@ exports.getAllUsers = async (req, res) => {
       data: users,
       pageInfo: { hasNextPage, nextCursor, limit },
     });
-
   } catch (error) {
-    console.error('❌ getAllUsers error:', error.message);
+    console.error("❌ getAllUsers error:", error.message);
     return res.status(500).json({
       success: false,
-      message: 'Server error',
+      message: "Server error",
     });
   }
 };
@@ -282,19 +283,26 @@ exports.updateProfile = async (req, res) => {
     const { userId, name, email, password, role } = req.body;
 
     if (!loggedInUser) {
-      return res.status(401).json({ success: false, message: 'Unauthorized' });
+      return res.status(401).json({ success: false, message: "Unauthorized" });
     }
 
-    const User = require('../models/User');
+    const User = require("../models/User");
     const userToUpdate = userId ? await User.findById(userId) : loggedInUser;
 
     if (!userToUpdate) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     if (role && userToUpdate._id.toString() !== loggedInUser._id.toString()) {
-      if (loggedInUser.role !== 'admin') {
-        return res.status(403).json({ success: false, message: 'Forbidden: Only admins can change roles' });
+      if (loggedInUser.role !== "admin") {
+        return res
+          .status(403)
+          .json({
+            success: false,
+            message: "Forbidden: Only admins can change roles",
+          });
       }
       userToUpdate.role = role;
     }
@@ -303,50 +311,52 @@ exports.updateProfile = async (req, res) => {
     userToUpdate.email = email || userToUpdate.email;
 
     let passwordChanged = false;
-    if (password && password.trim() !== '') {
+    if (password && password.trim() !== "") {
       userToUpdate.password = password;
       passwordChanged = true;
     }
 
     await userToUpdate.save();
 
-    if (passwordChanged && userToUpdate._id.toString() === loggedInUser._id.toString()) {
-      res.clearCookie('token');
+    if (
+      passwordChanged &&
+      userToUpdate._id.toString() === loggedInUser._id.toString()
+    ) {
+      res.clearCookie("token");
       return res.json({
         success: true,
-        message: 'Password changed. Please login again.',
-        redirect: '/login'
+        message: "Password changed. Please login again.",
+        redirect: "/login",
       });
     }
 
     await logActivity({
       user: userToUpdate._id,
-      action: 'UPDATE_PROFILE',
+      action: "UPDATE_PROFILE",
       description: `Profile updated for user ${userToUpdate.email}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
     res.json({
       success: true,
-      message: 'Profile updated successfully',
+      message: "Profile updated successfully",
       data: {
         name: userToUpdate.name,
         email: userToUpdate.email,
-        role: userToUpdate.role
-      }
+        role: userToUpdate.role,
+      },
     });
-
   } catch (err) {
-    console.error('Update Profile Error:', err);
+    console.error("Update Profile Error:", err);
     await logActivity({
       user: null,
-      action: 'UPDATE_PROFILE',
+      action: "UPDATE_PROFILE",
       description: `Profile update failed for user ${req.body.email}`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -355,34 +365,49 @@ exports.toggleUserStatus = async (req, res) => {
   try {
     const { userId, isActive } = req.body;
 
-    if (!userId || typeof isActive !== 'boolean') {
-      return res.status(400).json({ success: false, message: 'Invalid request' });
+    if (!userId || typeof isActive !== "boolean") {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid request" });
     }
 
-    const user = await User.findByIdAndUpdate(userId, { isActive }, { new: true });
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { isActive },
+      { new: true }
+    );
 
-    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+    if (!user)
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
 
     await logActivity({
       user: user._id,
-      action: 'TOGGLE_USER_STATUS',
-      description: `User ${isActive ? 'activated' : 'deactivated'} with userId ${userId}`,
+      action: "TOGGLE_USER_STATUS",
+      description: `User ${
+        isActive ? "activated" : "deactivated"
+      } with userId ${userId}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
-    return res.status(200).json({ success: true, message: `User ${isActive ? 'activated' : 'deactivated'} successfully` });
-
+    return res
+      .status(200)
+      .json({
+        success: true,
+        message: `User ${isActive ? "activated" : "deactivated"} successfully`,
+      });
   } catch (error) {
-    console.error('❌ toggleUserStatus error:', error.message);
+    console.error("❌ toggleUserStatus error:", error.message);
     await logActivity({
       user: null,
-      action: 'TOGGLE_USER_STATUS',
+      action: "TOGGLE_USER_STATUS",
       description: `User status toggle failed for userId ${userId}`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -391,30 +416,34 @@ exports.bulkActivateUsers = async (req, res) => {
   try {
     const { userIds } = req.body;
 
-    if (!userIds || !userIds.length) return res.status(400).json({ success: false, message: 'No users selected' });
+    if (!userIds || !userIds.length)
+      return res
+        .status(400)
+        .json({ success: false, message: "No users selected" });
 
     await User.updateMany({ _id: { $in: userIds } }, { isActive: true });
 
     await logActivity({
       user: req.user._id,
-      action: 'BULK_ACTIVATE_USERS',
+      action: "BULK_ACTIVATE_USERS",
       description: `Bulk activate users with userIds ${userIds}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
-    res.status(200).json({ success: true, message: 'Users activated successfully' });
-
+    res
+      .status(200)
+      .json({ success: true, message: "Users activated successfully" });
   } catch (error) {
-    console.error('❌ bulkActivateUsers error:', error.message);
+    console.error("❌ bulkActivateUsers error:", error.message);
     await logActivity({
       user: null,
-      action: 'BULK_ACTIVATE_USERS',
+      action: "BULK_ACTIVATE_USERS",
       description: `Bulk activate users failed`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -423,30 +452,34 @@ exports.bulkDeactivateUsers = async (req, res) => {
   try {
     const { userIds } = req.body;
 
-    if (!userIds || !userIds.length) return res.status(400).json({ success: false, message: 'No users selected' });
+    if (!userIds || !userIds.length)
+      return res
+        .status(400)
+        .json({ success: false, message: "No users selected" });
 
     await User.updateMany({ _id: { $in: userIds } }, { isActive: false });
 
     await logActivity({
       user: req.user._id,
-      action: 'BULK_DEACTIVATE_USERS',
+      action: "BULK_DEACTIVATE_USERS",
       description: `Bulk deactivate users with userIds ${userIds}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
-    res.status(200).json({ success: true, message: 'Users deactivated successfully' });
-
+    res
+      .status(200)
+      .json({ success: true, message: "Users deactivated successfully" });
   } catch (error) {
-    console.error('❌ bulkDeactivateUsers error:', error.message);
+    console.error("❌ bulkDeactivateUsers error:", error.message);
     await logActivity({
       user: null,
-      action: 'BULK_DEACTIVATE_USERS',
+      action: "BULK_DEACTIVATE_USERS",
       description: `Bulk deactivate users failed`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -455,30 +488,34 @@ exports.bulkDeleteUsers = async (req, res) => {
   try {
     const { userIds } = req.body;
 
-    if (!userIds || !userIds.length) return res.status(400).json({ success: false, message: 'No users selected' });
+    if (!userIds || !userIds.length)
+      return res
+        .status(400)
+        .json({ success: false, message: "No users selected" });
 
     await User.deleteMany({ _id: { $in: userIds } });
 
     await logActivity({
       user: req.user._id,
-      action: 'BULK_DELETE_USERS',
+      action: "BULK_DELETE_USERS",
       description: `Bulk delete users with userIds ${userIds}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
-    res.status(200).json({ success: true, message: 'Users deleted successfully' });
-
+    res
+      .status(200)
+      .json({ success: true, message: "Users deleted successfully" });
   } catch (error) {
-    console.error('❌ bulkDeleteUsers error:', error.message);
+    console.error("❌ bulkDeleteUsers error:", error.message);
     await logActivity({
       user: null,
-      action: 'BULK_DELETE_USERS',
+      action: "BULK_DELETE_USERS",
       description: `Bulk delete users failed`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -487,12 +524,14 @@ exports.bulkCreateUsers = async (req, res) => {
   try {
     const { users } = req.body;
     if (!users || !users.length) {
-      return res.status(400).json({ success: false, message: 'No users provided' });
+      return res
+        .status(400)
+        .json({ success: false, message: "No users provided" });
     }
 
     const usersWithHashedPasswords = await Promise.all(
       users.map(async (u) => {
-        const plainPassword = u.password || u.name.replace(/\s/g, '') + '@123';
+        const plainPassword = u.password || u.name.replace(/\s/g, "") + "@123";
         const hashedPassword = await bcrypt.hash(plainPassword, 10);
         return {
           ...u,
@@ -505,24 +544,27 @@ exports.bulkCreateUsers = async (req, res) => {
 
     await logActivity({
       user: req.user._id,
-      action: 'BULK_CREATE_USERS',
-      description: `Bulk created users: ${users.map(u => u.email).join(', ')}`,
+      action: "BULK_CREATE_USERS",
+      description: `Bulk created users: ${users
+        .map((u) => u.email)
+        .join(", ")}`,
       req,
-      status: 'success'
+      status: "success",
     });
 
-
-    res.status(200).json({ success: true, message: 'Users created successfully' });
+    res
+      .status(200)
+      .json({ success: true, message: "Users created successfully" });
   } catch (error) {
-    console.error('❌ bulkCreateUsers error:', error.message);
+    console.error("❌ bulkCreateUsers error:", error.message);
     await logActivity({
       user: null,
-      action: 'BULK_CREATE_USERS',
+      action: "BULK_CREATE_USERS",
       description: `Bulk create users failed`,
       req,
-      status: 'failed'
+      status: "failed",
     });
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
@@ -530,19 +572,18 @@ exports.bulkCreateUsers = async (req, res) => {
 exports.getAllActivityLogs = async (req, res) => {
   try {
     const activityLogs = await Activitylogs.find()
-      .populate('user', 'name email role')
+      .populate("user", "name email role")
       .sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
-      data: activityLogs
+      data: activityLogs,
     });
-
   } catch (error) {
-    console.error('❌ getAllActivityLogs error:', error.message);
+    console.error("❌ getAllActivityLogs error:", error.message);
     res.status(500).json({
       success: false,
-      message: 'Server error'
+      message: "Server error",
     });
   }
 };

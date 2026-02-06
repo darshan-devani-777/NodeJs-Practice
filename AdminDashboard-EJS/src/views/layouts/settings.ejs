@@ -1,0 +1,257 @@
+<div class="flex flex-col min-h-screen">
+  <!-- Main content -->
+  <main
+    class="flex-1 p-6 bg-gradient-to-br from-blue-50 via-white to-slate-100"
+  >
+    <!-- Top Bar -->
+    <div
+      class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-2"
+    >
+      <div>
+        <h1
+          class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-3 drop-shadow-md"
+        >
+          <i class="fas fa-user-circle text-blue-400 animate-pulse"></i>
+          <span>Profile</span>
+        </h1>
+        <span class="text-base text-gray-600 font-semibold"
+          >Manage your account details and settings</span
+        >
+      </div>
+    </div>
+
+    <!-- Main Flex: Profile card + Form -->
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- LEFT: PROFILE CARD -->
+      <div class="lg:w-1/4 w-full">
+        <div
+          class="bg-white rounded-2xl shadow-lg p-6 text-center border-t-4 border-blue-500 transition hover:shadow-xl"
+        >
+          <img
+            id="profileAvatar"
+            class="w-20 h-20 rounded-full mx-auto border-4 border-blue-100 object-cover transition-transform hover:scale-105"
+            alt="Profile"
+          />
+          <h3 class="mt-4 text-xl font-semibold text-blue-900">
+            <%= user.name %>
+          </h3>
+          <p class="text-sm text-gray-500"><%= user.email %></p>
+
+          <button
+            id="newAvatarBtn"
+            type="button"
+            class="mt-5 text-[12px] text-blue-600 font-medium hover:text-blue-800 hover:underline transition duration-300"
+          >
+            Change Photo
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div
+        class="lg:w-3/4 w-full bg-white rounded-2xl shadow-lg border border-blue-100 transition hover:shadow-xl"
+      >
+        <!-- Header -->
+        <div class="border-b px-6 py-4">
+          <h2 class="font-semibold text-blue-900 text-lg underline">
+            Settings
+          </h2>
+        </div>
+
+        <!-- FORM -->
+        <div class="p-6">
+          <form id="profileForm" class="space-y-5 max-w-xl">
+            <!-- Name -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+              <label class="sm:w-32 text-sm font-medium text-gray-600"
+                >Name:</label
+              >
+              <input
+                type="text"
+                name="name"
+                value="<%= user.name %>"
+                required
+                class="flex-1 border border-blue-200 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition bg-blue-50"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+              <label class="sm:w-32 text-sm font-medium text-gray-600"
+                >Email:</label
+              >
+              <input type="email" name="email" value="<%= user.email %>"
+              class="flex-1 border border-blue-200 px-4 py-2 rounded-lg text-sm
+              focus:outline-none focus:ring-2 focus:ring-blue-400 transition
+              bg-blue-50 <%= user.role === 'admin' ? 'cursor-not-allowed' : ''
+              %>" <%=user.role==='admin' ? 'readonly' : 'required' %> />
+            </div>
+
+            <!-- Password -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+              <label class="sm:w-32 text-sm font-medium text-gray-600"
+                >Password:</label
+              >
+              <div class="relative flex-1">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Leave blank if not changing"
+                  class="w-full border border-blue-200 px-4 py-2 rounded-lg text-sm pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400 transition bg-blue-50"
+                />
+                <button
+                  type="button"
+                  id="togglePassword"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
+                  aria-label="Toggle password visibility"
+                >
+                  <svg
+                    id="eyeIcon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="flex justify-end mt-4">
+              <button
+                type="submit"
+                id="updateBtn"
+                class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-blue-700 shadow-md transition flex items-center justify-center gap-2"
+              >
+                <!-- Spinner -->
+                <svg
+                  id="updateSpinner"
+                  class="hidden animate-spin h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  />
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  />
+                </svg>
+
+                <span id="updateBtnText">Update</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Toast -->
+<div
+  id="toast"
+  class="fixed top-6 right-4 px-4 py-2 rounded shadow hidden text-white text-sm z-50"
+></div>
+
+<script>
+  // Toast
+  function showToast(msg, type = "success") {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.className =
+      "fixed top-6 right-4 px-4 py-2 rounded shadow text-sm z-50 " +
+      (type === "success" ? "bg-green-500" : "bg-red-500");
+    toast.classList.remove("hidden");
+    setTimeout(() => toast.classList.add("hidden"), 3000);
+  }
+
+  // Password toggle
+  const passwordInput = document.getElementById("password");
+  const togglePassword = document.getElementById("togglePassword");
+  const eyeIcon = document.getElementById("eyeIcon");
+
+  togglePassword.addEventListener("click", () => {
+    const type = passwordInput.type === "password" ? "text" : "password";
+    passwordInput.type = type;
+
+    eyeIcon.innerHTML =
+      type === "password"
+        ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />`
+        : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a10.05 10.05 0 012.42-4.387m3.123-2.776A9.957 9.957 0 0112 5c4.477 0 8.268 2.943 9.542 7a9.956 9.956 0 01-1.748 3.106M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`;
+  });
+
+  // Avatar random
+  const avatarImg = document.getElementById("profileAvatar");
+  const newAvatarBtn = document.getElementById("newAvatarBtn");
+
+  function setRandomAvatar() {
+    avatarImg.src = `https://robohash.org/${Date.now()}.png?size=150x150`;
+  }
+  setRandomAvatar();
+  newAvatarBtn.addEventListener("click", setRandomAvatar);
+
+  // Form submission
+  const form = document.getElementById("profileForm");
+  const updateBtn = document.getElementById("updateBtn");
+  const updateSpinner = document.getElementById("updateSpinner");
+  const updateBtnText = document.getElementById("updateBtnText");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Show loader
+    updateBtn.disabled = true;
+    updateSpinner.classList.remove("hidden");
+    updateBtnText.textContent = "Updating...";
+
+    const body = Object.fromEntries(new FormData(form).entries());
+    if ("<%= user.role %>" === "admin") delete body.email;
+
+    try {
+      await new Promise((r) => setTimeout(r, 2000));
+
+      const res = await fetch("/api/auth/update-profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      showToast(data.message, data.success ? "success" : "error");
+    } catch {
+      showToast("Something went wrong", "error");
+    }
+
+    updateSpinner.classList.add("hidden");
+    updateBtnText.textContent = "Update";
+    updateBtn.disabled = false;
+  });
+</script>
