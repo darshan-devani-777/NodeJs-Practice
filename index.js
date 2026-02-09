@@ -2116,5 +2116,29 @@
 // Monitoring	                 Control quality & cost
 // Prompt versioning	         Stable production AI
 
+
+// ** LangChain Framework **
+
+- Read and explored the official LangChain documentation
+- Understood what LangChain is and why it’s used for building LLM-powered applications
+- R&D on configuring LangChain in Node.js
+- Learned how to wrap and integrate different LLM models (OpenAI, Anthropic, etc.) using LangChain
+- Overview of LangChain architecture and execution flow
+- Studied Chains for sequential and conditional LLM workflows
+- Learned about Prompt Templates and dynamic prompt construction
+- Understood LLM vs Chat Models and their usage patterns
+- Overview of Agents and how they decide which tool/action to call
+- Studied Tools and external API integrations
+- Learned about Memory (conversation memory, buffer memory, vector-based memory)
+- Overview of Retrieval-Augmented Generation (RAG) using LangChain
+- Understood Document Loaders for ingesting PDFs, text, web data, etc.
+- Studied Text Splitters and chunking strategies
+- Learned about Embeddings and vector representations
+- Overview of Vector Stores (FAISS, Pinecone, Chroma, etc.)
+- Understood Callbacks & Tracing for logging and debugging
+- Learned Middleware concept – prebuilt and custom middleware usage
+- Overview of Model Context Protocol (MCP) to expose AI models to external tools and context
+- Understood use cases like chatbots, search, summarization, and AI agents
+
 CDAC, ISRO, DRDO
 BHEL, SAIL, ONGC
