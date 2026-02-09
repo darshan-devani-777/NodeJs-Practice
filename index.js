@@ -2115,3 +2115,6 @@
 // AI Security	                     Prevent misuse
 // Monitoring	                 Control quality & cost
 // Prompt versioning	         Stable production AI
+
+CDAC, ISRO, DRDO
+BHEL, SAIL, ONGC
