@@ -2972,4 +2972,64 @@ Project Name :- Admin Dashboard
                         -  Highlighted active sidebar links dynamically based on current page
                         -  Added footer with responsive links: Privacy Policy, Terms of Service, Contact
                         -  Implemented settings page with site info and registration options
-                        -  Developed Users Table with real-time display of user details                                                             
+                        -  Developed Users Table with real-time display of user details     
+
+Please find today's work updates below:
+Date:30-01-2026
+
+Project Name :- Admin Dashboard
+                        -  Implemented cursor-based pagination in the user API
+                        -  Added searching and sorting functionality to the user list 
+                        -  Refined the User section with updated search and pagination methods
+                        -  Updated buttons with loading state and auto-hiding success/error messages
+                        -  Created Update Profile API with a profile page for admins, supporting editable name/email and password changes
+
+Please find today's work updates below:
+Date:02-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Implemented bulk user management APIs (create, activate, deactivate, delete)
+                        -  Added role-based access control (RBAC) across APIs and UI
+                        -  Updated user table to display roles, editable from the admin panel
+                        -  Integrated search, filter, and pagination for large datasets (users & activity logs)
+                        -  Built Activity logging system to track user actions (login, register, profile update, admin operations)
+
+Please find today's work updates below:
+Date:03-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Added Badges with toggle functionality in the sidebar 
+                        -  Enhanced dashboard section with display info cards & user charts                       
+                        -  Improved user management UI section 
+                        -  Updated the profile section with a profile form along with the profile display
+                        -  Enhanced Activity Logs with date filtering and UI improvements
+
+Please find today's work updates below:
+Date:04-02-2026
+
+Project Name :- OpenAI Middleware
+                        -  R&D on pre-trained AI models for Image-To-Text generaton 
+                        -  Reviewed compatibility of Gemini 1.5 / GPT-4o models
+                        -  Refined existing APIs by testing HuggingFace models (BLIP, CLIP)
+                        -  Overview of the LangChain framework
+                        -  Integrated LangChain with LLM models with memory features (session tracking)
+                        -  Built functionality to track and retrieve user question history
+                        -  Tested LangChain API interactions and memory-based responses
+
+Please find today's work updates below:
+Date:05-02-2026  Project Name :- Admin Dashboard
+                        -  Removed the Create Account page from the header section
+                        -  Removed toast notifications from the login page
+                        -  Updated login page UI and improved its features 
+                        -  Enhanced all action buttons in the admin dashboard
+                        -  Modified profile settings page with updated UI
+
+Please find today's work updates below:
+Date:06-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Added user dropdown for access to settings and logout
+                        -  Built conditional rendering layout based on user roles (Admin/User)
+                        -  Used Alpine.js for interactive dropdowns functionality
+                        -  Configured EJS as the templating engine with dynamic view paths
+                        -  Implemented routes by separating pageRoutes and authRoutes                                                                                
