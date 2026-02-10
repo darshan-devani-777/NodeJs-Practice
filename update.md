@@ -2422,7 +2422,7 @@ Task Name :- Nest.Js Framework
                     -  Overview of the HTTP Adapter to run nest app on different HTTP servers
                     -  Integrated dynamic port selection based on Adapter (Express/Fastify/Custom)
                     -  Explored Mapped Types methods to transform DTO’s using multiple utility functions
-                    -   Applied a Global prefix to ensure all REST endpoints are clearly scoped
+                    -  Applied a Global prefix to ensure all REST endpoints are clearly scoped
                    
 
 Please find today's work updates below:
