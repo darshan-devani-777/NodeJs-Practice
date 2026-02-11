@@ -1,265 +1,151 @@
-<div
-  class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6"
->
-  <div
-    class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3"
-  >
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
     <div>
-      <h1
-        class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md"
-      >
+      <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
         <i class="fas fa-users text-blue-400 animate-pulse"></i>
         <span>Users Management</span>
       </h1>
-      <span class="text-base text-gray-600 font-semibold"
-        >Manage team members, roles, & statuses easily</span
-      >
+      <span class="text-base text-gray-600 font-semibold">Manage team members, roles, & statuses easily</span>
     </div>
   </div>
 
   <!-- Stats Cards -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
     <div
-      class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition"
-    >
+      class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-xs text-blue-100 font-bold">Total Users</p>
-          <span
-            id="totalUsers"
-            class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse"
-            >0</span
-          >
+          <span id="totalUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
         </div>
-        <i
-          class="fas fa-users text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"
-        ></i>
+        <i class="fas fa-users text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"></i>
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition"
-    >
+      class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-xs text-green-100 font-bold">Active Users</p>
-          <span
-            id="activeUsers"
-            class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse"
-            >0</span
-          >
+          <span id="activeUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
         </div>
-        <i
-          class="fas fa-user-check text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"
-        ></i>
+        <i class="fas fa-user-check text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"></i>
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition"
-    >
+      class="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-xs text-slate-100 font-bold">Inactive Users</p>
-          <span
-            id="inactiveUsers"
-            class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse"
-            >0</span
-          >
+          <span id="inactiveUsers"
+            class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
         </div>
-        <i
-          class="fas fa-user-slash text-5xl text-slate-200 opacity-80 group-hover:scale-125 transition"
-        ></i>
+        <i class="fas fa-user-slash text-5xl text-slate-200 opacity-80 group-hover:scale-125 transition"></i>
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition"
-    >
+      class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-xs text-indigo-100 font-bold">New Users (Today)</p>
-          <span
-            id="newUsers"
-            class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse"
-            >0</span
-          >
+          <span id="newUsers" class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
         </div>
-        <i
-          class="fas fa-user-plus text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"
-        ></i>
+        <i class="fas fa-user-plus text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"></i>
       </div>
     </div>
   </div>
 
   <!-- Search + Sort -->
-  <div
-    class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full"
-  >
-    <!-- Left: Compact Search + Sort -->
+  <!-- Search + Sort -->
+  <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+    <!-- Left: Search + Sort -->
     <div class="flex gap-2 w-full sm:w-auto">
-      <input
-        type="text"
-        id="searchInput"
+      <input type="text" id="searchInput"
         class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-        placeholder="Search name or email..."
-      />
+        placeholder="Search name or email..." />
 
-      <select
-        id="sortSelect"
-        class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer"
-      >
+      <select id="sortSelect"
+        class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
         <option value="asc">Sort: Ascending</option>
         <option value="desc">Sort: Descending</option>
       </select>
 
-      <button
-        onclick="onSearch()"
-        class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition"
-      >
+      <button onclick="onSearch()"
+        class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
         <i class="fas fa-search text-[10px]"></i>
         Search
       </button>
     </div>
 
-    <!-- Right: Compact Bulk Actions -->
-    <div
-      class="flex flex-wrap gap-2 w-full sm:w-auto justify-start sm:justify-end mt-2 sm:mt-0"
-    >
-      <button
-        onclick="showBulkCreateModal()"
-        class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700 transition"
-      >
+    <!-- Right: Only Bulk Button -->
+    <div class="w-full sm:w-auto flex justify-start sm:justify-end">
+      <button onclick="showBulkCreateModal()"
+        class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
         <i class="fas fa-plus text-[10px]"></i>
         Bulk
-      </button>
-
-      <button
-        onclick="bulkActivate()"
-        class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-green-700 bg-green-100 rounded hover:bg-green-200 transition"
-      >
-        <i class="fas fa-toggle-on text-[10px]"></i>
-        Activate
-      </button>
-
-      <button
-        onclick="bulkDeactivate()"
-        class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200 transition"
-      >
-        <i class="fas fa-toggle-off text-[10px]"></i>
-        Deactivate
-      </button>
-
-      <button
-        onclick="bulkDelete()"
-        class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-red-700 bg-red-100 rounded hover:bg-red-200 transition"
-      >
-        <i class="fas fa-trash text-[10px]"></i>
-        Delete
       </button>
     </div>
   </div>
 
+
   <!-- Users Table -->
-  <div
-    class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto"
-  >
-    <table class="w-full min-w-[600px] border border-gray-200 text-sm">
-      <thead
-        class="bg-gradient-to-r from-blue-50 via-blue-100 to-white border-b border-gray-200"
-      >
+  <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
+    <table class="w-full min-w-[600px] border border-gray-200 text-sm table-fixed">
+      <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white">
         <tr>
-          <th class="px-4 py-2">
-            <input
-              type="checkbox"
-              id="selectAll"
-              onclick="toggleSelectAll(this)"
-              class="cursor-pointer accent-blue-500"
-            />
-          </th>
-          <th
-            class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest font-mono"
-          >
-            #
-          </th>
-          <th
-            class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-          >
-            Name
-          </th>
-          <th
-            class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-          >
-            Email
-          </th>
-          <th
-            class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-          >
+          <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[60px] text-center">#</th>
+          <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">Name</th>
+          <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">Email</th>
+          <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
             Registered At
           </th>
-          <% if (user.role === 'admin') { %>
-          <th
-            class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-          >
-            Role
-          </th>
-          <th
-            class="px-4 py-2 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-          >
-            Status
-          </th>
-          <% } %>
+
+          <% if (user && user.role==='admin' ) { %>
+            <th class="px-4 py-2 text-xs font-bold text-blue-700">Role</th>
+            <th class="px-4 py-2 text-xs font-bold text-blue-700">Status</th>
+            <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[140px] text-center">
+              Action
+            </th>
+            <% } %>
         </tr>
       </thead>
-      <tbody id="usersTable" class="divide-y font-mono"></tbody>
+
+      <tbody id="usersTable" class="divide-y font-mono">
+      </tbody>
+
     </table>
   </div>
 
   <div class="mt-4 text-center">
-    <button
-      id="loadMoreBtn"
-      onclick="fetchUsers()"
-      class="inline-flex items-center justify-center gap-1 bg-gray-400 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-gray-500 transition hidden w-full sm:w-auto mb-4"
-    >
+    <button id="loadMoreBtn" onclick="fetchUsers()"
+      class="inline-flex items-center justify-center gap-1 bg-gray-400 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-gray-500 transition hidden w-full sm:w-auto mb-4">
       <i class="fas fa-arrow-down text-[10px]"></i>
       Load More
     </button>
   </div>
 
   <!-- Bulk Create Modal -->
-  <div
-    id="bulkCreateModal"
-    class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
-  >
-    <div
-      class="bg-white rounded-xl p-4 sm:p-6 w-[95%] max-w-md sm:max-w-lg shadow-2xl border border-blue-100"
-    >
+  <div id="bulkCreateModal"
+    class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div class="bg-white rounded-xl p-4 sm:p-6 w-[95%] max-w-md sm:max-w-lg shadow-2xl border border-blue-100">
       <div class="flex items-center justify-between mb-3">
         <h2 class="text-lg font-bold text-blue-900">Bulk Create Users</h2>
-        <button
-          onclick="closeBulkCreateModal()"
-          class="text-gray-400 hover:text-gray-700 text-lg"
-        >
+        <button onclick="closeBulkCreateModal()" class="text-gray-400 hover:text-gray-700 text-lg">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      <textarea
-        id="bulkUsersInput"
-        class="w-full border border-blue-200 rounded p-2 text-sm h-32 resize-none bg-blue-50 font-mono"
-        placeholder='Example:
+      <textarea id="bulkUsersInput"
+        class="w-full border border-blue-200 rounded p-2 text-sm h-32 resize-none bg-blue-50 font-mono" placeholder='Example:
 [
   {"name":"John","email":"john@test.com"},
   {"name":"Jane","email":"jane@test.com"}
-]'
-      ></textarea>
+]'></textarea>
       <div class="flex flex-col sm:flex-row justify-end gap-2 mt-4">
-        <button
-          onclick="closeBulkCreateModal()"
-          class="bg-gray-400 text-white px-3 py-2 sm:py-1 rounded text-sm hover:bg-gray-500 w-full sm:w-auto"
-        >
+        <button onclick="closeBulkCreateModal()"
+          class="bg-gray-400 text-white px-3 py-2 sm:py-1 rounded text-sm hover:bg-gray-500 w-full sm:w-auto">
           Cancel
         </button>
-        <button
-          onclick="submitBulkCreate()"
-          class="bg-green-600 text-white px-3 py-2 sm:py-1 rounded text-sm hover:bg-green-700 w-full sm:w-auto font-bold shadow"
-        >
+        <button onclick="submitBulkCreate()"
+          class="bg-green-600 text-white px-3 py-2 sm:py-1 rounded text-sm hover:bg-green-700 w-full sm:w-auto font-bold shadow">
           <i class="fas fa-plus-circle mr-1"></i>Create
         </button>
       </div>
@@ -267,10 +153,7 @@
   </div>
 
   <!-- Toast -->
-  <div
-    id="toast"
-    class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"
-  ></div>
+  <div id="toast" class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"></div>
 </div>
 
 <script>
@@ -368,9 +251,8 @@
         if (reset) {
           tbody.innerHTML = `
             <tr>
-              <td colspan="${
-                isAdmin ? 7 : 5
-              }" class="text-center py-6 bg-white font-semibold text-red-600">
+              <td colspan="${isAdmin ? 7 : 5
+            }" class="text-center py-6 bg-white font-semibold text-red-600">
                 Failed to load users
               </td>
             </tr>
@@ -388,9 +270,8 @@
       if (data.data.length === 0 && reset) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="${
-              isAdmin ? 7 : 5
-            }" class="text-center py-6 bg-white text-gray-500 font-semibold">
+            <td colspan="${isAdmin ? 7 : 5
+          }" class="text-center py-6 bg-white text-gray-500 font-semibold">
               User not found
             </td>
           </tr>
@@ -402,40 +283,61 @@
       data.data.forEach((user, i) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="px-4 py-3 align-middle">
-            <input type="checkbox" class="selectUser cursor-pointer accent-blue-500" data-user-id="${escapeHTML(
-              user._id
-            )}">
-          </td>
-          <td class="px-4 py-3 font-mono text-xs text-blue-900">${
-            indexOffset + i + 1
+          <td class="px-4 py-3 font-mono text-xs text-blue-900 w-[60px] text-center">${indexOffset + i + 1
           }.</td>
-          <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700 max-w-[120px] truncate" title="${escapeHTML(
+          <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700 max-w-[120px] truncate text-center align-middle" title="${escapeHTML(
             user.name
           )}">${escapeHTML(user.name)}</td>
-          <td class="px-4 py-3 font-mono text-sm text-blue-800 max-w-[180px] truncate" title="${escapeHTML(
+          <td class="px-4 py-3 font-mono text-sm text-blue-800 max-w-[180px] truncate text-center align-middle" title="${escapeHTML(
             user.email
           )}">${escapeHTML(user.email)}</td>
-          <td class="px-4 py-3 font-mono text-xs text-slate-600 whitespace-nowrap">${
-            user.createdAt ? new Date(user.createdAt).toLocaleString() : "-"
+          <td class="px-4 py-3 font-mono text-xs text-slate-600 whitespace-nowrap text-center align-middle">${user.createdAt ? new Date(user.createdAt).toLocaleString() : "-"
           }</td>
-          ${
-            isAdmin
-              ? `
-            <td class="px-4 py-3 text-xs font-semibold text-blue-800 capitalize">${escapeHTML(
+          ${isAdmin
+            ? `
+            <td class="px-4 py-3 text-xs font-semibold text-blue-800 capitalize text-center align-middle">${escapeHTML(
               user.role
             )}</td>
-            <td class="px-4 py-3">
-              <span class="px-2 py-1 text-xs rounded font-bold tracking-wider ${
-                user.isActive
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-400 text-white"
-              }">
+            <td class="px-4 py-3 text-center align-middle">
+              <span class="px-2 py-1 text-xs rounded font-bold tracking-wider ${user.isActive
+              ? "bg-green-600 text-white"
+              : "bg-gray-400 text-white"
+            }">
                 ${user.isActive ? "Active" : "Inactive"}
               </span>
             </td>
+
+
+      <!-- ACTION BUTTONS -->
+      <td class="px-4 py-3 w-[140px] text-center">
+        <div class="flex gap-2">
+          <button
+            onclick="activateUser('${user._id}')"
+            class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-300 transition duration-300"
+            title="Activate"
+          >
+            <i class="fas fa-toggle-on"></i>
+          </button>
+
+          <button
+            onclick="deactivateUser('${user._id}')"
+            class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded hover:bg-gray-300 transition duration-300"
+            title="Deactivate"
+          >
+            <i class="fas fa-toggle-off"></i>
+          </button>
+
+          <button
+            onclick="deleteUser('${user._id}')"
+            class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded hover:bg-red-300 transition duration-300"
+            title="Delete"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </td>
           `
-              : ""
+            : ""
           }
         `;
         tbody.appendChild(tr);
@@ -456,9 +358,8 @@
       if (reset) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="${
-              isAdmin ? 7 : 5
-            }" class="text-center py-6 bg-white font-semibold text-red-600">
+            <td colspan="${isAdmin ? 7 : 5
+          }" class="text-center py-6 bg-white font-semibold text-red-600">
               Failed to load users
             </td>
           </tr>
@@ -475,26 +376,8 @@
     fetchUsers(true);
   }
 
-  /* ================= SELECT ================= */
-  function toggleSelectAll(master) {
-    document
-      .querySelectorAll(".selectUser")
-      .forEach((cb) => (cb.checked = master.checked));
-  }
-
-  function getSelectedUserIds() {
-    return [...document.querySelectorAll(".selectUser:checked")].map(
-      (cb) => cb.dataset.userId
-    );
-  }
-
   /* ================= BULK ACTION CORE ================= */
-  async function bulkAction(action) {
-    const ids = getSelectedUserIds();
-    if (!ids.length) {
-      showToast("Select at least one user", "error");
-      return;
-    }
+  async function userAction(action, userId) {
     try {
       const res = await fetch(`/api/auth/bulk-${action}`, {
         method: "PUT",
@@ -502,30 +385,35 @@
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({ userIds: ids }),
+        body: JSON.stringify({ userIds: [userId] }),
       });
+
       const data = await safeParseJSON(res);
+
       if (!data.success) {
-        showToast(`Bulk ${action} failed`, "error");
+        showToast(`${action} failed`, "error");
         return;
       }
-      showToast(`Bulk ${action} successful`, "success");
+
+      showToast(`${action} successful`, "success");
       fetchUsers(true);
     } catch {
-      showToast(`Bulk ${action} failed (server error)`, "error");
+      showToast(`${action} failed (server error)`, "error");
     }
   }
 
-  /* ================= BULK FUNCTIONS (FIXED) ================= */
-  function bulkActivate() {
-    bulkAction("activate");
+  /* ================= BULK FUNCTIONS ================= */
+  function activateUser(userId) {
+    userAction("activate", [userId]);
   }
-  function bulkDeactivate() {
-    bulkAction("deactivate");
+
+  function deactivateUser(userId) {
+    userAction("deactivate", [userId]);
   }
-  function bulkDelete() {
-    if (!confirm("Are you sure you want to delete selected users?")) return;
-    bulkAction("delete");
+
+  function deleteUser(userId) {
+    if (!confirm("Are you sure you want to delete user?")) return;
+    userAction("delete", [userId]);
   }
 
   /* ================= TOAST ================= */

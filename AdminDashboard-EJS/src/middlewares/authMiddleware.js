@@ -22,7 +22,7 @@ exports.protect = async (req, res, next) => {
       return res.redirect("/login?invalid=1");
     }
 
-    const user = await User.findById(decoded.id).select("-password");
+    const user = await User.findById(decoded.id).select("+password");
     if (!user) {
       res.clearCookie("token");
       return res.redirect("/login?invalid=1");

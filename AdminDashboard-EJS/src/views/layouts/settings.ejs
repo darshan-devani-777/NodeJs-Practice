@@ -1,257 +1,461 @@
 <div class="flex flex-col min-h-screen">
-  <!-- Main content -->
-  <main
-    class="flex-1 p-6 bg-gradient-to-br from-blue-50 via-white to-slate-100"
-  >
-    <!-- Top Bar -->
-    <div
-      class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-2"
-    >
-      <div>
-        <h1
-          class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-3 drop-shadow-md"
-        >
-          <i class="fas fa-user-circle text-blue-400 animate-pulse"></i>
-          <span>Profile</span>
-        </h1>
-        <span class="text-base text-gray-600 font-semibold"
-          >Manage your account details and settings</span
-        >
-      </div>
+  <main class="flex-1 p-6 bg-gradient-to-br from-blue-50 via-white to-slate-100">
+
+    <!-- PAGE TITLE -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-extrabold text-blue-900 flex items-center gap-3">
+        <i class="fas fa-cog text-blue-400 animate-pulse"></i>
+        Settings
+      </h1>
+      <p class="text-gray-600 font-medium">
+        Manage your profile and password settings
+      </p>
     </div>
 
-    <!-- Main Flex: Profile card + Form -->
     <div class="flex flex-col lg:flex-row gap-8">
-      <!-- LEFT: PROFILE CARD -->
-      <div class="lg:w-1/4 w-full">
-        <div
-          class="bg-white rounded-2xl shadow-lg p-6 text-center border-t-4 border-blue-500 transition hover:shadow-xl"
-        >
-          <img
-            id="profileAvatar"
-            class="w-20 h-20 rounded-full mx-auto border-4 border-blue-100 object-cover transition-transform hover:scale-105"
-            alt="Profile"
-          />
-          <h3 class="mt-4 text-xl font-semibold text-blue-900">
-            <%= user.name %>
-          </h3>
-          <p class="text-sm text-gray-500"><%= user.email %></p>
 
-          <button
-            id="newAvatarBtn"
-            type="button"
-            class="mt-5 text-[12px] text-blue-600 font-medium hover:text-blue-800 hover:underline transition duration-300"
-          >
-            Change Photo
-          </button>
+      <!-- LEFT SIDEBAR -->
+      <aside class="lg:w-1/4 w-full">
+        <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-blue-500">
+
+          <!-- USER CARD -->
+          <div class="text-center">
+            <img id="profileAvatar" class="w-20 h-20 rounded-full mx-auto border-4 border-blue-100" />
+            <h3 class="mt-4 text-xl font-semibold text-blue-900">
+              <%= user.name %>
+            </h3>
+            <p class="text-sm text-gray-500">
+              <%= user.email %>
+            </p>
+          </div>
+
+          <!-- NAV -->
+          <div class="mt-8 space-y-1">
+
+            <!-- PROFILE TAB -->
+            <button id="profileTab" class="tab-btn w-full flex items-center gap-3 px-4 py-2 rounded-lg
+                   text-sm font-semibold transition border-l-4 hover:bg-blue-100 transition duration-300">
+              <i class="fas fa-user-circle"></i>
+              Profile
+            </button>
+
+            <!-- PASSWORD TAB -->
+            <button id="passwordTab" class="tab-btn w-full flex items-center gap-3 px-4 py-2 rounded-lg
+                   text-sm font-semibold transition border-l-4 hover:bg-red-100 transition duration-300">
+              <i class="fas fa-lock"></i>
+              Password
+            </button>
+
+          </div>
         </div>
-      </div>
+      </aside>
 
-      <!-- RIGHT: FORM -->
-      <div
-        class="lg:w-3/4 w-full bg-white rounded-2xl shadow-lg border border-blue-100 transition hover:shadow-xl"
-      >
-        <!-- Header -->
-        <div class="border-b px-6 py-4">
-          <h2 class="font-semibold text-blue-900 text-lg underline">
-            Settings
+
+      <!-- RIGHT CONTENT -->
+      <section class="lg:w-3/4 w-full bg-white rounded-2xl shadow-lg border">
+
+        <!-- HEADER -->
+        <div class="border-b px-6 py-4 flex items-center gap-2">
+          <i id="sectionIcon" class="fas fa-user-circle text-blue-500"></i>
+          <h2 id="sectionTitle" class="font-semibold text-lg text-blue-900">
+            Profile Settings
           </h2>
         </div>
 
-        <!-- FORM -->
-        <div class="p-6">
-          <form id="profileForm" class="space-y-5 max-w-xl">
-            <!-- Name -->
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-              <label class="sm:w-32 text-sm font-medium text-gray-600"
-                >Name:</label
-              >
-              <input
-                type="text"
-                name="name"
-                value="<%= user.name %>"
-                required
-                class="flex-1 border border-blue-200 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition bg-blue-50"
+        <!-- PROFILE FORM -->
+        <form id="profileForm" class="p-6 space-y-5 max-w-xl">
+
+          <div class="flex gap-3 items-center">
+            <label class="w-32 text-sm font-medium text-gray-600">Name:</label>
+            <input type="text" name="name" value="<%= user.name %>"
+              class="flex-1 border px-4 py-2 rounded-lg bg-blue-50 focus:ring-1 focus:ring-blue-400 text-sm" />
+          </div>
+
+          <div class="flex gap-3 items-center">
+            <label class="w-32 text-sm font-medium text-gray-600">Email:</label>
+            <input type="email" name="email" value="<%= user.email %>" <%=user.role==="admin" ? "readonly" : "required"
+              %>
+            class="flex-1 border px-4 py-2 rounded-lg bg-blue-50 text-sm
+            <%= user.role==="admin" ? "cursor-not-allowed" : "" %>"
               />
-            </div>
+          </div>
 
-            <!-- Email -->
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-              <label class="sm:w-32 text-sm font-medium text-gray-600"
-                >Email:</label
-              >
-              <input type="email" name="email" value="<%= user.email %>"
-              class="flex-1 border border-blue-200 px-4 py-2 rounded-lg text-sm
-              focus:outline-none focus:ring-2 focus:ring-blue-400 transition
-              bg-blue-50 <%= user.role === 'admin' ? 'cursor-not-allowed' : ''
-              %>" <%=user.role==='admin' ? 'readonly' : 'required' %> />
-            </div>
+          <div class="flex justify-end pt-4">
+            <button type="submit" id="updateProfileBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[13px] font-semibold
+                   hover:bg-blue-700 transition duration-300 flex items-center gap-2">
+              <svg id="updateProfileSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+              </svg>
 
-            <!-- Password -->
-            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-              <label class="sm:w-32 text-sm font-medium text-gray-600"
-                >Password:</label
-              >
-              <div class="relative flex-1">
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Leave blank if not changing"
-                  class="w-full border border-blue-200 px-4 py-2 rounded-lg text-sm pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400 transition bg-blue-50"
-                />
-                <button
-                  type="button"
-                  id="togglePassword"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
-                  aria-label="Toggle password visibility"
-                >
-                  <svg
-                    id="eyeIcon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
+              <span id="updateProfileBtnText">Update Profile</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- PASSWORD FORM -->
+        <form id="passwordForm" class="p-6 space-y-5 max-w-xl hidden">
+
+          <!-- OLD PASSWORD -->
+          <div class="flex gap-3 items-start">
+            <label class="w-32 text-sm font-medium text-gray-600 mt-2">
+              Old Password:
+            </label>
+
+            <div class="flex-1">
+              <!-- input + eye icon -->
+              <div class="relative">
+                <input type="password" id="oldPassword" name="oldPassword" class="w-full border px-4 py-2 rounded-lg bg-blue-50 pr-10
+                         focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm" />
+
+                <button type="button" onclick="togglePwd('oldPassword', this)" class="absolute right-3 top-1/2 -translate-y-1/2
+                         text-gray-400 hover:text-blue-600 transition">
+                  <i class="fas fa-eye"></i>
                 </button>
               </div>
-            </div>
 
-            <!-- Submit button -->
-            <div class="flex justify-end mt-4">
-              <button
-                type="submit"
-                id="updateBtn"
-                class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-blue-700 shadow-md transition flex items-center justify-center gap-2"
-              >
-                <!-- Spinner -->
-                <svg
-                  id="updateSpinner"
-                  class="hidden animate-spin h-4 w-4 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                  />
-                  <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v8z"
-                  />
-                </svg>
-
-                <span id="updateBtnText">Update</span>
-              </button>
+              <!-- error OUTSIDE relative -->
+              <p class="text-xs text-red-500 mt-1 hidden" id="oldPasswordError"></p>
             </div>
-          </form>
-        </div>
-      </div>
+          </div>
+
+          <!-- NEW PASSWORD -->
+          <div class="flex gap-3 items-start">
+            <label class="w-32 text-sm font-medium text-gray-600 mt-2">
+              New Password:
+            </label>
+
+            <div class="flex-1">
+              <!-- input + eye -->
+              <div class="relative">
+                <input type="password" id="newPassword" name="newPassword" class="w-full border px-4 py-2 rounded-lg bg-blue-50 pr-10
+                         focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm" />
+
+                <button type="button" onclick="togglePwd('newPassword', this)" class="absolute right-3 top-1/2 -translate-y-1/2
+                         text-gray-400 hover:text-blue-600 transition">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+
+              <!-- error OUTSIDE -->
+              <p class="text-xs text-red-500 mt-1 hidden" id="newPasswordError"></p>
+            </div>
+          </div>
+
+
+          <!-- CONFIRM PASSWORD -->
+          <div class="flex gap-3 items-start">
+            <label class="w-32 text-sm font-medium text-gray-600 mt-2">
+              Confirm Password:
+            </label>
+
+            <div class="flex-1">
+              <div class="relative">
+                <input type="password" id="confirmPassword" name="confirmPassword" class="w-full border px-4 py-2 rounded-lg bg-blue-50 pr-10
+                         focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm" />
+
+                <button type="button" onclick="togglePwd('confirmPassword', this)" class="absolute right-3 top-1/2 -translate-y-1/2
+                         text-gray-400 hover:text-blue-600 transition">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+
+              <p class="text-xs text-red-500 mt-1 hidden" id="confirmPasswordError"></p>
+            </div>
+          </div>
+
+
+          <!-- SUBMIT BUTTON -->
+          <div class="flex justify-end pt-4">
+            <button type="submit" id="changePasswordBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg text-[13px] font-semibold
+                   hover:bg-red-700 transition duration-300 flex items-center gap-2">
+              <svg id="changePwdSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+              </svg>
+
+              <span id="changePwdBtnText">Change Password</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
     </div>
   </main>
 </div>
 
-<!-- Toast -->
-<div
-  id="toast"
-  class="fixed top-6 right-4 px-4 py-2 rounded shadow hidden text-white text-sm z-50"
-></div>
+<!-- TOAST -->
+<div id="toast" class="fixed top-6 right-4 px-4 py-2 rounded shadow hidden text-white text-sm z-50"></div>
+
 
 <script>
-  // Toast
-  function showToast(msg, type = "success") {
-    const toast = document.getElementById("toast");
-    toast.textContent = msg;
-    toast.className =
-      "fixed top-6 right-4 px-4 py-2 rounded shadow text-sm z-50 " +
-      (type === "success" ? "bg-green-500" : "bg-red-500");
-    toast.classList.remove("hidden");
-    setTimeout(() => toast.classList.add("hidden"), 3000);
+  const profileTab = document.getElementById("profileTab");
+  const passwordTab = document.getElementById("passwordTab");
+  const profileForm = document.getElementById("profileForm");
+  const passwordForm = document.getElementById("passwordForm");
+  const sectionTitle = document.getElementById("sectionTitle");
+  const sectionIcon = document.getElementById("sectionIcon");
+
+  /* ===============================
+             TAB RESET 
+  =============================== */
+  function resetTabs() {
+    profileTab.classList.remove(
+      "bg-blue-50",
+      "text-blue-700",
+      "border-blue-600"
+    );
+    passwordTab.classList.remove(
+      "bg-red-50",
+      "text-red-600",
+      "border-red-500"
+    );
+
+    // add inactive styles
+    profileTab.classList.add("text-gray-600", "border-transparent");
+    passwordTab.classList.add("text-gray-600", "border-transparent");
   }
 
-  // Password toggle
-  const passwordInput = document.getElementById("password");
-  const togglePassword = document.getElementById("togglePassword");
-  const eyeIcon = document.getElementById("eyeIcon");
+  /* ===============================
+     PROFILE TAB
+  =============================== */
+  profileTab.addEventListener("click", () => {
+    resetTabs();
 
-  togglePassword.addEventListener("click", () => {
-    const type = passwordInput.type === "password" ? "text" : "password";
-    passwordInput.type = type;
+    profileTab.classList.remove("text-gray-600", "border-transparent");
+    profileTab.classList.add(
+      "bg-blue-50",
+      "text-blue-700",
+      "border-blue-600"
+    );
 
-    eyeIcon.innerHTML =
-      type === "password"
-        ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-           d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-           d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />`
-        : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-           d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a10.05 10.05 0 012.42-4.387m3.123-2.776A9.957 9.957 0 0112 5c4.477 0 8.268 2.943 9.542 7a9.956 9.956 0 01-1.748 3.106M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`;
+    profileForm.classList.remove("hidden");
+    passwordForm.classList.add("hidden");
+
+    sectionTitle.textContent = "Profile Settings";
+    sectionIcon.className = "fas fa-user-circle text-blue-500";
   });
 
-  // Avatar random
-  const avatarImg = document.getElementById("profileAvatar");
-  const newAvatarBtn = document.getElementById("newAvatarBtn");
+  /* ===============================
+     PASSWORD TAB
+  =============================== */
+  passwordTab.addEventListener("click", () => {
+    resetTabs();
 
-  function setRandomAvatar() {
-    avatarImg.src = `https://robohash.org/${Date.now()}.png?size=150x150`;
-  }
-  setRandomAvatar();
-  newAvatarBtn.addEventListener("click", setRandomAvatar);
+    passwordTab.classList.remove("text-gray-600", "border-transparent");
+    passwordTab.classList.add(
+      "bg-red-50",
+      "text-red-600",
+      "border-red-500"
+    );
 
-  // Form submission
-  const form = document.getElementById("profileForm");
-  const updateBtn = document.getElementById("updateBtn");
-  const updateSpinner = document.getElementById("updateSpinner");
-  const updateBtnText = document.getElementById("updateBtnText");
+    profileForm.classList.add("hidden");
+    passwordForm.classList.remove("hidden");
 
-  form.addEventListener("submit", async (e) => {
+    sectionTitle.textContent = "Password & Security";
+    sectionIcon.className = "fas fa-lock text-red-500";
+  });
+
+  /* ===============================
+     DEFAULT TAB ON REFRESH
+  =============================== */
+  profileTab.click();
+
+  /* ===============================
+     PROFILE UPDATE
+  =============================== */
+  profileForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Show loader
-    updateBtn.disabled = true;
-    updateSpinner.classList.remove("hidden");
-    updateBtnText.textContent = "Updating...";
+    const body = Object.fromEntries(new FormData(profileForm).entries());
 
-    const body = Object.fromEntries(new FormData(form).entries());
-    if ("<%= user.role %>" === "admin") delete body.email;
+    const btn = document.getElementById("updateProfileBtn");
+    const spinner = document.getElementById("updateProfileSpinner");
+    const btnText = document.getElementById("updateProfileBtnText");
+
+    const startTime = Date.now();
+
+    btn.disabled = true;
+    spinner.classList.remove("hidden");
+    btnText.textContent = "Updating...";
+
+    let toastMessage = "Profile update failed";
+    let toastType = "error";
 
     try {
-      await new Promise((r) => setTimeout(r, 2000));
-
       const res = await fetch("/api/auth/update-profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(body),
       });
+
       const data = await res.json();
-      showToast(data.message, data.success ? "success" : "error");
-    } catch {
-      showToast("Something went wrong", "error");
+
+      toastMessage = data.message;
+      toastType = data.success ? "success" : "error";
+
+    } catch (err) {
+      toastMessage = "Profile update failed";
+      toastType = "error";
     }
 
-    updateSpinner.classList.add("hidden");
-    updateBtnText.textContent = "Update";
-    updateBtn.disabled = false;
+    const elapsed = Date.now() - startTime;
+    const remaining = 1500 - elapsed;
+
+    setTimeout(() => {
+      btn.disabled = false;
+      spinner.classList.add("hidden");
+      btnText.textContent = "Update Profile";
+
+      showToast(toastMessage, toastType);
+    }, remaining > 0 ? remaining : 0);
   });
+
+  /* ===============================
+     PASSWORD CHANGE
+  =============================== */
+  passwordForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearPasswordErrors();
+
+    const body = Object.fromEntries(new FormData(passwordForm).entries());
+
+    const btn = document.getElementById("changePasswordBtn");
+    const btnText = document.getElementById("changePwdBtnText");
+    const spinner = document.getElementById("changePwdSpinner");
+
+    const startTime = Date.now();
+
+    btn.disabled = true;
+    spinner.classList.remove("hidden");
+    btnText.textContent = "Changing...";
+
+    let toastMessage = "Password change failed";
+    let toastType = "error";
+    let redirect = null;
+    let fieldError = null;
+
+    try {
+      const res = await fetch("/api/auth/change-password", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+
+      toastMessage = data.message;
+      toastType = data.success ? "success" : "error";
+      redirect = data.success ? data.redirect : null;
+      fieldError = data.field || null;
+
+    } catch (err) {
+      toastMessage = "Password change failed";
+      toastType = "error";
+    }
+
+    const elapsed = Date.now() - startTime;
+    const remaining = 1500 - elapsed;
+
+    setTimeout(() => {
+      btn.disabled = false;
+      spinner.classList.add("hidden");
+      btnText.textContent = "Change Password";
+
+      if (fieldError) {
+        showFieldError(fieldError, toastMessage);
+      }
+
+      showToast(toastMessage, toastType);
+
+      if (toastType === "success" && redirect) {
+        setTimeout(() => {
+          window.location.href = redirect;
+        }, 1500);
+      }
+
+    }, remaining > 0 ? remaining : 0);
+  });
+
+  /* ===============================
+     AVATAR
+  =============================== */
+  document.getElementById("profileAvatar").src =
+    "https://robohash.org/" + Date.now();
+
+  /* ===============================
+     PASSWORD EYE TOGGLE
+  =============================== */
+  function togglePwd(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector("i");
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
+  }
+
+  function clearPasswordErrors() {
+    ["oldPassword", "newPassword", "confirmPassword"].forEach(id => {
+      const err = document.getElementById(id + "Error");
+      const input = document.getElementById(id);
+
+      err.classList.add("hidden");
+      err.textContent = "";
+      input.classList.remove("border-red-500");
+    });
+  }
+
+  function showFieldError(field, message) {
+    const err = document.getElementById(field + "Error");
+    const input = document.getElementById(field);
+
+    err.textContent = message;
+    err.classList.remove("hidden");
+    input.classList.add("border-red-500");
+  }
+
+  function showToast(message, type = "success") {
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.className =
+      "fixed top-3 right-4 px-4 py-2 rounded shadow text-white text-sm z-50";
+
+    toast.classList.add(
+      type === "success" ? "bg-green-600" : "bg-red-600"
+    );
+
+    toast.classList.remove("hidden");
+
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 3000);
+  }
+
+  function setButtonLoading(btnId, spinnerId, textId, isLoading, loadingText) {
+    const btn = document.getElementById(btnId);
+    const spinner = document.getElementById(spinnerId);
+    const text = document.getElementById(textId);
+
+    if (isLoading) {
+      btn.disabled = true;
+      spinner.classList.remove("hidden");
+      text.textContent = loadingText;
+    } else {
+      btn.disabled = false;
+      spinner.classList.add("hidden");
+      text.textContent = text.dataset.default;
+    }
+  }
 </script>

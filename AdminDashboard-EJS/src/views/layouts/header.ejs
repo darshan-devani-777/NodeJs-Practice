@@ -1,215 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Admin Panel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-      defer
-    ></script>
-  </head>
 
-  <body class="min-h-screen bg-gray-100 overflow-x-hidden">
-    <div
-      id="toast"
-      class="fixed top-3 right-6 bg-green-600 text-white px-5 py-3 rounded-xl shadow-2xl opacity-0 pointer-events-none transform translate-y-[-20px] transition-all duration-300 z-[9999] font-medium text-sm"
-    ></div>
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
 
-    <!-- Sidebar -->
-    <% if (user) { %>
-    <aside
-      id="sidebar"
+<body class="min-h-screen bg-gray-100 overflow-x-hidden">
+  <div id="toast"
+    class="fixed top-3 right-6 bg-green-600 text-white px-5 py-3 rounded-xl shadow-2xl opacity-0 pointer-events-none transform translate-y-[-20px] transition-all duration-300 z-[9999] font-medium text-sm">
+  </div>
+
+  <!-- Sidebar -->
+  <% if (user) { %>
+    <aside id="sidebar"
       class="fixed left-0 top-0 w-64 h-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white z-50 flex flex-col transition-all duration-300 overflow-y-auto md:translate-x-0 -translate-x-full lg:w-64"
-      style="scroll-behavior: smooth"
-    >
+      style="scroll-behavior: smooth">
       <!-- Sidebar Header -->
-      <div
-        class="flex items-center justify-between p-3 border-b border-gray-700 sticky top-0 z-[70] bg-gray-900/95"
-      >
+      <div class="relative flex items-center h-14 px-3 border-b border-gray-700 sticky top-0 z-[70] bg-gray-900/95">
         <h1
-          class="font-semibold text-2xl tracking-wide w-full transition-all duration-300 sidebar-header-text select-none"
-        >
+          class="font-semibold text-2xl tracking-wide w-full transition-all duration-300 sidebar-header-text select-none">
           <%= user.role==='admin' ? 'Admin Panel' : 'User Panel' %>
         </h1>
-        <button
-          id="sidebarToggleBtn"
-          type="button"
-          class="hidden lg:inline-flex text-gray-300 hover:text-white text-lg items-center justify-center p-0"
-          aria-label="Toggle sidebar collapse"
-          style="width: 24px; height: 24px"
-          onclick="toggleSidebarWidth(event)"
-        >
-          <svg
-            id="sidebarToggleIcon"
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              id="toggleArrowLeft"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19l-7-7 7-7"
-            />
-            <path
-              id="toggleArrowRight"
-              style="display: none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            />
+        <button class="hidden lg:flex absolute right-3 top-1/2 -translate-y-1/2
+               w-7 h-7 rounded-md
+               items-center justify-center
+               text-gray-300 hover:text-white hover:bg-white/10" onclick="toggleSidebarWidth(event)">
+          <svg id="sidebarToggleIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path id="toggleArrowLeft" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 19l-7-7 7-7" />
+            <path id="toggleArrowRight" style="display: none" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <button
-          class="lg:hidden text-gray-300 hover:text-white text-lg"
-          aria-label="Close sidebar"
-          onclick="closeSidebar()"
-        >
+        <button class="lg:hidden text-gray-300 hover:text-white text-lg" aria-label="Close sidebar"
+          onclick="closeSidebar()">
           <svg class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path
-              fill-rule="evenodd"
+            <path fill-rule="evenodd"
               d="M10 8.586l4.95-4.95a1 1 0 111.415 1.415L11.414 10l4.95 4.95a1 1 0 01-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 01-1.414-1.415l4.95-4.95-4.95-4.95A1 1 0 015.05 3.636l4.95 4.95z"
-              clip-rule="evenodd"
-            />
+              clip-rule="evenodd" />
           </svg>
         </button>
       </div>
 
       <!-- Navigation -->
-      <nav
-        class="flex-1 overflow-y-auto p-4 space-y-3 mt-3 sidebar-nav"
-        id="sidebarNav"
-      >
-        <a
-          href="/dashboard"
-          data-active="dashboard"
+      <nav class="flex-1 overflow-y-auto p-4 space-y-3 mt-3 sidebar-nav" id="sidebarNav">
+        <a href="/dashboard" data-active="dashboard"
           class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-          onclick="sidebarLinkClick(event)"
-        >
+          onclick="sidebarLinkClick(event)">
           <span class="sidebar-link-icon flex items-center justify-center w-5">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"></path>
             </svg>
           </span>
           <span class="sidebar-link-label">Dashboard</span>
         </a>
 
-        <% if (user.role==='admin') { %>
-        <a
-          href="/users"
-          data-active="users"
-          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-          onclick="sidebarLinkClick(event)"
-        >
-          <span class="sidebar-link-icon flex items-center justify-center w-5">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17 20h5V10H2v10h5m10 0a2 2 0 11-4 0 2 2 0 014 0zm-6-4V6a2 2 0 012-2 2 2 0 012 2v10m2 0v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2"
-              ></path>
-            </svg>
-          </span>
-          <span class="sidebar-link-label">Users</span>
-        </a>
-        <% } %>
+        <% if (user.role==='admin' ) { %>
+          <a href="/users" data-active="users"
+            class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+            onclick="sidebarLinkClick(event)">
+            <span class="sidebar-link-icon flex items-center justify-center w-5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17 20h5V10H2v10h5m10 0a2 2 0 11-4 0 2 2 0 014 0zm-6-4V6a2 2 0 012-2 2 2 0 012 2v10m2 0v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2">
+                </path>
+              </svg>
+            </span>
+            <span class="sidebar-link-label">Users</span>
+          </a>
+          <% } %>
 
-        <a
-          href="/settings"
-          data-active="settings"
-          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-          onclick="sidebarLinkClick(event)"
-        >
-          <span class="sidebar-link-icon flex items-center justify-center w-5">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z"
-              ></path>
-            </svg>
-          </span>
-          <span class="sidebar-link-label">Settings</span>
-        </a>
+            <a href="/settings" data-active="settings"
+              class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+              onclick="sidebarLinkClick(event)">
+              <span class="sidebar-link-icon flex items-center justify-center w-5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z">
+                  </path>
+                </svg>
+              </span>
+              <span class="sidebar-link-label">Settings</span>
+            </a>
 
-        <% if (user.role==='admin') { %>
-        <a
-          href="/activity-logs"
-          data-active="activity-logs"
-          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-          onclick="sidebarLinkClick(event)"
-        >
-          <span class="sidebar-link-icon flex items-center justify-center w-5">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18"
-              ></path>
-            </svg>
-          </span>
-          <span class="sidebar-link-label">Activity Logs</span>
-        </a>
-        <% } %>
+            <% if (user.role==='admin' ) { %>
+              <a href="/activity-logs" data-active="activity-logs"
+                class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                onclick="sidebarLinkClick(event)">
+                <span class="sidebar-link-icon flex items-center justify-center w-5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18"></path>
+                  </svg>
+                </span>
+                <span class="sidebar-link-label">Activity Logs</span>
+              </a>
+              <% } %>
       </nav>
 
       <!-- Logout -->
       <div class="border-t border-gray-700 p-4 pb-6">
-        <a
-          href="/logout"
+        <a href="/logout"
           class="block px-4 py-2 rounded-lg text-red-400 hover:bg-red-500/20 hover:text-red-300 transition font-medium w-full text-left flex items-center gap-2 sidebar-logout-link sidebar-link"
-          onclick="sidebarLinkClick(event)"
-        >
+          onclick="sidebarLinkClick(event)">
           <span class="sidebar-link-icon flex items-center justify-center w-5">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"></path>
             </svg>
           </span>
           <span class="sidebar-link-label">Logout</span>
@@ -217,318 +120,275 @@
       </div>
     </aside>
 
-    <div
-      id="sidebarOverlay"
-      class="fixed inset-0 bg-black/40 hidden z-40 lg:hidden"
-      onclick="closeSidebar()"
-    ></div>
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/40 hidden z-40 lg:hidden" onclick="closeSidebar()"></div>
     <% } %>
 
-    <!-- Main Content Area  -->
-    <div
-      class="min-h-screen transition-all duration-300 lg:ml-64 <%= user ? 'ml-0 lg:ml-64' : '' %>"
-    >
-      <!-- Top Navbar  -->
-      <nav
-        class="w-full bg-gradient-to-br from-blue-50 via-white to-slate-100 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200"
-      >
-        <div
-          class="flex items-center justify-between px-4 py-2 max-w-7xl mx-auto"
-        >
-          <% if (!user) { %>
-          <div class="flex items-center gap-3">
-            <a href="/" class="text-2xl font-bold text-blue-700 tracking-wide"
-              >Admin Panel</a
-            >
-          </div>
-          <% } else { %>
-          <div
-            id="breadcrumb"
-            class="flex items-center space-x-2 text-gray-600 text-sm font-medium"
-          ></div>
-          <% } %>
-
-          <div class="flex items-center gap-3">
+      <!-- Main Content Area  -->
+      <div id="mainContent" class="min-h-screen transition-all duration-300 <%= user ? 'ml-0 lg:ml-64' : '' %>">
+        <!-- Top Navbar  -->
+        <nav
+          class="w-full bg-gradient-to-br from-blue-50 via-white to-slate-100 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200">
+          <div class="flex items-center justify-between px-4 py-2 w-full">
             <% if (!user) { %>
-            <a
-              href="/login"
-              class="px-4 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow"
-              >Login</a
-            >
-            <% } else { %>
-            <!-- Notifications -->
-            <div class="relative" x-data="{ open: false }">
-              <button
-                @click="open = !open"
-                class="relative p-2 rounded-lg hover:bg-gray-200 transition focus:outline-none"
-              >
-                <i class="fas fa-bell text-gray-600"></i>
-                <span
-                  class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"
-                ></span>
-              </button>
-              <div
-                x-show="open"
-                @click.outside="open = false"
-                class="absolute -left-14 mt-2 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-              >
-                <div
-                  class="px-4 py-2 text-gray-700 font-medium border-b border-gray-100 text-center text-[14px]"
-                >
-                  Notifications
-                </div>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-center text-blue-600 font-medium text-[12px] hover:underline mt-1"
-                  >View All</a
-                >
+              <div class="flex items-center gap-3">
+                <a href="/" class="text-2xl font-bold text-blue-700 tracking-wide">Admin Panel</a>
               </div>
-            </div>
+              <% } else { %>
+                <div id="breadcrumb" class="flex items-center space-x-2 text-gray-600 text-sm font-medium"></div>
+                <% } %>
 
-            <!-- User dropdown -->
-            <div class="relative" x-data="{ open: false }">
-              <button
-                @click="open = !open"
-                class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-gray-200 transition font-medium text-gray-700"
-              >
-                <span
-                  class="w-8 h-8 bg-blue-200 text-blue-900 font-bold flex items-center justify-center rounded-full"
-                >
-                  <%= user.name?.trim()?.[0]?.toUpperCase() || 'U' %>
-                </span>
-                <span><%= user.name || 'User' %></span>
-                <svg
-                  class="w-4 h-4 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              <div
-                x-show="open"
-                @click.outside="open = false"
-                class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-1"
-              >
-                <a
-                  href="/settings"
-                  class="block px-4 py-2 text-sm hover:bg-blue-50"
-                  >Profile</a
-                >
-                <a
-                  href="/logout"
-                  class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                  >Logout</a
-                >
-              </div>
-            </div>
+                  <div class="flex items-center gap-3">
+                    <% if (!user) { %>
+                      <a href="/login"
+                        class="px-4 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow">Login</a>
+                      <% } else { %>
+                        <!-- Notifications -->
+                        <div class="relative" x-data="{ open: false }">
+                          <button @click="open = !open"
+                            class="relative p-2 rounded-lg hover:bg-gray-200 transition focus:outline-none">
+                            <i class="fas fa-bell text-gray-600"></i>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                          </button>
+                          <div x-show="open" @click.outside="open = false"
+                            class="absolute -left-14 mt-2 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                            <div
+                              class="px-4 py-2 text-gray-700 font-medium border-b border-gray-100 text-center text-[14px]">
+                              Notifications
+                            </div>
+                            <a href="#"
+                              class="block px-4 py-2 text-center text-blue-600 font-medium text-[12px] hover:underline mt-1">View
+                              All</a>
+                          </div>
+                        </div>
 
-            <!-- Mobile menu -->
-            <button
-              class="lg:hidden text-gray-600 hover:text-gray-900 text-xl p-2 rounded-lg hover:bg-gray-100"
-              onclick="openSidebar()"
-            >
-              ☰
-            </button>
-            <% } %>
+                        <!-- User dropdown -->
+                        <div class="relative" x-data="{ open: false }">
+                          <button @click="open = !open"
+                            class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-gray-200 transition font-medium text-gray-700">
+                            <span
+                              class="w-8 h-8 bg-blue-200 text-blue-900 font-bold flex items-center justify-center rounded-full">
+                              <%= user.name?.trim()?.[0]?.toUpperCase() || 'U' %>
+                            </span>
+                            <span>
+                              <%= user.name || 'User' %>
+                            </span>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2"
+                              viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                          <div x-show="open" @click.outside="open = false"
+                            class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-1">
+                            <a href="/settings" class="block px-4 py-2 text-sm hover:bg-blue-50">Profile</a>
+                            <a href="/logout" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Logout</a>
+                          </div>
+                        </div>
+
+                        <!-- Mobile menu -->
+                        <button
+                          class="lg:hidden text-gray-600 hover:text-gray-900 text-xl p-2 rounded-lg hover:bg-gray-100"
+                          onclick="openSidebar()">
+                          ☰
+                        </button>
+                        <% } %>
+                  </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <!-- Main Content -->
-      <main class="min-h-screen">
-        <div class="max-w-7xl mx-auto">
-          <% if (pageContent === 'dashboard.ejs') { %> <%- include('dashboard')
-          %> <% } else if (pageContent === 'users.ejs') { %> <%-
-          include('users') %> <% } else if (pageContent === 'settings.ejs') { %>
-          <%- include('settings') %> <% } else if (pageContent ===
-          'activity-logs.ejs') { %> <%- include('activityLogs') %> <% } else if
-          (pageContent === 'login.ejs') { %> <%- include('../auth/login') %> <%
-          } else if (pageContent === 'forgot-password.ejs') { %> <%-
-          include('../auth/forgot-password') %> <% } else if (pageContent ===
-          'reset-password.ejs') { %> <%- include('../auth/reset-password') %> <%
-          } %>
-        </div>
-      </main>
-      <%- include('footer') %>
-    </div>
+        <!-- Main Content -->
+        <main class="min-h-screen">
+          <div class="w-full">
+            <% if (pageContent==='dashboard.ejs' ) { %>
+              <%- include('dashboard') %>
+                <% } else if (pageContent==='users.ejs' ) { %>
+                  <%- include('users') %>
+                    <% } else if (pageContent==='settings.ejs' ) { %>
+                      <%- include('settings') %>
+                        <% } else if (pageContent==='activity-logs.ejs' ) { %>
+                          <%- include('activityLogs') %>
+                            <% } else if (pageContent==='login.ejs' ) { %>
+                              <%- include('../auth/login') %>
+                                <% } else if (pageContent==='forgot-password.ejs' ) { %>
+                                  <%- include('../auth/forgot-password') %>
+                                    <% } else if (pageContent==='reset-password.ejs' ) { %>
+                                      <%- include('../auth/reset-password') %>
+                                        <% } %>
+          </div>
+        </main>
+        <%- include('footer') %>
+      </div>
 
-    <script>
-      // Sidebar Controls
-      function openSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("sidebarOverlay");
-        if (!sidebar || !overlay) return;
+      <script>
+        // Sidebar Controls
+        function openSidebar() {
+          const sidebar = document.getElementById("sidebar");
+          const overlay = document.getElementById("sidebarOverlay");
+          if (!sidebar || !overlay) return;
 
-        sidebar.classList.remove("-translate-x-full");
-        overlay.classList.remove("hidden");
-        if (window.innerWidth < 1024) document.body.style.overflow = "hidden";
-      }
-
-      function closeSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("sidebarOverlay");
-        if (!sidebar || !overlay) return;
-
-        sidebar.classList.add("-translate-x-full");
-        overlay.classList.add("hidden");
-        document.body.style.overflow = "";
-      }
-
-      function toggleSidebarWidth(ev) {
-        ev.preventDefault();
-        const sidebar = document.getElementById("sidebar");
-        if (!sidebar) return;
-
-        const mainContent = document.querySelector("div.min-h-screen");
-        const headerText = sidebar.querySelector(".sidebar-header-text");
-        const navLabels = sidebar.querySelectorAll(".sidebar-link-label");
-        const toggleArrowLeft = document.getElementById("toggleArrowLeft");
-        const toggleArrowRight = document.getElementById("toggleArrowRight");
-        const sidebarNav = document.getElementById("sidebarNav");
-
-        sidebar.classList.toggle("sidebar-collapsed");
-
-        if (sidebar.classList.contains("sidebar-collapsed")) {
-          sidebar.style.width = "64px";
-          if (mainContent) mainContent.style.marginLeft = "64px";
-          if (headerText) headerText.style.opacity = "0";
-          navLabels.forEach((label) => (label.style.display = "none"));
-          if (toggleArrowLeft) toggleArrowLeft.style.display = "none";
-          if (toggleArrowRight) toggleArrowRight.style.display = "";
-          if (sidebarNav) sidebarNav.classList.add("p-2");
-        } else {
-          sidebar.style.width = "256px";
-          if (mainContent) mainContent.style.marginLeft = "256px";
-          if (headerText) headerText.style.opacity = "1";
-          navLabels.forEach((label) => (label.style.display = ""));
-          if (toggleArrowLeft) toggleArrowLeft.style.display = "";
-          if (toggleArrowRight) toggleArrowRight.style.display = "none";
-          if (sidebarNav) sidebarNav.classList.remove("p-2");
-        }
-      }
-
-      function sidebarLinkClick(e) {
-        if (window.innerWidth < 1024) closeSidebar();
-      }
-
-      window.addEventListener("resize", function () {
-        const sidebar = document.getElementById("sidebar");
-        const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
-
-        if (!sidebar) return;
-
-        const mainContent = document.querySelector("div.min-h-screen");
-
-        if (window.innerWidth < 1024) {
-          sidebar.classList.remove("sidebar-collapsed");
-          sidebar.style.width = "";
-          if (mainContent) mainContent.style.marginLeft = "";
-          sidebar.classList.add("-translate-x-full");
-          if (sidebarToggleBtn) sidebarToggleBtn.style.display = "none";
-        } else {
           sidebar.classList.remove("-translate-x-full");
-          if (sidebarToggleBtn) sidebarToggleBtn.style.display = "inline-flex";
+          overlay.classList.remove("hidden");
+          if (window.innerWidth < 1024) document.body.style.overflow = "hidden";
+        }
+
+        function closeSidebar() {
+          const sidebar = document.getElementById("sidebar");
+          const overlay = document.getElementById("sidebarOverlay");
+          if (!sidebar || !overlay) return;
+
+          sidebar.classList.add("-translate-x-full");
+          overlay.classList.add("hidden");
+          document.body.style.overflow = "";
+        }
+
+        function toggleSidebarWidth(ev) {
+          ev.preventDefault();
+          const sidebar = document.getElementById("sidebar");
+          if (!sidebar) return;
+
+          const mainContent = document.getElementById("mainContent");
+          const headerText = sidebar.querySelector(".sidebar-header-text");
+          const navLabels = sidebar.querySelectorAll(".sidebar-link-label");
+          const toggleArrowLeft = document.getElementById("toggleArrowLeft");
+          const toggleArrowRight = document.getElementById("toggleArrowRight");
+          const sidebarNav = document.getElementById("sidebarNav");
+
+          sidebar.classList.toggle("sidebar-collapsed");
+
           if (sidebar.classList.contains("sidebar-collapsed")) {
             sidebar.style.width = "64px";
             if (mainContent) mainContent.style.marginLeft = "64px";
+            if (headerText) headerText.style.opacity = "0";
+            navLabels.forEach((label) => (label.style.display = "none"));
+            if (toggleArrowLeft) toggleArrowLeft.style.display = "none";
+            if (toggleArrowRight) toggleArrowRight.style.display = "";
+            if (sidebarNav) sidebarNav.classList.add("p-2");
           } else {
             sidebar.style.width = "256px";
             if (mainContent) mainContent.style.marginLeft = "256px";
+            if (headerText) headerText.style.opacity = "1";
+            navLabels.forEach((label) => (label.style.display = ""));
+            if (toggleArrowLeft) toggleArrowLeft.style.display = "";
+            if (toggleArrowRight) toggleArrowRight.style.display = "none";
+            if (sidebarNav) sidebarNav.classList.remove("p-2");
           }
         }
-      });
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const sidebarEl = document.getElementById("sidebar");
+        function sidebarLinkClick(e) {
+          if (window.innerWidth < 1024) closeSidebar();
+        }
 
-        if (sidebarEl) {
-          const links = sidebarEl.querySelectorAll(
-            ".sidebar-link[data-active]"
-          );
-          links.forEach((link) => {
-            if (
-              window.location.pathname.includes(
-                link.getAttribute("data-active")
-              )
-            ) {
-              link.classList.add("bg-blue-600/20", "text-blue-400");
+        window.addEventListener("resize", function () {
+          const sidebar = document.getElementById("sidebar");
+          const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+
+          if (!sidebar) return;
+
+          const mainContent = document.getElementById("mainContent");
+
+          if (window.innerWidth < 1024) {
+            sidebar.classList.remove("sidebar-collapsed");
+            sidebar.style.width = "";
+            if (mainContent) mainContent.style.marginLeft = "";
+            sidebar.classList.add("-translate-x-full");
+            if (sidebarToggleBtn) sidebarToggleBtn.style.display = "none";
+          } else {
+            sidebar.classList.remove("-translate-x-full");
+            if (sidebarToggleBtn) sidebarToggleBtn.style.display = "inline-flex";
+            if (sidebar.classList.contains("sidebar-collapsed")) {
+              sidebar.style.width = "64px";
+              if (mainContent) mainContent.style.marginLeft = "64px";
+            } else {
+              sidebar.style.width = "256px";
+              if (mainContent) mainContent.style.marginLeft = "256px";
             }
-          });
+          }
+        });
 
-          // Breadcrumbs
-          const bc = document.getElementById("breadcrumb");
-          if (bc) {
-            const mapping = [
-              {
-                path: /^\/dashboard\/?$/,
-                name: "Dashboard",
-                url: "/dashboard",
-              },
-              { path: /^\/users(\/.*)?$/, name: "Users", url: "/users" },
-              { path: /^\/settings\/?$/, name: "Settings", url: "/settings" },
-              {
-                path: /^\/activity-logs(\/.*)?$/,
-                name: "Activity Logs",
-                url: "/activity-logs",
-              },
-            ];
+        document.addEventListener("DOMContentLoaded", function () {
+          const sidebarEl = document.getElementById("sidebar");
 
-            const path = window.location.pathname;
-            let html =
-              '<a href="/" class="hover:underline text-blue-600">Home</a>';
-            for (let item of mapping) {
-              if (item.path.test(path)) {
-                html += ` <span class="mx-1 opacity-60">/</span> <span class="font-semibold">${item.name}</span>`;
-                break;
+          if (sidebarEl) {
+            const links = sidebarEl.querySelectorAll(
+              ".sidebar-link[data-active]"
+            );
+            links.forEach((link) => {
+              if (
+                window.location.pathname.includes(
+                  link.getAttribute("data-active")
+                )
+              ) {
+                link.classList.add("bg-blue-600/20", "text-blue-400");
               }
+            });
+
+            // Breadcrumbs
+            const bc = document.getElementById("breadcrumb");
+            if (bc) {
+              const mapping = [
+                {
+                  path: /^\/dashboard\/?$/,
+                  name: "Dashboard",
+                  url: "/dashboard",
+                },
+                { path: /^\/users(\/.*)?$/, name: "Users", url: "/users" },
+                { path: /^\/settings\/?$/, name: "Settings", url: "/settings" },
+                {
+                  path: /^\/activity-logs(\/.*)?$/,
+                  name: "Activity Logs",
+                  url: "/activity-logs",
+                },
+              ];
+
+              const path = window.location.pathname;
+              let html =
+                '<a href="/" class="hover:underline text-blue-600">Home</a>';
+              for (let item of mapping) {
+                if (item.path.test(path)) {
+                  html += ` <span class="mx-1 opacity-60">/</span> <span class="font-semibold">${item.name}</span>`;
+                  break;
+                }
+              }
+              bc.innerHTML = html;
             }
-            bc.innerHTML = html;
+
+            window.dispatchEvent(new Event("resize"));
           }
+        });
+      </script>
 
-          window.dispatchEvent(new Event("resize"));
+      <style>
+        .sidebar-collapsed .sidebar-header-text,
+        .sidebar-collapsed .sidebar-link-label {
+          display: none !important;
+          opacity: 0;
         }
-      });
-    </script>
 
-    <style>
-      .sidebar-collapsed .sidebar-header-text,
-      .sidebar-collapsed .sidebar-link-label {
-        display: none !important;
-        opacity: 0;
-      }
-
-      .sidebar-collapsed .sidebar-nav {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
-      }
-
-      .sidebar-collapsed .sidebar-link {
-        justify-content: center;
-        gap: 0;
-      }
-
-      .sidebar-collapsed .sidebar-link-icon {
-        margin: 0;
-      }
-
-      #sidebar {
-        width: 256px;
-        min-width: 256px;
-      }
-
-      @media (min-width: 1024px) {
-        #sidebar.sidebar-collapsed {
-          width: 64px !important;
-          min-width: 64px !important;
+        .sidebar-collapsed .sidebar-nav {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
         }
-      }
-    </style>
-  </body>
+
+        .sidebar-collapsed .sidebar-link {
+          justify-content: center;
+          gap: 0;
+        }
+
+        .sidebar-collapsed .sidebar-link-icon {
+          margin: 0;
+        }
+
+        #sidebar {
+          width: 256px;
+          min-width: 256px;
+        }
+
+        @media (min-width: 1024px) {
+          #sidebar.sidebar-collapsed {
+            width: 64px !important;
+            min-width: 64px !important;
+          }
+        }
+      </style>
+</body>
+
 </html>

@@ -21,6 +21,12 @@ router.put(
   authController.updateProfile
 );
 router.put(
+  "/change-password",
+  protect,
+  authorizeRoles("user", "admin"),
+  authController.changePassword
+);
+router.put(
   "/toggle-status",
   protect,
   authorizeRoles("admin"),

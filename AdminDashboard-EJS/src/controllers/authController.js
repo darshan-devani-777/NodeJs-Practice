@@ -280,55 +280,42 @@ exports.getAllUsers = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const loggedInUser = req.user;
-    const { userId, name, email, password, role } = req.body;
+    const { userId, name, email, role } = req.body;
 
     if (!loggedInUser) {
-      return res.status(401).json({ success: false, message: "Unauthorized" });
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
     }
 
     const User = require("../models/User");
-    const userToUpdate = userId ? await User.findById(userId) : loggedInUser;
+
+    const userToUpdate = userId
+      ? await User.findById(userId)
+      : loggedInUser;
 
     if (!userToUpdate) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
     }
 
     if (role && userToUpdate._id.toString() !== loggedInUser._id.toString()) {
       if (loggedInUser.role !== "admin") {
-        return res
-          .status(403)
-          .json({
-            success: false,
-            message: "Forbidden: Only admins can change roles",
-          });
+        return res.status(403).json({
+          success: false,
+          message: "Forbidden: Only admins can change roles",
+        });
       }
       userToUpdate.role = role;
     }
 
-    userToUpdate.name = name || userToUpdate.name;
-    userToUpdate.email = email || userToUpdate.email;
-
-    let passwordChanged = false;
-    if (password && password.trim() !== "") {
-      userToUpdate.password = password;
-      passwordChanged = true;
-    }
+    if (name) userToUpdate.name = name;
+    if (email) userToUpdate.email = email;
 
     await userToUpdate.save();
-
-    if (
-      passwordChanged &&
-      userToUpdate._id.toString() === loggedInUser._id.toString()
-    ) {
-      res.clearCookie("token");
-      return res.json({
-        success: true,
-        message: "Password changed. Please login again.",
-        redirect: "/login",
-      });
-    }
 
     await logActivity({
       user: userToUpdate._id,
@@ -349,14 +336,112 @@ exports.updateProfile = async (req, res) => {
     });
   } catch (err) {
     console.error("Update Profile Error:", err);
+
     await logActivity({
-      user: null,
+      user: req.user?._id || null,
       action: "UPDATE_PROFILE",
-      description: `Profile update failed for user ${req.body.email}`,
+      description: "Profile update failed",
       req,
       status: "failed",
     });
-    res.status(500).json({ success: false, message: "Server error" });
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
+
+/* ---------------- CHANGE PASSWORD ---------------- */
+exports.changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        field: !oldPassword
+          ? "oldPassword"
+          : !newPassword
+            ? "newPassword"
+            : "confirmPassword",
+        message: "All fields are required",
+      });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        field: "confirmPassword",
+        message: "New password and confirm password do not match",
+      });
+    }
+
+    const User = require("../models/User");
+
+    const user = await User.findById(req.user._id).select("+password");
+
+    const isMatch = await user.matchPassword(oldPassword);
+    if (!isMatch) {
+      await logActivity({
+        user: req.user._id,
+        action: "CHANGE_PASSWORD",
+        description: "Failed password change attempt: old password incorrect",
+        req,
+        status: "failed",
+      });
+
+      return res.status(400).json({
+        success: false,
+        field: "oldPassword",
+        message: "Old password is incorrect",
+      });
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    await logActivity({
+      user: user._id,
+      action: "CHANGE_PASSWORD",
+      description: "Password changed successfully",
+      req,
+      status: "success",
+    });
+
+    res.clearCookie("token");
+
+    return res.json({
+      success: true,
+      message: "Password changed successfully. Please login again.",
+      redirect: "/login",
+    });
+
+  } catch (err) {
+    console.error("Change Password Error:", err);
+
+    await logActivity({
+      user: req.user?._id || null,
+      action: "CHANGE_PASSWORD",
+      description: "Password change failed due to server error",
+      req,
+      status: "failed",
+    });
+
+    if (err.name === "ValidationError") {
+      const firstError = Object.values(err.errors)[0];
+
+      return res.status(400).json({
+        success: false,
+        field: firstError.path === "password" ? "newPassword" : firstError.path,
+        message: firstError.message,
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
 
@@ -385,9 +470,8 @@ exports.toggleUserStatus = async (req, res) => {
     await logActivity({
       user: user._id,
       action: "TOGGLE_USER_STATUS",
-      description: `User ${
-        isActive ? "activated" : "deactivated"
-      } with userId ${userId}`,
+      description: `User ${isActive ? "activated" : "deactivated"
+        } with userId ${userId}`,
       req,
       status: "success",
     });

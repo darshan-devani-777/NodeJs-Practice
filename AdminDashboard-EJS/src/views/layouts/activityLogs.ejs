@@ -1,91 +1,54 @@
-<div
-  class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6"
->
-  <div
-    class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-2"
-  >
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-2">
     <div>
-      <h1
-        class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-3 drop-shadow-md"
-      >
+      <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-3 drop-shadow-md">
         <i class="fas fa-clipboard-list text-blue-400 animate-pulse"></i>
         <span>Activity Logs</span>
       </h1>
-      <span class="text-base text-gray-600 font-semibold"
-        >Review all account & system activities</span
-      >
+      <span class="text-base text-gray-600 font-semibold">Review all account & system activities</span>
     </div>
     <div class="flex items-center gap-4">
-      <button
-        onclick="refreshLogs()"
-        class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-[13px] font-semibold shadow flex items-center gap-2 transition"
-      >
+      <button onclick="refreshLogs()"
+        class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-[13px] font-semibold shadow flex items-center gap-2 transition">
         <i class="fas fa-redo-alt"></i> Refresh
       </button>
     </div>
   </div>
 
-  <div
-    class="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 overflow-x-auto mb-8"
-  >
+  <div class="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 overflow-x-auto mb-8">
     <!-- Enhanced Filters -->
-    <form
-      id="logFilters"
-      class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-5 gap-3"
-      autocomplete="off"
-      onsubmit="return false;"
-    >
+    <form id="logFilters" class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-5 gap-3"
+      autocomplete="off" onsubmit="return false;">
       <!-- Search -->
       <div class="relative w-full lg:w-1/3">
         <label for="searchInput" class="sr-only">Search Activity Logs</label>
-        <input
-          type="text"
-          id="searchInput"
-          name="search"
-          placeholder="Search by user, email, action, description"
+        <input type="text" id="searchInput" name="search" placeholder="Search by user, email, action, description"
           class="w-full pl-7 pr-3 py-1.5 text-sm rounded-lg border border-blue-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 bg-blue-50"
-          aria-label="Search activity logs"
-        />
-        <span
-          class="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400 text-sm"
-        >
+          aria-label="Search activity logs" />
+        <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-blue-400 text-sm">
           <i class="fas fa-search"></i>
         </span>
       </div>
 
       <!-- Status Filter -->
       <div class="w-full lg:w-40">
-        <select
-          id="statusFilter"
-          name="status"
+        <select id="statusFilter" name="status"
           class="w-full px-3 py-2 rounded-lg text-sm border border-blue-200 bg-blue-50 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 font-mono text-blue-700 cursor-pointer"
-          aria-label="Filter by status"
-        >
+          aria-label="Filter by status">
           <option value="">All Status</option>
           <option value="success" class="text-green-600">Success</option>
           <option value="failed" class="text-red-600">Failed</option>
         </select>
       </div>
       <!-- Date range -->
-      <div
-        class="flex flex-col sm:flex-row gap-2 items-center w-full sm:w-auto"
-      >
-        <input
-          type="date"
-          id="dateFrom"
-          class="px-3 py-2 rounded-lg border border-blue-200 bg-blue-50 text-xs font-mono cursor-pointer"
-        />
+      <div class="flex flex-col sm:flex-row gap-2 items-center w-full sm:w-auto">
+        <input type="date" id="dateFrom"
+          class="px-3 py-2 rounded-lg border border-blue-200 bg-blue-50 text-xs font-mono cursor-pointer" />
         <span class="text-gray-400 mx-1 text-sm">to</span>
-        <input
-          type="date"
-          id="dateTo"
-          class="px-3 py-2 rounded-lg border border-blue-200 bg-blue-50 text-xs font-mono cursor-pointer"
-        />
-        <button
-          type="button"
-          onclick="clearDateFilter()"
-          class="ml-2 bg-gray-200 hover:bg-gray-300 px-3 py-2 rounded-lg text-xs text-gray-700 font-mono"
-        >
+        <input type="date" id="dateTo"
+          class="px-3 py-2 rounded-lg border border-blue-200 bg-blue-50 text-xs font-mono cursor-pointer" />
+        <button type="button" onclick="clearDateFilter()"
+          class="ml-2 bg-gray-200 hover:bg-gray-300 px-3 py-2 rounded-lg text-xs text-gray-700 font-mono">
           Clear
         </button>
       </div>
@@ -93,47 +56,29 @@
 
     <!-- Enhanced Table -->
     <div class="overflow-x-auto rounded-xl border border-blue-50">
-      <table
-        class="w-full min-w-[900px] border border-blue-100 text-sm font-mono rounded-lg overflow-hidden"
-        aria-describedby="noDataMsg"
-      >
-        <thead
-          class="bg-gradient-to-r from-blue-50 via-blue-100 to-white border-b border-blue-200"
-        >
+      <table class="w-full min-w-[900px] border border-blue-100 text-sm font-mono rounded-lg overflow-hidden"
+        aria-describedby="noDataMsg">
+        <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white border-b border-blue-200">
           <tr>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               #
             </th>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               User
             </th>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               Action
             </th>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               Description
             </th>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               Status
             </th>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               IP
             </th>
-            <th
-              class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest"
-            >
+            <th class="px-4 py-3 text-blue-700 text-xs font-bold uppercase text-left tracking-widest">
               Date
             </th>
           </tr>
@@ -145,67 +90,49 @@
     <!-- Skeleton Loader -->
     <div id="skeletonLoader" class="w-full flex flex-col gap-2 py-6 hidden">
       <% for (let i=0; i < 5; i++) { %>
-      <div class="w-full flex gap-3 items-center animate-pulse">
-        <div class="rounded bg-blue-100 h-4 w-8"></div>
-        <div class="rounded bg-blue-100 h-4 w-32"></div>
-        <div class="rounded bg-blue-100 h-4 w-28"></div>
-        <div class="rounded bg-blue-100 h-4 w-48"></div>
-        <div class="rounded bg-blue-100 h-4 w-20"></div>
-        <div class="rounded bg-blue-100 h-4 w-16"></div>
-        <div class="rounded bg-blue-100 h-4 w-28"></div>
-      </div>
-      <% } %>
+        <div class="w-full flex gap-3 items-center animate-pulse">
+          <div class="rounded bg-blue-100 h-4 w-8"></div>
+          <div class="rounded bg-blue-100 h-4 w-32"></div>
+          <div class="rounded bg-blue-100 h-4 w-28"></div>
+          <div class="rounded bg-blue-100 h-4 w-48"></div>
+          <div class="rounded bg-blue-100 h-4 w-20"></div>
+          <div class="rounded bg-blue-100 h-4 w-16"></div>
+          <div class="rounded bg-blue-100 h-4 w-28"></div>
+        </div>
+        <% } %>
     </div>
 
-    <p
-      id="noDataMsg"
-      class="text-center text-gray-400 py-8 font-mono hidden"
-      role="status"
-    >
+    <p id="noDataMsg" class="text-center text-gray-400 py-8 font-mono hidden" role="status">
       <i class="fas fa-ban text-xl mr-2"></i> No activity logs found
     </p>
 
     <!-- Enhanced Pagination -->
-    <nav
-      id="pagination"
+    <nav id="pagination"
       class="flex flex-col sm:flex-row justify-between items-center mt-6 text-xs font-mono text-blue-800 hidden gap-3"
-      aria-label="Activity Log Pagination"
-    >
+      aria-label="Activity Log Pagination">
+      <p id="pageInfo" class="mt-2 sm:mt-0"></p>
       <div class="flex gap-2">
-        <button
-          id="firstPage"
-          type="button"
+        <button id="firstPage" type="button"
           class="px-2 py-1 bg-blue-50 border border-blue-200 rounded hover:bg-blue-100 disabled:opacity-40"
-          aria-label="First Page"
-        >
+          aria-label="First Page">
           &laquo;
         </button>
-        <button
-          id="prevPage"
-          type="button"
+        <button id="prevPage" type="button"
           class="px-3 py-1 bg-blue-50 border border-blue-200 rounded hover:bg-blue-100 disabled:opacity-40"
-          aria-label="Previous Page"
-        >
+          aria-label="Previous Page">
           Prev
         </button>
-        <button
-          id="nextPage"
-          type="button"
+        <button id="nextPage" type="button"
           class="px-3 py-1 bg-blue-50 border border-blue-200 rounded hover:bg-blue-100 disabled:opacity-40"
-          aria-label="Next Page"
-        >
+          aria-label="Next Page">
           Next
         </button>
-        <button
-          id="lastPage"
-          type="button"
+        <button id="lastPage" type="button"
           class="px-2 py-1 bg-blue-50 border border-blue-200 rounded hover:bg-blue-100 disabled:opacity-40"
-          aria-label="Last Page"
-        >
+          aria-label="Last Page">
           &raquo;
         </button>
       </div>
-      <p id="pageInfo" class="mt-2 sm:mt-0"></p>
     </nav>
   </div>
 </div>
@@ -291,29 +218,26 @@
     pageData.forEach((log, index) => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td class="px-4 py-3 font-mono text-xs text-blue-900">${
-          start + index + 1
+        <td class="px-4 py-3 font-mono text-xs text-blue-900">${start + index + 1
         }.</td>
         <td class="px-4 py-3 font-mono text-xs">
-          ${
-            log.user
-              ? `<span class="font-bold text-blue-700">${escapeHTML(
-                  log.user.name
-                )}</span><br>
+          ${log.user
+          ? `<span class="font-bold text-blue-700">${escapeHTML(
+            log.user.name
+          )}</span><br>
                  <span class="font-mono text-slate-600 text-[0.93em] italic">${escapeHTML(
-                   log.user.email
-                 )}</span>`
-              : `<span class="text-slate-500 italic">System/Guest</span>`
-          }
+            log.user.email
+          )}</span>`
+          : `<span class="text-slate-500 italic">System/Guest</span>`
+        }
         </td>
         <td class="px-4 py-3 text-sm">
-          <span class="inline-flex items-center gap-1 font-semibold ${
-            log.action && log.action.match(/delete|fail|error/i)
-              ? "text-red-700"
-              : log.action && log.action.match(/create|register|success/i)
-              ? "text-green-700"
-              : "text-blue-700"
-          }">
+          <span class="inline-flex items-center gap-1 font-semibold ${log.action && log.action.match(/delete|fail|error/i)
+          ? "text-red-700"
+          : log.action && log.action.match(/create|register|success/i)
+            ? "text-green-700"
+            : "text-blue-700"
+        }">
             <i class="fas ${getActionIconClass(log.action)}"></i> 
             ${escapeHTML(log.action)}
           </span>
@@ -324,17 +248,15 @@
           ${escapeHTML(log.description) || "-"}
         </td>
         <td class="px-4 py-3 font-bold text-xs uppercase text-center">
-          <span class="inline-block px-2 py-1 rounded ${
-            log.status === "success"
-              ? "bg-green-100 text-green-700 border border-green-200"
-              : "bg-red-100 text-red-700 border border-red-200"
-          }">${escapeHTML(log.status)}</span>
+          <span class="inline-block px-2 py-1 rounded ${log.status === "success"
+          ? "bg-green-100 text-green-700 border border-green-200"
+          : "bg-red-100 text-red-700 border border-red-200"
+        }">${escapeHTML(log.status)}</span>
         </td>
         <td class="px-4 py-3 font-mono text-[0.95em] text-blue-800">${escapeHTML(
           log.ip || "-"
         )}</td>
-        <td class="px-4 py-3 font-mono text-[0.92em] text-slate-700">${
-          log.createdAt ? new Date(log.createdAt).toLocaleString() : "-"
+        <td class="px-4 py-3 font-mono text-[0.92em] text-slate-700">${log.createdAt ? new Date(log.createdAt).toLocaleString() : "-"
         }</td>
       `;
       tbody.appendChild(tr);
