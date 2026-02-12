@@ -1,0 +1,902 @@
+{
+  "info": {
+    "_postman_id": "ad140e31-9e47-4379-b614-c0ab0375e465",
+    "name": "AdminDashboard-EJS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4377776",
+    "_collection_link": "https://go.postman.co/collection/4377776-ad140e31-9e47-4379-b614-c0ab0375e465?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register-User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Denver D.\",\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/register-user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "register-user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register-User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Denver D.\",\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/auth/register-user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register-user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "336"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"150-eSci07rmtpv4iKvVM5U5hb/+l68\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Jan 2026 08:29:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6979c8dad016861b9816773c\",\n            \"name\": \"Denver D.\",\n            \"email\": \"denver@gmail.com\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzljOGRhZDAxNjg2MWI5ODE2NzczYyIsImlhdCI6MTc2OTU4ODk1NCwiZXhwIjoxNzY5NTkyNTU0fQ.d9Wud3XOVngo5hH08HxLL8lvO4YtOyGeY8XmEuUkWmg\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login-User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/auth/login-user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "auth",
+                "login-user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login-User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/auth/login-user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login-user"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "331"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"14b-zPzDX4ZjI1PSfmK7Eonn8QFAVTY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Jan 2026 08:33:54 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User login successfully\",\n    \"data\": {\n        \"user\": {\n            \"_id\": \"6979c8dad016861b9816773c\",\n            \"name\": \"Denver D.\",\n            \"email\": \"denver@gmail.com\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzljOGRhZDAxNjg2MWI5ODE2NzczYyIsImlhdCI6MTc2OTU4OTIzNCwiZXhwIjoxNzY5NTkyODM0fQ.qzt2mEWAn4NGh4xXllUKWGU3SiZqUy12P2fjUKXur_4\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Forgot-Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"peterapps70@gmail.com\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/forgotpassword",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "forgotpassword"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Forgot-Password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"peterapps70@gmail.com\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/auth/forgotpassword",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "forgotpassword"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "137"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"89-5N6oY3+Tx0chRx9c0k2trz3BLhs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Jan 2026 08:38:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Password reset link sent\",\n    \"resetUrl\": \"http://localhost:5000/api/auth/resetpassword/1cf19274afd3d15f528806eb1ebbc023358b392c\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Reset-Password",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"Peter@123\",\n  \"confirmPassword\": \"Peter@123\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/resetpassword/1cf19274afd3d15f528806eb1ebbc023358b392c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "resetpassword",
+                "1cf19274afd3d15f528806eb1ebbc023358b392c"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Reset-Password",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"Peter@123\",\n  \"confirmPassword\": \"Peter@123\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/auth/resetpassword/1cf19274afd3d15f528806eb1ebbc023358b392c",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "auth",
+                    "resetpassword",
+                    "1cf19274afd3d15f528806eb1ebbc023358b392c"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "70"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46-aIqbdci4TFzs3lbAmoCzbFMiWLo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Jan 2026 08:47:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Password updated successfully\",\n    \"data\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Blogs",
+      "item": [
+        {
+          "name": "Create-Blog",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDg3NzQyNiwiZXhwIjoxNzcwODgxMDI2fQ.AWDJz_cm6fmV6Ygh56BTnjN6TsiX3Uo5obP1eUou2Oc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introduction to Node.js\",\n  \"content\": \"Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to build scalable backend applications.\",\n  \"tags\": [\"NodeJS\", \"Backend\", \"JavaScript\"]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/blogs/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "blogs",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create-Blog",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Introduction to Node.js\",\n  \"content\": \"Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to build scalable backend applications.\",\n  \"tags\": [\"NodeJS\", \"Backend\", \"JavaScript\"]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/blogs/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "blogs",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "440"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b8-O4GcKo93oMh1z9HoCUPKCMUt5ls\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Feb 2026 06:24:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Blog created successfully\",\n    \"data\": {\n        \"title\": \"Introduction to Node.js\",\n        \"content\": \"Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to build scalable backend applications.\",\n        \"tags\": [\n            \"NodeJS\",\n            \"Backend\",\n            \"JavaScript\"\n        ],\n        \"isPublished\": false,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"_id\": \"698d721a78d2f2497c3d6be9\",\n        \"createdAt\": \"2026-02-12T06:24:26.947Z\",\n        \"updatedAt\": \"2026-02-12T06:24:26.947Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get-All-Blog",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDg3NzQyNiwiZXhwIjoxNzcwODgxMDI2fQ.AWDJz_cm6fmV6Ygh56BTnjN6TsiX3Uo5obP1eUou2Oc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/blogs/all-blogs?limit=5&search=node",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "blogs",
+                "all-blogs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "search",
+                  "value": "node"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get-All-Blog",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/blogs/all-blogs?limit=5&search=node",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "blogs",
+                    "all-blogs"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "search",
+                      "value": "node"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "593"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"251-yv7sJEh0gFQG/0irgjtdjzQu3iY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Feb 2026 06:39:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Blog retrieved successfully\",\n    \"pageInfo\": {\n        \"hasNextPage\": false,\n        \"nextCursor\": \"698d721a78d2f2497c3d6be9\",\n        \"limit\": 5\n    },\n    \"data\": [\n        {\n            \"_id\": \"698d721a78d2f2497c3d6be9\",\n            \"title\": \"Introduction to Node.js\",\n            \"content\": \"Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to build scalable backend applications.\",\n            \"tags\": [\n                \"NodeJS\",\n                \"Backend\",\n                \"JavaScript\"\n            ],\n            \"isPublished\": false,\n            \"author\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"createdAt\": \"2026-02-12T06:24:26.947Z\",\n            \"updatedAt\": \"2026-02-12T06:24:26.947Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get-Specific-Blog",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDg4MDA5MSwiZXhwIjoxNzcwODgzNjkxfQ.kbc2hRZQYk6DRAR5zsh2RbQkctVIGy1OIC6Y34FxqfY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/blogs/698d740778d2f2497c3d6c16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "blogs",
+                "698d740778d2f2497c3d6c16"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get-Specific-Blog",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/blogs/698d740778d2f2497c3d6c16",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "blogs",
+                    "698d740778d2f2497c3d6c16"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "519"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"207-Wo1z4+z20DSMBQ/619wBqJMzcPc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Feb 2026 07:01:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Blog retrieved successfully\",\n    \"data\": {\n        \"_id\": \"698d740778d2f2497c3d6c16\",\n        \"title\": \"Remote Work: Pros and Cons\",\n        \"content\": \"Remote work offers flexibility but also challenges. This blog discusses advantages and disadvantages of working remotely.\",\n        \"tags\": [\n            \"RemoteWork\",\n            \"WorkLife\",\n            \"Career\"\n        ],\n        \"isPublished\": false,\n        \"author\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"createdAt\": \"2026-02-12T06:32:39.802Z\",\n        \"updatedAt\": \"2026-02-12T06:32:39.802Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update-Blog",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDg4MDA5MSwiZXhwIjoxNzcwODgzNjkxfQ.kbc2hRZQYk6DRAR5zsh2RbQkctVIGy1OIC6Y34FxqfY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Remote Work: Pros and Cons\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/blogs/update/698d740778d2f2497c3d6c16",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "blogs",
+                "update",
+                "698d740778d2f2497c3d6c16"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update-Blog",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Remote Work: Pros and Cons\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/blogs/update/698d740778d2f2497c3d6c16",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "blogs",
+                    "update",
+                    "698d740778d2f2497c3d6c16"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "451"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c3-yLt9gZV0ibYEoWItezG4tAnn6vA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Feb 2026 07:11:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Blog updated successfully\",\n    \"data\": {\n        \"_id\": \"698d740778d2f2497c3d6c16\",\n        \"title\": \"Remote Work: Pros and Cons\",\n        \"content\": \"Remote work offers flexibility but also challenges. This blog discusses advantages and disadvantages of working remotely.\",\n        \"tags\": [\n            \"RemoteWork\",\n            \"WorkLife\",\n            \"Career\"\n        ],\n        \"isPublished\": false,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-12T06:32:39.802Z\",\n        \"updatedAt\": \"2026-02-12T07:11:57.869Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete-Blog",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDg4MDY5MywiZXhwIjoxNzcwODg0MjkzfQ.pN_U-sBVQuqEyJuvlD9DIwThshx3jUp8ZJ2mzcU6VVI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/blogs/delete/698d7e77b3b6f832911f6bc5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "blogs",
+                "delete",
+                "698d7e77b3b6f832911f6bc5"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete-Blog",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/blogs/delete/698d7e77b3b6f832911f6bc5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "blogs",
+                    "delete",
+                    "698d7e77b3b6f832911f6bc5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "188"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"bc-dYIcDzN7JRkcvPaynYCJ82DlcwA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 12 Feb 2026 07:18:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Blog deleted successfully\",\n    \"data\": {\n        \"id\": \"698d7e77b3b6f832911f6bc5\",\n        \"title\": \"Remote Work: Pros and Cons\",\n        \"author\": \"698040dc31aabf244444e654\",\n        \"isPublished\": false\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FAQ's",
+      "item": []
+    }
+  ]
+}
