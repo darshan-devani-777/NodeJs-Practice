@@ -4,6 +4,8 @@ const { protect } = require("../middlewares/authMiddleware");
 const { guest } = require("../middlewares/guestMiddleware");
 const { authorizeRoles } = require("../middlewares/roleMiddleware");
 const User = require("../models/User");
+const Blog = require("../models/Blog");
+const Faq = require("../models/Faq");
 
 router.get("/", (req, res) => res.redirect("/login"));
 
@@ -64,6 +66,53 @@ router.get("/users", protect, authorizeRoles("admin"), async (req, res) => {
       user: req.user,
       pageContent: "users.ejs",
       users,
+      hasNextPage,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+router.get("/blogs", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const limit = 5;
+
+    const blogs = await Blog.find()
+      .populate("author", "name email")
+      .sort({ _id: 1 })
+      .limit(limit + 1);
+
+    const hasNextPage = blogs.length > limit;
+    if (hasNextPage) blogs.pop();
+
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "blogs.ejs",
+      blogs,
+      hasNextPage,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+router.get("/faqs", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const limit = 5;
+
+    const faqs = await Faq.find()
+      .sort({ _id: 1 })
+      .limit(limit + 1);
+
+    const hasNextPage = faqs.length > limit;
+    if (hasNextPage) faqs.pop();
+
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "faqs.ejs",
+      faqs,
       hasNextPage,
     });
   } catch (err) {

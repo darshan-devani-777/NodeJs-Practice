@@ -1,0 +1,685 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
+        <div>
+            <h1
+                class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+                <i class="fas fa-blog text-blue-400 animate-pulse"></i>
+                <span>Blogs Management</span>
+            </h1>
+            <span class="text-base text-gray-600 font-semibold">
+                Manage blogs, publish status & content
+            </span>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+
+        <!-- Total Blogs -->
+        <div
+            class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-blue-100 font-bold">Total Blogs</p>
+                    <span id="totalBlogs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-blog text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Published Blogs -->
+        <div
+            class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-green-100 font-bold">Published Blogs</p>
+                    <span id="publishedBlogs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-check-circle text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Draft Blogs -->
+        <div
+            class="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-slate-100 font-bold">Draft Blogs</p>
+                    <span id="draftBlogs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-file-alt text-5xl text-slate-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- New Blogs Today -->
+        <div
+            class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-indigo-100 font-bold">New Blogs (Today)</p>
+                    <span id="newBlogs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-pen-nib text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SEARCH + SORT -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+
+        <!-- Left: Search + Sort -->
+        <div class="flex gap-2 w-full sm:w-auto">
+            <input type="text" id="searchInput"
+                class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Search blog title..." />
+
+            <select id="sortSelect"
+                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="desc">Sort: Newest First</option>
+                <option value="asc">Sort: Oldest First</option>
+            </select>
+
+            <button onclick="onSearch()"
+                class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
+                <i class="fas fa-search text-[10px]"></i>
+                Search
+            </button>
+        </div>
+
+        <!-- Right: Create Blog Button -->
+        <div class="w-full sm:w-auto flex justify-start sm:justify-end">
+            <button onclick="openCreateBlogModal()"
+                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
+                <i class="fas fa-plus text-[10px]"></i>
+                Blogs
+            </button>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
+        <table class="w-full min-w-[700px] border border-gray-200 text-sm table-fixed">
+            <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white">
+                <tr>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[60px] text-center">#</th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Title
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Author
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Status
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Created At
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[140px] text-center">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody id="blogsTable" class="divide-y font-mono">
+                <!-- rows via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 text-center">
+        <button id="loadMoreBtn" onclick="fetchBlogs()"
+            class="inline-flex items-center justify-center gap-1 bg-gray-400 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-gray-500 transition hidden w-full sm:w-auto mb-4">
+            <i class="fas fa-arrow-down text-[10px]"></i>
+            Load More
+        </button>
+    </div>
+
+    <!-- CREATE BLOG MODAL -->
+    <div id="createBlogModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+        <div class="bg-white w-full max-w-xl rounded-xl shadow-2xl p-6 relative animate-fade-in">
+
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="blogModalTitle" class="text-lg font-bold text-blue-800">Create New Blog</h2>
+                <button onclick="closeCreateBlogModal()" class="text-gray-500 hover:text-red-500">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <!-- FORM -->
+            <form onsubmit="createBlog(event)" class="space-y-4">
+
+                <!-- TITLE -->
+                <div>
+                    <label class="text-xs font-bold text-gray-600">Title *</label>
+                    <input id="blogTitle" type="text"
+                        class="w-full border rounded px-3 py-2 text-sm focus:ring-1 focus:ring-blue-400">
+                    <p id="blogTitleError" class="text-xs text-red-500 mt-1 hidden"></p>
+                </div>
+
+                <!-- CONTENT -->
+                <div>
+                    <label class="text-xs font-bold text-gray-600">Content *</label>
+                    <textarea id="blogContent" rows="5"
+                        class="w-full border rounded px-3 py-2 text-sm focus:ring-1 focus:ring-blue-400"></textarea>
+                    <p id="blogContentError" class="text-xs text-red-500 mt-1 hidden"></p>
+                </div>
+
+                <!-- TAGS -->
+                <div>
+                    <label class="text-xs font-bold text-gray-600">
+                        Tags <span class="text-gray-400">(comma separated)</span>
+                    </label>
+                    <input id="blogTags" type="text" placeholder="tech, startup, ai"
+                        class="w-full border rounded px-3 py-2 text-sm">
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="flex justify-end gap-2 pt-2">
+                    <!-- Create Blog Button -->
+                    <button type="submit" id="createBlogBtn"
+                        class="px-4 py-2 text-xs rounded bg-blue-600 text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center gap-2">
+                        <svg id="createBlogSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                        <span id="createBlogBtnText">Create Blog</span>
+                    </button>
+
+                    <!-- Cancel Button -->
+                    <button type="button" id="cancelCreateBlogBtn"
+                        class="px-4 py-2 text-xs rounded bg-gray-400 text-white hover:bg-gray-500 transition duration-300">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm">
+    </div>
+</div>
+
+<script>
+    let cursor = null;
+    let search = "";
+    let indexOffset = 0;
+    const limit = 5;
+
+    /* ================= SAFE JSON ================= */
+    async function safeParseJSON(res) {
+        const text = await res.text();
+        try {
+            return JSON.parse(text);
+        } catch {
+            showToast("Session expired or server error. Please refresh!", "error");
+            throw new Error("Invalid JSON");
+        }
+    }
+
+    function animateNumber(id, start, end, duration = 800) {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        let startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            el.textContent = Math.floor(progress * (end - start) + start);
+            if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    /* ================= STATS ================= */
+    async function fetchBlogStats() {
+        try {
+            const res = await fetch("/api/blogs/stats", {
+                headers: { Accept: "application/json" },
+            });
+
+            const { success, stats } = await safeParseJSON(res);
+            if (!success) throw new Error();
+
+            animateNumber("totalBlogs", 0, stats.total);
+            animateNumber("publishedBlogs", 0, stats.published);
+            animateNumber("draftBlogs", 0, stats.draft);
+            animateNumber("newBlogs", 0, stats.today);
+
+        } catch {
+            ["totalBlogs", "publishedBlogs", "draftBlogs", "newBlogs"]
+                .forEach(id => document.getElementById(id).textContent = "0");
+        }
+    }
+
+    /* ================= FETCH BLOGS ================= */
+    async function fetchBlogs(reset = false) {
+        const sort = document.getElementById("sortSelect").value;
+        let url = `/api/blogs/all-blogs?limit=${limit}&sort=${sort}`;
+
+        if (cursor) url += `&cursor=${encodeURIComponent(cursor)}`;
+        if (search) url += `&search=${encodeURIComponent(search)}`;
+
+        try {
+            const res = await fetch(url, { headers: { Accept: "application/json" } });
+            const data = await safeParseJSON(res);
+
+            const tbody = document.getElementById("blogsTable");
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+            if (!data.success) {
+                showToast("Failed to load blogs", "error");
+                if (reset) {
+                    tbody.innerHTML = `
+          <tr>
+            <td colspan="6"
+              class="text-center py-6 bg-white font-semibold text-red-600">
+              Failed to load blogs
+            </td>
+          </tr>
+        `;
+                    loadMoreBtn.classList.add("hidden");
+                }
+                return;
+            }
+
+            if (reset) {
+                tbody.innerHTML = "";
+                indexOffset = 0;
+            }
+
+            if (data.data.length === 0 && reset) {
+                tbody.innerHTML = `
+        <tr>
+          <td colspan="6"
+            class="text-center py-6 bg-white text-gray-500 font-semibold">
+            Blog not found
+          </td>
+        </tr>
+      `;
+                loadMoreBtn.classList.add("hidden");
+                return;
+            }
+
+            data.data.forEach((blog, i) => {
+                const tr = document.createElement("tr");
+                tr.setAttribute("data-id", blog._id);
+
+                tr.innerHTML = `
+        <!-- INDEX -->
+        <td class="px-4 py-3 font-mono text-xs text-blue-900 w-[60px] text-center">
+          ${indexOffset + i + 1}.
+        </td>
+
+        <!-- TITLE -->
+        <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700 max-w-[200px] truncate text-center"
+            title="${escapeHTML(blog.title)}">
+          ${escapeHTML(blog.title)}
+        </td>
+
+        <!-- AUTHOR -->
+        <td class="px-4 py-3 font-mono text-sm text-blue-800 text-center">
+          ${escapeHTML(blog.author?.name || "-")}
+        </td>
+
+        <!-- STATUS -->
+        <td class="px-4 py-3 text-center">
+          <span
+            class="px-2 py-1 text-xs rounded font-bold tracking-wider
+              ${blog.isPublished
+                        ? "bg-green-600 text-white"
+                        : "bg-gray-400 text-white"}">
+            ${blog.isPublished ? "Published" : "Draft"}
+          </span>
+        </td>
+
+        <!-- CREATED AT -->
+        <td class="px-4 py-3 font-mono text-xs text-center max-w-[140px]">
+          <div>
+            ${blog.createdAt
+                        ? new Date(blog.createdAt).toLocaleDateString()
+                        : "-"}
+          </div>
+          <div class="text-gray-500 text-[10px]">
+            ${blog.createdAt
+                        ? new Date(blog.createdAt).toLocaleTimeString()
+                        : ""}
+          </div>
+        </td>
+
+        <!-- ACTIONS -->
+        <td class="px-4 py-3 w-[140px] text-center">
+          <div class="flex gap-2 justify-center">
+            <button
+              onclick="togglePublish('${blog._id}', ${!blog.isPublished})"
+              class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 rounded
+                     hover:bg-indigo-300 transition duration-300"
+              title="Toggle Publish">
+              <i class="fas fa-toggle-${blog.isPublished ? "on" : "off"}"></i>
+            </button>
+
+            <button
+              onclick="openEditBlogModal('${blog._id}')"
+              class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded
+                    hover:bg-yellow-300 transition duration-300"
+              title="Edit">
+              <i class="fas fa-edit"></i>
+            </button>
+
+            <button
+              onclick="deleteBlog('${blog._id}')"
+              class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded
+                     hover:bg-red-300 transition duration-300"
+              title="Delete">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      `;
+
+                tbody.appendChild(tr);
+            });
+
+            indexOffset += data.data.length;
+            cursor = data.pageInfo?.nextCursor || null;
+
+            loadMoreBtn.classList.toggle(
+                "hidden",
+                !(data.pageInfo && data.pageInfo.hasNextPage)
+            );
+
+            if (reset) fetchBlogStats();
+
+        } catch (e) {
+            showToast("Session expired or server error. Please refresh!", "error");
+        }
+    }
+
+    /* ================= SEARCH ================= */
+    function onSearch() {
+        search = document.getElementById("searchInput").value.trim();
+        cursor = null;
+        fetchBlogs(true);
+    }
+
+    /* ================= TOGGLE PUBLISH ================= */
+    async function togglePublish(id, isPublished) {
+        try {
+            const res = await fetch("/api/blogs/bulk-publish", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    blogIds: [id],
+                    isPublished
+                }),
+            });
+
+            const data = await safeParseJSON(res);
+            if (!data.success) throw new Error();
+
+            showToast(
+                isPublished ? "Blog published successfully" : "Blog moved to draft"
+            );
+            updateBlogRow(id, isPublished);
+            fetchBlogStats();
+
+        } catch {
+            showToast("Publish update failed", "error");
+        }
+    }
+
+    function updateBlogRow(blogId, isPublished) {
+        const row = document.querySelector(`tr[data-id="${blogId}"]`);
+        if (!row) return;
+
+        const statusCell = row.children[3];
+        statusCell.innerHTML = `
+    <span class="px-2 py-1 text-xs rounded font-bold tracking-wider
+      ${isPublished ? "bg-green-600 text-white" : "bg-gray-400 text-white"}">
+      ${isPublished ? "Published" : "Draft"}
+    </span>
+  `;
+
+        const toggleBtn = row.querySelector("button[title='Toggle Publish']");
+        toggleBtn.innerHTML = `
+    <i class="fas fa-toggle-${isPublished ? "on" : "off"}"></i>
+  `;
+        toggleBtn.setAttribute(
+            "onclick",
+            `togglePublish('${blogId}', ${!isPublished})`
+        );
+    }
+
+    /* ================= DELETE BLOG ================= */
+    async function deleteBlog(id) {
+        if (!confirm("Are you sure you want to delete this blog?")) return;
+
+        try {
+            const res = await fetch(`/api/blogs/delete/${id}`, {
+                method: "DELETE",
+                headers: { Accept: "application/json" },
+            });
+
+            const data = await safeParseJSON(res);
+            if (!data.success) throw new Error();
+
+            showToast("Blog deleted successfully");
+
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            if (row) row.remove();
+
+            indexOffset = 0;
+            cursor = null;
+            fetchBlogs(true);
+
+            fetchBlogStats();
+        } catch {
+            showToast("Delete failed", "error");
+        }
+    }
+
+    /* ================= INIT ================= */
+    document.addEventListener("DOMContentLoaded", () => {
+        const cancelBtn = document.getElementById("cancelCreateBlogBtn");
+        cancelBtn.addEventListener("click", closeCreateBlogModal);
+
+        fetchBlogs(true);
+        fetchBlogStats();
+    });
+
+    /* ================= TOAST ================= */
+    function showToast(msg, type = "success") {
+        const toast = document.getElementById("toast");
+        if (!toast) return;
+
+        toast.textContent = msg;
+        toast.className = `
+            fixed top-6 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white
+            ${type === "success" ? "bg-green-600" : "bg-red-600"}
+        `;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
+    function escapeHTML(str) {
+        if (typeof str !== "string") return "";
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    /* ================= CREATE BLOG MODAL ================= */
+    function openCreateBlogModal() {
+        editingBlogId = null; // create mode
+        document.getElementById("blogModalTitle").textContent = "Create New Blog";
+        document.getElementById("createBlogBtnText").textContent = "Create Blog";
+
+        document.getElementById("blogTitle").value = "";
+        document.getElementById("blogContent").value = "";
+        document.getElementById("blogTags").value = "";
+
+        const modal = document.getElementById("createBlogModal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    let editingBlogId = null;
+
+    function openEditBlogModal(blogId) {
+        editingBlogId = blogId;
+
+        document.getElementById("blogModalTitle").textContent = "Edit Blog";
+        document.getElementById("createBlogBtnText").textContent = "Update Blog";
+
+        const modal = document.getElementById("createBlogModal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+
+        fetch(`/api/blogs/${blogId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.data) {
+                    document.getElementById("blogTitle").value = data.data.title.trim();
+                    document.getElementById("blogContent").value = data.data.content;
+                    document.getElementById("blogTags").value = data.data.tags.join(", ");
+                }
+            });
+    }
+
+    function closeCreateBlogModal() {
+        const modal = document.getElementById("createBlogModal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+
+        editingBlogId = null;
+
+        document.getElementById("blogTitle").value = "";
+        document.getElementById("blogContent").value = "";
+        document.getElementById("blogTags").value = "";
+
+        const titleInput = document.getElementById("blogTitle");
+        const contentInput = document.getElementById("blogContent");
+        const titleError = document.getElementById("blogTitleError");
+        const contentError = document.getElementById("blogContentError");
+
+        [titleInput, contentInput].forEach(input => input.classList.remove("border-red-500"));
+        [titleError, contentError].forEach(el => {
+            el.textContent = "";
+            el.classList.add("hidden");
+        });
+    }
+
+    /* ================= CREATE BLOG API ================= */
+    async function createBlog(e) {
+        e.preventDefault();
+
+        const titleInput = document.getElementById("blogTitle");
+        const contentInput = document.getElementById("blogContent");
+        const tagsInputEl = document.getElementById("blogTags");
+
+        const titleError = document.getElementById("blogTitleError");
+        const contentError = document.getElementById("blogContentError");
+
+        [titleInput, contentInput].forEach(input => input.classList.remove("border-red-500"));
+        [titleError, contentError].forEach(el => {
+            el.textContent = "";
+            el.classList.add("hidden");
+        });
+
+        const title = titleInput.value.trim();
+        const content = contentInput.value.trim();
+        const tagsInput = tagsInputEl.value;
+        const tags = tagsInput ? tagsInput.split(",").map(t => t.trim()).filter(Boolean) : [];
+
+        let hasError = false;
+        if (!title) {
+            titleError.textContent = "Title is required";
+            titleError.classList.remove("hidden");
+            titleInput.classList.add("border-red-500");
+            hasError = true;
+        }
+        if (!content) {
+            contentError.textContent = "Content is required";
+            contentError.classList.remove("hidden");
+            contentInput.classList.add("border-red-500");
+            hasError = true;
+        }
+        if (hasError) return;
+
+        const createBtn = document.getElementById("createBlogBtn");
+        const spinner = document.getElementById("createBlogSpinner");
+        const btnText = document.getElementById("createBlogBtnText");
+
+        spinner.classList.remove("hidden");
+        btnText.textContent = editingBlogId ? "Updating..." : "Creating...";
+        createBtn.disabled = true;
+
+        try {
+            const url = editingBlogId ? `/api/blogs/update/${editingBlogId}` : "/api/blogs/create";
+            const method = editingBlogId ? "PUT" : "POST";
+
+            const res = await fetch(url, {
+                method,
+                headers: { "Content-Type": "application/json", Accept: "application/json" },
+                body: JSON.stringify({ title, content, tags }),
+            });
+
+            const data = await safeParseJSON(res);
+
+            if (!data.success) {
+                if (data.message.includes("already exists")) {
+                    titleError.textContent = data.message;
+                    titleError.classList.remove("hidden");
+                    titleInput.classList.add("border-red-500");
+                }
+                throw new Error(data.message);
+            }
+
+            setTimeout(() => {
+                spinner.classList.add("hidden");
+                btnText.textContent = editingBlogId ? "Update Blog" : "Create Blog";
+                createBtn.disabled = false;
+
+                showToast(editingBlogId ? "Blog updated successfully" : "Blog created successfully");
+
+                closeCreateBlogModal();
+                editingBlogId = null;
+                cursor = null;
+                fetchBlogs(true);
+                fetchBlogStats();
+            }, 3000);
+
+        } catch (err) {
+            spinner.classList.add("hidden");
+            btnText.textContent = editingBlogId ? "Update Blog" : "Create Blog";
+            createBtn.disabled = false;
+
+            showToast(err.message || (editingBlogId ? "Blog update failed" : "Blog creation failed"), "error");
+        }
+    }
+
+</script>

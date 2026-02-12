@@ -29,6 +29,8 @@ app.use((req, res, next) => {
 
 app.use("/", require("./src/routes/pageRoutes"));
 app.use("/api/auth", require("./src/routes/authRoutes"));
+app.use("/api/blogs", require("./src/routes/blogRoutes"));
+app.use("/api/faqs" , require("./src/routes/faqRoutes"));
 
 const PORT = process.env.PORT || 5000;
 const HOST = "0.0.0.0";

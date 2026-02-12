@@ -1,0 +1,374 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
+        <div>
+            <h1
+                class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+                <i class="fas fa-question-circle text-blue-400 animate-pulse"></i>
+                <span>FAQs Management</span>
+            </h1>
+            <span class="text-base text-gray-600 font-semibold">
+                Manage FAQs, active status & content
+            </span>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+
+        <!-- Total FAQs -->
+        <div
+            class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-blue-100 font-bold">Total FAQs</p>
+                    <span id="totalFaqs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i
+                    class="fas fa-question-circle text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Active FAQs -->
+        <div
+            class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-green-100 font-bold">Active FAQs</p>
+                    <span id="activeFaqs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-check-circle text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Inactive FAQs -->
+        <div
+            class="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-slate-100 font-bold">Inactive FAQs</p>
+                    <span id="inactiveFaqs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-ban text-5xl text-slate-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- New FAQs Today -->
+        <div
+            class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-indigo-100 font-bold">New FAQs (Today)</p>
+                    <span id="newFaqs"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-plus text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SEARCH + SORT -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+
+        <!-- Left: Search + Sort -->
+        <div class="flex gap-2 w-full sm:w-auto">
+            <input type="text" id="searchInput" placeholder="Search FAQ question..."
+                class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+            <select id="sortSelect"
+                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="desc">Sort: Newest First</option>
+                <option value="asc">Sort: Oldest First</option>
+            </select>
+
+            <button onclick="onSearch()"
+                class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
+                <i class="fas fa-search text-[10px]"></i>
+                Search
+            </button>
+        </div>
+
+        <!-- Right: Create FAQ Button -->
+        <div class="w-full sm:w-auto flex justify-start sm:justify-end">
+            <button onclick="openCreateFaqModal()"
+                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
+                <i class="fas fa-plus text-[10px]"></i>
+                FAQs
+            </button>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
+        <table class="w-full min-w-[700px] border border-gray-200 text-sm table-fixed">
+            <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white">
+                <tr>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[60px] text-center">#</th>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">Question</th>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">Author</th>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">Status</th>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">Created At</th>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[140px] text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody id="faqsTable" class="divide-y font-mono">
+                <!-- rows via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 text-center">
+        <button id="loadMoreBtn" onclick="fetchFaqs()"
+            class="inline-flex items-center justify-center gap-1 bg-gray-400 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-gray-500 transition hidden w-full sm:w-auto mb-4">
+            <i class="fas fa-arrow-down text-[10px]"></i>
+            Load More
+        </button>
+    </div>
+
+    <!-- CREATE FAQ MODAL -->
+    <div id="createFaqModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+        <div class="bg-white w-full max-w-xl rounded-xl shadow-2xl p-6 relative animate-fade-in">
+
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="faqModalTitle" class="text-lg font-bold text-blue-800">Create New FAQ</h2>
+                <button onclick="closeCreateFaqModal()" class="text-gray-500 hover:text-red-500">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <!-- FORM -->
+            <form onsubmit="createFaq(event)" class="space-y-4">
+
+                <!-- QUESTION -->
+                <div>
+                    <label class="text-xs font-bold text-gray-600">Question *</label>
+                    <input id="faqQuestion" type="text"
+                        class="w-full border rounded px-3 py-2 text-sm focus:ring-1 focus:ring-blue-400">
+                    <p id="faqQuestionError" class="text-xs text-red-500 mt-1 hidden"></p>
+                </div>
+
+                <!-- ANSWER -->
+                <div>
+                    <label class="text-xs font-bold text-gray-600">Answer *</label>
+                    <textarea id="faqAnswer" rows="5"
+                        class="w-full border rounded px-3 py-2 text-sm focus:ring-1 focus:ring-blue-400"></textarea>
+                    <p id="faqAnswerError" class="text-xs text-red-500 mt-1 hidden"></p>
+                </div>
+
+                <!-- TAGS -->
+                <div>
+                    <label class="text-xs font-bold text-gray-600">
+                        Tags <span class="text-gray-400">(comma separated)</span>
+                    </label>
+                    <input id="faqTags" type="text" placeholder="general, support, payment"
+                        class="w-full border rounded px-3 py-2 text-sm">
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="submit" id="createFaqBtn"
+                        class="px-4 py-2 text-xs rounded bg-blue-600 text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center gap-2">
+                        <svg id="createFaqSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                        <span id="createFaqBtnText">Create FAQ</span>
+                    </button>
+
+                    <button type="button" id="cancelCreateFaqBtn"
+                        class="px-4 py-2 text-xs rounded bg-gray-400 text-white hover:bg-gray-500 transition duration-300">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm">
+    </div>
+</div>
+
+<script>
+    let cursor = null;
+    let search = "";
+    let indexOffset = 0;
+    const limit = 5;
+    let editingFaqId = null;
+
+    async function safeParseJSON(res) {
+        const text = await res.text();
+        try {
+            return JSON.parse(text);
+        } catch {
+            showToast("Session expired or server error. Please refresh!", "error");
+            throw new Error("Invalid JSON");
+        }
+    }
+
+    function animateNumber(id, start, end, duration = 800) {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        let startTime = null;
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            el.textContent = Math.floor(progress * (end - start) + start);
+            if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    async function fetchFaqStats() {
+        try {
+            const res = await fetch("/api/faqs/stats", { headers: { Accept: "application/json" } });
+            const { success, stats } = await safeParseJSON(res);
+            if (!success) throw new Error();
+
+            animateNumber("totalFaqs", 0, stats.total);
+            animateNumber("activeFaqs", 0, stats.active);
+            animateNumber("inactiveFaqs", 0, stats.inactive);
+            animateNumber("newFaqs", 0, stats.today);
+        } catch {
+            ["totalFaqs", "activeFaqs", "inactiveFaqs", "newFaqs"].forEach(id => document.getElementById(id).textContent = "0");
+        }
+    }
+
+    async function fetchFaqs(reset = false) {
+        const sort = document.getElementById("sortSelect").value;
+        let url = `/api/faqs/all-faqs?limit=${limit}&sort=${sort}`;
+        if (cursor) url += `&cursor=${encodeURIComponent(cursor)}`;
+        if (search) url += `&search=${encodeURIComponent(search)}`;
+
+        try {
+            const res = await fetch(url, { headers: { Accept: "application/json" } });
+            const data = await safeParseJSON(res);
+
+            const tbody = document.getElementById("faqsTable");
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+            if (!data.success) throw new Error();
+
+            if (reset) {
+                tbody.innerHTML = "";
+                indexOffset = 0;
+            }
+
+            if (data.data.length === 0 && reset) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 bg-white text-gray-500 font-semibold">FAQ not found</td></tr>`;
+                loadMoreBtn.classList.add("hidden");
+                return;
+            }
+
+            data.data.forEach((faq, i) => {
+                const tr = document.createElement("tr");
+                tr.setAttribute("data-id", faq._id);
+
+                tr.innerHTML = `
+                <td class="px-4 py-3 font-mono text-xs text-blue-900 w-[60px] text-center">${indexOffset + i + 1}.</td>
+                <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700 max-w-[200px] truncate text-center" title="${escapeHTML(faq.question)}">${escapeHTML(faq.question)}</td>
+                <td class="px-4 py-3 font-mono text-sm text-blue-800 text-center">${escapeHTML(faq.author?.name || "-")}</td>
+                <td class="px-4 py-3 text-center">
+                    <span class="px-2 py-1 text-xs rounded font-bold tracking-wider ${faq.isActive ? "bg-green-600 text-white" : "bg-gray-400 text-white"}">${faq.isActive ? "Active" : "Inactive"}</span>
+                </td>
+                <td class="px-4 py-3 font-mono text-xs text-center max-w-[140px]">
+                    <div>${faq.createdAt ? new Date(faq.createdAt).toLocaleDateString() : "-"}</div>
+                    <div class="text-gray-500 text-[10px]">${faq.createdAt ? new Date(faq.createdAt).toLocaleTimeString() : ""}</div>
+                </td>
+                <td class="px-4 py-3 w-[140px] text-center">
+                    <div class="flex gap-2 justify-center">
+                        <button onclick="toggleFaqStatus('${faq._id}', ${!faq.isActive})" class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-300 transition duration-300" title="Toggle Status">
+                            <i class="fas fa-toggle-${faq.isActive ? "on" : "off"}"></i>
+                        </button>
+                        <button onclick="openEditFaqModal('${faq._id}')" class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-300 transition duration-300" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteFaq('${faq._id}')" class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded hover:bg-red-300 transition duration-300" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </td>`;
+                tbody.appendChild(tr);
+            });
+
+            indexOffset += data.data.length;
+            cursor = data.pageInfo?.nextCursor || null;
+            loadMoreBtn.classList.toggle("hidden", !(data.pageInfo && data.pageInfo.hasNextPage));
+
+            if (reset) fetchFaqStats();
+        } catch (e) {
+            showToast("Session expired or server error. Please refresh!", "error");
+        }
+    }
+
+    function onSearch() {
+        search = document.getElementById("searchInput").value.trim();
+        cursor = null;
+        fetchFaqs(true);
+    }
+
+    function escapeHTML(str) {
+        if (typeof str !== "string") return "";
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("cancelCreateFaqBtn").addEventListener("click", closeCreateFaqModal);
+        fetchFaqs(true);
+        fetchFaqStats();
+    });
+
+    function showToast(msg, type = "success") {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.className = `fixed top-6 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white ${type === "success" ? "bg-green-600" : "bg-red-600"}`;
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
+    function openCreateFaqModal() {
+        editingFaqId = null;
+        document.getElementById("faqModalTitle").textContent = "Create New FAQ";
+        document.getElementById("createFaqBtnText").textContent = "Create FAQ";
+
+        document.getElementById("faqQuestion").value = "";
+        document.getElementById("faqAnswer").value = "";
+        document.getElementById("faqTags").value = "";
+
+        const modal = document.getElementById("createFaqModal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeCreateFaqModal() {
+        const modal = document.getElementById("createFaqModal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+
+        editingFaqId = null;
+
+        document.getElementById("faqQuestion").value = "";
+        document.getElementById("faqAnswer").value = "";
+        document.getElementById("faqTags").value = "";
+
+        const questionInput = document.getElementById("faqQuestion");
+        const answerInput = document.getElementById("faqAnswer");
+        const questionError = document.getElementById("faqQuestionError");
+        const answerError = document.getElementById("faqAnswerError");
+
+        [questionInput, answerInput].forEach(input => input.classList.remove("border-red-500"));
+        [questionError, answerError].forEach(el => {
+            el.textContent = "";
+            el.classList.add("hidden");
+        });
+    }
+</script>

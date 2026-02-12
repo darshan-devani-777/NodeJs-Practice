@@ -55,7 +55,6 @@
   </div>
 
   <!-- Search + Sort -->
-  <!-- Search + Sort -->
   <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
     <!-- Left: Search + Sort -->
     <div class="flex gap-2 w-full sm:w-auto">
@@ -81,11 +80,10 @@
       <button onclick="showBulkCreateModal()"
         class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
         <i class="fas fa-plus text-[10px]"></i>
-        Bulk
+        Users
       </button>
     </div>
   </div>
-
 
   <!-- Users Table -->
   <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
@@ -162,7 +160,8 @@
   let search = "";
   let indexOffset = 0;
   const limit = 5;
-
+  
+ /* ================= SAFE JSON ================= */
   async function safeParseJSON(res) {
     const text = await res.text();
     try {
@@ -173,6 +172,7 @@
     }
   }
 
+  /* ================= STATS ================= */
   async function fetchUserStats() {
     try {
       const res = await fetch("/api/auth/all-users?limit=10000", {
@@ -205,7 +205,6 @@
     }
   }
 
-  // Animated counting helper
   function animateNumber(id, from, to, duration = 900) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -282,6 +281,7 @@
 
       data.data.forEach((user, i) => {
         const tr = document.createElement("tr");
+        tr.setAttribute("data-id", user._id);
         tr.innerHTML = `
           <td class="px-4 py-3 font-mono text-xs text-blue-900 w-[60px] text-center">${indexOffset + i + 1
           }.</td>
@@ -291,8 +291,15 @@
           <td class="px-4 py-3 font-mono text-sm text-blue-800 max-w-[180px] truncate text-center align-middle" title="${escapeHTML(
             user.email
           )}">${escapeHTML(user.email)}</td>
-          <td class="px-4 py-3 font-mono text-xs text-slate-600 whitespace-nowrap text-center align-middle">${user.createdAt ? new Date(user.createdAt).toLocaleString() : "-"
-          }</td>
+          <td class="px-4 py-3 font-mono text-xs  text-center max-w-[140px] whitespace-normal">
+  <div>
+    ${user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "-"}
+  </div>
+  <div class="text-gray-500 text-[10px]">
+    ${user.createdAt ? new Date(user.createdAt).toLocaleTimeString() : ""}
+  </div>
+</td>
+
           ${isAdmin
             ? `
             <td class="px-4 py-3 text-xs font-semibold text-blue-800 capitalize text-center align-middle">${escapeHTML(
@@ -376,7 +383,7 @@
     fetchUsers(true);
   }
 
-  /* ================= BULK ACTION CORE ================= */
+  /* ================= USER ACTION ================= */
   async function userAction(action, userId) {
     try {
       const res = await fetch(`/api/auth/bulk-${action}`, {
@@ -395,14 +402,38 @@
         return;
       }
 
-      showToast(`${action} successful`, "success");
-      fetchUsers(true);
+      const actionTextMap = {
+        activate: "User Activated successful",
+        deactivate: "User Deactivated successful",
+        delete: "User Deleted successful",
+      };
+      showToast(actionTextMap[action] || "Action successful", "success");
+
+      const row = document.querySelector(`tr[data-id="${userId}"]`);
+      if (!row) return;
+
+      const isAdmin = "<%= user.role %>" === "admin";
+
+      if (action === "activate" || action === "deactivate") {
+        if (isAdmin) {
+          const statusCell = row.querySelector("td:nth-child(6) span");
+          if (statusCell) {
+            statusCell.textContent = action === "activate" ? "Active" : "Inactive";
+            statusCell.className =
+              action === "activate"
+                ? "px-2 py-1 text-xs rounded font-bold tracking-wider bg-green-600 text-white"
+                : "px-2 py-1 text-xs rounded font-bold tracking-wider bg-gray-400 text-white";
+          }
+        }
+      } else if (action === "delete") {
+        row.remove();
+      }
     } catch {
       showToast(`${action} failed (server error)`, "error");
     }
   }
 
-  /* ================= BULK FUNCTIONS ================= */
+/* ================= BULK FUNCTIONS ================= */
   function activateUser(userId) {
     userAction("activate", [userId]);
   }

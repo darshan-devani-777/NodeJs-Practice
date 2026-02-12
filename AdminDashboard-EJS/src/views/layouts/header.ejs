@@ -76,32 +76,57 @@
           </a>
           <% } %>
 
-            <a href="/settings" data-active="settings"
-              class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-              onclick="sidebarLinkClick(event)">
-              <span class="sidebar-link-icon flex items-center justify-center w-5">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z">
-                  </path>
-                </svg>
-              </span>
-              <span class="sidebar-link-label">Settings</span>
-            </a>
-
             <% if (user.role==='admin' ) { %>
-              <a href="/activity-logs" data-active="activity-logs"
+              <a href="/blogs" data-active="blogs"
                 class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
                 onclick="sidebarLinkClick(event)">
                 <span class="sidebar-link-icon flex items-center justify-center w-5">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18"></path>
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z" />
                   </svg>
                 </span>
-                <span class="sidebar-link-label">Activity Logs</span>
+                <span class="sidebar-link-label">Blogs</span>
               </a>
               <% } %>
+
+              <% if (user.role==='admin') { %>
+                <a href="/faqs" data-active="faqs"
+                   class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                   onclick="sidebarLinkClick(event)">
+                   <span class="sidebar-link-icon flex items-center justify-center w-5 h-5">
+                    <i class="fas fa-question-circle text-lg"></i>
+                  </span>
+                  <span class="sidebar-link-label">FAQs</span>
+                </a>
+              <% } %>                           
+
+                <a href="/settings" data-active="settings"
+                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                  onclick="sidebarLinkClick(event)">
+                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z">
+                      </path>
+                    </svg>
+                  </span>
+                  <span class="sidebar-link-label">Settings</span>
+                </a>
+
+                <% if (user.role==='admin' ) { %>
+                  <a href="/activity-logs" data-active="activity-logs"
+                    class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                    onclick="sidebarLinkClick(event)">
+                    <span class="sidebar-link-icon flex items-center justify-center w-5">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18"></path>
+                      </svg>
+                    </span>
+                    <span class="sidebar-link-label">Activity Logs</span>
+                  </a>
+                  <% } %>
       </nav>
 
       <!-- Logout -->
@@ -200,20 +225,32 @@
           <div class="w-full">
             <% if (pageContent==='dashboard.ejs' ) { %>
               <%- include('dashboard') %>
-                <% } else if (pageContent==='users.ejs' ) { %>
-                  <%- include('users') %>
-                    <% } else if (pageContent==='settings.ejs' ) { %>
-                      <%- include('settings') %>
-                        <% } else if (pageContent==='activity-logs.ejs' ) { %>
-                          <%- include('activityLogs') %>
-                            <% } else if (pageContent==='login.ejs' ) { %>
-                              <%- include('../auth/login') %>
-                                <% } else if (pageContent==='forgot-password.ejs' ) { %>
-                                  <%- include('../auth/forgot-password') %>
-                                    <% } else if (pageContent==='reset-password.ejs' ) { %>
-                                      <%- include('../auth/reset-password') %>
-                                        <% } %>
-          </div>
+          
+            <% } else if (pageContent==='users.ejs' ) { %>
+              <%- include('users') %>
+          
+            <% } else if (pageContent==='blogs.ejs' ) { %>
+              <%- include('blogs') %>
+          
+            <% } else if (pageContent==='faqs.ejs' ) { %>
+              <%- include('faqs') %>
+          
+            <% } else if (pageContent==='settings.ejs' ) { %>
+              <%- include('settings') %>
+          
+            <% } else if (pageContent==='activity-logs.ejs' ) { %>
+              <%- include('activityLogs') %>
+          
+            <% } else if (pageContent==='login.ejs' ) { %>
+              <%- include('../auth/login') %>
+          
+            <% } else if (pageContent==='forgot-password.ejs' ) { %>
+              <%- include('../auth/forgot-password') %>
+          
+            <% } else if (pageContent==='reset-password.ejs' ) { %>
+              <%- include('../auth/reset-password') %>
+            <% } %>
+          </div>          
         </main>
         <%- include('footer') %>
       </div>
@@ -325,18 +362,12 @@
             const bc = document.getElementById("breadcrumb");
             if (bc) {
               const mapping = [
-                {
-                  path: /^\/dashboard\/?$/,
-                  name: "Dashboard",
-                  url: "/dashboard",
-                },
+                { path: /^\/dashboard\/?$/, name: "Dashboard", url: "/dashboard" },
                 { path: /^\/users(\/.*)?$/, name: "Users", url: "/users" },
+                { path: /^\/blogs(\/.*)?$/, name: "Blogs", url: "/blogs" },
+                { path: /^\/faqs(\/.*)?$/, name: "FAQs", url: "/faqs" }, 
                 { path: /^\/settings\/?$/, name: "Settings", url: "/settings" },
-                {
-                  path: /^\/activity-logs(\/.*)?$/,
-                  name: "Activity Logs",
-                  url: "/activity-logs",
-                },
+                { path: /^\/activity-logs(\/.*)?$/, name: "Activity Logs", url: "/activity-logs" },
               ];
 
               const path = window.location.pathname;
