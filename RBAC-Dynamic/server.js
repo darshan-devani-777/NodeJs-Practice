@@ -2,10 +2,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-const connectDB = require("./src/config/db");
+const connectDB = require("./src/config/db"); 
+const createSuperAdmin = require('./src/seeds/seedSuperAdmin'); 
 
 dotenv.config();
-connectDB();
 
 const app = express();
 
@@ -20,6 +20,18 @@ app.use("/api/dashboard", require("./src/routes/dashboardRoutes"));
 
 const PORT = process.env.PORT || 1010;
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();          
+    await createSuperAdmin();   
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("❌ Server startup failed:", error);
+    process.exit(1);
+  }
+};
+
+startServer();

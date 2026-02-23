@@ -106,3 +106,23 @@ user, permission, reason, status, reviewedBy
 *AuditLog*
 
 traceId, performedBy, target, resource, action, status, oldValues, newValues, metadata
+
+**SuperAdmin Seeder**
+
+- The API automatically ensures a SuperAdmin exists when the server starts:
+
+*Default credentials:*
+
+Email: superadmin@gmail.com
+Password: SuperAdmin@123
+Role: SuperAdmin
+Permissions:
+- APPROVE_PERMISSION
+- VIEW_AUDIT_LOGS
+- USERS:CREATE
+- USERS:ASSIGN_ROLE
+- REVIEW_PERMISSION
+- DASHBOARD:VIEW
+- ROLES:CREATE
+
+**Only SuperAdmin can create Admin users in register API**

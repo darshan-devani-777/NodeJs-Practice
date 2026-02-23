@@ -15,6 +15,16 @@ exports.register = async (req, res) => {
       });
     }
 
+    if (role === "Admin") {
+      if (!req.user || req.user.role !== "SuperAdmin") {
+        return res.status(403).json({
+          traceId: res.locals.traceId,
+          status: "DENIED",
+          message: "Only SuperAdmin can create an Admin user."
+        });
+      }
+    }
+
     const user = await User.create({
       name,
       email,
