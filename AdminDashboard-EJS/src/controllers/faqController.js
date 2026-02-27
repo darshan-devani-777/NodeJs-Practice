@@ -6,10 +6,23 @@ const mongoose = require("mongoose");
 /* ------------------- CREATE FAQ ------------------- */
 exports.createFaq = async (req, res) => {
   try {
-    let { question, answer, tags, isActive } = req.body;
+    let { question, answer, tags } = req.body;
 
     question = question.trim();
     answer = answer.trim();
+
+    if (!question) {
+      return res.status(400).json({ success: false, message: "Question is required" });
+    }
+
+    if (!answer) {
+      return res.status(400).json({ success: false, message: "Answer is required" });
+    }
+
+    const existingFaq = await Faq.findOne({ question: question });
+    if (existingFaq) {
+      return res.status(400).json({ success: false, message: "FAQ with this question already exists" });
+    }
 
     if (tags && Array.isArray(tags)) {
       tags = tags.map((t) => t.trim()).filter((t) => t.length > 0);
@@ -21,7 +34,6 @@ exports.createFaq = async (req, res) => {
       question,
       answer,
       tags,
-      isActive: isActive !== undefined ? isActive : true,
       author: req.user._id,
     });
 
@@ -64,7 +76,6 @@ exports.getAllFaqs = async (req, res) => {
 
     const query = {};
 
-    // Only show active FAQs to regular users
     if (req.user.role !== "admin") {
       query.isActive = true;
     }
@@ -115,7 +126,6 @@ exports.getFaqById = async (req, res) => {
     if (!faq)
       return res.status(404).json({ success: false, message: "FAQ not found" });
 
-    // Regular users cannot access inactive FAQs
     if (!faq.isActive && req.user.role !== "admin") {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }
@@ -170,38 +180,45 @@ exports.getFaqStats = async (req, res) => {
 exports.updateFaq = async (req, res) => {
   try {
     const { faqId } = req.params;
-    let { question, answer, tags, isActive } = req.body;
+    let { question, answer, tags } = req.body;
 
-    const faq = await Faq.findById(faqId);
+    question = question.trim();
+    answer = answer.trim();
 
-    if (!faq)
-      return res.status(404).json({ success: false, message: "FAQ not found" });
+    if (!question) return res.status(400).json({ success: false, message: "Question is required" });
+    if (!answer) return res.status(400).json({ success: false, message: "Answer is required" });
+    if (answer.length < 10) return res.status(400).json({ success: false, message: "Answer must be at least 10 characters" });
 
-    // Only author or admin can update
-    if (faq.author.toString() !== req.user._id.toString() && req.user.role !== "admin") {
-      return res.status(403).json({ success: false, message: "Forbidden" });
-    }
+    const existing = await Faq.findOne({ question, _id: { $ne: faqId } });
+    if (existing) return res.status(400).json({ success: false, message: "FAQ with this question already exists" });
 
-    if (question) faq.question = question.trim();
-    if (answer) faq.answer = answer.trim();
     if (tags && Array.isArray(tags)) {
-      faq.tags = tags.map((t) => t.trim()).filter((t) => t.length > 0);
+      tags = tags.map((t) => t.trim()).filter(Boolean);
+    } else {
+      tags = [];
     }
-    if (typeof isActive === "boolean") faq.isActive = isActive;
 
-    await faq.save();
+    const faq = await Faq.findByIdAndUpdate(
+      faqId,
+      { question, answer, tags },
+      { new: true, runValidators: true }
+    );
+
+    if (!faq) return res.status(404).json({ success: false, message: "FAQ not found" });
 
     await logActivity({
       user: req.user._id,
       action: "UPDATE_FAQ",
-      description: `FAQ updated: "${faq.question}"`,
+      description: `FAQ updated: "${question}"`,
       req,
       status: "success",
     });
 
-    res.status(200).json({ success: true, message: "FAQ updated successfully", data: faq });
+    res.json({ success: true, message: "FAQ updated successfully", data: faq });
   } catch (error) {
     console.error("❌ updateFaq error:", error.message);
+    const message = getValidationError(error);
+
     await logActivity({
       user: req.user?._id || null,
       action: "UPDATE_FAQ",
@@ -209,7 +226,8 @@ exports.updateFaq = async (req, res) => {
       req,
       status: "failed",
     });
-    res.status(500).json({ success: false, message: "Server error" });
+
+    res.status(400).json({ success: false, message });
   }
 };
 
@@ -218,16 +236,31 @@ exports.deleteFaq = async (req, res) => {
   try {
     const { faqId } = req.params;
 
-    const faq = await Faq.findById(faqId);
+    const faq = await Faq.findById(faqId).populate(
+      "author",
+      "name email role"
+    );
 
-    if (!faq)
-      return res.status(404).json({ success: false, message: "FAQ not found" });
-
-    if (faq.author.toString() !== req.user._id.toString() && req.user.role !== "admin") {
-      return res.status(403).json({ success: false, message: "Forbidden" });
+    if (!faq) {
+      return res.status(404).json({
+        success: false,
+        message: "FAQ not found",
+      });
     }
 
-    await Faq.findByIdAndDelete(faqId);
+    if (
+      faq.author._id.toString() !== req.user._id.toString() &&
+      req.user.role !== "admin"
+    ) {
+      return res.status(403).json({
+        success: false,
+        message: "Forbidden",
+      });
+    }
+
+    const deletedFaq = faq.toObject();
+
+    await faq.deleteOne();
 
     await logActivity({
       user: req.user._id,
@@ -237,9 +270,14 @@ exports.deleteFaq = async (req, res) => {
       status: "success",
     });
 
-    res.status(200).json({ success: true, message: "FAQ deleted successfully" });
+    res.status(200).json({
+      success: true,
+      message: "FAQ deleted successfully",
+      data: deletedFaq,
+    });
   } catch (error) {
     console.error("❌ deleteFaq error:", error.message);
+
     await logActivity({
       user: req.user?._id || null,
       action: "DELETE_FAQ",
@@ -247,7 +285,11 @@ exports.deleteFaq = async (req, res) => {
       req,
       status: "failed",
     });
-    res.status(500).json({ success: false, message: "Server error" });
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
 
@@ -257,17 +299,38 @@ exports.bulkToggleFaqStatus = async (req, res) => {
     const { faqIds, isActive } = req.body;
 
     if (!faqIds || !faqIds.length || typeof isActive !== "boolean") {
-      return res.status(400).json({ success: false, message: "Invalid request" });
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request",
+      });
     }
 
-    await Faq.updateMany({ _id: { $in: faqIds } }, { isActive });
+    const faqs = await Faq.find({ _id: { $in: faqIds } }).populate(
+      "author",
+      "name email role"
+    );
+
+    if (!faqs.length) {
+      return res.status(404).json({
+        success: false,
+        message: "No FAQs found",
+      });
+    }
+
+    await Faq.updateMany(
+      { _id: { $in: faqIds } },
+      { isActive }
+    );
+
+    const updatedFaqs = faqs.map((faq) => ({
+      ...faq.toObject(),
+      isActive,
+    }));
 
     await logActivity({
       user: req.user._id,
       action: "BULK_TOGGLE_FAQ_STATUS",
-      description: `Bulk ${
-        isActive ? "activated" : "deactivated"
-      } FAQs with ids ${faqIds}`,
+      description: `Bulk ${isActive ? "activated" : "deactivated"} FAQs`,
       req,
       status: "success",
     });
@@ -275,9 +338,15 @@ exports.bulkToggleFaqStatus = async (req, res) => {
     res.status(200).json({
       success: true,
       message: `FAQs ${isActive ? "activated" : "deactivated"} successfully`,
+      data: {
+        count: updatedFaqs.length,
+        isActive,
+        faqs: updatedFaqs,
+      },
     });
   } catch (error) {
     console.error("❌ bulkToggleFaqStatus error:", error.message);
+
     await logActivity({
       user: req.user?._id || null,
       action: "BULK_TOGGLE_FAQ_STATUS",
@@ -285,6 +354,11 @@ exports.bulkToggleFaqStatus = async (req, res) => {
       req,
       status: "failed",
     });
-    res.status(500).json({ success: false, message: "Server error" });
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
+

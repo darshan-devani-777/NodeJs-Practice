@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["user", "admin"],
+      enum: ["admin", "editor", "manager", "support", "user"],
       default: "user",
     },
 
@@ -56,6 +56,14 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    isEmailVerified: {
+      type: Boolean,
+      default: false,
+    },
+
+    emailVerificationToken: String,
+    emailVerificationExpire: Date,
 
     resetPasswordToken: String,
     resetPasswordExpire: Date,

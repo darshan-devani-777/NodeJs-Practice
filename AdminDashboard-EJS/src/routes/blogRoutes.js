@@ -3,7 +3,9 @@ const router = express.Router();
 const blogController = require("../controllers/blogController");
 const { protect } = require("../middlewares/authMiddleware");
 const { authorizeRoles } = require("../middlewares/roleMiddleware");
+const upload = require("../middlewares/cloudinaryUpload");
 
+// CREATE BLOG
 router.post(
   "/create",
   protect,
@@ -11,6 +13,7 @@ router.post(
   blogController.createBlog
 );
 
+// GET BLOG STATS
 router.get(
   "/stats",
   protect,
@@ -18,6 +21,7 @@ router.get(
   blogController.getBlogStats
 );
 
+// GET ALL BLOGS
 router.get(
   "/all-blogs",
   protect,
@@ -25,6 +29,7 @@ router.get(
   blogController.getAllBlogs
 );
 
+// GET SPECIFIC BLOGS
 router.get(
   "/:blogId",
   protect,
@@ -32,6 +37,7 @@ router.get(
   blogController.getBlogById
 );
 
+// UPDATE BLOG
 router.put(
   "/update/:blogId",
   protect,
@@ -39,6 +45,7 @@ router.put(
   blogController.updateBlog
 );
 
+// DELETE BLOG
 router.delete(
   "/delete/:blogId",
   protect,
@@ -46,11 +53,21 @@ router.delete(
   blogController.deleteBlog
 );
 
+// BULK PUBLISH BLOG
 router.put(
   "/bulk-publish",
   protect,
   authorizeRoles("admin"),
   blogController.bulkTogglePublishBlogs
+);
+
+// UPDATE BLOG IMAGE
+router.post(
+  "/upload-image",
+  protect, 
+  authorizeRoles("admin"), 
+  upload("blog").single("upload"), 
+  blogController.uploadBlogImage 
 );
 
 module.exports = router;

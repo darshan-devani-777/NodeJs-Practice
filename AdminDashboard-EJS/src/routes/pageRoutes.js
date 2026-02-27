@@ -5,10 +5,16 @@ const { guest } = require("../middlewares/guestMiddleware");
 const { authorizeRoles } = require("../middlewares/roleMiddleware");
 const User = require("../models/User");
 const Blog = require("../models/Blog");
+const Product = require("../models/Product");
+const Cart = require("../models/Cart");
+const Order = require("../models/Order"); 
 const Faq = require("../models/Faq");
+const PrivacyPolicy = require("../models/PrivacyPolicy"); 
 
+// LOGIN
 router.get("/", (req, res) => res.redirect("/login"));
 
+// LOGIN 
 router.get("/login", guest, (req, res) =>
   res.render("auth/login", {
     user: req.user,
@@ -19,6 +25,7 @@ router.get("/login", guest, (req, res) =>
   })
 );
 
+// FORGOT PASSWORD
 router.get("/forgot-password", guest, (req, res) =>
   res.render("auth/forgot-password", {
     user: req.user,
@@ -29,6 +36,7 @@ router.get("/forgot-password", guest, (req, res) =>
   })
 );
 
+// RESET PASSWORD
 router.get("/reset-password/:token", guest, (req, res) =>
   res.render("auth/reset-password", {
     user: req.user,
@@ -37,6 +45,7 @@ router.get("/reset-password/:token", guest, (req, res) =>
   })
 );
 
+// DASHBOARD
 router.get(
   "/dashboard",
   protect,
@@ -53,6 +62,7 @@ router.get(
   }
 );
 
+// USERS
 router.get("/users", protect, authorizeRoles("admin"), async (req, res) => {
   try {
     const limit = 2;
@@ -74,6 +84,7 @@ router.get("/users", protect, authorizeRoles("admin"), async (req, res) => {
   }
 });
 
+// BLOGS
 router.get("/blogs", protect, authorizeRoles("admin"), async (req, res) => {
   try {
     const limit = 5;
@@ -98,6 +109,83 @@ router.get("/blogs", protect, authorizeRoles("admin"), async (req, res) => {
   }
 });
 
+// PRODUCTS
+router.get("/products", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const limit = 5;
+
+    const products = await Product.find()
+      .populate("createdBy", "name email")
+      .sort({ _id: 1 })
+      .limit(limit + 1);
+
+    const hasNextPage = products.length > limit;
+    if (hasNextPage) products.pop();
+
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "products.ejs",
+      products,
+      hasNextPage,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// CARTS 
+router.get("/carts", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const limit = 5;
+    const carts = await Cart.find()
+      .populate("user", "name email")
+      .populate("items.product", "title price image brand")
+      .populate("updatedBy", "name email")
+      .sort({ updatedAt: -1 })
+      .limit(limit + 1);
+
+    const hasNextPage = carts.length > limit;
+    if (hasNextPage) carts.pop();
+
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "carts.ejs",
+      carts,
+      hasNextPage,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// ORDERS 
+router.get("/orders", protect, authorizeRoles("user", "admin"), async (req, res) => {
+  try {
+    const limit = 5;
+    const orders = await Order.find()
+      .populate("user", "name email")
+      .populate("items.product", "title price image brand")
+      .sort({ createdAt: -1 })
+      .limit(limit + 1);
+
+    const hasNextPage = orders.length > limit;
+    if (hasNextPage) orders.pop();
+
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "orders.ejs",
+      orders,
+      hasNextPage,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// FAQS
 router.get("/faqs", protect, authorizeRoles("admin"), async (req, res) => {
   try {
     const limit = 5;
@@ -121,6 +209,22 @@ router.get("/faqs", protect, authorizeRoles("admin"), async (req, res) => {
   }
 });
 
+// PRIVACY POLICY
+router.get("/privacy-policy", protect, authorizeRoles("user", "admin"), async (req, res) => {
+  try {
+    const policy = await PrivacyPolicy.findOne();
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "privacy-policy.ejs", 
+      policy,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// SETTINGS
 router.get("/settings", protect, authorizeRoles("user", "admin"), (req, res) =>
   res.render("layouts/header", {
     user: req.user,
@@ -128,6 +232,7 @@ router.get("/settings", protect, authorizeRoles("user", "admin"), (req, res) =>
   })
 );
 
+// ACTIVITY LOGS
 router.get("/activity-logs", protect, authorizeRoles("admin"), (req, res) =>
   res.render("layouts/header", {
     user: req.user,
@@ -135,6 +240,7 @@ router.get("/activity-logs", protect, authorizeRoles("admin"), (req, res) =>
   })
 );
 
+// LOGOUT
 router.get("/logout", protect, (req, res) => {
   res.clearCookie("token");
   res.redirect("/login?success=Logged out successfully");

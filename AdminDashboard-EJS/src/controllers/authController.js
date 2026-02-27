@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const LoginHistory = require("../models/LoginHistory");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const getValidationError = require("../utils/getValidationError");
@@ -16,30 +17,75 @@ exports.registerUser = async (req, res) => {
   try {
     const user = await User.create(req.body);
 
+    const verificationToken = crypto.randomBytes(20).toString("hex");
+
+    user.emailVerificationToken = crypto
+      .createHash("sha256")
+      .update(verificationToken)
+      .digest("hex");
+
+    user.emailVerificationExpire =
+      Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+
+    await user.save({ validateBeforeSave: false });
+
+    const verificationUrl = `${req.protocol}://${req.get(
+      "host"
+    )}/api/auth/verify-email/${verificationToken}`;
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const message = `
+      <h3>Email Verification</h3>
+      <p>Hello ${user.name},</p>
+      <p>Thank you for registering.</p>
+      <p>Please click the link below to verify your email:</p>
+      <a href="${verificationUrl}" target="_blank">Verify Email</a>
+      <p>This link will expire in 24 hours.</p>
+    `;
+
+    await transporter.sendMail({
+      from: `"Admin Dashboard" <${process.env.EMAIL_USER}>`,
+      to: user.email,
+      subject: "Email Verification",
+      html: message,
+    });
+
     await logActivity({
       user: user._id,
       action: "REGISTER",
-      description: `User registered with email ${user.email}`,
+      description: `Verification email sent to ${user.email}`,
       req,
       status: "success",
     });
 
     return res.status(201).json({
       success: true,
-      message: "User registered successfully",
-      data: { id: user._id, name: user.name, email: user.email },
+      message: `Registration successful. Verification email sent to ${user.email}`,
     });
   } catch (error) {
     console.error(error);
-    const message = getValidationError(error);
+
     await logActivity({
       user: null,
       action: "REGISTER",
-      description: `User registration failed with email ${req.body.email}`,
+      description: `User registration failed for ${req.body.email}`,
       req,
       status: "failed",
     });
-    return res.status(400).json({ success: false, message });
+
+    return res.status(500).json({
+      success: false,
+      message: "Registration failed",
+    });
   }
 };
 
@@ -48,17 +94,86 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password)
-      return res
-        .status(400)
-        .json({ success: false, message: "All fields are required" });
+    if (!email || !password) {
+      await LoginHistory.create({
+        user: null,
+        ip: req.ip,
+        userAgent: req.headers["user-agent"],
+        status: "failed",
+      });
+
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
 
     const user = await User.findOne({ email }).select("+password");
 
-    if (!user || !(await user.matchPassword(password)))
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid email or password" });
+    if (!user || !(await user.matchPassword(password))) {
+      await LoginHistory.create({
+        user: user?._id || null,
+        ip: req.ip,
+        userAgent: req.headers["user-agent"],
+        status: "failed",
+      });
+
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    if (!user.isEmailVerified) {
+      await LoginHistory.create({
+        user: user._id,
+        ip: req.ip,
+        userAgent: req.headers["user-agent"],
+        status: "VERIFY_EMAIL_FAILED",
+      });
+
+      await logActivity({
+        user: user._id,
+        action: "LOGIN_BLOCKED",
+        description: "Login attempt on before email verify",
+        req,
+        status: "failed",
+      });
+
+      return res.status(403).json({
+        success: false,
+        message: "Please verify your email first",
+      });
+    }
+
+    if (!user.isActive) {
+      await LoginHistory.create({
+        user: user._id,
+        ip: req.ip,
+        userAgent: req.headers["user-agent"],
+        status: "LOGIN_BLOCKED_DEACTIVATED",
+      });
+
+      await logActivity({
+        user: user._id,
+        action: "LOGIN_BLOCKED",
+        description: "Login attempt on deactivated account",
+        req,
+        status: "failed",
+      });
+
+      return res.status(403).json({
+        success: false,
+        message: "Account is deactivated. Contact admin.",
+      });
+    }
+
+    await LoginHistory.create({
+      user: user._id,
+      ip: req.ip,
+      userAgent: req.headers["user-agent"],
+      status: "LOGIN_SUCCESS",
+    });
 
     const token = generateToken(user._id);
     res.cookie("token", token, { httpOnly: true });
@@ -74,10 +189,23 @@ exports.loginUser = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "User login successfully",
-      data: { id: user._id, name: user.name, email: user.email, token },
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        token,
+      },
     });
   } catch (error) {
     console.error(error);
+
+    await LoginHistory.create({
+      user: null,
+      ip: req.ip,
+      userAgent: req.headers["user-agent"],
+      status: "error",
+    });
+
     await logActivity({
       user: null,
       action: "LOGIN",
@@ -85,7 +213,11 @@ exports.loginUser = async (req, res) => {
       req,
       status: "failed",
     });
-    return res.status(500).json({ success: false, message: "Server error" });
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 };
 
@@ -237,6 +369,18 @@ exports.getAllUsers = async (req, res) => {
 
     const query = {};
 
+    if (req.query.isActive !== undefined) {
+      query.isActive = req.query.isActive === "true";
+    }
+
+    if (req.query.isEmailVerified !== undefined) {
+      query.isEmailVerified = req.query.isEmailVerified === "true";
+    }
+
+    if (req.query.role) {
+      query.role = req.query.role;
+    }
+
     if (search) {
       query.$or = [
         { name: { $regex: search, $options: "i" } },
@@ -252,7 +396,7 @@ exports.getAllUsers = async (req, res) => {
     }
 
     const users = await User.find(query)
-      .select("_id name email role isActive createdAt")
+      .select("_id name email role isActive isEmailVerified createdAt")
       .sort({ _id: order })
       .limit(limit + 1);
 
@@ -302,13 +446,14 @@ exports.updateProfile = async (req, res) => {
       });
     }
 
-    if (role && userToUpdate._id.toString() !== loggedInUser._id.toString()) {
+    if (role) {
       if (loggedInUser.role !== "admin") {
         return res.status(403).json({
           success: false,
-          message: "Forbidden: Only admins can change roles",
+          message: "Only admin can change role",
         });
       }
+
       userToUpdate.role = role;
     }
 
@@ -666,6 +811,45 @@ exports.getAllActivityLogs = async (req, res) => {
   } catch (error) {
     console.error("❌ getAllActivityLogs error:", error.message);
     res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
+
+/* ------------------- VERIFY EMAIL ------------------- */
+exports.verifyEmail = async (req, res) => {
+  try {
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+
+    const user = await User.findOne({
+      emailVerificationToken: hashedToken,
+      emailVerificationExpire: { $gt: Date.now() },
+    });
+
+    if (!user)
+      return res.status(400).json({
+        success: false,
+        message: "Invalid or expired verification token",
+      });
+
+    user.isEmailVerified = true;
+    user.isActive = true;
+    user.emailVerificationToken = undefined;
+    user.emailVerificationExpire = undefined;
+
+    await user.save();
+
+    return res.json({
+      success: true,
+      message: "Email verified successfully. You can now login.",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
       success: false,
       message: "Server error",
     });

@@ -18,7 +18,7 @@ const faqSchema = new mongoose.Schema(
     },
     isActive: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

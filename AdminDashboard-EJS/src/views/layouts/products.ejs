@@ -1,0 +1,1361 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
+        <div>
+            <h1
+                class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+                <i class="fas fa-box text-blue-400 animate-pulse"></i>
+                <span>Products Management</span>
+            </h1>
+
+            <span class="text-base text-gray-600 font-semibold">
+                Manage products, approval & inventory
+            </span>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+
+        <!-- Total Products -->
+        <div
+            class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-blue-100 font-bold">Total Products</p>
+                    <span id="totalProducts"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-box text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Approved Products -->
+        <div
+            class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-green-100 font-bold">Approved Products</p>
+                    <span id="approvedProducts"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-check-circle text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Featured Products -->
+        <div
+            class="bg-gradient-to-br from-red-400 via-red-500 to-red-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-red-100 font-bold">Featured Products</p>
+                    <span id="featuredProducts"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-check-double text-5xl text-red-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Added Today -->
+        <div
+            class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-indigo-100 font-bold">New Products (Today)</p>
+                    <span id="todayProducts"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-plus-square text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+
+        <!-- Left: Search + Sort -->
+        <div class="flex gap-2 w-full sm:w-auto">
+            <!-- Single Search Bar -->
+            <input type="text" id="searchInput"
+                class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Search by title, brand, or price..." />
+
+            <select id="sortSelect"
+                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="desc">Sort: Newest First</option>
+                <option value="asc">Sort: Oldest First</option>
+            </select>
+
+            <button onclick="onSearch()"
+                class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
+                <i class="fas fa-search text-[10px]"></i>
+                Search
+            </button>
+        </div>
+
+        <!-- Right: Create Product + Bulk Upload -->
+        <div class="w-full sm:w-auto flex justify-start sm:justify-end gap-2">
+
+            <!-- Create Product Button -->
+            <button onclick="openCreateModal()"
+                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
+                <i class="fas fa-plus text-[10px]"></i>
+                Product
+            </button>
+
+            <!-- Bulk Upload -->
+            <button id="bulkUploadBtn"
+                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 transition duration-300">
+                <svg id="bulkUploadSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                </svg>
+                <span id="bulkUploadBtnText">Import CSV</span>
+            </button>
+
+            <button id="exportBtn"
+                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-gray-800 rounded hover:bg-gray-900 transition duration-300">
+
+                <!-- Spinner -->
+                <svg id="exportSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                </svg>
+
+                <span id="exportBtnText">Export CSV</span>
+            </button>
+
+            <input type="file" id="csvFile" class="hidden" accept=".csv" />
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
+        <table class="w-full min-w-[700px] border border-gray-200 text-sm table-fixed">
+            <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white">
+                <tr>
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[60px] text-center">#</th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Title
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Price
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Stock
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Created At
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                        Approved
+                    </th>
+
+                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[190px] text-center">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody id="productsTable" class="divide-y font-mono">
+                <!-- rows via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Load More Button -->
+    <div class="mt-4 text-center">
+        <button id="loadMoreBtn" onclick="fetchProducts()"
+            class="inline-flex items-center justify-center gap-1 bg-gray-400 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-gray-500 transition hidden w-full sm:w-auto mb-4">
+            <i class="fas fa-arrow-down text-[10px]"></i>
+            Load More
+        </button>
+    </div>
+
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal"
+    class="fixed inset-0 hidden z-50 flex items-start sm:items-center justify-center bg-black/40 backdrop-blur-sm p-4 overflow-auto">
+
+    <div
+        class="bg-white rounded-xl p-4 sm:p-6 w-full sm:w-[95%] max-w-2xl shadow-2xl border border-blue-100 max-h-[90vh] overflow-y-auto">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-4">
+            <h2 id="modalTitle" class="text-lg font-bold text-blue-900">Add Product</h2>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-700 text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <input type="hidden" id="productId">
+
+        <!-- Form -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+            <!-- Title -->
+            <div>
+                <label for="title" class="block text-sm text-blue-700 font-medium">Product Title</label>
+                <input id="title" class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the product title">
+                <p id="titleError" class="text-xs text-red-500 mt-1 hidden">Title is required.</p>
+            </div>
+
+            <!-- Price -->
+            <div>
+                <label for="price" class="block text-sm text-blue-700 font-medium">Price (in ₹)</label>
+                <input id="price" type="number"
+                    class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the price">
+                <p id="priceError" class="text-xs text-red-500 mt-1 hidden">Please enter a valid price.</p>
+            </div>
+
+            <!-- Category -->
+            <div>
+                <label for="category" class="block text-sm text-blue-700 font-medium">Category</label>
+                <input id="category" class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the product category">
+                <p id="categoryError" class="text-xs text-red-500 mt-1 hidden">Category is required.</p>
+            </div>
+
+            <!-- SubCategory -->
+            <div>
+                <label for="subCategory" class="block text-sm text-blue-700 font-medium">Sub Category</label>
+                <input id="subCategory"
+                    class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the sub category">
+                <p id="subCategoryError" class="text-xs text-red-500 mt-1 hidden">Sub category is required.</p>
+            </div>
+
+            <!-- Brand -->
+            <div>
+                <label for="brand" class="block text-sm text-blue-700 font-medium">Brand</label>
+                <input id="brand" class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the brand">
+                <p id="brandError" class="text-xs text-red-500 mt-1 hidden">Brand name is required.</p>
+            </div>
+
+            <!-- Color -->
+            <div>
+                <label for="color" class="block text-sm text-blue-700 font-medium">Color</label>
+                <input id="color" class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the color of the product">
+                <p id="colorError" class="text-xs text-red-500 mt-1 hidden">Color is required.</p>
+            </div>
+
+            <!-- Size -->
+            <div>
+                <label for="size" class="block text-sm text-blue-700 font-medium">Size</label>
+                <input id="size" class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the size of the product (e.g., S, M, L)">
+                <p id="sizeError" class="text-xs text-red-500 mt-1 hidden">Size is required.</p>
+            </div>
+
+            <!-- Inventory -->
+            <div>
+                <label for="inventory" class="block text-sm text-blue-700 font-medium">Stock Quantity</label>
+                <input id="inventory" type="number"
+                    class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Enter the stock quantity">
+                <p id="inventoryError" class="text-xs text-red-500 mt-1 hidden">Please enter a valid stock quantity.</p>
+            </div>
+
+            <!-- Tags -->
+            <div class="sm:col-span-2">
+                <label for="tags" class="block text-sm text-blue-700 font-medium">Tags</label>
+                <input id="tags" class="w-full border border-blue-200 rounded p-1 text-xs bg-blue-50"
+                    placeholder="Tags (comma separated)">
+                <p id="tagsError" class="error-text text-red-500 text-xs mt-1 hidden">
+                    Tags must be separated by commas.
+                </p>
+            </div>
+
+            <!-- Description -->
+            <div class="sm:col-span-2">
+                <label for="description" class="block text-sm text-blue-700 font-medium">Description</label>
+                <textarea id="description"
+                    class="product-input w-full border border-blue-200 rounded p-1 text-xs bg-blue-50" rows="3"
+                    placeholder="Enter a product description"></textarea>
+                <p id="descriptionError" class="text-xs text-red-500 mt-1 hidden">Description is required.</p>
+            </div>
+
+            <!-- Image -->
+            <div>
+                <label for="image" class="block text-sm text-blue-700 font-medium">Product Image</label>
+                <input id="image" type="file" class="sm:col-span-2 text-xs">
+                <p id="imageError" class="text-xs text-red-500 mt-1 hidden">Please upload a valid image file.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex flex-col sm:flex-row justify-end gap-2 mt-5">
+            <!-- Cancel Button -->
+            <button onclick="closeModal()"
+                class="bg-gray-400 text-white px-3 py-2 rounded text-[12px] hover:bg-gray-500 w-full sm:w-auto">
+                Cancel
+            </button>
+
+            <!-- Save Button (Create Product) -->
+            <button id="saveBtn" onclick="saveProduct()"
+                class="bg-blue-600 text-white px-3 py-2 rounded text-[12px] hover:bg-blue-700 w-full sm:w-auto font-bold shadow flex items-center justify-center gap-2">
+
+                <!-- Loader Spinner -->
+                <svg id="saveBtnSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                </svg>
+
+                <!-- Button Text -->
+                <span id="saveBtnText">Create Product</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- VIEW PRODUCT MODAL -->
+<div id="viewProductModal" class="fixed inset-0 hidden z-50 
+           flex items-center justify-center 
+           bg-black/40 backdrop-blur-sm p-4">
+
+    <div class="bg-white rounded-xl 
+                w-full max-w-2xl 
+                max-h-[90vh] 
+                flex flex-col
+                shadow-2xl border border-blue-100">
+
+        <!-- Header (Fixed) -->
+        <div class="px-5 py-4 border-b 
+                    flex justify-between items-center 
+                    flex-shrink-0">
+            <h2 class="text-lg font-semibold text-blue-900">
+                Product Details
+            </h2>
+
+            <button onclick="closeViewModal()" class="text-gray-400 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Body (Scrollable Only When Needed) -->
+        <div class="p-5 bg-gray-50 
+                    overflow-y-auto 
+                    flex-1" id="viewProductContent">
+        </div>
+
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-[9999] text-white text-sm">
+</div>
+
+<script>
+    let cursor = null;
+    let search = "";
+    let indexOffset = 0;
+    const limit = 5;
+    const lowStockThreshold = 5;
+
+    /* ================= ANIMATE VALUE ================= */
+    function animateValue(el, end) {
+        let start = 0;
+        const step = end / 20;
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= end) {
+                el.textContent = end;
+                clearInterval(timer);
+            } else {
+                el.textContent = Math.floor(start);
+            }
+        }, 20);
+    }
+
+    /* ================= FETCH STATS ================= */
+    async function fetchStats() {
+        try {
+            const res = await fetch("/api/products/stats", {
+                headers: { Accept: "application/json" }
+            });
+
+            const data = await res.json();
+
+            if (!data.success) return;
+
+            animateValue(document.getElementById("totalProducts"), data.stats.total);
+            animateValue(document.getElementById("featuredProducts"), data.stats.featured);
+            animateValue(document.getElementById("approvedProducts"), data.stats.approved);
+            animateValue(document.getElementById("todayProducts"), data.stats.today);
+
+        } catch (err) {
+            console.error("Stats error", err);
+        }
+    }
+
+    /* ================= SHOW TOAST ================= */
+    function showToast(msg, type = "success") {
+        const toast = document.getElementById("toast");
+        if (!toast) return;
+
+        toast.textContent = msg;
+        toast.className = `
+            fixed top-3 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white
+            ${type === "success" ? "bg-green-600" : "bg-red-600"}
+        `;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
+    /* ================= FETCH PRODUCTS ================= */
+    async function fetchProducts(reset = false) {
+        const sort = document.getElementById("sortSelect")?.value || "desc";
+        let url = `/api/products/all-products?limit=${limit}&sort=${sort}`;
+
+        if (!reset && cursor) {
+            url += `&cursor=${encodeURIComponent(cursor)}`;
+        }
+
+        if (search) {
+            url += `&search=${encodeURIComponent(search)}`;
+        }
+
+        const tbody = document.getElementById("productsTable");
+        const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+        try {
+            const res = await fetch(url, {
+                headers: { Accept: "application/json" }
+            });
+
+            const data = await res.json();
+
+            if (!data.success) {
+                showToast("Failed to load products", "error");
+                return;
+            }
+
+            if (reset) {
+                tbody.innerHTML = "";
+                indexOffset = 0;
+                cursor = null;
+            }
+
+            if (data.data.length === 0 && reset) {
+                tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="text-center py-6 bg-white text-gray-500 font-semibold">
+                        No products found
+                    </td>
+                </tr>
+            `;
+                loadMoreBtn.classList.add("hidden");
+                return;
+            }
+
+            data.data.forEach((p, i) => {
+                const tr = document.createElement("tr");
+                tr.className = "border-t";
+                tr.setAttribute("data-id", p._id);
+
+                const createdDate = p.createdAt ? new Date(p.createdAt).toLocaleDateString() : "-";
+                const createdTime = p.createdAt ? new Date(p.createdAt).toLocaleTimeString() : "";
+
+                tr.innerHTML = `
+                <td class="px-4 py-3 text-center text-xs">${indexOffset + i + 1}</td>
+                <td class="px-4 py-3 text-center truncate" title="${p.title}">${p.title}</td>
+                <td class="px-4 py-3 text-center">₹${p.price}</td>
+                <td class="px-4 py-3 text-center font-bold ${p.inventory <= lowStockThreshold ? "text-red-600" : "text-green-600"}">
+                   ${p.inventory}
+                </td>
+                <td class="px-4 py-3 text-center text-xs"><div>${createdDate}</div><div class="text-gray-500 text-[10px]">${createdTime}</div></td>
+                <td class="px-4 py-3 text-center">
+                    <span class="approval-status px-2 py-1 text-xs rounded font-bold ${p.isApproved ? "bg-green-600 text-white" : "bg-yellow-500 text-white"}">
+                        ${p.isApproved ? "Approved" : "Pending"}
+                    </span>
+                </td>
+
+                <td class="px-4 py-3 text-center flex space-x-1 justify-center items-center">
+
+    <!-- Approval Toggle Button -->
+    <button onclick="toggleApproval('${p._id}')"
+        class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-300 transition duration-300 flex-shrink-0"
+        title="Toggle Approval">
+        <i class="fas fa-toggle-${p.isApproved ? "on" : "off"}"></i>
+    </button>
+
+    <!-- Toggle Featured Button -->
+    <button onclick="toggleFeatured('${p._id}')"
+        class="px-2 py-1 text-xs rounded transition duration-300 featured-toggle flex-shrink-0
+         ${p.isFeatured ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-300' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'}"
+        title="Toggle Featured">
+        <i class="fas fa-star" style="opacity: ${p.isFeatured ? '1' : '0.4'}; color: ${p.isFeatured ? '#f59e0b' : '#3b82f6'}"></i>
+    </button>
+
+     <!-- View Button -->
+        <button onclick="openViewModal('${p._id}')"
+          class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-300 transition duration-300 flex-shrink-0"
+            title="View">
+            <i class="fas fa-eye"></i>
+         </button>
+
+    <!-- Edit Button -->
+    <button onclick="openEditModal('${p._id}')"
+        class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-300 transition duration-300 flex-shrink-0"
+        title="Edit">
+        <i class="fas fa-edit"></i>
+    </button>
+
+    <!-- Delete Button -->
+    <button onclick="deleteProduct('${p._id}')"
+        class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded hover:bg-red-300 transition duration-300 flex-shrink-0"
+        title="Delete">
+        <i class="fas fa-trash"></i>
+    </button>
+</td>
+
+            `;
+                tbody.appendChild(tr);
+            });
+
+            indexOffset += data.data.length;
+            cursor = data.pageInfo?.nextCursor || null;
+
+            loadMoreBtn.classList.toggle("hidden", !(data.pageInfo && data.pageInfo.hasNextPage));
+            if (reset) fetchStats();
+
+        } catch (err) {
+            showToast("Server error. Please refresh!", "error");
+        }
+    }
+
+    /* ================= SEARCH ================= */
+    function onSearch() {
+        search = document.getElementById("searchInput").value.trim();
+        fetchProducts(true);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchProducts(true);
+    });
+
+    /* ================= OPEN CREATE MODEL ================= */
+    function openCreateModal() {
+        modalTitle.innerText = "Add Product";
+        productId.value = "";
+
+        document.getElementById("saveBtnText").innerText = "Create Product";
+
+        productModal.classList.remove("hidden");
+    }
+
+    /* ================= OPEN EDIT MODEL ================= */
+    async function openEditModal(id) {
+        try {
+            const res = await fetch(`/api/products/${id}`);
+            const data = await res.json();
+
+            if (!data.success) {
+                showToast("Failed to load product", "error");
+                return;
+            }
+
+            const product = data.data;
+
+            modalTitle.innerText = "Edit Product";
+            productId.value = id;
+            document.getElementById("saveBtnText").innerText = "Update Product";
+
+            // Fill form
+            title.value = product.title || "";
+            price.value = product.price || "";
+            category.value = product.category || "";
+            subCategory.value = product.subCategory || "";
+            brand.value = product.brand || "";
+
+            color.value = product.attributes?.color || "";
+            size.value = product.attributes?.size || "";
+
+            inventory.value = product.inventory || "";
+            description.value = product.description || "";
+            tags.value = product.tags ? product.tags.join(",") : "";
+
+            clearProductErrors();
+
+            productModal.classList.remove("hidden");
+
+        } catch (err) {
+            showToast("Server error", "error");
+        }
+    }
+
+    /* ================= VIEW PRODUCT ================= */
+    async function openViewModal(id) {
+        try {
+            const res = await fetch(`/api/products/${id}`, {
+                headers: { Accept: "application/json" }
+            });
+
+            const data = await res.json();
+            if (!data.success) {
+                showToast("Failed to load product", "error");
+                return;
+            }
+
+            const product = data.data;
+            const container = document.getElementById("viewProductContent");
+
+            container.innerHTML = `
+<div class="bg-white rounded-2xl shadow-xl
+            w-full max-w-3xl mx-auto
+            max-h-[90vh] overflow-y-auto">
+
+    <div class="flex flex-col md:flex-row">
+
+        <!-- IMAGE -->
+        <div class="w-full md:w-5/12 
+                    bg-gray-50 flex items-center justify-center 
+                    p-4">
+
+            <img src="${product.image || 'https://via.placeholder.com/250'}"
+                class="max-h-60 md:max-h-80 w-auto object-contain
+                       transition-transform duration-500 
+                       hover:scale-110 cursor-pointer">
+        </div>
+
+        <!-- DETAILS -->
+        <div class="w-full md:w-7/12 p-4 md:p-6 space-y-4">
+
+            <!-- TITLE -->
+            <div>
+                <h2 class="text-base md:text-lg font-bold text-gray-900">
+                    ${product.title}
+                </h2>
+                <p class="text-xs text-gray-500">
+                    ${product.brand || "-"}
+                </p>
+            </div>
+
+            <!-- BADGES -->
+            <div class="flex flex-wrap gap-2 text-[10px]">
+                <span class="px-2 py-1 rounded-full font-semibold
+                    ${product.isApproved
+                    ? "bg-green-100 text-green-700"
+                    : "bg-yellow-100 text-yellow-700"}">
+                    ${product.isApproved ? "Approved" : "Pending"}
+                </span>
+
+                ${product.isFeatured ? `
+                <span class="px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 font-semibold">
+                    Featured
+                </span>` : ""}
+            </div>
+
+            <!-- PRICE + STOCK -->
+            <div class="flex justify-between items-center 
+                        border rounded-lg px-3 py-2 bg-gray-50 text-sm">
+                <div class="font-bold text-gray-900">
+                    ₹${product.price}
+                </div>
+
+                <div class="font-semibold
+                    ${product.inventory <= 5 ? "text-red-600" : "text-green-600"}">
+                    ${product.inventory > 0
+                    ? product.inventory + " in stock"
+                    : "Out of stock"}
+                </div>
+            </div>
+
+            <!-- RATING -->
+            ${product.averageRating ? `
+            <div class="flex items-center gap-2">
+                <div class="flex text-yellow-500 text-sm">
+                    ${[1, 2, 3, 4, 5].map(star => `
+                        <span>
+                            ${product.averageRating >= star ? "★" : "☆"}
+                        </span>
+                    `).join("")}
+                </div>
+                <div class="text-xs text-gray-600">
+                    (${product.averageRating.toFixed(1)} / 5)
+                    ${product.reviews?.length ? `• ${product.reviews.length} Reviews` : ""}
+                </div>
+            </div>
+            ` : ""}
+
+            <!-- DETAILS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+
+                <div>
+                    <div class="text-gray-400">Color</div>
+                    <div class="font-medium break-words">
+                        ${product.attributes?.color || "-"}
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-gray-400">Size</div>
+                    <div class="font-medium break-words">
+                        ${product.attributes?.size || "-"}
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <div class="text-gray-400">Categories</div>
+                    <div class="font-medium break-words">
+                        ${product.category?.join(", ") || "-"}
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <div class="text-gray-400">Sub Categories</div>
+                    <div class="font-medium break-words">
+                        ${product.subCategory?.join(", ") || "-"}
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <div class="text-gray-400">Tags</div>
+                    <div class="font-medium break-words">
+                        ${product.tags?.join(", ") || "-"}
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-gray-400">Created</div>
+                    <div class="font-medium">
+                        ${product.createdAt
+                    ? new Date(product.createdAt).toLocaleDateString()
+                    : "-"}
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-gray-400">Updated</div>
+                    <div class="font-medium">
+                        ${product.updatedAt
+                    ? new Date(product.updatedAt).toLocaleDateString()
+                    : "-"}
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- REVIEWS -->
+  ${product.reviews && product.reviews.length > 0 ? `
+<div class="border-t pt-4 space-y-3">
+    <h3 class="text-sm font-semibold text-gray-800">
+        Customer Reviews
+    </h3>
+
+    <div class="space-y-3 max-h-52 overflow-y-auto pr-2">
+
+${product.reviews.map(review => {
+
+                        const currentUser = window.currentUser || null;
+
+                        const reviewUserId =
+                            typeof review.user === "object"
+                                ? review.user?._id
+                                : review.user;
+
+                        const isOwner =
+                            currentUser &&
+                            reviewUserId &&
+                            reviewUserId.toString() === currentUser._id?.toString();
+
+                        const isAdmin =
+                            currentUser &&
+                            currentUser.role &&
+                            currentUser.role.toLowerCase() === "admin";
+
+                        return `
+<div id="review-${review._id}"
+     class="border rounded-lg p-3 bg-gray-50 text-xs space-y-2">
+
+    <div class="flex justify-between items-center">
+        <div class="font-semibold text-gray-800">
+            ${review.user?.name || "Anonymous"}
+        </div>
+
+        <div class="flex items-center gap-3">
+
+            <!-- RATING DISPLAY -->
+            <div id="rating-display-${review._id}" class="text-yellow-500">
+                ${[1, 2, 3, 4, 5].map(star =>
+                            review.rating >= star ? "★" : "☆"
+                        ).join("")}
+            </div>
+
+            ${isOwner ? `
+                <button onclick="enableEdit('${review._id}', ${review.rating}, \`${review.comment || ""}\`)"
+                    class="text-blue-600 hover:underline text-[11px]">
+                    Edit
+                </button>
+            ` : ""}
+
+            ${(isOwner || isAdmin) ? `
+                <button onclick="deleteReview('${review._id}')"
+                    class="text-red-600 hover:underline text-[11px]">
+                    Delete
+                </button>
+            ` : ""}
+
+        </div>
+    </div>
+
+    <!-- COMMENT DISPLAY -->
+    <div id="comment-display-${review._id}"
+         class="text-gray-600 break-words">
+        ${review.comment || ""}
+    </div>
+
+    <div class="text-[10px] text-gray-400">
+        ${review.createdAt
+                                ? new Date(review.createdAt).toLocaleDateString()
+                                : ""}
+    </div>
+
+</div>
+`;
+                    }).join("")}
+
+    </div>
+</div>
+` : ""}
+
+            <!-- DESCRIPTION (LAST) -->
+            ${product.description ? `
+            <div class="border-t pt-4 text-xs md:text-sm text-gray-600 leading-relaxed break-words">
+                ${product.description}
+            </div>
+            ` : ""}
+
+        </div>
+    </div>
+</div>
+`;
+
+            document.getElementById("viewProductModal").classList.remove("hidden");
+
+        } catch (err) {
+            showToast("Server error", "error");
+        }
+    }
+
+    function closeViewModal() {
+        document.getElementById("viewProductModal").classList.add("hidden");
+    }
+
+    /* ================= CLOSE MODEL ================= */
+    function closeModal() {
+        productModal.classList.add("hidden");
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function enableEdit(id, rating, comment) {
+
+        const ratingDiv = document.getElementById(`rating-display-${id}`);
+        const commentDiv = document.getElementById(`comment-display-${id}`);
+
+        ratingDiv.innerHTML = `
+    <select id="edit-rating-${id}"
+        class="border rounded px-1 text-xs">
+        ${[1, 2, 3, 4, 5].map(r =>
+            `<option value="${r}" ${r === rating ? 'selected' : ''}>${r}</option>`
+        ).join("")}
+    </select>
+`;
+
+        commentDiv.innerHTML = `
+    <textarea id="edit-comment-${id}"
+        class="w-full border rounded p-1 text-xs">${comment}</textarea>
+
+    <div class="mt-2 flex gap-2">
+        <button onclick="saveEdit('${id}')"
+            class="bg-green-600 text-white px-2 py-1 rounded text-[11px]">
+            Save
+        </button>
+
+        <button onclick="location.reload()"
+            class="bg-gray-400 text-white px-2 py-1 rounded text-[11px]">
+            Cancel
+        </button>
+    </div>
+`;
+    }
+
+    /* ================= CREATE PRODUCT ================= */
+    async function saveProduct() {
+        const id = productId.value;
+        const form = new FormData();
+
+        form.append("title", title.value.trim());
+        form.append("price", price.value);
+        form.append("brand", brand.value.trim());
+        form.append("inventory", inventory.value);
+        form.append("description", description.value.trim());
+
+        const categoryArray = category.value
+            .split(",")
+            .map(c => c.trim())
+            .filter(Boolean);
+
+        const subCategoryArray = subCategory.value
+            .split(",")
+            .map(c => c.trim())
+            .filter(Boolean);
+
+        const tagsArray = tags.value
+            .split(",")
+            .map(t => t.trim())
+            .filter(Boolean);
+
+        categoryArray.forEach(c => form.append("category", c));
+        subCategoryArray.forEach(c => form.append("subCategory", c));
+        tagsArray.forEach(t => form.append("tags", t));
+
+        form.append("attributes[color]", color.value.trim());
+        form.append("attributes[size]", size.value.trim());
+
+        if (image.files[0]) form.append("image", image.files[0]);
+
+        const isUpdate = !!id;
+        const createBtn = document.getElementById("saveBtn");
+        const spinner = document.getElementById("saveBtnSpinner");
+        const btnText = document.getElementById("saveBtnText");
+
+        spinner.classList.remove("hidden");
+        btnText.textContent = isUpdate ? "Updating..." : "Creating...";
+        createBtn.disabled = true;
+
+        try {
+            const url = isUpdate ? `/api/products/update/${id}` : `/api/products/create`;
+            const method = isUpdate ? "PUT" : "POST";
+
+            const [res] = await Promise.all([
+                fetch(url, { method, body: form }),
+                sleep(2000)
+            ]);
+
+            const data = await res.json();
+
+            spinner.classList.add("hidden");
+            btnText.textContent = isUpdate ? "Update Product" : "Create Product";
+            createBtn.disabled = false;
+
+            clearProductErrors();
+
+            if (!data.success) {
+                if (data.errors) {
+                    Object.keys(data.errors).forEach(key => {
+                        const cleanKey = key.includes("attributes.") ? key.split(".")[1] : key;
+                        const input = document.getElementById(cleanKey);
+                        const errorEl = document.getElementById(cleanKey + "Error");
+                        if (input && errorEl) {
+                            input.classList.remove("border-blue-200");
+                            input.classList.add("border-red-500");
+                            errorEl.textContent = data.errors[key];
+                            errorEl.classList.remove("hidden");
+                        }
+                    });
+
+                    if (data.errors.image) {
+                        const errorEl = document.getElementById("imageError");
+                        const imageInput = document.getElementById("image");
+                        imageInput.classList.remove("border-blue-200");
+                        imageInput.classList.add("border-red-500");
+                        errorEl.textContent = data.errors.image;
+                        errorEl.classList.remove("hidden");
+                    }
+                }
+                showToast(data.message || "Something went wrong", "error");
+                return;
+            }
+
+            closeModal();
+            fetchProducts(true);
+            fetchStats();
+            showToast(isUpdate ? "Product updated successfully" : "Product created successfully", "success");
+
+        } catch (err) {
+            spinner.classList.add("hidden");
+            btnText.textContent = isUpdate ? "Update Product" : "Create Product";
+            createBtn.disabled = false;
+
+            showToast(err.message || (isUpdate ? "Product update failed" : "Product creation failed"), "error");
+        }
+    }
+
+    /* ================= DELETE PRODUCT ================= */
+    async function deleteProduct(id) {
+        if (!confirm("Are you sure you want to delete this product?")) return;
+        await fetch(`/api/products/delete/${id}`, { method: "DELETE" });
+        fetchProducts(true);
+        fetchStats();
+        showToast("Product deleted successfully");
+    }
+
+    /* ================= EDIT REVIEW ================= */
+    async function saveEdit(id) {
+
+        const rating = document.getElementById(`edit-rating-${id}`).value;
+        const comment = document.getElementById(`edit-comment-${id}`).value;
+
+        try {
+            const res = await fetch(`/api/products/reviews/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ rating, comment })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                showToast("Review updated successfully", "success");
+
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                showToast(data.message, "error");
+            }
+
+        } catch {
+            showToast("Server error", "error");
+        }
+    }
+
+    /* ================= DELETE REVIEW ================= */
+    async function deleteReview(reviewId) {
+        if (!confirm("Are you sure you want to delete this review?")) return;
+
+        try {
+            const res = await fetch(`/api/products/reviews/${reviewId}`, {
+                method: "DELETE"
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+                showToast("Review deleted successfully", "success");
+
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                showToast(data.message, "error");
+            }
+        } catch {
+            showToast("Server error", "error");
+        }
+    }
+
+    /* ================= TOGGLE APPROVAL ================= */
+    async function toggleApproval(id) {
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        if (!row) return;
+
+        const approvalBadge = row.querySelector(".approval-status");
+        const toggleBtn = row.querySelector("button[onclick^='toggleApproval']");
+        const toggleIcon = toggleBtn ? toggleBtn.querySelector("i") : null;
+
+        try {
+            const res = await fetch(`/api/products/toggle-approval/${id}`, {
+                method: "PUT",
+                headers: { Accept: "application/json" }
+            });
+
+            const data = await res.json();
+
+            if (!data.success) {
+                showToast("Approval update failed", "error");
+                return;
+            }
+
+            showToast(
+                data.data.isApproved
+                    ? "Product approved successfully"
+                    : "Product disapproved successfully",
+                "success"
+            );
+
+            if (approvalBadge) {
+                approvalBadge.textContent = data.data.isApproved ? "Approved" : "Pending";
+                approvalBadge.className = `approval-status px-2 py-1 text-xs rounded font-bold ${data.data.isApproved ? "bg-green-600 text-white" : "bg-yellow-500 text-white"
+                    }`;
+            }
+
+            if (toggleBtn) {
+                toggleBtn.className = `px-2 py-1 text-xs bg-${data.data.isApproved ? "green" : "gray"}-100 text-${data.data.isApproved ? "green" : "gray"}-700 rounded hover:bg-${data.data.isApproved ? "green" : "gray"}-300 transition duration-300`;
+            }
+
+            if (toggleIcon) {
+                toggleIcon.className = `fas fa-toggle-${data.data.isApproved ? "on" : "off"}`;
+            }
+
+            fetchStats();
+
+        } catch (err) {
+            console.error("Error toggling approval:", err);
+            showToast("Approval update failed", "error");
+        }
+    }
+
+    /* ================= TOGGLE FEATURED ================= */
+    async function toggleFeatured(id) {
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        if (!row) return;
+
+        const btn = row.querySelector(".featured-toggle");
+        const icon = btn.querySelector("i");
+
+        try {
+            const res = await fetch(`/api/products/toggle-featured/${id}`, {
+                method: "PUT",
+                headers: { Accept: "application/json" }
+            });
+
+            const data = await res.json();
+
+            if (!data.success) {
+                showToast(data.message || "Failed to update featured status", "error");
+                return;
+            }
+
+            showToast(
+                data.data.isFeatured
+                    ? "Product marked as Featured"
+                    : "Product unmarked as Featured",
+                "success"
+            );
+
+            if (icon) {
+                icon.className = "fas fa-star";
+                icon.style.opacity = data.data.isFeatured ? "1" : "0.3";
+                icon.style.color = data.data.isFeatured ? "#f59e0b" : "#3b82f6";
+            }
+
+            btn.className = `featured-toggle px-2 py-1 text-xs rounded transition duration-300 ${data.data.isFeatured
+                ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-300'
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-300'
+                }`;
+
+            fetchStats();
+
+        } catch (err) {
+            console.error("Error toggling featured:", err);
+            showToast("Failed to update featured status", "error");
+        }
+    }
+
+    /* ================= UPDATE PRODUCT ROW APPROVE================= */
+    function updateProductRow(id, isApproved) {
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+
+        if (!row) {
+            console.warn(`Row with id ${id} not found. Skipping update.`);
+            return;
+        }
+
+        const badge = row.querySelector(".approval-status");
+        if (badge) {
+            badge.textContent = isApproved ? "Approved" : "Pending";
+            badge.className = `approval-status px-2 py-1 text-xs rounded font-bold tracking-wider ${isApproved ? "bg-green-600 text-white" : "bg-yellow-500 text-white"}`;
+        }
+
+        const btn = row.querySelector(".approval-toggle");
+        if (btn) {
+            btn.className = `approval-toggle px-2 py-1 text-xs rounded ${isApproved ? "bg-green-100 text-green-700 hover:bg-green-300" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`;
+        }
+
+        const icon = btn ? btn.querySelector("i") : null;
+        if (icon) {
+            icon.className = `fas fa-toggle-${isApproved ? "on" : "off"}`;
+        }
+    }
+
+    /* ================= UPDATE PRODUCT ROW FEATURED ================= */
+    function updateFeaturedRow(id, isFeatured) {
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        if (!row) return;
+
+        const btn = row.querySelector(".featured-toggle");
+        if (btn) {
+            const icon = btn.querySelector("i");
+
+            if (icon) {
+                icon.className = "fas fa-star";
+                icon.style.opacity = isFeatured ? "1" : "0.3";
+                icon.style.color = isFeatured ? "#f59e0b" : "#3b82f6";
+            }
+
+            btn.className = `featured-toggle px-2 py-1 text-xs rounded transition duration-300 ${isFeatured
+                ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-300'
+                : 'bg-blue-100 text-blue-700 hover:bg-blue-300'
+                }`;
+        }
+    }
+
+    /* ================= CLEAR PRODUCT ================= */
+    function clearProductErrors() {
+        document.querySelectorAll(".product-input").forEach(input => {
+            input.classList.remove("border-red-500");
+            input.classList.add("border-blue-200");
+        });
+
+        document.querySelectorAll("[id$='Error']").forEach(el => {
+            if (el.id.includes("Error")) {
+                el.textContent = "";
+                el.classList.add("hidden");
+            }
+        });
+    }
+
+    /* ================= SLEEP ================= */
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    /* ================= BULK UPLOAD BUTTON ================= */
+    document.getElementById("bulkUploadBtn").addEventListener("click", () => {
+        document.getElementById("csvFile").click();
+    });
+
+    /* ================= CSV FILE ================= */
+    const csvFile = document.getElementById("csvFile");
+    csvFile.addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const form = new FormData();
+        form.append("file", file);
+
+        const uploadBtn = document.getElementById("bulkUploadBtn");
+        const spinner = document.getElementById("bulkUploadSpinner");
+        const btnText = document.getElementById("bulkUploadBtnText");
+
+        spinner.classList.remove("hidden");
+        btnText.textContent = "Uploading...";
+        uploadBtn.disabled = true;
+
+        try {
+            const [res] = await Promise.all([
+                fetch("/api/products/bulk-upload", { method: "POST", body: form }),
+                sleep(2000)
+            ]);
+
+            const data = await res.json();
+
+            spinner.classList.add("hidden");
+            btnText.textContent = "Bulk Upload";
+            uploadBtn.disabled = false;
+
+            if (!data.success) {
+                showToast(data.message || "Bulk upload failed", "error");
+                return;
+            }
+
+            fetchProducts(true);
+            fetchStats();
+            showToast("Bulk uploaded successfully", "success");
+
+        } catch (err) {
+            spinner.classList.add("hidden");
+            btnText.textContent = "Bulk Upload";
+            uploadBtn.disabled = false;
+            showToast(err.message || "Bulk upload failed", "error");
+        }
+
+        csvFile.value = "";
+    });
+
+    /* ================= EXPORT PRODUCT BUTTON ================= */
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    document.getElementById("exportBtn").addEventListener("click", async () => {
+
+        const btn = document.getElementById("exportBtn");
+        const spinner = document.getElementById("exportSpinner");
+        const btnText = document.getElementById("exportBtnText");
+
+        spinner.classList.remove("hidden");
+        btnText.textContent = "Exporting...";
+        btn.disabled = true;
+
+        try {
+
+            const [res] = await Promise.all([
+                fetch("/api/products/export-product", {
+                    headers: { Accept: "text/csv" }
+                }),
+                sleep(2000)
+            ]);
+
+            if (!res.ok) {
+                showToast("Export failed", "error");
+                return;
+            }
+
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "products_export.csv";
+            document.body.appendChild(a);
+            a.click();
+
+            a.remove();
+            window.URL.revokeObjectURL(url);
+
+            showToast("Products export successfully", "success");
+
+        } catch (err) {
+            console.error(err);
+            showToast("Export failed", "error");
+        }
+
+        spinner.classList.add("hidden");
+        btnText.textContent = "Export CSV";
+        btn.disabled = false;
+    });
+
+    /* ================= INIT ================= */
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchProducts(true);
+        fetchStats();
+
+        document.querySelectorAll(".product-input").forEach(input => {
+            input.addEventListener("input", () => {
+                input.classList.remove("border-red-500");
+                input.classList.add("border-blue-200");
+
+                const errorEl = document.getElementById(input.id + "Error");
+                if (errorEl) {
+                    errorEl.textContent = "";
+                    errorEl.classList.add("hidden");
+                }
+            });
+        });
+    });
+</script>

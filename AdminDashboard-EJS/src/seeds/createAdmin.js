@@ -16,16 +16,20 @@ const createAdmin = async () => {
     }
 
     const admin = await User.create({
-      name: "Admin",
+      name: "Super Admin",
       email: adminEmail,
       password: "Admin@123",
       role: "admin",
+      isActive: true,           
+      isEmailVerified: true,     
     });
 
     console.log("✅ Admin created successfully");
     console.log({
       email: admin.email,
       role: admin.role,
+      isActive: admin.isActive,
+      isEmailVerified: admin.isEmailVerified,
     });
 
     process.exit(0);

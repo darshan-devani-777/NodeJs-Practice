@@ -71,37 +71,37 @@
 
     </div>
 
-    <!-- SEARCH + SORT -->
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+        <!-- SEARCH + SORT -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
 
-        <!-- Left: Search + Sort -->
-        <div class="flex gap-2 w-full sm:w-auto">
-            <input type="text" id="searchInput"
-                class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-                placeholder="Search blog title..." />
+            <!-- Left: Search + Sort -->
+            <div class="flex gap-2 w-full sm:w-auto">
+                <input type="text" id="searchInput"
+                    class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Search blog title..." />
 
-            <select id="sortSelect"
-                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                <option value="desc">Sort: Newest First</option>
-                <option value="asc">Sort: Oldest First</option>
-            </select>
+                <select id="sortSelect"
+                    class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="desc">Sort: Newest First</option>
+                    <option value="asc">Sort: Oldest First</option>
+                </select>
 
-            <button onclick="onSearch()"
-                class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
-                <i class="fas fa-search text-[10px]"></i>
-                Search
-            </button>
+                <button onclick="onSearch()"
+                    class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
+                    <i class="fas fa-search text-[10px]"></i>
+                    Search
+                </button>
+            </div>
+
+            <!-- Right: Create Blog Button -->
+            <div class="w-full sm:w-auto flex justify-start sm:justify-end">
+                <button onclick="openCreateBlogModal()"
+                    class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
+                    <i class="fas fa-plus text-[10px]"></i>
+                    Blogs
+                </button>
+            </div>
         </div>
-
-        <!-- Right: Create Blog Button -->
-        <div class="w-full sm:w-auto flex justify-start sm:justify-end">
-            <button onclick="openCreateBlogModal()"
-                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
-                <i class="fas fa-plus text-[10px]"></i>
-                Blogs
-            </button>
-        </div>
-    </div>
 
     <!-- TABLE -->
     <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
@@ -146,9 +146,8 @@
         </button>
     </div>
 
-    <!-- CREATE BLOG MODAL -->
+    <!-- CREATE/EDIT BLOG MODAL -->
     <div id="createBlogModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-
         <div class="bg-white w-full max-w-xl rounded-xl shadow-2xl p-6 relative animate-fade-in">
 
             <!-- Header -->
@@ -173,8 +172,9 @@
                 <!-- CONTENT -->
                 <div>
                     <label class="text-xs font-bold text-gray-600">Content *</label>
-                    <textarea id="blogContent" rows="5"
-                        class="w-full border rounded px-3 py-2 text-sm focus:ring-1 focus:ring-blue-400"></textarea>
+                    <textarea id="blogContent"
+                        class="w-full border rounded px-3 py-2 text-[12px] focus:ring-1 focus:ring-blue-400 placeholder-gray-400"
+                        placeholder="Write your blog content here..."></textarea>
                     <p id="blogContentError" class="text-xs text-red-500 mt-1 hidden"></p>
                 </div>
 
@@ -189,7 +189,6 @@
 
                 <!-- ACTIONS -->
                 <div class="flex justify-end gap-2 pt-2">
-                    <!-- Create Blog Button -->
                     <button type="submit" id="createBlogBtn"
                         class="px-4 py-2 text-xs rounded bg-blue-600 text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center gap-2">
                         <svg id="createBlogSpinner" class="hidden animate-spin h-4 w-4 text-white"
@@ -200,7 +199,6 @@
                         <span id="createBlogBtnText">Create Blog</span>
                     </button>
 
-                    <!-- Cancel Button -->
                     <button type="button" id="cancelCreateBlogBtn"
                         class="px-4 py-2 text-xs rounded bg-gray-400 text-white hover:bg-gray-500 transition duration-300">
                         Cancel
@@ -216,6 +214,7 @@
 </div>
 
 <script>
+
     let cursor = null;
     let search = "";
     let indexOffset = 0;
@@ -232,6 +231,7 @@
         }
     }
 
+    /* ================= ANIMATE NUMBER ================= */
     function animateNumber(id, start, end, duration = 800) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -448,6 +448,7 @@
         }
     }
 
+    /* ================= UPDATE BLOG ROW ================= */
     function updateBlogRow(blogId, isPublished) {
         const row = document.querySelector(`tr[data-id="${blogId}"]`);
         if (!row) return;
@@ -522,6 +523,7 @@
         setTimeout(() => toast.classList.add("hidden"), 3000);
     }
 
+    /* ================= HTML ================= */
     function escapeHTML(str) {
         if (typeof str !== "string") return "";
         return str
@@ -534,7 +536,7 @@
 
     /* ================= CREATE BLOG MODAL ================= */
     function openCreateBlogModal() {
-        editingBlogId = null; // create mode
+        editingBlogId = null;
         document.getElementById("blogModalTitle").textContent = "Create New Blog";
         document.getElementById("createBlogBtnText").textContent = "Create Blog";
 
@@ -545,13 +547,13 @@
         const modal = document.getElementById("createBlogModal");
         modal.classList.remove("hidden");
         modal.classList.add("flex");
+
+        initBlogEditor(); 
     }
 
-    let editingBlogId = null;
-
+    /* ================= EDIT MODAL ================= */
     function openEditBlogModal(blogId) {
         editingBlogId = blogId;
-
         document.getElementById("blogModalTitle").textContent = "Edit Blog";
         document.getElementById("createBlogBtnText").textContent = "Update Blog";
 
@@ -559,17 +561,20 @@
         modal.classList.remove("hidden");
         modal.classList.add("flex");
 
+        initBlogEditor();
+
         fetch(`/api/blogs/${blogId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.success && data.data) {
                     document.getElementById("blogTitle").value = data.data.title.trim();
-                    document.getElementById("blogContent").value = data.data.content;
+                    blogEditor.setData(data.data.content);
                     document.getElementById("blogTags").value = data.data.tags.join(", ");
                 }
             });
     }
 
+    /* ================= CLOSE MODAL ================= */
     function closeCreateBlogModal() {
         const modal = document.getElementById("createBlogModal");
         modal.classList.add("hidden");
@@ -580,6 +585,8 @@
         document.getElementById("blogTitle").value = "";
         document.getElementById("blogContent").value = "";
         document.getElementById("blogTags").value = "";
+
+        if (blogEditor) blogEditor.setData("");
 
         const titleInput = document.getElementById("blogTitle");
         const contentInput = document.getElementById("blogContent");
@@ -611,7 +618,7 @@
         });
 
         const title = titleInput.value.trim();
-        const content = contentInput.value.trim();
+        const content = blogEditor.getData().trim();
         const tagsInput = tagsInputEl.value;
         const tags = tagsInput ? tagsInput.split(",").map(t => t.trim()).filter(Boolean) : [];
 
@@ -650,28 +657,36 @@
 
             const data = await safeParseJSON(res);
 
+            spinner.classList.add("hidden");
+            btnText.textContent = editingBlogId ? "Update Blog" : "Create Blog";
+            createBtn.disabled = false;
+
             if (!data.success) {
                 if (data.message.includes("already exists")) {
                     titleError.textContent = data.message;
                     titleError.classList.remove("hidden");
                     titleInput.classList.add("border-red-500");
+                } else if (data.message.toLowerCase().includes("title")) {
+                    titleError.textContent = data.message;
+                    titleError.classList.remove("hidden");
+                    titleInput.classList.add("border-red-500");
+                } else if (data.message.toLowerCase().includes("content")) {
+                    contentError.textContent = data.message;
+                    contentError.classList.remove("hidden");
+                    contentInput.classList.add("border-red-500");
+                } else {
+                    showToast(data.message || "Operation failed", "error");
                 }
-                throw new Error(data.message);
+                return;
             }
 
-            setTimeout(() => {
-                spinner.classList.add("hidden");
-                btnText.textContent = editingBlogId ? "Update Blog" : "Create Blog";
-                createBtn.disabled = false;
+            showToast(editingBlogId ? "Blog updated successfully" : "Blog created successfully");
 
-                showToast(editingBlogId ? "Blog updated successfully" : "Blog created successfully");
-
-                closeCreateBlogModal();
-                editingBlogId = null;
-                cursor = null;
-                fetchBlogs(true);
-                fetchBlogStats();
-            }, 3000);
+            closeCreateBlogModal();
+            editingBlogId = null;
+            cursor = null;
+            fetchBlogs(true);
+            fetchBlogStats();
 
         } catch (err) {
             spinner.classList.add("hidden");
@@ -682,4 +697,52 @@
         }
     }
 
+    /* ================= TEXT-EDITOR ================= */
+    let blogEditor;
+
+    /* ================= INIT BLOG EDITOR ================= */
+    function initBlogEditor() {
+        if (blogEditor) return;
+
+        ClassicEditor
+            .create(document.querySelector('#blogContent'), {
+                placeholder: 'Write your blog content here...',
+                toolbar: [
+                    'undo', 'redo', '|',
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'insertTable', 'mediaEmbed', '|',
+                    'imageUpload', '|',
+                    'alignment', 'removeFormat'
+                ],
+                ckfinder: {
+                    uploadUrl: '/api/blogs/upload-image',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }
+            })
+            .then(editor => {
+                blogEditor = editor;
+            })
+            .catch(err => console.error("CKEditor init error:", err));
+    }
 </script>
+
+<style>
+    .ck-editor__editable_inline {
+        min-height: 200px;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+
+    .ck-content img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+    }
+
+    .ck-editor__editable_inline {
+        overflow-x: hidden;
+    }
+</style>

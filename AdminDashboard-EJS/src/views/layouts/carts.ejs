@@ -1,0 +1,525 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
+        <div>
+            <h1
+                class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+                <i class="fas fa-shopping-cart text-blue-400 animate-pulse"></i>
+                <span>Carts Management</span>
+            </h1>
+            <span class="text-base text-gray-600 font-semibold">
+                View all user carts, items & totals
+            </span>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+        <!-- Total Carts -->
+        <div
+            class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-blue-100 font-bold">Total Carts</p>
+                    <span id="totalCarts"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-shopping-cart text-5xl text-blue-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Total Items -->
+        <div
+            class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-green-100 font-bold">Total Items</p>
+                    <span id="totalItems"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                </div>
+                <i class="fas fa-boxes text-5xl text-green-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+
+        <!-- Total Value -->
+        <div
+            class="bg-gradient-to-br from-purple-400 via-purple-500 to-purple-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-purple-100 font-bold">Total Value</p>
+                    <span id="totalValue"
+                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">₹0</span>
+                </div>
+                <i class="fas fa-rupee-sign text-5xl text-purple-200 opacity-80 group-hover:scale-125 transition"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH + FILTER -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+        <!-- Left: Search + Filter -->
+        <div class="flex gap-2 w-full sm:w-auto">
+            <input type="text" id="searchInput" placeholder="Search by user, product title..."
+                class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400" />
+
+            <select id="filterSelect"
+                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="all">All Carts</option>
+                <option value="empty">Empty Carts</option>
+            </select>
+
+            <select id="sortSelect"
+                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="desc">Newest First</option>
+                <option value="asc">Oldest First</option>
+                <option value="total-desc">Highest Value</option>
+                <option value="total-asc">Lowest Value</option>
+            </select>
+
+            <button onclick="onSearch()"
+                class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
+                <i class="fas fa-search text-[10px]"></i> Search
+            </button>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm table-fixed">
+                <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white">
+                    <tr>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[60px] text-center">#</th>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[200px]">User</th>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[180px] text-center">Items</th>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[120px] text-center">Total Items</th>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[140px] text-center">Total Amount</th>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[140px] text-center">Updated</th>
+                        <th class="px-4 py-3 text-xs font-bold text-blue-700 w-[160px] text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="cartsTable" class="divide-y font-mono divide-gray-100">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <button id="loadMoreBtn" onclick="fetchCarts()"
+            class="inline-flex items-center justify-center gap-1 bg-gray-400 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-gray-500 transition hidden w-full sm:w-auto mb-4">
+            <i class="fas fa-arrow-down text-[10px]"></i>
+            Load More
+        </button>
+    </div>
+
+    <!-- CART DETAILS MODAL -->
+    <div id="cartDetailsModal"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+
+            <!-- HEADER -->
+            <div class="px-5 py-4 border-b flex justify-between items-center">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800" id="modalCartUser"></h2>
+                    <p class="text-xs text-gray-500" id="modalCartSummary"></p>
+                </div>
+
+                <button onclick="closeCartModal()"
+                    class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-gray-100 transition">
+                    <i class="fas fa-times text-gray-500 text-sm"></i>
+                </button>
+            </div>
+
+            <!-- ITEMS -->
+            <div class="p-5 max-h-[420px] overflow-y-auto space-y-4 bg-gray-50" id="modalCartItems">
+            </div>
+
+            <!-- FOOTER -->
+            <div class="px-5 py-4 border-t bg-white flex justify-between items-center">
+                <div class="text-sm text-gray-500">
+                    Total
+                </div>
+
+                <div class="text-xl font-bold text-gray-900" id="modalGrandTotal">
+                    ₹0
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="fixed top-3 right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"></div>
+</div>
+
+<script>
+    let page = 1;
+    let search = "";
+    let filter = "all";
+    let sort = "desc";
+    let indexOffset = 0;
+    const limit = 5;
+    let currentCartId = null;
+
+    /* ================= PARSE JSON ================= */
+    async function safeParseJSON(res) {
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch {
+            console.error("Invalid JSON response:", text);
+            throw new Error("Invalid JSON");
+        }
+    }
+
+    /* ================= ANIMATE NUMBER ================= */
+    function animateNumber(id, start, end, prefix = "", duration = 800) {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        let startTime = null;
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            el.textContent = prefix +
+                Math.floor(progress * (end - start) + start).toLocaleString();
+            if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    /* ================= CART STATS ================= */
+    async function fetchCartStats() {
+        try {
+            const res = await fetch("/api/carts/stats", {
+                headers: { Accept: "application/json" }
+            });
+
+            const { success, stats } = await safeParseJSON(res);
+            if (!success) throw new Error();
+
+            animateNumber("totalCarts", 0, stats.totalCarts);
+            animateNumber("totalItems", 0, stats.totalItems);
+            animateNumber("totalValue", 0, stats.totalValue, "₹");
+
+        } catch {
+            ["totalCarts", "totalItems", "totalValue"]
+                .forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = "0";
+                });
+        }
+    }
+
+    /* ================= FETCH CARTS ================= */
+    async function fetchCarts(reset = false) {
+
+        if (reset) {
+            page = 1;
+            indexOffset = 0;
+            document.getElementById("cartsTable").innerHTML = "";
+        }
+
+        const params = new URLSearchParams({
+            page,
+            limit
+        });
+
+        if (search) params.append("search", search);
+        if (filter && filter !== "all") params.append("filter", filter);
+        if (sort && sort !== "desc") params.append("sort", sort);
+
+        const url = `/api/carts/all-carts?${params.toString()}`;
+
+        try {
+            const res = await fetch(url, {
+                headers: { Accept: "application/json" }
+            });
+            console.log("STATUS:", res.status);
+
+            const data = await safeParseJSON(res);
+
+            if (!data.success) throw new Error(data.message);
+
+            const tbody = document.getElementById("cartsTable");
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+            const carts = data.data || [];
+
+            if (reset && carts.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-12 bg-white text-gray-500 font-semibold text-lg">
+                            No carts found
+                        </td>
+                    </tr>`;
+                loadMoreBtn.classList.add("hidden");
+                return;
+            }
+
+            carts.forEach((cart, i) => {
+
+                const tr = document.createElement("tr");
+                tr.className = "";
+                tr.setAttribute("data-id", cart._id);
+
+                const hasItems = cart.items && cart.items.length > 0;
+                const firstProduct = hasItems
+                    ? cart.items[0]?.product?.title || '-'
+                    : '-';
+
+                const totalItems = cart.totalItems || 0;
+                const totalAmount = cart.totalAmount || 0;
+
+                tr.innerHTML = `
+    <td class="px-4 py-2 font-mono text-xs text-blue-900 text-center font-bold">
+        ${indexOffset + i + 1}.
+    </td>
+
+    <td class="px-4 py-2">
+        <div class="font-semibold text-blue-800">
+            ${cart.user?.name || 'Guest'}
+        </div>
+        <div class="text-xs text-gray-500">
+            ${cart.user?.email || '-'}
+        </div>
+    </td>
+
+    <td class="px-4 py-2 text-center">
+        ${hasItems ? `
+            <div class="font-mono text-[11px] text-blue-700">
+                ${firstProduct}
+            </div>
+            <div class="text-xs text-gray-500">
+                ${cart.items.length} item${cart.items.length > 1 ? 's' : ''}
+            </div>
+        ` : '<span class="text-gray-400 italic text-[12px]">Empty</span>'}
+    </td>
+
+    <td class="px-4 py-2 text-center font-mono font-bold text-sm text-blue-600">
+        ${totalItems}
+    </td>
+
+    <td class="px-4 py-2 text-center font-mono font-bold text-green-600 text-sm">
+        ₹${totalAmount.toLocaleString()}
+    </td>
+
+    <td class="px-4 py-2 text-center">
+        <div class="text-[12px]">
+            ${cart.updatedAt ? new Date(cart.updatedAt).toLocaleDateString() : '-'}
+        </div>
+        <div class="text-[11px] text-gray-500">
+            ${cart.updatedAt
+                        ? new Date(cart.updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        : ''}
+        </div>
+    </td>
+
+    <td class="px-4 py-2 w-[140px] text-center">
+        <div class="flex gap-2 justify-center">
+            <button onclick="event.stopPropagation(); openCartModal('${cart._id}')"
+                class="px-2 py-1.5 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-300 transition duration-300 flex items-center gap-1" title="View">
+                <i class="fas fa-eye"></i>
+            </button>
+
+            ${hasItems ? `
+                <button onclick="event.stopPropagation(); clearCart('${cart._id}')"
+                    class="px-2 py-1.5 text-xs bg-red-100 text-red-700 rounded hover:bg-red-300 transition duration-300 flex items-center gap-1" title="Clear Cart">
+                    <i class="fas fa-trash"></i>
+                </button>
+            ` : ''}
+        </div>
+    </td>
+`;
+
+
+                tbody.appendChild(tr);
+            });
+
+            indexOffset += carts.length;
+            page++;
+
+            loadMoreBtn.classList.toggle("hidden", !data.pagination?.hasNextPage);
+
+            if (reset) fetchCartStats();
+
+        } catch (e) {
+            showToast("Failed to load carts. Please refresh!", "error");
+            console.error(e);
+        }
+    }
+
+    /* ================= SEARCH & FILTER ================= */
+    function onSearch() {
+        search = document.getElementById("searchInput").value.trim();
+        filter = document.getElementById("filterSelect").value;
+        sort = document.getElementById("sortSelect").value;
+
+        page = 1;
+        indexOffset = 0;
+
+        fetchCarts(true);
+    }
+
+    /* ================= UTILITIES ================= */
+    function showToast(msg, type = "success") {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.className = `fixed top-3 right-6 px-4 py-2 rounded-lg shadow-lg z-50 text-white text-sm font-medium 
+            ${type === "success" ? "bg-green-600" : "bg-red-600"}`;
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
+    /* ================= EVENT LISTENERS ================= */
+    document.addEventListener("DOMContentLoaded", () => {
+
+        document.getElementById("searchInput")
+            .addEventListener("keypress", (e) => {
+                if (e.key === "Enter") onSearch();
+            });
+
+        document.getElementById("filterSelect")
+            .addEventListener("change", onSearch);
+
+        document.getElementById("sortSelect")
+            .addEventListener("change", onSearch);
+
+        fetchCarts(true);
+        fetchCartStats();
+    });
+
+    /* ================= CLEAR CART ================= */
+    async function clearCart() {
+        if (!confirm("Are you sure you want to clear your cart?")) return;
+
+        try {
+            const res = await fetch("/api/carts/clear", {
+                method: "DELETE",
+                headers: { "Accept": "application/json" }
+            });
+            const data = await res.json();
+
+            if (!data.success) throw new Error(data.message);
+
+            showToast("Cart cleared successfully");
+            fetchCarts(true);
+            fetchCartStats();
+        } catch (err) {
+            showToast("Failed to clear cart", "error");
+            console.error(err);
+        }
+    }
+
+    /* ================= CLOSE CART MODAL ================= */
+    function closeCartModal() {
+        const modal = document.getElementById("cartDetailsModal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        currentCartId = null;
+    }
+
+    /* ================= OPEN CART MODAL ================= */
+    async function openCartModal(cartId) {
+        try {
+            currentCartId = cartId;
+
+            const res = await fetch(`/api/carts/specific/${cartId}`, {
+                headers: { Accept: "application/json" }
+            });
+
+            const data = await safeParseJSON(res);
+            if (!data.success) throw new Error();
+
+            const cart = data.data;
+            const modal = document.getElementById("cartDetailsModal");
+
+            document.getElementById("modalCartUser").textContent =
+                cart.user?.name || "Guest";
+
+            document.getElementById("modalCartSummary").textContent =
+                `${cart.items.length} item(s)`;
+
+            const itemsContainer = document.getElementById("modalCartItems");
+            itemsContainer.innerHTML = "";
+
+            let grandTotal = 0;
+
+            /* ================= EMPTY CART ================= */
+            if (!cart.items || cart.items.length === 0) {
+                itemsContainer.innerHTML = `
+                <div class="bg-white rounded-xl p-10 text-center shadow-sm">
+                    <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-3"></i>
+                    <div class="text-gray-500 font-semibold text-lg">
+                        Cart is empty
+                    </div>
+                </div>
+            `;
+
+                document.getElementById("modalGrandTotal").textContent = "₹0";
+
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+                return;
+            }
+
+            /* ================= ITEMS ================= */
+            cart.items.forEach(item => {
+                const product = item.product;
+                const quantity = item.quantity || 1;
+                const unitPrice = item.price || product?.price || 0;
+                const total = unitPrice * quantity;
+
+                grandTotal += total;
+
+                itemsContainer.innerHTML += `
+                <div class="bg-white p-4 rounded-xl shadow-sm flex items-center justify-between gap-4 hover:shadow-md transition">
+                    
+                    <!-- IMAGE -->
+                    <div class="w-20 h-20 flex-shrink-0">
+                        <img src="${product?.image || 'https://via.placeholder.com/80'}"
+                             alt="${product?.title || 'Product'}"
+                             class="w-full h-full object-cover rounded-lg border">
+                    </div>
+
+                    <!-- DETAILS -->
+                    <div class="flex-1">
+                        <div class="font-semibold text-gray-800 text-sm">
+                            ${product?.title || "Product"}
+                        </div>
+
+                        <div class="text-xs text-gray-500 mt-1">
+                            Unit Price: ₹${unitPrice.toLocaleString()}
+                        </div>
+
+                        <div class="text-xs text-gray-500">
+                            Quantity: ${quantity}
+                        </div>
+
+                        <div class="text-xs text-gray-500">
+                            Subtotal: ₹${total.toLocaleString()}
+                        </div>
+                    </div>
+
+                    <!-- TOTAL RIGHT -->
+                    <div class="font-bold text-gray-900 text-sm">
+                        ₹${total.toLocaleString()}
+                    </div>
+                </div>
+            `;
+            });
+
+            document.getElementById("modalGrandTotal").textContent =
+                `₹${grandTotal.toLocaleString()}`;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+
+        } catch (err) {
+            showToast("Failed to load cart details", "error");
+            console.error(err);
+        }
+    }
+</script>

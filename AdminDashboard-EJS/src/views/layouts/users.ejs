@@ -160,8 +160,8 @@
   let search = "";
   let indexOffset = 0;
   const limit = 5;
-  
- /* ================= SAFE JSON ================= */
+
+  /* ================= SAFE JSON ================= */
   async function safeParseJSON(res) {
     const text = await res.text();
     try {
@@ -205,6 +205,7 @@
     }
   }
 
+  /* ================= ANIMATE NUMBER ================= */
   function animateNumber(id, from, to, duration = 900) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -222,6 +223,7 @@
     requestAnimationFrame(step);
   }
 
+  /* ================= HTML ================= */
   function escapeHTML(str) {
     return String(str || "")
       .replace(/&/g, "&amp;")
@@ -403,45 +405,49 @@
       }
 
       const actionTextMap = {
-        activate: "User Activated successful",
-        deactivate: "User Deactivated successful",
-        delete: "User Deleted successful",
+        activate: "User Activated successfully",
+        deactivate: "User Deactivated successfully",
+        delete: "User Deleted successfully",
       };
       showToast(actionTextMap[action] || "Action successful", "success");
 
       const row = document.querySelector(`tr[data-id="${userId}"]`);
       if (!row) return;
 
-      const isAdmin = "<%= user.role %>" === "admin";
-
       if (action === "activate" || action === "deactivate") {
-        if (isAdmin) {
-          const statusCell = row.querySelector("td:nth-child(6) span");
-          if (statusCell) {
-            statusCell.textContent = action === "activate" ? "Active" : "Inactive";
-            statusCell.className =
-              action === "activate"
-                ? "px-2 py-1 text-xs rounded font-bold tracking-wider bg-green-600 text-white"
-                : "px-2 py-1 text-xs rounded font-bold tracking-wider bg-gray-400 text-white";
-          }
+        const statusCell = row.querySelector("td:nth-child(6) span");
+        if (statusCell) {
+          statusCell.textContent = action === "activate" ? "Active" : "Inactive";
+          statusCell.className =
+            action === "activate"
+              ? "px-2 py-1 text-xs rounded font-bold tracking-wider bg-green-600 text-white"
+              : "px-2 py-1 text-xs rounded font-bold tracking-wider bg-gray-400 text-white";
         }
+
+        const toggleBtn = row.querySelector("td:nth-child(7) button:first-child");
+        if (toggleBtn) toggleBtn.setAttribute("onclick", `userAction('${action === "activate" ? "deactivate" : "activate"}', '${userId}')`);
+
       } else if (action === "delete") {
         row.remove();
       }
-    } catch {
+
+      fetchUserStats();
+    } catch (err) {
       showToast(`${action} failed (server error)`, "error");
     }
   }
 
-/* ================= BULK FUNCTIONS ================= */
+  /* ================= BULK FUNCTIONS ================= */
   function activateUser(userId) {
     userAction("activate", [userId]);
   }
 
+  /* ================= ACTIVATE USER ================= */
   function deactivateUser(userId) {
     userAction("deactivate", [userId]);
   }
 
+  /* ================= DEACTIVATE USER ================= */
   function deleteUser(userId) {
     if (!confirm("Are you sure you want to delete user?")) return;
     userAction("delete", [userId]);
@@ -462,11 +468,13 @@
     document.getElementById("bulkCreateModal").classList.remove("hidden");
   }
 
+  /* ================= CLOSE BULK CREATE MODAL ================= */
   function closeBulkCreateModal() {
     document.getElementById("bulkCreateModal").classList.add("hidden");
     document.getElementById("bulkUsersInput").value = "";
   }
 
+  /* ================= SUBMIT BULK MODEL ================= */
   async function submitBulkCreate() {
     const input = document.getElementById("bulkUsersInput").value.trim();
     if (!input) {
@@ -504,6 +512,7 @@
     }
   }
 
+  /* ================= EVENT LISTENER ================= */
   document.addEventListener("DOMContentLoaded", () => {
     fetchUsers(true);
     fetchUserStats();

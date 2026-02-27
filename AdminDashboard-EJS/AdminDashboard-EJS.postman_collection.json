@@ -17,7 +17,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Denver D.\",\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+              "raw": "{\n  \"name\": \"Manager User\",\n  \"email\": \"manager@test.com\",\n  \"password\": \"Manager@123\",\n  \"role\": \"manager\"\n}\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -25,12 +25,12 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/auth/register-user",
+              "raw": "http://localhost:1234/api/auth/register-user",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
-              "port": "5000",
+              "port": "1234",
               "path": [
                 "api",
                 "auth",
@@ -389,6 +389,93 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": true,\n    \"message\": \"Password updated successfully\",\n    \"data\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZlMDk0N2Y0ZWM1MmNlNzY1NjQ4NSIsImlhdCI6MTc3MjA4NTkwNywiZXhwIjoxNzcyMDg5NTA3fQ.NxzXBv5WKdIAopLFWfagJshKgvoSeQtYUd4vYrWXpAg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/auth/all-users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "auth",
+                "all-users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Users",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/auth/all-users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "auth",
+                    "all-users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "859"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"35b-PxNZxZrwhj0afewGdqcuCN7zebk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Feb 2026 06:05:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"699fe0947f4ec52ce7656485\",\n            \"name\": \"Manager User\",\n            \"email\": \"manager@test.com\",\n            \"role\": \"manager\",\n            \"isActive\": false,\n            \"createdAt\": \"2026-02-26T05:56:36.486Z\"\n        },\n        {\n            \"_id\": \"699bd4e228f6e7995caed181\",\n            \"name\": \"Justin\",\n            \"email\": \"justin@gmail.com\",\n            \"role\": \"user\",\n            \"isActive\": false,\n            \"createdAt\": \"2026-02-23T04:17:38.391Z\"\n        },\n        {\n            \"_id\": \"698d5aced9465d26f1200214\",\n            \"name\": \"Nick N.\",\n            \"email\": \"nick@gmail.com\",\n            \"role\": \"user\",\n            \"isActive\": false,\n            \"createdAt\": \"2026-02-12T04:45:02.030Z\"\n        },\n        {\n            \"_id\": \"69817905711ea030d21d5d74\",\n            \"name\": \"Marko\",\n            \"email\": \"marko@gmail.com\",\n            \"role\": \"user\",\n            \"isActive\": false,\n            \"createdAt\": \"2026-02-03T04:26:45.794Z\"\n        },\n        {\n            \"_id\": \"69807e014630986400acdc27\",\n            \"name\": \"Ethan Hunt\",\n            \"email\": \"ethan@example.com\",\n            \"role\": \"admin\",\n            \"isActive\": false,\n            \"createdAt\": \"2026-02-02T10:35:45.876Z\"\n        }\n    ],\n    \"pageInfo\": {\n        \"hasNextPage\": true,\n        \"nextCursor\": \"69807e014630986400acdc27\",\n        \"limit\": 5\n    }\n}"
             }
           ]
         }
@@ -895,8 +982,3803 @@
       ]
     },
     {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTIzNDI1MiwiZXhwIjoxNzcxMjM3ODUyfQ.JojjbMhLCIwItRjHZk3Y-HTL2o0XXVq-o29S4xiOayA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "type": "text",
+                  "uuid": "359c0293-ce96-4727-9672-b24ac57be201",
+                  "value": "Bluetooth Headphones"
+                },
+                {
+                  "key": "description",
+                  "value": "Premium sound quality with noise cancellation and a long battery life of up to 20 hours.",
+                  "type": "text",
+                  "uuid": "ef6de06f-17a4-4a5f-b01c-f8cd7523d0de"
+                },
+                {
+                  "key": "price",
+                  "value": "700",
+                  "type": "text",
+                  "uuid": "bcb5d56d-31ea-4919-b191-8443de520c89"
+                },
+                {
+                  "key": "category",
+                  "value": "Electronics",
+                  "type": "text",
+                  "uuid": "e61d1688-9020-4e6d-804c-543795077636"
+                },
+                {
+                  "key": "subCategory",
+                  "value": "Headphones, Audio",
+                  "type": "text",
+                  "uuid": "5b9d7556-f1f2-403e-8562-22ab931feb59"
+                },
+                {
+                  "key": "tags",
+                  "value": "Bluetooth, Wireless, Headphones",
+                  "type": "text",
+                  "uuid": "be60f863-bc4f-4b31-9782-d44f748e2109"
+                },
+                {
+                  "key": "brand",
+                  "value": "AudioTech",
+                  "type": "text",
+                  "uuid": "8ad4423f-872d-46d7-b7a6-a699ab339702"
+                },
+                {
+                  "key": "attributes[color]",
+                  "value": "Black",
+                  "type": "text",
+                  "uuid": "dccb8080-f63a-445c-880d-952c9888ab05"
+                },
+                {
+                  "key": "attributes[size]",
+                  "value": "Medium",
+                  "type": "text",
+                  "uuid": "9f79689d-bfeb-473a-8aab-e0e357d6065b"
+                },
+                {
+                  "key": "inventory",
+                  "value": "120",
+                  "type": "text",
+                  "uuid": "4e2712a4-2710-4f7e-b093-8b2d05ed46ae"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "fd0ab4e1-eca5-46d4-84d4-144d73730d17",
+                  "src": "/Users/jahnavijoshi/Downloads/bluetooth.webp"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create-Product",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "type": "text",
+                      "uuid": "359c0293-ce96-4727-9672-b24ac57be201",
+                      "value": "Bluetooth Headphones"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Premium sound quality with noise cancellation and a long battery life of up to 20 hours.",
+                      "type": "text",
+                      "uuid": "ef6de06f-17a4-4a5f-b01c-f8cd7523d0de"
+                    },
+                    {
+                      "key": "price",
+                      "value": "700",
+                      "type": "text",
+                      "uuid": "bcb5d56d-31ea-4919-b191-8443de520c89"
+                    },
+                    {
+                      "key": "category",
+                      "value": "Electronics",
+                      "type": "text",
+                      "uuid": "e61d1688-9020-4e6d-804c-543795077636"
+                    },
+                    {
+                      "key": "subCategory",
+                      "value": "Headphones, Audio",
+                      "type": "text",
+                      "uuid": "5b9d7556-f1f2-403e-8562-22ab931feb59"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "Bluetooth, Wireless, Headphones",
+                      "type": "text",
+                      "uuid": "be60f863-bc4f-4b31-9782-d44f748e2109"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "AudioTech",
+                      "type": "text",
+                      "uuid": "8ad4423f-872d-46d7-b7a6-a699ab339702"
+                    },
+                    {
+                      "key": "attributes[color]",
+                      "value": "Black",
+                      "type": "text",
+                      "uuid": "dccb8080-f63a-445c-880d-952c9888ab05"
+                    },
+                    {
+                      "key": "attributes[size]",
+                      "value": "Medium",
+                      "type": "text",
+                      "uuid": "9f79689d-bfeb-473a-8aab-e0e357d6065b"
+                    },
+                    {
+                      "key": "inventory",
+                      "value": "120",
+                      "type": "text",
+                      "uuid": "4e2712a4-2710-4f7e-b093-8b2d05ed46ae"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "uuid": "fd0ab4e1-eca5-46d4-84d4-144d73730d17",
+                      "src": "/Users/jahnavijoshi/Downloads/bluetooth.webp"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "701"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2bd-lZms6ytSdIIrWfp8uyoBcGI8JvA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 09:33:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product added successfully\",\n    \"data\": {\n        \"title\": \"Bluetooth Headphones\",\n        \"description\": \"Premium sound quality with noise cancellation and a long battery life of up to 20 hours.\",\n        \"price\": 700,\n        \"category\": [\n            \"Electronics\"\n        ],\n        \"subCategory\": [\n            \"Headphones, Audio\"\n        ],\n        \"tags\": [\n            \"Bluetooth, Wireless, Headphones\"\n        ],\n        \"brand\": \"AudioTech\",\n        \"attributes\": {\n            \"color\": \"Black\",\n            \"size\": \"Medium\"\n        },\n        \"inventory\": 120,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771234389/admin_dashboard/products/lgzw09qlmbjbnbwydsi8.webp\",\n        \"isApproved\": false,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"_id\": \"6992e45505cd92fcb5a05e01\",\n        \"createdAt\": \"2026-02-16T09:33:09.858Z\",\n        \"updatedAt\": \"2026-02-16T09:33:09.858Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get-All-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTIzNDI1MiwiZXhwIjoxNzcxMjM3ODUyfQ.JojjbMhLCIwItRjHZk3Y-HTL2o0XXVq-o29S4xiOayA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/all-products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "all-products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get-All-Product",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/all-products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "all-products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3374"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d2e-BimtSG9tfVKOvCX8c7tucTPH5ig\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 10:19:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Products retrieved successfully\",\n    \"pageInfo\": {\n        \"hasNextPage\": true,\n        \"nextCursor\": \"6992ebc305cd92fcb5a05e36\",\n        \"limit\": 5\n    },\n    \"data\": [\n        {\n            \"attributes\": {\n                \"color\": \"Green\",\n                \"size\": \"25 Tea Bags\"\n            },\n            \"_id\": \"6992ee8a05cd92fcb5a05e4e\",\n            \"title\": \"Organic Green Tea\",\n            \"description\": \"Premium organic green tea leaves, known for its antioxidant properties and fresh taste.\",\n            \"price\": 120,\n            \"category\": [\n                \"Food and Beverages\"\n            ],\n            \"subCategory\": [\n                \"Tea, Beverages\"\n            ],\n            \"tags\": [\n                \"Green Tea, Organic, Beverage\"\n            ],\n            \"brand\": \"TeaFresh\",\n            \"inventory\": 320,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771237002/admin_dashboard/products/qvetpajzm9rsm4fgpyha.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T10:16:42.880Z\",\n            \"updatedAt\": \"2026-02-16T10:16:42.880Z\",\n            \"__v\": 0\n        },\n        {\n            \"attributes\": {\n                \"color\": \"Black\",\n                \"size\": \"Standard\"\n            },\n            \"_id\": \"6992edbc05cd92fcb5a05e48\",\n            \"title\": \"Car Dashboard Camera\",\n            \"description\": \"A 1080p Full HD dashboard camera with motion detection and night vision for enhanced security.\",\n            \"price\": 2500,\n            \"category\": [\n                \"Automotive\"\n            ],\n            \"subCategory\": [\n                \"Car Accessories, Cameras\"\n            ],\n            \"tags\": [\n                \"Car Camera, Dashboard, Security\"\n            ],\n            \"brand\": \"AutoVision\",\n            \"inventory\": 60,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236795/admin_dashboard/products/we8bqakzmkxmskh7ouit.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T10:13:16.090Z\",\n            \"updatedAt\": \"2026-02-16T10:13:16.090Z\",\n            \"__v\": 0\n        },\n        {\n            \"attributes\": {\n                \"color\": \"Red\",\n                \"size\": \"Standard\"\n            },\n            \"_id\": \"6992ed0205cd92fcb5a05e42\",\n            \"title\": \"Remote Control Car\",\n            \"description\": \"A fast and durable remote control car designed for hours of outdoor fun.\",\n            \"price\": 1000,\n            \"category\": [\n                \"Toys and Games\"\n            ],\n            \"subCategory\": [\n                \"Outdoor Toys, Remote Control Toys\"\n            ],\n            \"tags\": [\n                \"RC Car, Toys, Outdoor\"\n            ],\n            \"brand\": \"Speedster\",\n            \"inventory\": 350,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T10:10:10.427Z\",\n            \"updatedAt\": \"2026-02-16T10:10:10.427Z\",\n            \"__v\": 0\n        },\n        {\n            \"attributes\": {\n                \"color\": \"White\",\n                \"size\": \"1.5 Ton\"\n            },\n            \"_id\": \"6992ec5705cd92fcb5a05e3c\",\n            \"title\": \"Air Conditioner\",\n            \"description\": \"A 1.5 Ton air conditioner with a cooling capacity perfect for small to medium-sized rooms.\",\n            \"price\": 35000,\n            \"category\": [\n                \"Home Appliances\"\n            ],\n            \"subCategory\": [\n                \"AC, Cooling Appliances\"\n            ],\n            \"tags\": [\n                \"Air Conditioner, Cooling, Home Appliance\"\n            ],\n            \"brand\": \"CoolBreeze\",\n            \"inventory\": 5,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236438/admin_dashboard/products/ttvzmpu0u1fryfyzwkdv.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T10:07:19.637Z\",\n            \"updatedAt\": \"2026-02-16T10:07:19.637Z\",\n            \"__v\": 0\n        },\n        {\n            \"attributes\": {\n                \"color\": \"Silver\",\n                \"size\": \"Medium\"\n            },\n            \"_id\": \"6992ebc305cd92fcb5a05e36\",\n            \"title\": \"Blender\",\n            \"description\": \"A high-speed blender perfect for smoothies, soups, and sauces with multiple blending modes.\",\n            \"price\": 1200,\n            \"category\": [\n                \"Home Appliances\"\n            ],\n            \"subCategory\": [\n                \"Blenders, Kitchen Appliances\"\n            ],\n            \"tags\": [\n                \"Blender, Kitchen, Appliance\"\n            ],\n            \"brand\": \"HomeMaster\",\n            \"inventory\": 40,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236290/admin_dashboard/products/q4r582t98pzm9p3n4irr.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T10:04:51.309Z\",\n            \"updatedAt\": \"2026-02-16T10:04:51.309Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get-Specific-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTIzNDI1MiwiZXhwIjoxNzcxMjM3ODUyfQ.JojjbMhLCIwItRjHZk3Y-HTL2o0XXVq-o29S4xiOayA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/6992eb2005cd92fcb5a05e30",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "6992eb2005cd92fcb5a05e30"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get-Specific-Product",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/6992eb2005cd92fcb5a05e30",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "6992eb2005cd92fcb5a05e30"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "708"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2c4-4rGkyKxugep7btwtDHtbzZ5Or88\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 10:21:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product retrieved successfully\",\n    \"data\": {\n        \"attributes\": {\n            \"color\": \"N/A\",\n            \"size\": \"Paperback\"\n        },\n        \"_id\": \"6992eb2005cd92fcb5a05e30\",\n        \"title\": \"Learning JavaScript\",\n        \"description\": \"A comprehensive guide to learning JavaScript with easy-to-follow examples and exercises.\",\n        \"price\": 150,\n        \"category\": [\n            \"Books\"\n        ],\n        \"subCategory\": [\n            \"Programming, Technology\"\n        ],\n        \"tags\": [\n            \"JavaScript, Programming, Technology\"\n        ],\n        \"brand\": \"TechBooks\",\n        \"inventory\": 80,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236127/admin_dashboard/products/hxqvs4tgo5whzuwdcfsj.webp\",\n        \"isApproved\": false,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-16T10:02:08.286Z\",\n        \"updatedAt\": \"2026-02-16T10:02:08.286Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get-Stats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTIzNDI1MiwiZXhwIjoxNzcxMjM3ODUyfQ.JojjbMhLCIwItRjHZk3Y-HTL2o0XXVq-o29S4xiOayA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "stats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get-Stats",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/stats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "stats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "125"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7d-hwo1kZaaIwxOsSjkJR2wmrw4CkI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 10:22:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product stats retrieved successfully\",\n    \"stats\": {\n        \"total\": 13,\n        \"inStock\": 13,\n        \"outOfStock\": 0,\n        \"today\": 13\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTIzNzg4NiwiZXhwIjoxNzcxMjQxNDg2fQ.0uptluQ2jFkYZxeACtVU5l2dH7137yt9vsTkfXuHyho",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\":\"Bluetooth Headphones\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/update/6992e45505cd92fcb5a05e01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "update",
+                "6992e45505cd92fcb5a05e01"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update-Product",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\":\"Bluetooth Headphones\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/update/6992e45505cd92fcb5a05e01",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "update",
+                    "6992e45505cd92fcb5a05e01"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "742"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2e6-4gSXhz8G1B+3SJ2bEaVTHz6qzY8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 11:22:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product updated successfully\",\n    \"data\": {\n        \"attributes\": {\n            \"color\": \"Black\",\n            \"size\": \"Medium\"\n        },\n        \"_id\": \"6992e45505cd92fcb5a05e01\",\n        \"title\": \"Bluetooth Headphones\",\n        \"description\": \"Premium sound quality with noise cancellation and a long battery life of up to 20 hours.\",\n        \"price\": 700,\n        \"category\": [\n            \"Electronics\"\n        ],\n        \"subCategory\": [\n            \"Headphones, Audio\"\n        ],\n        \"tags\": [\n            \"Bluetooth, Wireless, Headphones\"\n        ],\n        \"brand\": \"AudioTech\",\n        \"inventory\": 120,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771240973/admin_dashboard/products/rq9hntkmifm10yaaz5ei.webp\",\n        \"isApproved\": false,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-16T09:33:09.858Z\",\n        \"updatedAt\": \"2026-02-16T11:22:53.683Z\",\n        \"__v\": 0,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTIzNzg4NiwiZXhwIjoxNzcxMjQxNDg2fQ.0uptluQ2jFkYZxeACtVU5l2dH7137yt9vsTkfXuHyho",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/delete/6992e45505cd92fcb5a05e01",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "delete",
+                "6992e45505cd92fcb5a05e01"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete-Product",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": []
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/delete/6992e45505cd92fcb5a05e01",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "delete",
+                    "6992e45505cd92fcb5a05e01"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "752"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2f0-sqUFyaHQvmQuKfalKxmh/R3I4PY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 11:27:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product deleted successfully\",\n    \"deletedProduct\": {\n        \"attributes\": {\n            \"color\": \"Black\",\n            \"size\": \"Medium\"\n        },\n        \"_id\": \"6992e45505cd92fcb5a05e01\",\n        \"title\": \"Bluetooth Headphones\",\n        \"description\": \"Premium sound quality with noise cancellation and a long battery life of up to 20 hours.\",\n        \"price\": 700,\n        \"category\": [\n            \"Electronics\"\n        ],\n        \"subCategory\": [\n            \"Headphones, Audio\"\n        ],\n        \"tags\": [\n            \"Bluetooth, Wireless, Headphones\"\n        ],\n        \"brand\": \"AudioTech\",\n        \"inventory\": 120,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771240973/admin_dashboard/products/rq9hntkmifm10yaaz5ei.webp\",\n        \"isApproved\": false,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-16T09:33:09.858Z\",\n        \"updatedAt\": \"2026-02-16T11:22:53.683Z\",\n        \"__v\": 0,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Approve-Seller-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTI0MTkxNywiZXhwIjoxNzcxMjQ1NTE3fQ.wfUgZma-ZqPei5KfkHJXebhDhPtuftgQ02E9XcNn_9c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/toggle-approval/6992e58805cd92fcb5a05e07",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "toggle-approval",
+                "6992e58805cd92fcb5a05e07"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Approve-Seller-Product",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/approve/6992e58805cd92fcb5a05e07",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "approve",
+                    "6992e58805cd92fcb5a05e07"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "706"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2c2-+gjJc4N15hfm05PzU6ubelfR6Jc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 11:38:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product approved successfully\",\n    \"data\": {\n        \"attributes\": {\n            \"color\": \"Black\",\n            \"size\": \"55 inches\"\n        },\n        \"_id\": \"6992e58805cd92fcb5a05e07\",\n        \"title\": \"4K Smart LED TV\",\n        \"description\": \"A 55-inch 4K Ultra HD LED TV with smart features and WiFi connectivity.\",\n        \"price\": 22000,\n        \"category\": [\n            \"Electronics\"\n        ],\n        \"subCategory\": [\n            \"TV, Smart TVs\"\n        ],\n        \"tags\": [\n            \"4K, LED, Smart TV\"\n        ],\n        \"brand\": \"VisionPro\",\n        \"inventory\": 30,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771234695/admin_dashboard/products/siryw2d0bde91j36tebb.webp\",\n        \"isApproved\": true,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-16T09:38:16.654Z\",\n        \"updatedAt\": \"2026-02-16T11:38:52.227Z\",\n        \"__v\": 0,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Featured Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjA5OTk2MSwiZXhwIjoxNzcyMTAzNTYxfQ.SAnQ_0p3NszH2TE4HuUqSqGldnE4rA4_OPXJSaweJ0c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/toggle-featured/6992ed0205cd92fcb5a05e42",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "toggle-featured",
+                "6992ed0205cd92fcb5a05e42"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Featured Product",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/toggle-featured/6992ed0205cd92fcb5a05e42",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "toggle-featured",
+                    "6992ed0205cd92fcb5a05e42"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "798"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"31e-dXHjnD+keUWj2gqSBxW6uhfe9w8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Feb 2026 10:04:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product marked as Featured successfully\",\n    \"data\": {\n        \"attributes\": {\n            \"color\": \"Red\",\n            \"size\": \"Standard\"\n        },\n        \"_id\": \"6992ed0205cd92fcb5a05e42\",\n        \"title\": \"Remote Control Car\",\n        \"description\": \"A fast and durable remote control car designed for hours of outdoor fun.\",\n        \"price\": 1000,\n        \"category\": [\n            \"Toys and Games\"\n        ],\n        \"subCategory\": [\n            \"Outdoor Toys\",\n            \"Remote Control Toys\"\n        ],\n        \"tags\": [\n            \"RC Car\",\n            \"Toys\",\n            \"Outdoor\"\n        ],\n        \"brand\": \"Speedster\",\n        \"inventory\": 35,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\",\n        \"isApproved\": true,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-16T10:10:10.427Z\",\n        \"updatedAt\": \"2026-02-26T10:04:05.768Z\",\n        \"__v\": 1,\n        \"updatedBy\": \"698040dc31aabf244444e654\",\n        \"averageRating\": 0,\n        \"isFeatured\": true,\n        \"reviewCount\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Manage-Inventory",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTI0MTkxNywiZXhwIjoxNzcxMjQ1NTE3fQ.wfUgZma-ZqPei5KfkHJXebhDhPtuftgQ02E9XcNn_9c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"6992e58805cd92fcb5a05e07\",\n  \"quantity\": 10\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/manage-inventory",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "manage-inventory"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Manage-Inventory",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"6992e58805cd92fcb5a05e07\",\n  \"quantity\": 10\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/manage-inventory",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "manage-inventory"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "709"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2c5-SEIyq3kfv1UVIAK1xhTqF3LJyY0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Feb 2026 11:41:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Inventory updated. New stock: 40\",\n    \"data\": {\n        \"attributes\": {\n            \"color\": \"Black\",\n            \"size\": \"55 inches\"\n        },\n        \"_id\": \"6992e58805cd92fcb5a05e07\",\n        \"title\": \"4K Smart LED TV\",\n        \"description\": \"A 55-inch 4K Ultra HD LED TV with smart features and WiFi connectivity.\",\n        \"price\": 22000,\n        \"category\": [\n            \"Electronics\"\n        ],\n        \"subCategory\": [\n            \"TV, Smart TVs\"\n        ],\n        \"tags\": [\n            \"4K, LED, Smart TV\"\n        ],\n        \"brand\": \"VisionPro\",\n        \"inventory\": 40,\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771234695/admin_dashboard/products/siryw2d0bde91j36tebb.webp\",\n        \"isApproved\": true,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-02-16T09:38:16.654Z\",\n        \"updatedAt\": \"2026-02-16T11:41:21.708Z\",\n        \"__v\": 0,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Low Stock",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjA5OTk2MSwiZXhwIjoxNzcyMTAzNTYxfQ.SAnQ_0p3NszH2TE4HuUqSqGldnE4rA4_OPXJSaweJ0c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/low-stock",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "low-stock"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Low Stock",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/low-stock",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "low-stock"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "825"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"339-7Yd+ciozuhK2qjBfsUnfbKbEnAU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Feb 2026 10:27:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Low stock products retrieved successfully\",\n    \"count\": 1,\n    \"threshold\": 5,\n    \"data\": [\n        {\n            \"attributes\": {\n                \"color\": \"Red\",\n                \"size\": \"Standard\"\n            },\n            \"_id\": \"6992ed0205cd92fcb5a05e42\",\n            \"title\": \"Remote Control Car\",\n            \"description\": \"A fast and durable remote control car designed for hours of outdoor fun.\",\n            \"price\": 1000,\n            \"category\": [\n                \"Toys and Games\"\n            ],\n            \"subCategory\": [\n                \"Outdoor Toys\",\n                \"Remote Control Toys\"\n            ],\n            \"tags\": [\n                \"RC Car\",\n                \"Toys\",\n                \"Outdoor\"\n            ],\n            \"brand\": \"Speedster\",\n            \"inventory\": 3,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\",\n            \"isApproved\": true,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T10:10:10.427Z\",\n            \"updatedAt\": \"2026-02-26T10:26:50.286Z\",\n            \"__v\": 1,\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"averageRating\": 0,\n            \"isFeatured\": true,\n            \"reviewCount\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Review Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MmY1Yzc5YTgyMjk1ZGY0NWJkNyIsImlhdCI6MTc3MjE3NDc4MiwiZXhwIjoxNzcyMTc4MzgyfQ.6CaY7-xo62LcC2VglNsIto_8lpn3U1qYcSTNUcJC-z8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Awesome basketball\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/reviews/add/6992ea7905cd92fcb5a05e2a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "reviews",
+                "add",
+                "6992ea7905cd92fcb5a05e2a"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Review Product",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rating\": 3,\n  \"comment\": \"As a regular product\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/review/6992e67a05cd92fcb5a05e0d",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "review",
+                    "6992e67a05cd92fcb5a05e0d"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1353"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"549-w1wQpLvv3FH0GbqXcFL3zC0Wgt4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Feb 2026 10:55:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review added successfully\",\n    \"data\": {\n        \"product\": {\n            \"attributes\": {\n                \"color\": \"Oak Brown\",\n                \"size\": \"6 Seater\"\n            },\n            \"_id\": \"6992e67a05cd92fcb5a05e0d\",\n            \"title\": \"Wooden Dining Table\",\n            \"description\": \"A solid oak dining table with a classic design that fits perfectly in any dining room.\",\n            \"price\": 7000,\n            \"category\": [\n                \"Furniture\"\n            ],\n            \"subCategory\": [\n                \"Dining Tables, Wooden Furniture\"\n            ],\n            \"tags\": [\n                \"Dining, Wood, Table\"\n            ],\n            \"brand\": \"HomeStyle\",\n            \"inventory\": 10,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771234937/admin_dashboard/products/xkz4gnuaefwrhu0cdvps.webp\",\n            \"isApproved\": true,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T09:42:18.518Z\",\n            \"updatedAt\": \"2026-02-26T10:55:50.368Z\",\n            \"__v\": 5,\n            \"averageRating\": 3,\n            \"isFeatured\": false,\n            \"reviewCount\": 1,\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"reviews\": [\n                {\n                    \"_id\": \"69a026b6ac30f8ac3593d69d\",\n                    \"product\": \"6992e67a05cd92fcb5a05e0d\",\n                    \"user\": {\n                        \"_id\": \"698040dc31aabf244444e654\",\n                        \"name\": \"Admin\",\n                        \"email\": \"admin@example.com\"\n                    },\n                    \"rating\": 3,\n                    \"comment\": \"As a regular product\",\n                    \"createdAt\": \"2026-02-26T10:55:50.365Z\",\n                    \"updatedAt\": \"2026-02-26T10:55:50.365Z\",\n                    \"__v\": 0\n                }\n            ]\n        },\n        \"newReview\": {\n            \"product\": \"6992e67a05cd92fcb5a05e0d\",\n            \"user\": \"698040dc31aabf244444e654\",\n            \"rating\": 3,\n            \"comment\": \"As a regular product\",\n            \"_id\": \"69a026b6ac30f8ac3593d69d\",\n            \"createdAt\": \"2026-02-26T10:55:50.365Z\",\n            \"updatedAt\": \"2026-02-26T10:55:50.365Z\",\n            \"__v\": 0\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Bulk-Upload",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTMwNDQ4NywiZXhwIjoxNzcxMzA4MDg3fQ.tgpLyyltFEvkWEx5v3y_L1U-B9wVnWEMEGs9ohD0vJ4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "e499f2fb-389b-4cff-a98d-d6ff66e1823f",
+                  "src": "/Users/jahnavijoshi/Downloads/convertcsv.csv"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/bulk-upload",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "bulk-upload"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Bulk-Upload",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "e499f2fb-389b-4cff-a98d-d6ff66e1823f",
+                      "src": "/Users/jahnavijoshi/Downloads/convertcsv.csv"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/bulk-upload",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "bulk-upload"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3172"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c64-FwG/44KWTwfuR9gzOtFnmnjDQyM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 17 Feb 2026 05:32:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"insertedCount\": 5,\n    \"insertedProducts\": [\n        {\n            \"title\": \"Product 1\",\n            \"description\": \"This is a long description for product number one that passes validation\",\n            \"price\": 10,\n            \"category\": [\n                \"Electronics\"\n            ],\n            \"subCategory\": [\n                \"Smartphone\"\n            ],\n            \"tags\": [\n                \"Tag1\",\n                \"Tag2\"\n            ],\n            \"brand\": \"Brand1\",\n            \"attributes\": {\n                \"color\": \"Red\",\n                \"size\": \"Large\"\n            },\n            \"inventory\": 100,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771237002/admin_dashboard/products/qvetpajzm9rsm4fgpyha.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"_id\": \"6993fd563046235eec2aec16\",\n            \"__v\": 0,\n            \"createdAt\": \"2026-02-17T05:32:06.430Z\",\n            \"updatedAt\": \"2026-02-17T05:32:06.430Z\"\n        },\n        {\n            \"title\": \"Product 2\",\n            \"description\": \"This is a long description for product number two that passes validation\",\n            \"price\": 20,\n            \"category\": [\n                \"Home Appliances\"\n            ],\n            \"subCategory\": [\n                \"Air Conditioner\"\n            ],\n            \"tags\": [\n                \"Tag1\",\n                \"Tag2\"\n            ],\n            \"brand\": \"Brand2\",\n            \"attributes\": {\n                \"color\": \"Blue\",\n                \"size\": \"Medium\"\n            },\n            \"inventory\": 50,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236795/admin_dashboard/products/we8bqakzmkxmskh7ouit.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"_id\": \"6993fd563046235eec2aec17\",\n            \"__v\": 0,\n            \"createdAt\": \"2026-02-17T05:32:06.430Z\",\n            \"updatedAt\": \"2026-02-17T05:32:06.430Z\"\n        },\n        {\n            \"title\": \"Product 3\",\n            \"description\": \"This is a long description for product number three that passes validation\",\n            \"price\": 15,\n            \"category\": [\n                \"Furniture\"\n            ],\n            \"subCategory\": [\n                \"Sofa\"\n            ],\n            \"tags\": [\n                \"Tag1\",\n                \"Tag2\"\n            ],\n            \"brand\": \"Brand3\",\n            \"attributes\": {\n                \"color\": \"Green\",\n                \"size\": \"Small\"\n            },\n            \"inventory\": 200,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"_id\": \"6993fd563046235eec2aec18\",\n            \"__v\": 0,\n            \"createdAt\": \"2026-02-17T05:32:06.430Z\",\n            \"updatedAt\": \"2026-02-17T05:32:06.430Z\"\n        },\n        {\n            \"title\": \"Product 4\",\n            \"description\": \"This is a long description for product number four that passes validation\",\n            \"price\": 25,\n            \"category\": [\n                \"Fashion\"\n            ],\n            \"subCategory\": [\n                \"Tshirt\"\n            ],\n            \"tags\": [\n                \"Tag1\",\n                \"Tag2\"\n            ],\n            \"brand\": \"Brand4\",\n            \"attributes\": {\n                \"color\": \"Yellow\",\n                \"size\": \"XL\"\n            },\n            \"inventory\": 75,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236438/admin_dashboard/products/ttvzmpu0u1fryfyzwkdv.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"_id\": \"6993fd563046235eec2aec19\",\n            \"__v\": 0,\n            \"createdAt\": \"2026-02-17T05:32:06.431Z\",\n            \"updatedAt\": \"2026-02-17T05:32:06.431Z\"\n        },\n        {\n            \"title\": \"Product 5\",\n            \"description\": \"This is a long description for product number five that passes validation\",\n            \"price\": 30,\n            \"category\": [\n                \"Sports\"\n            ],\n            \"subCategory\": [\n                \"Soccer Ball\"\n            ],\n            \"tags\": [\n                \"Tag1\",\n                \"Tag2\"\n            ],\n            \"brand\": \"Brand5\",\n            \"attributes\": {\n                \"color\": \"Black\",\n                \"size\": \"Medium\"\n            },\n            \"inventory\": 150,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236290/admin_dashboard/products/q4r582t98pzm9p3n4irr.webp\",\n            \"isApproved\": false,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"_id\": \"6993fd563046235eec2aec1a\",\n            \"__v\": 0,\n            \"createdAt\": \"2026-02-17T05:32:06.431Z\",\n            \"updatedAt\": \"2026-02-17T05:32:06.431Z\"\n        }\n    ],\n    \"message\": \"Bulk upload completed\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Carts",
+      "item": [
+        {
+          "name": "Add To Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ4MzYzNCwiZXhwIjoxNzcxNDg3MjM0fQ.XdqCXWsXF86D-7jBQP62WgRJapFme2lFG5fkHgUlgJE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"6992ea7905cd92fcb5a05e2a\",\n  \"quantity\": 10\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/carts/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "add"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add To Cart",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"6992ea7905cd92fcb5a05e2a\",\n  \"quantity\": 10\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/add",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "add"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "640"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"280-kJg3dJf81UOuw7Hh17A1lvvmuLw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 06:50:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product added to cart successfully\",\n    \"data\": {\n        \"_id\": \"6996b2a6de4127606d7edf27\",\n        \"user\": \"698040dc31aabf244444e654\",\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992ea7905cd92fcb5a05e2a\",\n                    \"title\": \"Basketball\",\n                    \"price\": 70,\n                    \"brand\": \"SportFlex\",\n                    \"inventory\": 55,\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235960/admin_dashboard/products/rxcr77fl9vx7ndpqxawc.webp\"\n                },\n                \"quantity\": 10,\n                \"price\": 70,\n                \"_id\": \"6996b2a6de4127606d7edf29\",\n                \"addedAt\": \"2026-02-19T06:50:14.250Z\"\n            }\n        ],\n        \"totalItems\": 10,\n        \"totalAmount\": 700,\n        \"createdAt\": \"2026-02-19T06:50:14.246Z\",\n        \"updatedAt\": \"2026-02-19T06:50:14.251Z\",\n        \"__v\": 1,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Carts",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MmY1Yzc5YTgyMjk1ZGY0NWJkNyIsImlhdCI6MTc3MTQ4NTI4MiwiZXhwIjoxNzcxNDg4ODgyfQ.bBL6Vdz6UjOnGgmhj3iPw9864ZUs9RPY1zLtDuhoyuo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/carts/all-carts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "all-carts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Carts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/all-carts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "all-carts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "677"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2a5-hvXNYXIhz0zJuo2WbihnbrsaD5k\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 07:14:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6996b389de4127606d7edf53\",\n        \"user\": \"698042f5c79a82295df45bd7\",\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992ed0205cd92fcb5a05e42\",\n                    \"title\": \"Remote Control Car\",\n                    \"price\": 1000,\n                    \"category\": [\n                        \"Toys and Games\"\n                    ],\n                    \"brand\": \"Speedster\",\n                    \"inventory\": 35,\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\"\n                },\n                \"quantity\": 20,\n                \"price\": 1000,\n                \"_id\": \"6996b389de4127606d7edf55\",\n                \"addedAt\": \"2026-02-19T06:54:01.536Z\"\n            }\n        ],\n        \"totalItems\": 20,\n        \"totalAmount\": 20000,\n        \"createdAt\": \"2026-02-19T06:54:01.534Z\",\n        \"updatedAt\": \"2026-02-19T06:54:01.536Z\",\n        \"__v\": 1,\n        \"updatedBy\": \"698042f5c79a82295df45bd7\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ5MjkzMywiZXhwIjoxNzcxNDk2NTMzfQ.AJUROFB7JXtUpZEfjVV_8nYAtffsLIiToadVAKLztJw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/carts/specific/6996b41ade4127606d7edf71",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "specific",
+                "6996b41ade4127606d7edf71"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Cart",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/specific/6996b41ade4127606d7edf71",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "specific",
+                    "6996b41ade4127606d7edf71"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "750"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2ee-UWDRbB/oFUKATqHiFHn8EplUqpE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 09:22:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6996b41ade4127606d7edf71\",\n        \"user\": {\n            \"_id\": \"69817905711ea030d21d5d74\",\n            \"name\": \"Marko\",\n            \"email\": \"marko@gmail.com\"\n        },\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992e9f505cd92fcb5a05e24\",\n                    \"title\": \"Yoga Mat\",\n                    \"price\": 100,\n                    \"category\": [\n                        \"Sports\"\n                    ],\n                    \"brand\": \"FitGear\",\n                    \"inventory\": 120,\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235828/admin_dashboard/products/kjqbvudhycuhixgkwunn.webp\"\n                },\n                \"quantity\": 7,\n                \"price\": 100,\n                \"_id\": \"6996b41ade4127606d7edf73\",\n                \"addedAt\": \"2026-02-19T06:56:26.797Z\"\n            }\n        ],\n        \"totalItems\": 7,\n        \"totalAmount\": 700,\n        \"createdAt\": \"2026-02-19T06:56:26.795Z\",\n        \"updatedAt\": \"2026-02-19T06:56:26.798Z\",\n        \"__v\": 1,\n        \"updatedBy\": {\n            \"_id\": \"69817905711ea030d21d5d74\",\n            \"name\": \"Marko\",\n            \"email\": \"marko@gmail.com\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ4OTcxNiwiZXhwIjoxNzcxNDkzMzE2fQ.M-tuZR3YcqNhxK4tZrwIpGL_PcYVOrpbBdtEK--GGBM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"6992ea7905cd92fcb5a05e2a\",\n  \"quantity\": 11\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/carts/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "update"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Cart",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"6992ea7905cd92fcb5a05e2a\",\n  \"quantity\": 11\n}\n\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/update",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "update"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "631"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"277-OMLPFtIpwn/kuz/owEUw7JRkj98\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 08:29:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart updated successfully\",\n    \"data\": {\n        \"_id\": \"6996b2a6de4127606d7edf27\",\n        \"user\": \"698040dc31aabf244444e654\",\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992ea7905cd92fcb5a05e2a\",\n                    \"title\": \"Basketball\",\n                    \"price\": 70,\n                    \"brand\": \"SportFlex\",\n                    \"inventory\": 55,\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235960/admin_dashboard/products/rxcr77fl9vx7ndpqxawc.webp\"\n                },\n                \"quantity\": 11,\n                \"price\": 70,\n                \"_id\": \"6996b2a6de4127606d7edf29\",\n                \"addedAt\": \"2026-02-19T06:50:14.250Z\"\n            }\n        ],\n        \"totalItems\": 11,\n        \"totalAmount\": 770,\n        \"createdAt\": \"2026-02-19T06:50:14.246Z\",\n        \"updatedAt\": \"2026-02-19T08:29:38.876Z\",\n        \"__v\": 1,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Remove Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ4OTcxNiwiZXhwIjoxNzcxNDkzMzE2fQ.M-tuZR3YcqNhxK4tZrwIpGL_PcYVOrpbBdtEK--GGBM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/carts/remove/6992ea7905cd92fcb5a05e2a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "remove",
+                "6992ea7905cd92fcb5a05e2a"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Remove Cart",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/remove/6992ea7905cd92fcb5a05e2a",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "remove",
+                    "6992ea7905cd92fcb5a05e2a"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "307"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"133-uHrw59F0FjLQkD9Kye51lZ6dKbA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 08:32:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Item removed from cart successfully\",\n    \"data\": {\n        \"_id\": \"6996b2a6de4127606d7edf27\",\n        \"user\": \"698040dc31aabf244444e654\",\n        \"items\": [],\n        \"totalItems\": 0,\n        \"totalAmount\": 0,\n        \"createdAt\": \"2026-02-19T06:50:14.246Z\",\n        \"updatedAt\": \"2026-02-19T08:32:46.385Z\",\n        \"__v\": 2,\n        \"updatedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Clear Cart",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ4OTcxNiwiZXhwIjoxNzcxNDkzMzE2fQ.M-tuZR3YcqNhxK4tZrwIpGL_PcYVOrpbBdtEK--GGBM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/carts/clear",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "clear"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Clear Cart",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/clear",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "clear"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "105"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"69-ESf7KYhPyai1VlrGVRld2X8Il1o\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 08:34:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart cleared successfully\",\n    \"data\": {\n        \"items\": [],\n        \"totalItems\": 0,\n        \"totalAmount\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Cart Stats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ5MDU3MCwiZXhwIjoxNzcxNDk0MTcwfQ.Wh2jkXOgbrtWMJMnJlgnPUAOPokPrMon3yLLi-m_nGg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/carts/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "carts",
+                "stats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Cart Stats",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/carts/stats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "carts",
+                    "stats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "123"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"7b-AnNE3sgc/vd3hC1ET+8UWvMXltA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 08:43:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Cart stats retrieved successfully\",\n    \"stats\": {\n        \"totalCarts\": 6,\n        \"totalItems\": 37,\n        \"totalValue\": 240600\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2FlOTc3ZWViZmUxYzM5MThkYWJmMyIsImlhdCI6MTc3MjE4ODEwMCwiZXhwIjoxNzcyMTkxNzAwfQ.2NPpFUdcFZVYuSVQEFVp3_X7RLrQ_iXujjrd6hoHvoQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddress\": {\n    \"address\": \"12 MG Road, Near City Mall\",\n    \"city\": \"Pune\",\n    \"state\": \"Maharashtra\",\n    \"postalCode\": \"411001\",\n    \"country\": \"India\",\n    \"phone\": \"+919812345678\"\n  },\n  \"paymentMethod\": \"cod\",\n  \"notes\": \"Please call before delivery\"\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/orders/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Order",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shippingAddress\": {\n    \"address\": \"Bandra West, Linking Road\",\n    \"city\": \"Mumbai\",\n    \"state\": \"Maharashtra\",\n    \"postalCode\": \"400050\",\n    \"country\": \"India\",\n    \"phone\": \"+919876543210\"\n  },\n  \"paymentMethod\": \"card\",\n  \"notes\": \"Deliver after 6 PM\"\n}\n\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1227"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4cb-YH2dN9Nwpe/HKr1fccWP0cJITog\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:09:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order created successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"fullName\": \"Denver\",\n            \"address\": \"Bandra West, Linking Road\",\n            \"city\": \"Mumbai\",\n            \"state\": \"Maharashtra\",\n            \"postalCode\": \"400050\",\n            \"country\": \"India\",\n            \"phone\": \"+919876543210\"\n        },\n        \"_id\": \"6997fa8ffae186dbe2b56c11\",\n        \"user\": {\n            \"_id\": \"698042f5c79a82295df45bd7\",\n            \"name\": \"Denver\",\n            \"email\": \"denver@gmail.com\"\n        },\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992ed0205cd92fcb5a05e42\",\n                    \"title\": \"Remote Control Car\",\n                    \"price\": 1000,\n                    \"brand\": \"Speedster\",\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\"\n                },\n                \"quantity\": 20,\n                \"price\": 1000,\n                \"_id\": \"6997fa8ffae186dbe2b56c12\"\n            },\n            {\n                \"product\": {\n                    \"_id\": \"6992ea7905cd92fcb5a05e2a\",\n                    \"title\": \"Basketball\",\n                    \"price\": 70,\n                    \"brand\": \"SportFlex\",\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235960/admin_dashboard/products/rxcr77fl9vx7ndpqxawc.webp\"\n                },\n                \"quantity\": 17,\n                \"price\": 70,\n                \"_id\": \"6997fa8ffae186dbe2b56c13\"\n            }\n        ],\n        \"totalItems\": 37,\n        \"totalAmount\": 21190,\n        \"status\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"card\",\n        \"orderNumber\": \"ORD202602206360\",\n        \"notes\": \"Deliver after 6 PM\",\n        \"createdAt\": \"2026-02-20T06:09:19.983Z\",\n        \"updatedAt\": \"2026-02-20T06:09:19.983Z\",\n        \"__v\": 0\n    },\n    \"orderNumber\": \"ORD202602206360\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get My Orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA2ZGEzMTIyMDNjMDIyMGM5MzU1MiIsImlhdCI6MTc3MTU2OTM2NCwiZXhwIjoxNzcxNTcyOTY0fQ.Da5HqMB3iBOCZNb8dW7RLB8Ye3ueB-if47DKDzrcGyg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/my-orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "my-orders"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get My Orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/my-orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "my-orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1247"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4df-/OSwcB6a+duWWyjqzZ9NynnxS5A\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:36:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Orders retrieved successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalOrders\": 1,\n        \"hasNextPage\": false,\n        \"limit\": 10\n    },\n    \"data\": [\n        {\n            \"shippingAddress\": {\n                \"fullName\": \"Robin\",\n                \"address\": \"Gachibowli, Hi-Tech City\",\n                \"city\": \"Hyderabad\",\n                \"state\": \"Telangana\",\n                \"postalCode\": \"500032\",\n                \"country\": \"India\",\n                \"phone\": \"+916667788899\"\n            },\n            \"_id\": \"6997fde3fae186dbe2b56cea\",\n            \"user\": \"69806da312203c0220c93552\",\n            \"items\": [\n                {\n                    \"product\": {\n                        \"_id\": \"6992ec5705cd92fcb5a05e3c\",\n                        \"title\": \"Air Conditioner\",\n                        \"price\": 35000,\n                        \"brand\": \"CoolBreeze\",\n                        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236438/admin_dashboard/products/ttvzmpu0u1fryfyzwkdv.webp\"\n                    },\n                    \"quantity\": 5,\n                    \"price\": 35000,\n                    \"_id\": \"6997fde3fae186dbe2b56ceb\"\n                },\n                {\n                    \"product\": {\n                        \"_id\": \"6992e93e05cd92fcb5a05e1e\",\n                        \"title\": \"Casual TShirt\",\n                        \"price\": 300,\n                        \"brand\": \"FashionPro\",\n                        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235644/admin_dashboard/products/zrt3jv5bc5qneorcuzbt.webp\"\n                    },\n                    \"quantity\": 19,\n                    \"price\": 300,\n                    \"_id\": \"6997fde3fae186dbe2b56cec\"\n                }\n            ],\n            \"totalItems\": 24,\n            \"totalAmount\": 180700,\n            \"status\": \"pending\",\n            \"paymentStatus\": \"pending\",\n            \"paymentMethod\": \"COD\",\n            \"orderNumber\": \"ORD202602208236\",\n            \"notes\": \"Installation needed\",\n            \"createdAt\": \"2026-02-20T06:23:31.563Z\",\n            \"updatedAt\": \"2026-02-20T06:23:31.563Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA2ZGEzMTIyMDNjMDIyMGM5MzU1MiIsImlhdCI6MTc3MTU2OTM2NCwiZXhwIjoxNzcxNTcyOTY0fQ.Da5HqMB3iBOCZNb8dW7RLB8Ye3ueB-if47DKDzrcGyg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/specific/6997fde3fae186dbe2b56cea",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "specific",
+                "6997fde3fae186dbe2b56cea"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Order",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/specific/6997fde3fae186dbe2b56cea",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "specific",
+                    "6997fde3fae186dbe2b56cea"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1182"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"49e-aEb031GR7+r7fR12A6VWI6YWHxM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:38:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order retrieved successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"fullName\": \"Robin\",\n            \"address\": \"Gachibowli, Hi-Tech City\",\n            \"city\": \"Hyderabad\",\n            \"state\": \"Telangana\",\n            \"postalCode\": \"500032\",\n            \"country\": \"India\",\n            \"phone\": \"+916667788899\"\n        },\n        \"_id\": \"6997fde3fae186dbe2b56cea\",\n        \"user\": \"69806da312203c0220c93552\",\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992ec5705cd92fcb5a05e3c\",\n                    \"title\": \"Air Conditioner\",\n                    \"price\": 35000,\n                    \"brand\": \"CoolBreeze\",\n                    \"inventory\": 77,\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236438/admin_dashboard/products/ttvzmpu0u1fryfyzwkdv.webp\"\n                },\n                \"quantity\": 5,\n                \"price\": 35000,\n                \"_id\": \"6997fde3fae186dbe2b56ceb\"\n            },\n            {\n                \"product\": {\n                    \"_id\": \"6992e93e05cd92fcb5a05e1e\",\n                    \"title\": \"Casual TShirt\",\n                    \"price\": 300,\n                    \"brand\": \"FashionPro\",\n                    \"inventory\": 181,\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235644/admin_dashboard/products/zrt3jv5bc5qneorcuzbt.webp\"\n                },\n                \"quantity\": 19,\n                \"price\": 300,\n                \"_id\": \"6997fde3fae186dbe2b56cec\"\n            }\n        ],\n        \"totalItems\": 24,\n        \"totalAmount\": 180700,\n        \"status\": \"pending\",\n        \"paymentStatus\": \"pending\",\n        \"paymentMethod\": \"COD\",\n        \"orderNumber\": \"ORD202602208236\",\n        \"notes\": \"Installation needed\",\n        \"createdAt\": \"2026-02-20T06:23:31.563Z\",\n        \"updatedAt\": \"2026-02-20T06:23:31.563Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTU2OTcwMywiZXhwIjoxNzcxNTczMzAzfQ.ySRzxoBbFA3E3UIz2snFiBzll79f3o63RaaCVaMoXzM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/all-orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "all-orders"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/all-orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "all-orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2439"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"987-yFUWFq2XwSHC4XjlyQM+u8A1cl4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:41:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Orders retrieved successfully (2 found)\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalOrders\": 2,\n        \"hasNextPage\": false,\n        \"limit\": 10\n    },\n    \"data\": [\n        {\n            \"shippingAddress\": {\n                \"fullName\": \"Robin\",\n                \"address\": \"Gachibowli, Hi-Tech City\",\n                \"city\": \"Hyderabad\",\n                \"state\": \"Telangana\",\n                \"postalCode\": \"500032\",\n                \"country\": \"India\",\n                \"phone\": \"+916667788899\"\n            },\n            \"_id\": \"6997fde3fae186dbe2b56cea\",\n            \"user\": {\n                \"_id\": \"69806da312203c0220c93552\",\n                \"name\": \"Robin\",\n                \"email\": \"robin@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"product\": {\n                        \"_id\": \"6992ec5705cd92fcb5a05e3c\",\n                        \"title\": \"Air Conditioner\",\n                        \"price\": 35000,\n                        \"brand\": \"CoolBreeze\",\n                        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236438/admin_dashboard/products/ttvzmpu0u1fryfyzwkdv.webp\"\n                    },\n                    \"quantity\": 5,\n                    \"price\": 35000,\n                    \"_id\": \"6997fde3fae186dbe2b56ceb\"\n                },\n                {\n                    \"product\": {\n                        \"_id\": \"6992e93e05cd92fcb5a05e1e\",\n                        \"title\": \"Casual TShirt\",\n                        \"price\": 300,\n                        \"brand\": \"FashionPro\",\n                        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235644/admin_dashboard/products/zrt3jv5bc5qneorcuzbt.webp\"\n                    },\n                    \"quantity\": 19,\n                    \"price\": 300,\n                    \"_id\": \"6997fde3fae186dbe2b56cec\"\n                }\n            ],\n            \"totalItems\": 24,\n            \"totalAmount\": 180700,\n            \"status\": \"pending\",\n            \"paymentStatus\": \"pending\",\n            \"paymentMethod\": \"COD\",\n            \"orderNumber\": \"ORD202602208236\",\n            \"notes\": \"Installation needed\",\n            \"createdAt\": \"2026-02-20T06:23:31.563Z\",\n            \"updatedAt\": \"2026-02-20T06:23:31.563Z\",\n            \"__v\": 0\n        },\n        {\n            \"shippingAddress\": {\n                \"fullName\": \"Denver\",\n                \"address\": \"Bandra West, Linking Road\",\n                \"city\": \"Mumbai\",\n                \"state\": \"Maharashtra\",\n                \"postalCode\": \"400050\",\n                \"country\": \"India\",\n                \"phone\": \"+919876543210\"\n            },\n            \"_id\": \"6997fa8ffae186dbe2b56c11\",\n            \"user\": {\n                \"_id\": \"698042f5c79a82295df45bd7\",\n                \"name\": \"Denver\",\n                \"email\": \"denver@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"product\": {\n                        \"_id\": \"6992ed0205cd92fcb5a05e42\",\n                        \"title\": \"Remote Control Car\",\n                        \"price\": 1000,\n                        \"brand\": \"Speedster\",\n                        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\"\n                    },\n                    \"quantity\": 20,\n                    \"price\": 1000,\n                    \"_id\": \"6997fa8ffae186dbe2b56c12\"\n                },\n                {\n                    \"product\": {\n                        \"_id\": \"6992ea7905cd92fcb5a05e2a\",\n                        \"title\": \"Basketball\",\n                        \"price\": 70,\n                        \"brand\": \"SportFlex\",\n                        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235960/admin_dashboard/products/rxcr77fl9vx7ndpqxawc.webp\"\n                    },\n                    \"quantity\": 17,\n                    \"price\": 70,\n                    \"_id\": \"6997fa8ffae186dbe2b56c13\"\n                }\n            ],\n            \"totalItems\": 37,\n            \"totalAmount\": 21190,\n            \"status\": \"pending\",\n            \"paymentStatus\": \"pending\",\n            \"paymentMethod\": \"card\",\n            \"orderNumber\": \"ORD202602206360\",\n            \"notes\": \"Deliver after 6 PM\",\n            \"createdAt\": \"2026-02-20T06:09:19.983Z\",\n            \"updatedAt\": \"2026-02-20T06:09:19.983Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Order Stats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTU2OTgyNiwiZXhwIjoxNzcxNTczNDI2fQ.gtrIXSbPAgBUETsZon-5TE4d6jLRWReou0Nx9pnWEvY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "stats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Order Stats",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/stats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "stats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "219"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"db-AubZG1suRuvVOrw2GXlLugtEedQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:49:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order stats retrieved successfully\",\n    \"stats\": {\n        \"_id\": null,\n        \"totalOrders\": 2,\n        \"totalRevenue\": 201890,\n        \"pendingOrders\": 1,\n        \"processingOrders\": 0,\n        \"shippedOrders\": 1,\n        \"deliveredOrders\": 0,\n        \"cancelledOrders\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTU2OTgyNiwiZXhwIjoxNzcxNTczNDI2fQ.gtrIXSbPAgBUETsZon-5TE4d6jLRWReou0Nx9pnWEvY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"shipped\",\n  \"paymentStatus\": \"paid\"\n \n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/orders/6997fa8ffae186dbe2b56c11/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "6997fa8ffae186dbe2b56c11",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Order Status",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"shipped\",\n  \"paymentStatus\": \"paid\"\n \n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/6997fa8ffae186dbe2b56c11/status",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "6997fa8ffae186dbe2b56c11",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1231"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4cf-xANMXyvoGkNpRRdtYTV6LxQezRs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:48:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order status updated successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"fullName\": \"Denver\",\n            \"address\": \"Bandra West, Linking Road\",\n            \"city\": \"Mumbai\",\n            \"state\": \"Maharashtra\",\n            \"postalCode\": \"400050\",\n            \"country\": \"India\",\n            \"phone\": \"+919876543210\"\n        },\n        \"_id\": \"6997fa8ffae186dbe2b56c11\",\n        \"user\": \"698042f5c79a82295df45bd7\",\n        \"items\": [\n            {\n                \"product\": {\n                    \"_id\": \"6992ed0205cd92fcb5a05e42\",\n                    \"title\": \"Remote Control Car\",\n                    \"price\": 1000,\n                    \"brand\": \"Speedster\",\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\"\n                },\n                \"quantity\": 20,\n                \"price\": 1000,\n                \"_id\": \"6997fa8ffae186dbe2b56c12\"\n            },\n            {\n                \"product\": {\n                    \"_id\": \"6992ea7905cd92fcb5a05e2a\",\n                    \"title\": \"Basketball\",\n                    \"price\": 70,\n                    \"brand\": \"SportFlex\",\n                    \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771235960/admin_dashboard/products/rxcr77fl9vx7ndpqxawc.webp\"\n                },\n                \"quantity\": 17,\n                \"price\": 70,\n                \"_id\": \"6997fa8ffae186dbe2b56c13\"\n            }\n        ],\n        \"totalItems\": 37,\n        \"totalAmount\": 21190,\n        \"status\": \"shipped\",\n        \"paymentStatus\": \"paid\",\n        \"paymentMethod\": \"card\",\n        \"orderNumber\": \"ORD202602206360\",\n        \"notes\": \"Deliver after 6 PM\",\n        \"createdAt\": \"2026-02-20T06:09:19.983Z\",\n        \"updatedAt\": \"2026-02-20T06:48:05.831Z\",\n        \"__v\": 0,\n        \"trackingNumber\": \"FedEx260220081135\"\n    },\n    \"generatedTrackingNumber\": \"FedEx260220081135\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MmY1Yzc5YTgyMjk1ZGY0NWJkNyIsImlhdCI6MTc3MTU3MDU0NiwiZXhwIjoxNzcxNTc0MTQ2fQ.4WCtlgp7EqRL_8wb5xXLunnaf___2Z2v2uAaV85G4vw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/6997fa8ffae186dbe2b56c11/cancel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "6997fa8ffae186dbe2b56c11",
+                "cancel"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Cancel Order",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/6997fa8ffae186dbe2b56c11/cancel",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "6997fa8ffae186dbe2b56c11",
+                    "cancel"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "810"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"32a-6JW6AfPfzLMN2b/9I4zfQ4A+Z3o\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 20 Feb 2026 06:55:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order cancelled successfully\",\n    \"data\": {\n        \"shippingAddress\": {\n            \"fullName\": \"Denver\",\n            \"address\": \"Bandra West, Linking Road\",\n            \"city\": \"Mumbai\",\n            \"state\": \"Maharashtra\",\n            \"postalCode\": \"400050\",\n            \"country\": \"India\",\n            \"phone\": \"+919876543210\"\n        },\n        \"_id\": \"6997fa8ffae186dbe2b56c11\",\n        \"user\": \"698042f5c79a82295df45bd7\",\n        \"items\": [\n            {\n                \"product\": \"6992ed0205cd92fcb5a05e42\",\n                \"quantity\": 20,\n                \"price\": 1000,\n                \"_id\": \"6997fa8ffae186dbe2b56c12\"\n            },\n            {\n                \"product\": \"6992ea7905cd92fcb5a05e2a\",\n                \"quantity\": 17,\n                \"price\": 70,\n                \"_id\": \"6997fa8ffae186dbe2b56c13\"\n            }\n        ],\n        \"totalItems\": 37,\n        \"totalAmount\": 21190,\n        \"status\": \"cancelled\",\n        \"paymentStatus\": \"refunded\",\n        \"paymentMethod\": \"card\",\n        \"orderNumber\": \"ORD202602206360\",\n        \"notes\": \"Deliver after 6 PM\",\n        \"createdAt\": \"2026-02-20T06:09:19.983Z\",\n        \"updatedAt\": \"2026-02-20T06:55:55.808Z\",\n        \"__v\": 0,\n        \"trackingNumber\": \"FedEx260220081135\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Refund Request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2FlOTc3ZWViZmUxYzM5MThkYWJmMyIsImlhdCI6MTc3MjE4ODEwMCwiZXhwIjoxNzcyMTkxNzAwfQ.2NPpFUdcFZVYuSVQEFVp3_X7RLrQ_iXujjrd6hoHvoQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"69a1725b47be943e66043a4d\",\n  \"reason\": \"Product damaged\"\n}\n\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/orders/refund/request",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "refund",
+                "request"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Refund Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"69a1725b47be943e66043a4d\",\n  \"reason\": \"Product damaged\"\n}\n\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/refund/request",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "refund",
+                    "request"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "326"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"146-lHz1r0loVoOsxF6171Sqszn1FEk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 10:34:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Refund request submitted successfully\",\n    \"data\": {\n        \"order\": \"69a1725b47be943e66043a4d\",\n        \"user\": \"697ae977eebfe1c3918dabf3\",\n        \"amount\": 44000,\n        \"reason\": \"Product damaged\",\n        \"status\": \"requested\",\n        \"_id\": \"69a1732847be943e66043a84\",\n        \"createdAt\": \"2026-02-27T10:34:16.166Z\",\n        \"updatedAt\": \"2026-02-27T10:34:16.166Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Refunds",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2FlOTc3ZWViZmUxYzM5MThkYWJmMyIsImlhdCI6MTc3MjE4ODEwMCwiZXhwIjoxNzcyMTkxNzAwfQ.2NPpFUdcFZVYuSVQEFVp3_X7RLrQ_iXujjrd6hoHvoQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/refund/my-refunds",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "refund",
+                "my-refunds"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Refunds",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/refunds/my-refunds",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "refunds",
+                    "my-refunds"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "468"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1d4-NzxBtiYR4dTCrL8frD51+JKywxY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 10:46:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User refunds retrieved successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalRefunds\": 1\n    },\n    \"data\": [\n        {\n            \"_id\": \"69a1732847be943e66043a84\",\n            \"order\": {\n                \"_id\": \"69a1725b47be943e66043a4d\",\n                \"totalAmount\": 44000,\n                \"status\": \"pending\",\n                \"orderNumber\": \"ORD202602271304\"\n            },\n            \"user\": \"697ae977eebfe1c3918dabf3\",\n            \"amount\": 44000,\n            \"reason\": \"Product damaged\",\n            \"status\": \"requested\",\n            \"createdAt\": \"2026-02-27T10:34:16.166Z\",\n            \"updatedAt\": \"2026-02-27T10:34:16.166Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Refunds",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjE4OTI2NCwiZXhwIjoxNzcyMTkyODY0fQ.cobU6YJSbYjdZ9o0ZcKvBqiPIoEB0xDcIXN3Ah0cmDA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/refund/get-all-refunds",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "refund",
+                "get-all-refunds"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Refunds",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/refunds/get-all-refunds",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "refunds",
+                    "get-all-refunds"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "549"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"225-vJu0Z+f60Y2HxEYB8dsft9wZqC0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 10:47:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Refunds retrieved successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalRefunds\": 1\n    },\n    \"data\": [\n        {\n            \"_id\": \"69a1732847be943e66043a84\",\n            \"order\": {\n                \"_id\": \"69a1725b47be943e66043a4d\",\n                \"totalAmount\": 44000,\n                \"status\": \"pending\",\n                \"paymentStatus\": \"pending\",\n                \"orderNumber\": \"ORD202602271304\"\n            },\n            \"user\": {\n                \"_id\": \"697ae977eebfe1c3918dabf3\",\n                \"name\": \"Peter Apps\",\n                \"email\": \"peterapps70@gmail.com\"\n            },\n            \"amount\": 44000,\n            \"reason\": \"Product damaged\",\n            \"status\": \"requested\",\n            \"createdAt\": \"2026-02-27T10:34:16.166Z\",\n            \"updatedAt\": \"2026-02-27T10:34:16.166Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Approve Refund",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjE4OTU0OSwiZXhwIjoxNzcyMTkzMTQ5fQ.wctoMmzzWM903uVm1iATp_EZC6yRU_4PxccrN7qMnHc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/orders/refund/69a1732847be943e66043a84",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "refund",
+                "69a1732847be943e66043a84"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Approve Refund",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"approved\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/orders/refund/69a1732847be943e66043a84",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "orders",
+                    "refund",
+                    "69a1732847be943e66043a84"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "940"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3ac-VpHOTdXEJOSB88zvH4YK1IDDKcc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 10:52:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Refund status updated successfully\",\n    \"data\": {\n        \"_id\": \"69a1732847be943e66043a84\",\n        \"order\": {\n            \"shippingAddress\": {\n                \"fullName\": \"Peter Apps\",\n                \"address\": \"12 MG Road, Near City Mall\",\n                \"city\": \"Pune\",\n                \"state\": \"Maharashtra\",\n                \"postalCode\": \"411001\",\n                \"country\": \"India\",\n                \"phone\": \"+919812345678\"\n            },\n            \"_id\": \"69a1725b47be943e66043a4d\",\n            \"user\": \"697ae977eebfe1c3918dabf3\",\n            \"items\": [\n                {\n                    \"product\": \"6992e58805cd92fcb5a05e07\",\n                    \"quantity\": 2,\n                    \"price\": 22000,\n                    \"_id\": \"69a1725b47be943e66043a4e\"\n                }\n            ],\n            \"totalItems\": 2,\n            \"totalAmount\": 44000,\n            \"status\": \"pending\",\n            \"paymentStatus\": \"pending\",\n            \"paymentMethod\": \"COD\",\n            \"orderNumber\": \"ORD202602271304\",\n            \"notes\": \"Please call before delivery\",\n            \"refundStatus\": \"approved\",\n            \"createdAt\": \"2026-02-27T10:30:51.115Z\",\n            \"updatedAt\": \"2026-02-27T10:52:53.642Z\",\n            \"__v\": 0\n        },\n        \"user\": \"697ae977eebfe1c3918dabf3\",\n        \"amount\": 44000,\n        \"reason\": \"Product damaged\",\n        \"status\": \"approved\",\n        \"createdAt\": \"2026-02-27T10:34:16.166Z\",\n        \"updatedAt\": \"2026-02-27T10:52:53.645Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "FAQ's",
-      "item": []
+      "item": [
+        {
+          "name": "Create FAQs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3MjkzNCwiZXhwIjoxNzcwOTc2NTM0fQ.cMmEUmpWj70wTTinqlJFn499xXBDXAAXOcvStyDMVj8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"How can I track my order?\",\n  \"answer\": \"Once your order is shipped, a tracking link will be sent to your registered email.\",\n  \"tags\": [\"orders\", \"tracking\", \"shipping\"]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create FAQs",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"How can I track my order?\",\n  \"answer\": \"Once your order is shipped, a tracking link will be sent to your registered email.\",\n  \"tags\": [\"orders\", \"tracking\", \"shipping\"]\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "407"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"197-YgK2koXsYsM4tlAH3otqKk82oQo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 08:56:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQ created successfully\",\n    \"data\": {\n        \"question\": \"How can I track my order?\",\n        \"answer\": \"Once your order is shipped, a tracking link will be sent to your registered email.\",\n        \"isActive\": false,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"tags\": [\n            \"orders\",\n            \"tracking\",\n            \"shipping\"\n        ],\n        \"_id\": \"698ee749e7956d97ca525424\",\n        \"createdAt\": \"2026-02-13T08:56:41.551Z\",\n        \"updatedAt\": \"2026-02-13T08:56:41.551Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Faqs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3MjkzNCwiZXhwIjoxNzcwOTc2NTM0fQ.cMmEUmpWj70wTTinqlJFn499xXBDXAAXOcvStyDMVj8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/all-faqs?limit=5&search=order&sort=desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "all-faqs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "search",
+                  "value": "order"
+                },
+                {
+                  "key": "sort",
+                  "value": "desc"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Faqs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/all-faqs?limit=5&sort=desc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "all-faqs"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "search",
+                      "value": "order",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2176"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"880-M7RyAPHv+iRPM95E2DT5URQUBGU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 09:12:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQs retrieved successfully\",\n    \"pageInfo\": {\n        \"hasNextPage\": true,\n        \"nextCursor\": \"698ee86fe7956d97ca52548b\",\n        \"limit\": 5\n    },\n    \"data\": [\n        {\n            \"_id\": \"698ee899e7956d97ca52549f\",\n            \"question\": \"How are sellers verified?\",\n            \"answer\": \"Sellers go through identity, document, and quality verification checks.\",\n            \"isActive\": false,\n            \"author\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"tags\": [\n                \"marketplace\",\n                \"vendors\"\n            ],\n            \"createdAt\": \"2026-02-13T09:02:17.398Z\",\n            \"updatedAt\": \"2026-02-13T09:02:17.398Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"698ee88be7956d97ca52549a\",\n            \"question\": \"Is furniture installation included?\",\n            \"answer\": \"Most furniture items include free installation after delivery.\",\n            \"isActive\": false,\n            \"author\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"tags\": [\n                \"furniture\",\n                \"installation\"\n            ],\n            \"createdAt\": \"2026-02-13T09:02:03.600Z\",\n            \"updatedAt\": \"2026-02-13T09:02:03.600Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"698ee882e7956d97ca525495\",\n            \"question\": \"Are beauty products safe for sensitive skin?\",\n            \"answer\": \"Ingredients are listed clearly, and we recommend a patch test before use.\",\n            \"isActive\": false,\n            \"author\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"tags\": [\n                \"beauty\",\n                \"skin-care\"\n            ],\n            \"createdAt\": \"2026-02-13T09:01:54.865Z\",\n            \"updatedAt\": \"2026-02-13T09:01:54.865Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"698ee878e7956d97ca525490\",\n            \"question\": \"How do you ensure grocery freshness?\",\n            \"answer\": \"Groceries are sourced daily and delivered using temperature-controlled packaging.\",\n            \"isActive\": false,\n            \"author\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"tags\": [\n                \"grocery\",\n                \"freshness\"\n            ],\n            \"createdAt\": \"2026-02-13T09:01:44.486Z\",\n            \"updatedAt\": \"2026-02-13T09:01:44.486Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"698ee86fe7956d97ca52548b\",\n            \"question\": \"Do electronics products include warranty?\",\n            \"answer\": \"All electronics come with a minimum one-year manufacturer warranty.\",\n            \"isActive\": false,\n            \"author\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"tags\": [\n                \"electronics\",\n                \"warranty\"\n            ],\n            \"createdAt\": \"2026-02-13T09:01:35.453Z\",\n            \"updatedAt\": \"2026-02-13T09:01:35.453Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Faqs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3NDA1NSwiZXhwIjoxNzcwOTc3NjU1fQ.qzGst0sSNY9cOh2eATp48zgyVdugML40X2eKthYSYs4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/698ee850e7956d97ca525478",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "698ee850e7956d97ca525478"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Faqs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/698ee850e7956d97ca525478",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "698ee850e7956d97ca525478"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "459"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1cb-EjWoAmH7ch6Nb5wqHtv0uwYPwq8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 09:14:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQ retrieved successfully\",\n    \"data\": {\n        \"_id\": \"698ee850e7956d97ca525478\",\n        \"question\": \"What is your return policy?\",\n        \"answer\": \"Products can be returned within 7 days if unused and in original packaging.\",\n        \"isActive\": false,\n        \"author\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"tags\": [\n            \"returns\",\n            \"refunds\"\n        ],\n        \"createdAt\": \"2026-02-13T09:01:04.162Z\",\n        \"updatedAt\": \"2026-02-13T09:01:04.162Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Faq Stats",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3NDA1NSwiZXhwIjoxNzcwOTc3NjU1fQ.qzGst0sSNY9cOh2eATp48zgyVdugML40X2eKthYSYs4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "stats"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Faq Stats",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/stats",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "stats"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "118"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"76-xBIAeCvGDWF8lPg8XIqpZh60pdQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 09:24:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQ stats retrieved successfully\",\n    \"stats\": {\n        \"total\": 10,\n        \"active\": 0,\n        \"inactive\": 10,\n        \"today\": 10\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Faqs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3NDA1NSwiZXhwIjoxNzcwOTc3NjU1fQ.qzGst0sSNY9cOh2eATp48zgyVdugML40X2eKthYSYs4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"How do I track my orderrrrr?\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/update/698ee850e7956d97ca525478",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "update",
+                "698ee850e7956d97ca525478"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Faqs",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"How do I track my orderrrrr?\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/update/698ee850e7956d97ca525478",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "update",
+                    "698ee850e7956d97ca525478"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "392"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"188-2kadXfdOMpZ3rp4uLClW11tsh+I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 09:16:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQ updated successfully\",\n    \"data\": {\n        \"_id\": \"698ee850e7956d97ca525478\",\n        \"question\": \"How do I track my orderrrrr?\",\n        \"answer\": \"Products can be returned within 7 days if unused and in original packaging.\",\n        \"isActive\": false,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"tags\": [\n            \"returns\",\n            \"refunds\"\n        ],\n        \"createdAt\": \"2026-02-13T09:01:04.162Z\",\n        \"updatedAt\": \"2026-02-13T09:16:59.134Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Faqs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3NDA1NSwiZXhwIjoxNzcwOTc3NjU1fQ.qzGst0sSNY9cOh2eATp48zgyVdugML40X2eKthYSYs4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/delete/698ee850e7956d97ca525478",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "delete",
+                "698ee850e7956d97ca525478"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Faqs",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/delete/698ee850e7956d97ca525478",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "delete",
+                    "698ee850e7956d97ca525478"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "454"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c6-MXPw6IwsVJyq21Q5+7V8oQIgA/U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 09:22:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQ deleted successfully\",\n    \"data\": {\n        \"_id\": \"698ee850e7956d97ca525478\",\n        \"question\": \"How do I track my order?\",\n        \"answer\": \"Products can be returned within 7 days if unused and in original packaging.\",\n        \"isActive\": false,\n        \"author\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"tags\": [\n            \"returns\",\n            \"refunds\"\n        ],\n        \"createdAt\": \"2026-02-13T09:01:04.162Z\",\n        \"updatedAt\": \"2026-02-13T09:17:34.134Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Bulk Update Faqs Status",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MDk3NDA1NSwiZXhwIjoxNzcwOTc3NjU1fQ.qzGst0sSNY9cOh2eATp48zgyVdugML40X2eKthYSYs4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"faqIds\": [\n    \"698ee899e7956d97ca52549f\",\n    \"698ee882e7956d97ca525495\",\n    \"698ee86fe7956d97ca52548b\"\n  ],\n  \"isActive\": true\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/faqs/bulk-toggle-status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "faqs",
+                "bulk-toggle-status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Bulk Update Faqs Status",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"faqIds\": [\n    \"698ee899e7956d97ca52549f\",\n    \"698ee882e7956d97ca525495\",\n    \"698ee86fe7956d97ca52548b\"\n  ],\n  \"isActive\": true\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/faqs/bulk-toggle-status",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "faqs",
+                    "bulk-toggle-status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1313"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"521-5steGTaa6mkuAWohiNmZDNAb10s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Feb 2026 09:38:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"FAQs activated successfully\",\n    \"data\": {\n        \"count\": 3,\n        \"isActive\": true,\n        \"faqs\": [\n            {\n                \"_id\": \"698ee86fe7956d97ca52548b\",\n                \"question\": \"Do electronics products include warranty?\",\n                \"answer\": \"All electronics come with a minimum one-year manufacturer warranty.\",\n                \"isActive\": true,\n                \"author\": {\n                    \"_id\": \"698040dc31aabf244444e654\",\n                    \"name\": \"Admin\",\n                    \"email\": \"admin@example.com\",\n                    \"role\": \"admin\"\n                },\n                \"tags\": [\n                    \"electronics\",\n                    \"warranty\"\n                ],\n                \"createdAt\": \"2026-02-13T09:01:35.453Z\",\n                \"updatedAt\": \"2026-02-13T09:01:35.453Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"698ee882e7956d97ca525495\",\n                \"question\": \"Are beauty products safe for sensitive skin?\",\n                \"answer\": \"Ingredients are listed clearly, and we recommend a patch test before use.\",\n                \"isActive\": true,\n                \"author\": {\n                    \"_id\": \"698040dc31aabf244444e654\",\n                    \"name\": \"Admin\",\n                    \"email\": \"admin@example.com\",\n                    \"role\": \"admin\"\n                },\n                \"tags\": [\n                    \"beauty\",\n                    \"skin-care\"\n                ],\n                \"createdAt\": \"2026-02-13T09:01:54.865Z\",\n                \"updatedAt\": \"2026-02-13T09:01:54.865Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"698ee899e7956d97ca52549f\",\n                \"question\": \"How are sellers verified?\",\n                \"answer\": \"Sellers go through identity, document, and quality verification checks.\",\n                \"isActive\": true,\n                \"author\": {\n                    \"_id\": \"698040dc31aabf244444e654\",\n                    \"name\": \"Admin\",\n                    \"email\": \"admin@example.com\",\n                    \"role\": \"admin\"\n                },\n                \"tags\": [\n                    \"marketplace\",\n                    \"vendors\"\n                ],\n                \"createdAt\": \"2026-02-13T09:02:17.398Z\",\n                \"updatedAt\": \"2026-02-13T09:02:17.398Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Privacy-Policy",
+      "item": [
+        {
+          "name": "Create Privacy-Policy",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MTQ3NzY5MCwiZXhwIjoxNzcxNDgxMjkwfQ.x-3ew3KCGjyiWx0uuJ7BddZbN-FWSmj_aV8NLLUWO7s",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "    {\n    \"sections\": [\n        {\n        \"title\": \"Introduction\",\n        \"content\": \"This Privacy Policy explains how we collect, use, and protect your information when you use our website or services. It also outlines your rights regarding your personal data. By using our services, you consent to the practices described in this policy. We are committed to maintaining your trust and ensuring your data is handled responsibly.\"\n        },\n        {\n        \"title\": \"Data Collection\",\n        \"content\": \"We collect personal information such as your name, email address, phone number, billing details, and usage data. Usage data may include IP address, browser type, pages visited, and time spent on our website. This information helps us improve our services, deliver personalized experiences, process transactions, and communicate important updates or promotional offers. We only collect data necessary for the functionality and enhancement of our services.\"\n        },\n        {\n        \"title\": \"Cookies\",\n        \"content\": \"Our website uses cookies, web beacons, and similar tracking technologies to improve user experience. Cookies help remember your preferences, login details, and language settings. We may also use cookies for analytics to understand site traffic patterns, optimize performance, and identify errors. You can manage or disable cookies through your browser settings, though some website features may not function properly without them.\"\n        },\n        {\n        \"title\": \"Third-Party Services\",\n        \"content\": \"We may share your information with trusted third-party service providers for analytics, marketing, payment processing, or customer support. These partners are carefully selected and required to maintain confidentiality and adhere to strict data protection standards. We do not sell or trade your personal information to unrelated third parties for marketing purposes.\"\n        },\n        {\n        \"title\": \"Data Security\",\n        \"content\": \"We employ technical, administrative, and physical security measures to protect your personal information. These measures include encryption of sensitive data, secure storage systems, firewalls, and restricted access controls. Despite these efforts, no system can be completely secure, so we encourage you to take precautions such as keeping your passwords confidential and reporting suspicious activity immediately.\"\n        },\n        {\n        \"title\": \"User Rights\",\n        \"content\": \"You have rights regarding your personal information, including the right to access, correct, delete, or restrict the use of your data. You may also object to processing or request data portability. Requests can be made through our support channels, and we will respond in accordance with applicable laws. You can also unsubscribe from promotional communications at any time.\"\n        },\n        {\n        \"title\": \"Changes to This Policy\",\n        \"content\": \"We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We will post the updated policy on our website with a revised effective date. We encourage you to review this policy regularly to stay informed about how we protect your information.\"\n        },\n        {\n        \"title\": \"Contact Us\",\n        \"content\": \"If you have any questions, concerns, or requests regarding this Privacy Policy, you can contact us at privacy@yourcompany.com or through our contact/support page. Our team is committed to responding to inquiries promptly and addressing any concerns regarding your personal data.\"\n        }\n    ],\n    \"isActive\": true\n    }\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/privacypolicy/upsert",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "privacypolicy",
+                "upsert"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Privacy-Policy",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": [\n    {\n      \"title\": \"Introduction\",\n      \"content\": \"This Privacy Policy explains how we collect, use, and protect your information.\"\n    },\n    {\n      \"title\": \"Data Collection\",\n      \"content\": \"We collect personal information such as name, email, and usage data to improve our services.\"\n    },\n    {\n      \"title\": \"Cookies\",\n      \"content\": \"We use cookies to enhance user experience and track usage patterns.\"\n    },\n    {\n      \"title\": \"Third-Party Services\",\n      \"content\": \"We may share data with trusted third-party service providers for analytics and marketing purposes.\"\n    }\n  ],\n  \"isActive\": true\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/privacypolicy/upsert",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "privacypolicy",
+                    "upsert"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "751"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2ef-PMr527rWbe0zVNt2MNW+cyIs24E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 18 Feb 2026 10:45:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Privacy Policy created successfully\",\n    \"data\": {\n        \"sections\": [\n            {\n                \"title\": \"Introduction\",\n                \"content\": \"This Privacy Policy explains how we collect, use, and protect your information.\"\n            },\n            {\n                \"title\": \"Data Collection\",\n                \"content\": \"We collect personal information such as name, email, and usage data to improve our services.\"\n            },\n            {\n                \"title\": \"Cookies\",\n                \"content\": \"We use cookies to enhance user experience and track usage patterns.\"\n            },\n            {\n                \"title\": \"Third-Party Services\",\n                \"content\": \"We may share data with trusted third-party service providers for analytics and marketing purposes.\"\n            }\n        ],\n        \"isActive\": true,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"_id\": \"6995985286929aaf895242c0\",\n        \"createdAt\": \"2026-02-18T10:45:38.269Z\",\n        \"updatedAt\": \"2026-02-18T10:45:38.269Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

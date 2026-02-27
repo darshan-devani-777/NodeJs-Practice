@@ -178,7 +178,7 @@ exports.updateBlog = async (req, res) => {
       return res.status(404).json({ success: false, message: "Blog not found" });
 
     if (blog.author.toString() !== req.user._id.toString() && req.user.role !== "admin") {
-      return res.status(403).json({ success: false, message: "Forbidden" });
+      return res.status(403).json({ success: false, message: "Forbidden access" });
     }
 
     if (title) blog.title = title;
@@ -203,6 +203,11 @@ exports.updateBlog = async (req, res) => {
     res.status(200).json({ success: true, message: "Blog updated successfully", data: blog });
   } catch (error) {
     console.error("❌ updateBlog error:", error.message);
+
+    const message = error.name === "ValidationError" ?
+      getValidationError(error) :
+      "Server error";
+
     await logActivity({
       user: req.user?._id || null,
       action: "UPDATE_BLOG",
@@ -210,7 +215,8 @@ exports.updateBlog = async (req, res) => {
       req,
       status: "failed",
     });
-    res.status(500).json({ success: false, message: "Server error" });
+
+    res.status(message === "Server error" ? 500 : 400).json({ success: false, message });
   }
 };
 
@@ -297,9 +303,8 @@ exports.bulkTogglePublishBlogs = async (req, res) => {
     await logActivity({
       user: req.user._id,
       action: "BULK_TOGGLE_PUBLISH_BLOGS",
-      description: `Bulk ${
-        isPublished ? "published" : "unpublished"
-      } blogs with ids ${blogIds}`,
+      description: `Bulk ${isPublished ? "published" : "unpublished"
+        } blogs with ids ${blogIds}`,
       req,
       status: "success",
     });
@@ -322,3 +327,29 @@ exports.bulkTogglePublishBlogs = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+/* ------------------- UPLOAD BLOG IMAGE ------------------- */
+exports.uploadBlogImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        uploaded: false,
+        error: { message: "No image uploaded" }
+      });
+    }
+
+    return res.status(200).json({
+      uploaded: true,
+      url: req.file.path,
+    });
+
+  } catch (error) {
+    console.error("Upload error:", error);
+    return res.status(500).json({
+      uploaded: false,
+      error: { message: "Image upload failed" }
+    });
+  }
+};
+
+
