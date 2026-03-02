@@ -96,6 +96,16 @@ const orderSchema = new mongoose.Schema(
       enum: ["none", "requested", "approved", "rejected", "processed"],
       default: "none",
     },
+    invoiceNumber: {
+      type: String,
+      unique: true,
+    },
+    invoiceDate: {
+      type: Date,
+    },
+    shippedAt: Date,
+    deliveredAt: Date,
+    cancelledAt: Date,
   },
   { timestamps: true }
 );

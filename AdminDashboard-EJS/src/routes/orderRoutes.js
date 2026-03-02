@@ -37,4 +37,7 @@ router.get("/refund/get-all-refunds", protect, authorizeRoles("admin"), orderCon
 // GET SPECIFIC REFUND
 router.get("/refund/my-refunds", protect, authorizeRoles("user", "admin"), orderController.getUserRefunds);
 
+// DOWNLOAD INVOICE
+router.get("/invoice/:orderId", protect, authorizeRoles("user", "admin"), orderController.downloadInvoice);
+
 module.exports = router;

@@ -5,6 +5,7 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 const mongoose = require("mongoose");
 const logActivity = require("../utils/activityLogger");
+const generateInvoicePDF = require("../utils/invoiceGenerator");
 
 function generateOrderNumber() {
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
@@ -18,6 +19,12 @@ function generateTrackingNumber() {
   const date = new Date().toISOString().slice(2, 10).replace(/-/g, "");
   const random = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
   return `${prefix}${date}${random}`;
+}
+
+function generateInvoiceNumber() {
+  const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+  const random = Math.floor(1000 + Math.random() * 9000);
+  return `INV${date}${random}`;
 }
 
 /* ------------------- CREATE ORDER ------------------- */
@@ -278,7 +285,7 @@ exports.getAllOrders = async (req, res) => {
     const orders = await Order.find(query)
       .populate("user", "name email")
       .populate("items.product", "title price image brand")
-      .sort(sortOption) 
+      .sort(sortOption)
       .limit(limit)
       .skip((page - 1) * limit);
 
@@ -320,11 +327,12 @@ exports.updateOrderStatus = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(orderId)) {
       return res.status(400).json({
         success: false,
-        message: `Invalid order ID format`,
+        message: "Invalid order ID format",
       });
     }
 
     const currentOrder = await Order.findById(orderId);
+
     if (!currentOrder) {
       return res.status(404).json({
         success: false,
@@ -336,6 +344,7 @@ exports.updateOrderStatus = async (req, res) => {
 
     if (status) {
       const newStatus = status.toLowerCase();
+
       updateData.status = newStatus;
 
       if (newStatus === "shipped" && currentOrder.status !== "shipped") {
@@ -343,15 +352,30 @@ exports.updateOrderStatus = async (req, res) => {
           trackingNumber && trackingNumber.trim() !== ""
             ? trackingNumber.trim()
             : generateTrackingNumber();
+
+        updateData.shippedAt = new Date();
       }
 
-      if (newStatus === "pending" || newStatus === "cancelled") {
+      if (newStatus === "delivered") {
+        updateData.deliveredAt = new Date();
+      }
+
+      if (newStatus === "cancelled") {
         updateData.trackingNumber = null;
+        updateData.cancelledAt = new Date();
       }
     }
 
     if (paymentStatus !== undefined) {
       updateData.paymentStatus = paymentStatus;
+
+      if (
+        paymentStatus === "paid" &&
+        !currentOrder.invoiceNumber
+      ) {
+        updateData.invoiceNumber = generateInvoiceNumber();
+        updateData.invoiceDate = new Date();
+      }
     }
 
     const updatedOrder = await Order.findByIdAndUpdate(
@@ -370,8 +394,9 @@ exports.updateOrderStatus = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Order status updated successfully",
+      message: "Order updated successfully",
       trackingNumber: updatedOrder.trackingNumber,
+      invoiceNumber: updatedOrder.invoiceNumber,
       data: updatedOrder,
     });
 
@@ -761,6 +786,38 @@ exports.getUserRefunds = async (req, res) => {
     res.status(500).json({
       success: false,
       message: error.message,
+    });
+  }
+};
+
+/* ------------------- DOWNLOAD INVOICE ------------------- */
+exports.downloadInvoice = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const order = await Order.findById(orderId)
+      .populate("items.product");
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    if (!order.invoiceNumber) {
+      order.invoiceNumber = generateInvoiceNumber();
+      order.invoiceDate = new Date();
+      await order.save();
+    }
+
+    generateInvoicePDF(order, res);
+
+  } catch (error) {
+    console.error("Invoice error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to generate invoice",
     });
   }
 };

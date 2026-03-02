@@ -109,18 +109,16 @@ exports.getAllProducts = async (req, res) => {
     const cursor = req.query.cursor;
     const search = req.query.search || "";
     const sort = req.query.sort || "desc";
-    const order = sort === "asc" ? 1 : -1;
 
-    const query = {};
+    let query = {};
 
     if (search) {
       const priceNumber = parseFloat(search);
-
       query.$or = [
         { title: { $regex: search, $options: "i" } },
         { description: { $regex: search, $options: "i" } },
-        { tags: { $regex: search, $options: "i" } },
-        { category: { $regex: search, $options: "i" } },
+        { tags: { $elemMatch: { $regex: search, $options: "i" } } },
+        { category: { $elemMatch: { $regex: search, $options: "i" } } },
         { brand: { $regex: search, $options: "i" } },
       ];
 
@@ -130,33 +128,53 @@ exports.getAllProducts = async (req, res) => {
     }
 
     if (req.query.isApproved !== undefined) {
-      const isApproved = req.query.isApproved === "true";
-      query.isApproved = isApproved;
+      query.isApproved = req.query.isApproved === "true";
     }
 
     if (req.query.isFeatured !== undefined) {
-      const isFeatured = req.query.isFeatured === "true";
-      query.isFeatured = isFeatured;
+      query.isFeatured = req.query.isFeatured === "true";
     }
 
+    let sortQuery = { _id: -1 }; 
+
+    if (sort === "asc") sortQuery = { _id: 1 };             
+    else if (sort === "price-desc") sortQuery = { price: -1 }; 
+    else if (sort === "price-asc") sortQuery = { price: 1 };  
+
     if (cursor && mongoose.Types.ObjectId.isValid(cursor)) {
-      query._id =
-        order === 1
-          ? { $gt: new mongoose.Types.ObjectId(cursor) }
-          : { $lt: new mongoose.Types.ObjectId(cursor) };
+      let cursorQuery = {};
+
+      if (sort === "asc") cursorQuery = { _id: { $gt: cursor } };
+      else if (sort === "desc") cursorQuery = { _id: { $lt: cursor } };
+      else if (sort.startsWith("price")) {
+        const lastProduct = await Product.findById(cursor);
+        if (lastProduct) {
+          cursorQuery = sort === "price-asc"
+            ? { price: { $gt: lastProduct.price } }
+            : { price: { $lt: lastProduct.price } };
+        }
+      }
+
+      if (query.$or) {
+        query = { $and: [{ $or: query.$or }, cursorQuery] };
+      } else {
+        query = { ...query, ...cursorQuery };
+      }
     }
 
     const products = await Product.find(query)
-      .populate("reviews.user", "name")
-      .sort({ _id: order })
+      .populate({
+        path: "reviews",
+        match: { isApproved: true },
+        populate: { path: "user", select: "name" },
+      })
+      .sort(sortQuery)
       .limit(limit + 1);
 
     const hasNextPage = products.length > limit;
     if (hasNextPage) products.pop();
 
-    const nextCursor = products.length
-      ? products[products.length - 1]._id
-      : null;
+    const nextCursor = products.length ? products[products.length - 1]._id : null;
 
     res.status(200).json({
       success: true,
@@ -185,11 +203,12 @@ exports.getProductById = async (req, res) => {
     const product = await Product.findById(productId)
       .populate({
         path: "reviews",
+        match: { isApproved: true },
         populate: {
           path: "user",
           select: "name"
         }
-      });
+      })
 
     if (!product) {
       return res.status(404).json({
@@ -625,14 +644,20 @@ exports.bulkUploadProducts = async (req, res) => {
 
   try {
     if (!req.file) {
-      return res.status(400).json({ success: false, message: "No file uploaded" });
+      return res.status(400).json({
+        success: false,
+        message: "No file uploaded. Please upload a valid products CSV file.",
+      });
     }
 
     filePath = req.file.path;
     const userId = req.user?._id;
 
     if (!userId) {
-      return res.status(401).json({ success: false, message: "User not authenticated" });
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
     }
 
     const rows = [];
@@ -646,15 +671,58 @@ exports.bulkUploadProducts = async (req, res) => {
     });
 
     if (!rows.length) {
-      return res.status(400).json({ success: false, message: "CSV is empty" });
+      fs.unlinkSync(filePath);
+      return res.status(400).json({
+        success: false,
+        message: "CSV file is empty. Please upload valid product data.",
+      });
+    }
+
+    const requiredHeaders = [
+      "title",
+      "description",
+      "price",
+      "category",
+      "subCategory",
+      "tags",
+      "brand",
+      "attributes.color",
+      "attributes.size",
+      "inventory",
+      "image",
+    ];
+
+    const csvHeaders = Object.keys(rows[0]);
+
+    const missingHeaders = requiredHeaders.filter(
+      (header) => !csvHeaders.includes(header)
+    );
+
+    const extraHeaders = csvHeaders.filter(
+      (header) => !requiredHeaders.includes(header)
+    );
+
+    if (missingHeaders.length > 0 || extraHeaders.length > 0) {
+      fs.unlinkSync(filePath);
+
+      return res.status(400).json({
+        success: false,
+        message:
+          "Invalid CSV format. Please upload CSV with correct product fields.",
+        requiredFields: requiredHeaders,
+        missingFields: missingHeaders,
+        unexpectedFields: extraHeaders,
+        note:
+          "Field names must match exactly (case-sensitive). Example: attributes.color",
+      });
     }
 
     const toArray = (value) => {
       if (!value) return [];
-      return value.split("|").map(v => v.trim());
+      return value.split("|").map((v) => v.trim());
     };
 
-    const products = rows.map((product) => ({
+    const products = rows.map((product, index) => ({
       title: product.title?.trim(),
       description:
         product.description?.length >= 30
@@ -676,122 +744,28 @@ exports.bulkUploadProducts = async (req, res) => {
       updatedBy: userId,
     }));
 
-    const insertedDocs = await Product.insertMany(products, { ordered: false });
+    const insertedDocs = await Product.insertMany(products, {
+      ordered: false,
+    });
 
     fs.unlinkSync(filePath);
 
-    await logActivity({
-      user: userId,
-      action: "BULK_UPLOAD_PRODUCTS",
-      description: `Bulk uploaded ${insertedDocs.length} products successfully`,
-      req,
-      status: "success",
-    });
-
     return res.status(200).json({
       success: true,
+      message: "Products bulk uploaded successfully.",
       insertedCount: insertedDocs.length,
-      insertedProducts: insertedDocs,
-      message: "Bulk uploaded successfully",
     });
 
   } catch (error) {
-    if (filePath && fs.existsSync(filePath)) fs.unlinkSync(filePath);
-
-    console.log("FULL BULK ERROR ↓↓↓");
-    console.dir(error, { depth: null });
-
-    const userId = req.user?._id;
-
-    if (error?.writeErrors) {
-      const insertedDocs = error.insertedDocs || [];
-
-      const formattedErrors = error.writeErrors.map((err) => {
-        let message = "Unknown validation error";
-
-        if (err.code === 11000) {
-          const field = Object.keys(err.err?.keyPattern || err.keyPattern || {})[0];
-          const value = err.err?.keyValue?.[field] || err.keyValue?.[field];
-          message = `Duplicate ${field}: ${value}`;
-        } else if (err.err?.errors) {
-          message = Object.values(err.err.errors)
-            .map((e) => e.message)
-            .join(", ");
-        } else if (err.err?.message) {
-          message = err.err.message;
-        }
-
-        return {
-          row: err.index + 2,
-          message,
-          title: err.err?.op?.title || null,
-        };
-      });
-
-      await logActivity({
-        user: userId,
-        action: "BULK_UPLOAD_PRODUCTS",
-        description: `Bulk upload partially successful: ${insertedDocs.length} inserted, ${formattedErrors.length} failed`,
-        req,
-        status: "partial",
-      });
-
-      return res.status(207).json({
-        success: false,
-        message: "Bulk uploaded partially successfully",
-        insertedCount: insertedDocs.length,
-        failedCount: formattedErrors.length,
-        insertedProducts: insertedDocs,
-        failedRows: formattedErrors,
-      });
+    if (filePath && fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
     }
 
-    // Validation error
-    if (error.name === "ValidationError") {
-      await logActivity({
-        user: userId,
-        action: "BULK_UPLOAD_PRODUCTS",
-        description: `Bulk upload failed due to validation error: ${Object.values(error.errors).map(e => e.message).join(", ")}`,
-        req,
-        status: "failed",
-      });
-
-      return res.status(400).json({
-        success: false,
-        message: "Validation failed",
-        errors: Object.values(error.errors).map((e) => e.message),
-      });
-    }
-
-    // Duplicate title
-    if (error.code === 11000) {
-      await logActivity({
-        user: userId,
-        action: "BULK_UPLOAD_PRODUCTS",
-        description: `Bulk upload failed due to duplicate title: ${JSON.stringify(error.keyValue)}`,
-        req,
-        status: "failed",
-      });
-
-      return res.status(400).json({
-        success: false,
-        message: "Duplicate title found",
-        duplicate: error.keyValue,
-      });
-    }
-
-    // Other server errors
-    await logActivity({
-      user: userId,
-      action: "BULK_UPLOAD_PRODUCTS",
-      description: `Bulk upload failed: ${error.message}`,
-      req,
-      status: "failed",
-    });
+    console.error("Bulk Upload Error:", error);
 
     return res.status(500).json({
       success: false,
-      message: "Server error",
+      message: "Bulk upload failed due to server error.",
       error: error.message,
     });
   }
@@ -1010,16 +984,26 @@ exports.addReview = async (req, res) => {
     product.reviews.push(review._id);
 
     const stats = await Review.aggregate([
-      { $match: { product: product._id } },
+      {
+        $match: {
+          product: product._id,
+          isApproved: true
+        }
+      },
       { $group: { _id: "$product", avgRating: { $avg: "$rating" }, count: { $sum: 1 } } }
     ]);
 
-    product.averageRating = stats[0]?.avgRating || rating;
-    product.reviewCount = stats[0]?.count || 1;
+    product.averageRating = stats.length > 0 ? stats[0].avgRating : 0;
+    product.reviewCount = stats.length > 0 ? stats[0].count : 0;
     await product.save();
 
     const fullProduct = await Product.findById(productId)
-      .populate({ path: "reviews", populate: { path: "user", select: "name email" }, options: { sort: { createdAt: -1 } } });
+      .populate({
+        path: "reviews",
+        match: { isApproved: true },
+        populate: { path: "user", select: "name email" },
+        options: { sort: { createdAt: -1 } }
+      });
 
     await logActivity({
       user: userId,
@@ -1050,6 +1034,135 @@ exports.addReview = async (req, res) => {
     });
 
     return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+/* ------------------- TOGGLE REVIEW APPROVAL ------------------- */
+exports.toggleReviewApproval = async (req, res) => {
+  try {
+    const { reviewId } = req.params;
+    const adminId = req.user._id;
+
+    const review = await Review.findById(reviewId);
+    if (!review) {
+      return res.status(404).json({ success: false, message: "Review not found" });
+    }
+
+    review.isApproved = !review.isApproved;
+    review.approvedBy = adminId;
+    await review.save();
+
+    const stats = await Review.aggregate([
+      {
+        $match: {
+          product: review.product,
+          isApproved: true
+        }
+      },
+      {
+        $group: {
+          _id: "$product",
+          avgRating: { $avg: "$rating" },
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    await Product.findByIdAndUpdate(review.product, {
+      averageRating: stats.length > 0 ? stats[0].avgRating : 0,
+      reviewCount: stats.length > 0 ? stats[0].count : 0
+    });
+
+    await logActivity({
+      user: adminId,
+      action: "TOGGLE_REVIEW_APPROVAL",
+      description: `Review approval updated: ${reviewId}`,
+      req,
+      status: "success",
+    });
+
+    return res.json({
+      success: true,
+      message: "Review approval updated successfully",
+      data: review
+    });
+
+  } catch (error) {
+    console.error("❌ toggleReviewApproval error:", error.message);
+
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+/* ------------------- REPORT REVIEW ------------------- */
+exports.reportReview = async (req, res) => {
+  try {
+    const { reviewId } = req.params;
+    const { reason } = req.body;
+    const userId = req.user._id;
+
+    const review = await Review.findById(reviewId);
+
+    if (!review) {
+      return res.status(404).json({
+        success: false,
+        message: "Review not found"
+      });
+    }
+
+    const alreadyReported = review.reportedBy.some(
+      r => r.user.toString() === userId.toString()
+    );
+
+    if (alreadyReported) {
+      return res.status(400).json({
+        success: false,
+        message: "You already reported this review"
+      });
+    }
+
+    review.reportCount += 1;
+    review.isReported = true;
+
+    review.reportedBy.push({
+      user: userId,
+      reason
+    });
+
+    if (review.reportCount >= 3) {
+      review.isApproved = false;
+    }
+
+    await review.save();
+
+    await logActivity({
+      user: userId,
+      action: "REPORT_REVIEW",
+      description: `Review reported: ${reviewId}`,
+      req,
+      status: "success",
+    });
+
+    res.json({
+      success: true,
+      message: "Review reported successfully"
+    });
+
+  } catch (error) {
+    console.error("❌ reportReview error:", error.message);
+
+    await logActivity({
+      user: userId,
+      action: "REPORT_REVIEW",
+      description: `Server error while reporting review: ${error.message}`,
+      req,
+      status: "failed",
+    });
+
+    res.status(500).json({
+      success: false,
+      message: "Server error while reporting review"
+    });
   }
 };
 
@@ -1084,7 +1197,12 @@ exports.updateReview = async (req, res) => {
     await review.save();
 
     const stats = await Review.aggregate([
-      { $match: { product: review.product } },
+      {
+        $match: {
+          product: review.product,
+          isApproved: true
+        }
+      },
       { $group: { _id: "$product", avgRating: { $avg: "$rating" }, count: { $sum: 1 } } }
     ]);
 
@@ -1134,7 +1252,12 @@ exports.deleteReview = async (req, res) => {
     });
 
     const stats = await Review.aggregate([
-      { $match: { product: new mongoose.Types.ObjectId(productId) } },
+      {
+        $match: {
+          product: new mongoose.Types.ObjectId(productId),
+          isApproved: true
+        }
+      },
       { $group: { _id: "$product", avgRating: { $avg: "$rating" }, count: { $sum: 1 } } }
     ]);
 

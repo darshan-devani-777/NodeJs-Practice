@@ -92,6 +92,22 @@ router.delete(
   productController.deleteReview
 );
 
+// TOGGLE REVIEW APPROVAL
+router.put(
+  "/reviews/approve/:reviewId",
+  protect,
+  authorizeRoles("admin"),
+  productController.toggleReviewApproval
+);
+
+// REPORT REVIEW
+router.post(
+  "/reviews/report/:reviewId",
+  protect,
+  authorizeRoles("user", "admin"),
+  productController.reportReview
+);
+
 // EDIT PRODUCT
 router.put(
   "/update/:productId",

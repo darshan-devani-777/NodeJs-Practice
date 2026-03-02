@@ -298,7 +298,7 @@ exports.getSpecificCart = async (req, res) => {
 };
 
 /* ------------------- UPDATE CART ITEM ------------------- */
-exports.updateCartItem = async (req, res) => {
+exports.updateCartItem = async (req, res) => {4
   try {
     const { productId, quantity } = req.body;
     const userId = req.user._id;

@@ -151,19 +151,19 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-sm table-auto">
                     <thead class="bg-gradient-to-r from-orange-50 via-orange-100 to-white sticky top-0">
-                        <tr>
+                        <tr class="text-left text-orange-700">
                             <th class="px-3 py-3 text-xs font-bold text-orange-700 text-center min-w-[45px] w-[45px]">#
                             </th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 min-w-[130px]">Order Number</th>
-                            <th class="px-4 py-3 text-xs font-bold text-orange-700 min-w-[140px]">Customer</th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 min-w-[85px]">Status</th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 text-center min-w-[70px]">Items</th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 text-center min-w-[90px]">Amount</th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 text-center min-w-[85px]">Payment
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[130px]">Order Number</th>
+                            <th class="px-4 py-3 text-xs font-bold text-centermin-w-[140px]">Customer</th>
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[85px]">Status</th>
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[70px]">Items</th>
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[90px]">Amount</th>
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[85px]">Payment
                             </th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 text-center min-w-[85px]">Created
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[85px]">Created
                             </th>
-                            <th class="px-3 py-3 text-xs font-bold text-orange-700 text-center min-w-[120px]">Actions
+                            <th class="px-3 py-3 text-xs font-bold text-center min-w-[120px]">Actions
                             </th>
                         </tr>
                     </thead>
@@ -175,7 +175,7 @@
         <!-- ================= REFUND SECTION ================= -->
         <div id="refundSection" class="hidden mt-10">
 
-            <!-- HEADER (Same Style as Orders) -->
+            <!-- HEADER -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3">
 
                 <div>
@@ -287,7 +287,7 @@
                             </span>
                             <span class="flex items-center gap-1">
                                 <i class="fas fa-sticky-note text-blue-500"></i>
-                                <span class="max-w-[160px] truncate italic" id="modalNotes">No notes</span>
+                                <span class="italic break-words" id="modalNotes">No notes</span>
                             </span>
                             <div id="modalTrackingInfo"
                                 class="flex items-center gap-1.5 bg-blue-50 px-2.5 py-1 rounded-lg text-xs font-mono font-semibold text-blue-800 border border-blue-200">
@@ -561,9 +561,24 @@
                 document.getElementById("modalNotes").textContent = order.notes || 'No notes';
                 document.getElementById("modalGrandTotal").textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
 
-                document.getElementById("modalTrackingInfo").innerHTML = order.trackingNumber ?
-                    `<i class="fas fa-truck text-blue-500"></i> <span class="font-semibold">${order.trackingNumber}</span>` :
-                    `<i class="fas fa-clock text-gray-400"></i> <span class="text-gray-500 font-medium">No tracking</span>`;
+                const trackingHTML = order.trackingNumber
+                    ? `<i class="fas fa-truck text-blue-500"></i> 
+       <span class="font-semibold">${order.trackingNumber}</span>`
+                    : `<i class="fas fa-clock text-gray-400"></i> 
+       <span class="text-gray-500 font-medium">No tracking</span>`;
+
+                const invoiceHTML = order.paymentStatus === "paid" && order.invoiceNumber
+                    ? `<button 
+           onclick="downloadInvoice('${order._id}')"
+           class="flex items-center gap-1.5 bg-green-50 hover:bg-green-100 transition px-2.5 py-1 rounded-lg text-xs font-mono font-semibold text-green-800 border border-green-200 cursor-pointer"
+           title="Download Invoice">
+           
+           <i class="fas fa-file-invoice text-green-600"></i> 
+           ${order.invoiceNumber}
+       </button>`
+                    : "";
+
+                document.getElementById("modalTrackingInfo").innerHTML = trackingHTML + invoiceHTML;
 
                 document.getElementById("orderDetailsModal").classList.remove("hidden");
 
@@ -933,6 +948,39 @@
                 behavior: "smooth",
                 block: "start"
             });
+        }
+
+        /* ================= DOWNLOAD INVOICE ================= */
+        async function downloadInvoice(orderId) {
+            try {
+                const response = await fetch(`/api/orders/invoice/${orderId}`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                        "Accept": "application/pdf"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to download invoice");
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `invoice-${orderId}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+
+                a.remove();
+                window.URL.revokeObjectURL(url);
+
+            } catch (error) {
+                alert("Invoice download failed");
+                console.error(error);
+            }
         }
     </script>
 </body>

@@ -2056,7 +2056,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MmY1Yzc5YTgyMjk1ZGY0NWJkNyIsImlhdCI6MTc3MjE3NDc4MiwiZXhwIjoxNzcyMTc4MzgyfQ.6CaY7-xo62LcC2VglNsIto_8lpn3U1qYcSTNUcJC-z8",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA3ZTAxNDYzMDk4NjQwMGFjZGMyNSIsImlhdCI6MTc3MjQzMTQyMCwiZXhwIjoxNzcyNDM1MDIwfQ.mqr8PxyI3BapLUM8mbXjffdN_Sw7A5gSAYrzK4A4xGE",
                   "type": "string"
                 }
               ]
@@ -2065,7 +2065,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Awesome basketball\"\n}",
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Very good product!\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2073,7 +2073,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:1234/api/products/reviews/add/6992ea7905cd92fcb5a05e2a",
+              "raw": "http://localhost:1234/api/products/reviews/add/6992edbc05cd92fcb5a05e48",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -2084,7 +2084,7 @@
                 "products",
                 "reviews",
                 "add",
-                "6992ea7905cd92fcb5a05e2a"
+                "6992edbc05cd92fcb5a05e48"
               ]
             }
           },
@@ -2153,6 +2153,206 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": true,\n    \"message\": \"Review added successfully\",\n    \"data\": {\n        \"product\": {\n            \"attributes\": {\n                \"color\": \"Oak Brown\",\n                \"size\": \"6 Seater\"\n            },\n            \"_id\": \"6992e67a05cd92fcb5a05e0d\",\n            \"title\": \"Wooden Dining Table\",\n            \"description\": \"A solid oak dining table with a classic design that fits perfectly in any dining room.\",\n            \"price\": 7000,\n            \"category\": [\n                \"Furniture\"\n            ],\n            \"subCategory\": [\n                \"Dining Tables, Wooden Furniture\"\n            ],\n            \"tags\": [\n                \"Dining, Wood, Table\"\n            ],\n            \"brand\": \"HomeStyle\",\n            \"inventory\": 10,\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1771234937/admin_dashboard/products/xkz4gnuaefwrhu0cdvps.webp\",\n            \"isApproved\": true,\n            \"createdBy\": \"698040dc31aabf244444e654\",\n            \"createdAt\": \"2026-02-16T09:42:18.518Z\",\n            \"updatedAt\": \"2026-02-26T10:55:50.368Z\",\n            \"__v\": 5,\n            \"averageRating\": 3,\n            \"isFeatured\": false,\n            \"reviewCount\": 1,\n            \"updatedBy\": \"698040dc31aabf244444e654\",\n            \"reviews\": [\n                {\n                    \"_id\": \"69a026b6ac30f8ac3593d69d\",\n                    \"product\": \"6992e67a05cd92fcb5a05e0d\",\n                    \"user\": {\n                        \"_id\": \"698040dc31aabf244444e654\",\n                        \"name\": \"Admin\",\n                        \"email\": \"admin@example.com\"\n                    },\n                    \"rating\": 3,\n                    \"comment\": \"As a regular product\",\n                    \"createdAt\": \"2026-02-26T10:55:50.365Z\",\n                    \"updatedAt\": \"2026-02-26T10:55:50.365Z\",\n                    \"__v\": 0\n                }\n            ]\n        },\n        \"newReview\": {\n            \"product\": \"6992e67a05cd92fcb5a05e0d\",\n            \"user\": \"698040dc31aabf244444e654\",\n            \"rating\": 3,\n            \"comment\": \"As a regular product\",\n            \"_id\": \"69a026b6ac30f8ac3593d69d\",\n            \"createdAt\": \"2026-02-26T10:55:50.365Z\",\n            \"updatedAt\": \"2026-02-26T10:55:50.365Z\",\n            \"__v\": 0\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Approve Review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjQzMTQ4NSwiZXhwIjoxNzcyNDM1MDg1fQ.4rRB2dEjPnMBHYkYVkbxkjabG3nVAOX8mtKeKxITk-M",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/products/reviews/approve/69a52853a0d027a89474fbdf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "reviews",
+                "approve",
+                "69a52853a0d027a89474fbdf"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Approve Review",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/products/reviews/approve/69a52853a0d027a89474fbdf",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "reviews",
+                    "approve",
+                    "69a52853a0d027a89474fbdf"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "415"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19f-5RYx3QZUqo4lL9XDJkYazsBk6SA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Mar 2026 06:04:54 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review approval updated successfully\",\n    \"data\": {\n        \"_id\": \"69a52853a0d027a89474fbdf\",\n        \"product\": \"6992edbc05cd92fcb5a05e48\",\n        \"user\": \"69807e014630986400acdc25\",\n        \"rating\": 5,\n        \"comment\": \"Very good product!\",\n        \"isApproved\": true,\n        \"isReported\": false,\n        \"reportCount\": 0,\n        \"reportedBy\": [],\n        \"createdAt\": \"2026-03-02T06:04:03.521Z\",\n        \"updatedAt\": \"2026-03-02T06:04:54.588Z\",\n        \"__v\": 0,\n        \"approvedBy\": \"698040dc31aabf244444e654\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Report Review",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "fQ.IuaxaDIEktIWHeXuatG1ckQprUQEnICcexizgAZLtJ4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Spam content\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/products/reviews/report/69a52853a0d027a89474fbdf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "products",
+                "reviews",
+                "report",
+                "69a52853a0d027a89474fbdf"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Report Review",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Spam content\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/products/reviews/report/69a52853a0d027a89474fbdf",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "products",
+                    "reviews",
+                    "report",
+                    "69a52853a0d027a89474fbdf"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "57"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"39-FJhnWsr6yQTwsjak5n2LX64ZWTM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Mar 2026 07:01:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Review reported successfully\"\n}"
             }
           ]
         },
@@ -3966,6 +4166,38 @@
               "body": "{\n    \"success\": true,\n    \"message\": \"Refund status updated successfully\",\n    \"data\": {\n        \"_id\": \"69a1732847be943e66043a84\",\n        \"order\": {\n            \"shippingAddress\": {\n                \"fullName\": \"Peter Apps\",\n                \"address\": \"12 MG Road, Near City Mall\",\n                \"city\": \"Pune\",\n                \"state\": \"Maharashtra\",\n                \"postalCode\": \"411001\",\n                \"country\": \"India\",\n                \"phone\": \"+919812345678\"\n            },\n            \"_id\": \"69a1725b47be943e66043a4d\",\n            \"user\": \"697ae977eebfe1c3918dabf3\",\n            \"items\": [\n                {\n                    \"product\": \"6992e58805cd92fcb5a05e07\",\n                    \"quantity\": 2,\n                    \"price\": 22000,\n                    \"_id\": \"69a1725b47be943e66043a4e\"\n                }\n            ],\n            \"totalItems\": 2,\n            \"totalAmount\": 44000,\n            \"status\": \"pending\",\n            \"paymentStatus\": \"pending\",\n            \"paymentMethod\": \"COD\",\n            \"orderNumber\": \"ORD202602271304\",\n            \"notes\": \"Please call before delivery\",\n            \"refundStatus\": \"approved\",\n            \"createdAt\": \"2026-02-27T10:30:51.115Z\",\n            \"updatedAt\": \"2026-02-27T10:52:53.642Z\",\n            \"__v\": 0\n        },\n        \"user\": \"697ae977eebfe1c3918dabf3\",\n        \"amount\": 44000,\n        \"reason\": \"Product damaged\",\n        \"status\": \"approved\",\n        \"createdAt\": \"2026-02-27T10:34:16.166Z\",\n        \"updatedAt\": \"2026-02-27T10:52:53.645Z\",\n        \"__v\": 0\n    }\n}"
             }
           ]
+        },
+        {
+          "name": "Generate Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2FlOTc3ZWViZmUxYzM5MThkYWJmMyIsImlhdCI6MTc3MjE4ODEwMCwiZXhwIjoxNzcyMTkxNzAwfQ.2NPpFUdcFZVYuSVQEFVp3_X7RLrQ_iXujjrd6hoHvoQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/orders/invoice/69a5148507878ef6afa9fc67",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "orders",
+                "invoice",
+                "69a5148507878ef6afa9fc67"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
