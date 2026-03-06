@@ -1,0 +1,480 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+    <!-- HEADER -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3">
+        <div>
+            <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 drop-shadow-md">
+                <i class="fas fa-info-circle text-blue-400 animate-pulse"></i>
+                <span>About Us</span>
+            </h1>
+        </div>
+        <% if (user.role==='admin' ) { %>
+            <div id="aboutActionBtnContainer">
+                <button id="aboutActionBtn" onclick="openEditModal()"
+                    class="px-4 py-2 text-xs rounded bg-yellow-500 text-white hover:bg-yellow-600 transition flex items-center gap-2">
+                    Loading...
+                </button>
+            </div>
+            <% } %>
+    </div>
+
+    <!-- ABOUT CONTENT -->
+    <div id="aboutContainer" class="space-y-3 [&>section]:space-y-2 [&>div]:space-y-1"></div>
+
+    <!-- EDIT MODAL - CREATE/UPDATE  -->
+    <% if (user.role==='admin' ) { %>
+        <div id="editModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+            <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl flex flex-col">
+                <div class="flex justify-between items-center p-6 border-b border-gray-200 shrink-0">
+                    <h2 id="modalTitle" class="text-lg font-bold text-blue-800">Edit About Us</h2>
+                    <button onclick="closeEditModal()"
+                        class="text-gray-500 hover:text-red-500 p-2 hover:bg-gray-100 rounded">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- SCROLLABLE FORM -->
+                <div class="flex-1 overflow-hidden flex flex-col max-h-[70vh]">
+                    <form id="editForm" onsubmit="saveAbout(event)" class="flex-1 flex flex-col overflow-hidden h-full">
+                        <!-- EDITOR CONTAINER  -->
+                        <div class="flex-1 overflow-y-auto p-6 border-b bg-gray-50/50 min-h-[400px]">
+                            <label class="block text-xs font-medium text-gray-700 mb-3 pb-1">About Content</label>
+
+                            <!-- HELPER BUTTONS -->
+                            <div class="mb-4 flex flex-wrap gap-2">
+                                <button type="button" onclick="loadSampleAboutData()"
+                                    class="px-4 py-2 text-xs bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-1 shadow-sm transition duration-300">
+                                    Load Sample
+                                </button>
+                                <button type="button" onclick="clearAboutEditorData()"
+                                    class="px-4 py-2 text-xs bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center gap-1 shadow-sm transition duration-300">
+                                    Clear
+                                </button>
+                            </div>
+
+                            <div class="w-full h-[450px]">
+                                <textarea id="aboutEditor" class="w-full h-full"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- BUTTONS -->
+                        <div class="p-6 border-t bg-white flex justify-end gap-2 pt-4 shrink-0">
+                            <button type="submit"
+                                class="px-6 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700 transition flex items-center gap-2">
+                                <svg id="saveSpinner" class="hidden animate-spin h-4 w-4 text-white"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                                </svg>
+                                <span id="saveBtnText">Save</span>
+                            </button>
+
+                            <button type="button" onclick="closeEditModal()"
+                                class="px-6 py-2 text-sm rounded bg-gray-400 text-white hover:bg-gray-500">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+            <div id="toast" class="fixed top-6 right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"></div>
+</div>
+
+<style>
+    #aboutContainer * {
+        line-height: 1.4 !important;
+        margin-bottom: 0.125em !important;
+    }
+
+    #aboutContainer br {
+        display: none !important;
+    }
+
+    #aboutContainer p:empty {
+        display: none !important;
+    }
+
+    #editModal .ck-editor__editable_inline,
+    #editModal .ck-content {
+        line-height: 1.4 !important;
+        padding: 12px 16px !important;
+        margin: 0 !important;
+        overflow-y: auto !important;
+        scrollbar-width: thin;
+        max-height: 390px !important;
+        min-height: 350px !important;
+    }
+
+    #editModal .ck-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #editModal .ck-content::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    #editModal .ck-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
+
+    #editModal .ck-content::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    #editModal .ck-content p {
+        margin-bottom: 0.125em !important;
+        margin-top: 0 !important;
+    }
+
+    #editModal .ck-content br {
+        display: none !important;
+    }
+
+    #editModal .ck-content h3 {
+        margin: 0.5em 0 0.25em 0 !important;
+        font-size: 1.125rem !important;
+        color: #1e40af !important;
+    }
+
+    #editModal #aboutEditor {
+        height: 100% !important;
+        min-height: 350px !important;
+    }
+</style>
+
+<script>
+    let aboutData = [];
+    let aboutEditorInstance;
+
+    /* ---------------- INIT ABOUT EDITOR ---------------- */
+    function initAboutEditor() {
+        if (aboutEditorInstance) return;
+
+        ClassicEditor
+            .create(document.querySelector('#aboutEditor'), {
+                placeholder: 'Write your About Us content here...',
+                toolbar: [
+                    'undo', 'redo', '|', 'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'blockQuote', 'insertTable', 'mediaEmbed', '|',
+                    'alignment', 'removeFormat'
+                ],
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_h3' }
+                    ]
+                },
+                contentStyle: `
+          * { margin: 0 !important; padding: 0 !important; line-height: 1.4 !important; }
+          h3 { font-weight: bold; color: #1e40af; margin: 0 0 0.25em 0 !important; }
+          p { font-size: 0.875rem; color: #374151; margin: 0 0 0.125em 0 !important; }
+          br { display: none !important; }
+          strong { font-weight: bold; }
+          a { color: #1d4ed8; text-decoration: underline; }
+          ul, ol { padding-left: 1.5rem; margin: 0.25em 0 !important; }
+          li { margin-bottom: 0.125em !important; }
+        `
+            })
+            .then(editor => {
+                aboutEditorInstance = editor;
+                const editable = editor.ui.view.editable.element;
+                editable.style.maxHeight = '320px';
+                editable.style.minHeight = '300px';
+                editable.style.overflowY = 'auto';
+            })
+            .catch(err => console.error("CKEditor init error:", err));
+    }
+
+    /* ---------------- FETCH ABOUT ---------------- */
+    async function fetchAbout() {
+        try {
+            const res = await fetch("/api/about-us/view", { headers: { Accept: "application/json" } });
+            const data = await res.json();
+
+            if (!data.success) {
+                const btn = document.getElementById("aboutActionBtn");
+                if (btn) {
+                    btn.innerHTML = `<i class="fas fa-plus text-[10px]"></i> Create About`;
+                    btn.onclick = openEditModal;
+                }
+                aboutData = [];
+                renderAbout();
+                return;
+            }
+
+            aboutData = data.data.sections || [];
+            renderAbout();
+
+            const btn = document.getElementById("aboutActionBtn");
+            if (btn) {
+                btn.innerHTML = `<i class="fas fa-edit text-[10px]"></i> Update About`;
+                btn.onclick = openEditModal;
+            }
+        } catch (err) {
+            showToast(err.message || "Failed to load About Us", "error");
+            const btn = document.getElementById("aboutActionBtn");
+            if (btn) {
+                btn.innerHTML = `<i class="fas fa-plus text-[10px]"></i> Create About`;
+                btn.onclick = openEditModal;
+            }
+        }
+    }
+
+    /* ---------------- RENDER ABOUT ---------------- */
+    function renderAbout() {
+        const container = document.getElementById("aboutContainer");
+        container.innerHTML = '';
+
+        if (!aboutData.length) {
+            container.innerHTML = `<p class="text-gray-500 font-semibold">About Us Not Found. Please create...</p>`;
+            return;
+        }
+
+        aboutData.forEach((sec, index) => {
+            const wrapper = document.createElement('section');
+            wrapper.className = "py-2 first:pt-0 border-b border-slate-200 last:border-b-0";
+
+            const cleanContent = sec.content
+                .replace(/<br\s*\/?>/gi, '')
+                .replace(/<p>\s*<\/p>/gi, '')
+                .replace(/<div>\s*<\/div>/gi, '');
+
+            wrapper.innerHTML = `
+          <h3 class="font-bold text-lg text-blue-800 mb-2 mt-1 leading-tight">${sec.title}</h3>
+          <div class="text-sm text-gray-700 leading-5 prose prose-sm max-w-none m-0 p-0 [&_*]:m-0 [&_*]:p-0 [&_p]:m-0 [&_p]:mb-1 [&_p]:leading-5 [&_br]:hidden [&_p:empty]:hidden">
+            ${cleanContent}
+          </div>
+        `;
+            container.appendChild(wrapper);
+        });
+    }
+
+    /* ---------------- OPEN EDIT MODAL ---------------- */
+    async function openEditModal() {
+        initAboutEditor();
+
+        try {
+            await new Promise(resolve => {
+                const check = () => aboutEditorInstance ? resolve() : setTimeout(check, 50);
+                check();
+            });
+
+            const btn = document.getElementById("aboutActionBtn");
+            const isCreateMode = !aboutData.length || (btn && btn.innerHTML.includes("Create"));
+
+            if (isCreateMode) {
+                document.getElementById("modalTitle").textContent = "Create About Us";
+                const editable = aboutEditorInstance.ui.view.editable.element;
+                editable.style.maxHeight = '450px';
+                editable.style.minHeight = '400px';
+                aboutEditorInstance.setData('');
+            } else {
+                document.getElementById("modalTitle").textContent = "Edit About Us";
+                const editable = aboutEditorInstance.ui.view.editable.element;
+                editable.style.maxHeight = '320px';
+                editable.style.minHeight = '300px';
+
+                let combinedHTML = '';
+                aboutData.forEach(sec => {
+                    combinedHTML += `<h3>${sec.title}</h3><div>${sec.content}</div>`;
+                });
+                combinedHTML = combinedHTML
+                    .replace(/<br\s*\/?>\s*/gi, '')
+                    .replace(/<p>\s*<\/p>/gi, '')
+                    .replace(/<div>\s*<\/div>/gi, '')
+                    .replace(/\n\s*\n/g, '\n')
+                    .trim();
+
+                aboutEditorInstance.setData(combinedHTML);
+            }
+
+            document.getElementById("editModal").classList.remove("hidden");
+            document.getElementById("editModal").classList.add("flex");
+
+        } catch (err) {
+            showToast(err.message || "Failed to prepare editor", "error");
+        }
+    }
+
+    /* ---------------- CLOSE EDIT MODAL ---------------- */
+    function closeEditModal() {
+        document.getElementById("editModal").classList.add("hidden");
+        document.getElementById("editModal").classList.remove("flex");
+    }
+
+    /* ---------------- LOAD SAMPLE ABOUT DATA ---------------- */
+    function loadSampleAboutData() {
+        aboutEditorInstance.setData(`
+  <h3>Who We Are</h3>
+  <p>We're a passionate team dedicated to delivering innovative solutions that transform businesses and enhance user experiences. Our journey began with a simple vision: to create technology that works seamlessly for everyone.</p>
+  
+  <h3>Our Mission</h3>
+  <p>To empower businesses with cutting-edge technology solutions that drive growth, efficiency, and customer satisfaction. We believe technology should simplify complexity, not add to it.</p>
+  
+  <h3>Our Vision</h3>
+  <p>To be the most trusted technology partner globally, recognized for innovation, reliability, and exceptional customer experiences that set industry standards.</p>
+  
+  <h3>What Sets Us Apart</h3>
+  <p>
+  - <strong>Expertise:</strong> 10+ years of proven experience across industries<br>
+  - <strong>Innovation:</strong> Continuous R&D for next-gen solutions<br>
+  - <strong>Reliability:</strong> 99.9% uptime guarantee<br>
+  - <strong>Support:</strong> 24/7 dedicated customer success teams
+  </p>
+  
+  <h3>Our Team</h3>
+  <p>Our diverse team of 50+ professionals brings expertise from top tech companies and universities worldwide. We foster a culture of continuous learning, collaboration, and excellence.</p>
+  
+  <h3>Our Achievements</h3>
+  <ul>
+  <li>500+ successful projects delivered</li>
+  <li>200+ happy clients worldwide</li>
+  <li>50+ industry awards won</li>
+  <li>98% customer satisfaction rate</li>
+  </ul>
+  
+  <h3>Why Choose Us</h3>
+  <p>We don't just deliver projects; we build partnerships. Our client-centric approach ensures your success is our success. From startups to enterprises, we scale with your ambitions.</p>
+  
+  <h3>Get In Touch</h3>
+  <p>Ready to transform your business? <a href="mailto:contact@yourcompany.com">Email us</a> or visit our <a href="/contact">contact page</a> to start your journey with us today.</p>
+      `);
+        showToast("Sample About Us data loaded! Edit and save.", "success");
+    }
+
+    /* ---------------- CLEAR ABOUT EDITOR DATA ---------------- */
+    function clearAboutEditorData() {
+        aboutEditorInstance.setData('');
+        showToast("Editor cleared!", "success");
+    }
+
+    /* ---------------- SAVE ABOUT ---------------- */
+    async function saveAbout(e) {
+        e.preventDefault();
+
+        if (!aboutEditorInstance) {
+            showToast("Editor not ready", "error");
+            return;
+        }
+
+        let rawHTML = aboutEditorInstance.getData()
+            .replace(/<br\s*\/?>\s*/gi, '')
+            .replace(/<p>\s*<\/p>/gi, '')
+            .replace(/<div>\s*<\/div>/gi, '')
+            .trim();
+
+        console.log('🔍 Raw HTML:', rawHTML.substring(0, 200) + '...');
+
+        if (!rawHTML) {
+            showToast("About content cannot be empty", "error");
+            return;
+        }
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = rawHTML;
+
+        const sections = [];
+
+        const h3Elements = tempDiv.querySelectorAll('h3');
+        console.log('🔍 Found H3s:', h3Elements.length);
+
+        if (h3Elements.length > 0) {
+            h3Elements.forEach((h3) => {
+                const title = h3.innerText.trim();
+                if (!title) return;
+
+                let content = '';
+                let nextEl = h3.nextElementSibling;
+                while (nextEl && nextEl.tagName !== 'H3') {
+                    content += nextEl.outerHTML;
+                    nextEl = nextEl.nextElementSibling;
+                }
+
+                if (content.trim()) {
+                    sections.push({ title, content: content.trim() });
+                }
+            });
+        }
+
+        if (sections.length === 0) {
+            const allContent = tempDiv.innerHTML.trim();
+            if (allContent) {
+                sections.push({
+                    title: "About Us",
+                    content: allContent
+                });
+            }
+        }
+
+        console.log('🔍 Final sections:', sections);
+
+        if (!sections.length) {
+            showToast("At least one section with content is required", "error");
+            return;
+        }
+
+        const spinner = document.getElementById("saveSpinner");
+        const btnText = document.getElementById("saveBtnText");
+        spinner.classList.remove("hidden");
+        btnText.textContent = "Saving...";
+
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+
+        const minLoadTime = new Promise(resolve => setTimeout(resolve, 3000));
+
+        try {
+            const response = await Promise.all([
+                fetch("/api/about-us/upsert", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Accept: "application/json" },
+                    body: JSON.stringify({ sections, isActive: true })
+                }),
+                minLoadTime
+            ]);
+
+            const apiResponse = await response[0].json();
+
+            if (!apiResponse.success) {
+                throw new Error(apiResponse.message || "Failed to save");
+            }
+
+            aboutData = apiResponse.data.sections || [];
+            renderAbout();
+            closeEditModal();
+            showToast("About Us saved successfully!");
+
+            const btn = document.getElementById("aboutActionBtn");
+            if (btn) {
+                btn.innerHTML = `<i class="fas fa-edit text-[10px]"></i> Update About`;
+                btn.onclick = openEditModal;
+            }
+
+        } catch (err) {
+            console.error("Save error:", err);
+            showToast(err.message || "Failed to save About Us", "error");
+        } finally {
+            setTimeout(() => {
+                spinner.classList.add("hidden");
+                btnText.textContent = "Save";
+                submitBtn.disabled = false;
+            }, 3100);
+        }
+    }
+
+    /* ---------------- SHOW TOAST ---------------- */
+    function showToast(msg, type = "success") {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.className = `fixed top-3 right-6 px-4 py-2 rounded shadow z-50 text-white text-sm ${type === "success" ? "bg-green-600" : "bg-red-600"}`;
+        toast.classList.remove("hidden");
+        setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
+    /* ---------------- DOM CONTENT LOADED ---------------- */
+    document.addEventListener("DOMContentLoaded", fetchAbout);
+</script>

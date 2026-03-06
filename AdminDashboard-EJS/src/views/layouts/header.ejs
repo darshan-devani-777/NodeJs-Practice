@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script>
-    window.currentUser = <%- JSON.stringify(user || null) %>;
+    window.currentUser = <% - JSON.stringify(user || null) %>;
   </script>
   <!-- CKEditor 5 Classic -->
   <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 </head>
 
-<body class="min-h-screen bg-gray-100 overflow-x-hidden">
+<body class="min-h-screen bg-gray-100 overflow-x-hidden flex flex-col">
   <div id="toast"
     class="fixed top-3 right-6 bg-green-600 text-white px-5 py-3 rounded-xl shadow-2xl opacity-0 pointer-events-none transform translate-y-[-20px] transition-all duration-300 z-[9999] font-medium text-sm">
   </div>
@@ -22,7 +22,7 @@
   <!-- Sidebar -->
   <% if (user) { %>
     <aside id="sidebar"
-      class="fixed left-0 top-0 w-64 h-full bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white z-50 flex flex-col transition-all duration-300 overflow-y-auto md:translate-x-0 -translate-x-full lg:w-64"
+      class="fixed left-0 top-0 w-64 h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white z-50 flex flex-col transition-all duration-300 overflow-hidden md:translate-x-0 -translate-x-full lg:w-64"
       style="scroll-behavior: smooth">
       <!-- Sidebar Header -->
       <div class="relative flex items-center h-14 px-3 border-b border-gray-700 sticky top-0 z-[70] bg-gray-900/95">
@@ -54,6 +54,7 @@
 
       <!-- Navigation -->
       <nav class="flex-1 overflow-y-auto p-4 space-y-3 mt-3 sidebar-nav" id="sidebarNav">
+        <!-- Dashboard -->
         <a href="/dashboard" data-active="dashboard"
           class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
           onclick="sidebarLinkClick(event)">
@@ -66,6 +67,7 @@
           <span class="sidebar-link-label">Dashboard</span>
         </a>
 
+        <!-- Users -->
         <% if (user.role==='admin' ) { %>
           <a href="/users" data-active="users"
             class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
@@ -81,6 +83,7 @@
           </a>
           <% } %>
 
+            <!-- Blogs -->
             <% if (user.role==='admin' ) { %>
               <a href="/blogs" data-active="blogs"
                 class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
@@ -95,6 +98,7 @@
               </a>
               <% } %>
 
+                <!-- Products -->
                 <% if (user.role==='admin' ) { %>
                   <a href="/products" data-active="products"
                     class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
@@ -111,86 +115,195 @@
                   </a>
                   <% } %>
 
-                  <% if (user.role==='admin' ) { %>
-                    <a href="/carts" data-active="carts"
-                      class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-                      onclick="sidebarLinkClick(event)">
-
-                      <span class="sidebar-link-icon flex items-center justify-center w-5">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.3a3 3 0 00-3-3M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M15 14.25a3 3 0 00-3 3h15.3a3 3 0 00-3-3M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M17.25 3H21a1.5 1.5 0 011.5 1.5v9a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5v-9A1.5 1.5 0 012.25 3z" />
-                        </svg>
-                      </span>
-
-                      <span class="sidebar-link-label">Carts</span>
-                    </a>
-                    <% } %> 
-
+                  <!-- Carts -->
                     <% if (user.role==='admin' ) { %>
-                      <a href="/orders" data-active="orders"
+                      <a href="/carts" data-active="carts"
                         class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
                         onclick="sidebarLinkClick(event)">
-                      
+
                         <span class="sidebar-link-icon flex items-center justify-center w-5">
                           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 4.5M7 13l-1.5 4.5M17 13l1.5 4.5M9 19.5A3.5 3.5 0 1112.5 19 3.5 3.5 0 019 19.5zM6.5 19.5A2.5 2.5 0 109 22 2.5 2.5 0 106.5 19.5zM17.5 19.5A2.5 2.5 0 1020 22 2.5 2.5 0 1017.5 19.5z" />
+                              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.3a3 3 0 00-3-3M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M15 14.25a3 3 0 00-3 3h15.3a3 3 0 00-3-3M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M17.25 3H21a1.5 1.5 0 011.5 1.5v9a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5v-9A1.5 1.5 0 012.25 3z" />
                           </svg>
                         </span>
-                      
-                        <span class="sidebar-link-label">Orders</span>
-                      </a>
-                      <% } %>                      
 
-                    <% if (user.role==='admin' ) { %>
-                      <a href="/faqs" data-active="faqs"
-                        class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-                        onclick="sidebarLinkClick(event)">
-                        <span class="sidebar-link-icon flex items-center justify-center w-5 h-5">
-                          <i class="fas fa-question-circle text-lg"></i>
-                        </span>
-                        <span class="sidebar-link-label">FAQs</span>
+                        <span class="sidebar-link-label">Carts</span>
                       </a>
                       <% } %>
-
-                        <a href="/privacy-policy" data-active="privacy-policy"
-                          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-                          onclick="sidebarLinkClick(event)">
-                          <span class="sidebar-link-icon flex items-center justify-center w-5 h-5">
-                            <i class="fas fa-file-contract text-lg"></i>
-                          </span>
-                          <span class="sidebar-link-label">Privacy Policy</span>
-                        </a>
-
-                        <a href="/settings" data-active="settings"
-                          class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
-                          onclick="sidebarLinkClick(event)">
-                          <span class="sidebar-link-icon flex items-center justify-center w-5">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z">
-                              </path>
-                            </svg>
-                          </span>
-                          <span class="sidebar-link-label">Settings</span>
-                        </a>
-
+                      
+                       <!-- Orders -->
                         <% if (user.role==='admin' ) { %>
-                          <a href="/activity-logs" data-active="activity-logs"
+                          <a href="/orders" data-active="orders"
                             class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
                             onclick="sidebarLinkClick(event)">
+
                             <span class="sidebar-link-icon flex items-center justify-center w-5">
                               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18">
-                                </path>
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 4.5M7 13l-1.5 4.5M17 13l1.5 4.5M9 19.5A3.5 3.5 0 1112.5 19 3.5 3.5 0 019 19.5zM6.5 19.5A2.5 2.5 0 109 22 2.5 2.5 0 106.5 19.5zM17.5 19.5A2.5 2.5 0 1020 22 2.5 2.5 0 1017.5 19.5z" />
                               </svg>
                             </span>
-                            <span class="sidebar-link-label">Activity Logs</span>
+
+                            <span class="sidebar-link-label">Orders</span>
                           </a>
                           <% } %>
+
+                          <!-- FAQs -->
+                            <% if (user.role==='admin' ) { %>
+                              <a href="/faqs" data-active="faqs"
+                                class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                                onclick="sidebarLinkClick(event)">
+                                <span class="sidebar-link-icon flex items-center justify-center w-5 h-5">
+                                  <i class="fas fa-question-circle text-lg"></i>
+                                </span>
+                                <span class="sidebar-link-label">FAQs</span>
+                              </a>
+                              <% } %>
+
+                                <!-- Privacy Policy -->
+                                <a href="/privacy-policy" data-active="privacy-policy"
+                                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link">
+
+                                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                      viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 3l7 4v5c0 5-3.5 8.5-7 9-3.5-.5-7-4-7-9V7l7-4z" />
+                                    </svg>
+                                  </span>
+
+                                  <span class="sidebar-link-label">Privacy Policy</span>
+                                </a>
+
+
+                                <!-- Terms -->
+                                <a href="/terms-condition" data-active="terms-condition"
+                                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link">
+
+                                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                      viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12h6M9 16h6M9 8h6M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                                    </svg>
+                                  </span>
+
+                                  <span class="sidebar-link-label">Terms & Condition</span>
+                                </a>
+
+
+                                <!-- About -->
+                                <a href="/about-us" data-active="about-us"
+                                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link">
+
+                                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                      viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5V9H2v11h5m10 0v-2a4 4 0 00-3-3.87M7 20v-2a4 4 0 013-3.87M9 7a3 3 0 110-6 3 3 0 010 6zm6 0a3 3 0 110-6 3 3 0 010 6z" />
+                                    </svg>
+                                  </span>
+
+                                  <span class="sidebar-link-label">About Us</span>
+                                </a>
+
+
+                                <!-- Contact -->
+                                <a href="/contact-us" data-active="contact-us"
+                                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link">
+
+                                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+                                      viewBox="0 0 24 24" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 12H8m8 0l-4 4m4-4l-4-4M3 5h18M3 19h18" />
+                                    </svg>
+                                  </span>
+
+                                  <span class="sidebar-link-label">Contact Us</span>
+                                </a>
+
+                                <!-- Banners -->
+                                <% if (user.role==='admin' ) { %>
+                                <a href="/banners" data-active="banners"
+                                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                                  onclick="sidebarLinkClick(event)">
+                                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                      viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18">
+                                        </path>
+                                      </svg>
+                                    </span>
+                                    <span class="sidebar-link-label">Banners</span>
+                                  </a>
+                                  <% } %>
+
+                                  <!-- Landing Page -->
+                                  <% if (user.role === 'admin') { %>
+                                    <a href="/landingPage" data-active="landingPage"
+                                       class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                                       onclick="sidebarLinkClick(event)">
+                                      <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6"></path>
+                                        </svg>
+                                      </span>
+                                      <span class="sidebar-link-label">Landing Page</span>
+                                    </a>
+                                  <% } %>
+
+                                <!-- Settings -->
+                                <a href="/settings" data-active="settings"
+                                  class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                                  onclick="sidebarLinkClick(event)">
+                                  <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                      viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0-8C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.522 0 10 4.478 10 10s-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2z">
+                                      </path>
+                                    </svg>
+                                  </span>
+                                  <span class="sidebar-link-label">Settings</span>
+                                </a>
+
+                                <% if (user.role==='admin') { %>
+                                  <a href="/analytic-reports" data-active="analytic-reports"
+                                    class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                                    onclick="sidebarLinkClick(event)">
+                                    <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M11 11V3h2v8h8v2h-8v8h-2v-8H3v-2h8z">
+                                        </path>
+                                      </svg>
+                                    </span>
+                                    <span class="sidebar-link-label">Analytic Reports</span>
+                                  </a>
+                                <% } %>
+
+                                <!-- Activity Logs -->
+                                <% if (user.role==='admin' ) { %>
+                                  <a href="/activity-logs" data-active="activity-logs"
+                                    class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link"
+                                    onclick="sidebarLinkClick(event)">
+                                    <span class="sidebar-link-icon flex items-center justify-center w-5">
+                                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M3 7v10a4 4 0 004 4h10a4 4 0 004-4V7M3 7a4 4 0 014-4h10a4 4 0 014 4M3 7v10m0-10h18">
+                                        </path>
+                                      </svg>
+                                    </span>
+                                    <span class="sidebar-link-label">Activity Logs</span>
+                                  </a>
+                                  <% } %>
       </nav>
 
       <!-- Logout -->
@@ -213,7 +326,7 @@
     <% } %>
 
       <!-- Main Content Area  -->
-      <div id="mainContent" class="min-h-screen transition-all duration-300 <%= user ? 'ml-0 lg:ml-64' : '' %>">
+      <div id="mainContent" class="flex flex-col flex-1 transition-all duration-300 <%= user ? 'ml-0 lg:ml-64' : '' %>">
         <!-- Top Navbar  -->
         <nav
           class="w-full bg-gradient-to-br from-blue-50 via-white to-slate-100 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200">
@@ -288,8 +401,9 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="min-h-screen">
+        <main class="flex-1">
           <div class="w-full">
+        
             <% if (pageContent==='dashboard.ejs' ) { %>
               <%- include('dashboard') %>
         
@@ -299,23 +413,41 @@
             <% } else if (pageContent==='blogs.ejs' ) { %>
               <%- include('blogs') %>
         
+            <% } else if (pageContent==='banners.ejs' ) { %>
+              <%- include('banners') %>
+
+            <% } else if (pageContent==='landingPage.ejs' ) { %>
+              <%- include('landingPage') %>
+        
             <% } else if (pageContent==='faqs.ejs' ) { %>
               <%- include('faqs') %>
         
             <% } else if (pageContent==='privacy-policy.ejs' ) { %>
               <%- include('privacyPolicy') %>
         
+            <% } else if (pageContent==='terms-condition.ejs' ) { %>
+              <%- include('termsCondition') %>
+        
+            <% } else if (pageContent==='about-us.ejs' ) { %>
+              <%- include('aboutUs') %>
+        
+            <% } else if (pageContent==='contact-us.ejs' ) { %>
+              <%- include('contactUs') %>
+        
             <% } else if (pageContent==='products.ejs' ) { %>
               <%- include('products') %>
         
             <% } else if (pageContent==='carts.ejs' ) { %>
               <%- include('carts') %>
-
+        
             <% } else if (pageContent==='orders.ejs' ) { %>
-              <%- include('orders') %>  
+              <%- include('orders') %>
         
             <% } else if (pageContent==='settings.ejs' ) { %>
               <%- include('settings') %>
+
+            <% } else if (pageContent==='analytic-reports.ejs' ) { %>
+              <%- include('analyticReports') %>
         
             <% } else if (pageContent==='activity-logs.ejs' ) { %>
               <%- include('activityLogs') %>
@@ -328,9 +460,11 @@
         
             <% } else if (pageContent==='reset-password.ejs' ) { %>
               <%- include('../auth/reset-password') %>
+        
             <% } %>
+        
           </div>
-        </main>        
+        </main>
         <%- include('footer') %>
       </div>
 
@@ -468,7 +602,13 @@
               { path: /^\/orders(\/.*)?$/, name: "Orders", url: "/orders" },
               { path: /^\/faqs(\/.*)?$/, name: "FAQs", url: "/faqs" },
               { path: /^\/privacy-policy(\/.*)?$/, name: "Privacy Policy", url: "/privacy-policy" },
+              { path: /^\/terms-condition(\/.*)?$/, name: "Terms Condition", url: "/terms-condition" },
+              { path: /^\/about-us(\/.*)?$/, name: "About Us", url: "/about-us" },
+              { path: /^\/contact-us(\/.*)?$/, name: "Contact Us", url: "/contact-us" },
+              { path: /^\/banners(\/.*)?$/, name: "Banners", url: "/banners" },
+              { path: /^\/landingPage(\/.*)?$/, name: "LandingPage", url: "/landngPage" },
               { path: /^\/settings\/?$/, name: "Settings", url: "/settings" },
+              { path: /^\/analytic-reports\/?$/, name: "Analytic Reports", url: "/analytic-reports" },
               { path: /^\/activity-logs(\/.*)?$/, name: "Activity Logs", url: "/activity-logs" },
             ];
             const path = window.location.pathname;
@@ -487,6 +627,24 @@
       </script>
 
       <style>
+        /* Clean thin scrollbar */
+        #sidebarNav::-webkit-scrollbar {
+          width: 5px;
+        }
+
+        #sidebarNav::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        #sidebarNav::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 10px;
+        }
+
+        #sidebarNav::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+
         .sidebar-collapsed .sidebar-header-text,
         .sidebar-collapsed .sidebar-link-label {
           display: none !important;

@@ -1,0 +1,283 @@
+<div class="min-h-screen bg-slate-100 p-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
+        <div>
+            <h1
+                class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+                <i class="fas fa-chart-line text-blue-400 animate-pulse"></i>
+                <span>Analytics Reports</span>
+            </h1>
+            <span class="text-base text-gray-600 font-semibold">
+                Monitor key metrics, traffic insights & performance reports
+            </span>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="bg-white border border-slate-200 rounded-xl p-4 mb-8 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                Data Exports
+            </div>
+            <div class="flex flex-wrap gap-4">
+                <!-- CSV Group -->
+                <div class="flex flex-wrap gap-2">
+                    <button id="btnUsers"
+                        class="export-btn csv-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded border border-slate-300 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-400 transition">
+                        <i class="fas fa-user text-slate-500"></i><span>Users (CSV)</span>
+                    </button>
+                    <button id="btnProducts"
+                        class="export-btn csv-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded border border-slate-300 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-400 transition">
+                        <i class="fas fa-box text-slate-500"></i>
+                        <span>Products (CSV)</span>
+                    </button>
+                    <button id="btnSales"
+                        class="export-btn csv-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded border border-slate-300 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-400 transition">
+                        <i class="fas fa-chart-line text-slate-500"></i>
+                        <span>Sales (CSV)</span>
+                    </button>
+                    <button id="btnOrders"
+                        class="export-btn csv-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded border border-slate-300 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-400 transition">
+                        <i class="fas fa-shopping-cart text-slate-500"></i>
+                        <span>Orders (CSV)</span>
+                    </button>
+                    <button id="btnRevenue"
+                        class="export-btn csv-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded border border-slate-300 bg-slate-50 text-slate-800 hover:bg-slate-100 hover:border-slate-400 transition">
+                        <i class="fas fa-dollar-sign text-slate-500"></i>
+                        <span>Revenue (CSV)</span>
+                    </button>
+                </div>
+
+                <!-- PDF Group -->
+                <div class="flex flex-wrap gap-2">
+                    <button id="btnPDFUsers"
+                        class="export-btn pdf-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 transition">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Users (PDF)</span>
+                    </button>
+                    <button id="btnPDFSales"
+                        class="export-btn pdf-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 transition">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Sales (PDF)</span>
+                    </button>
+                    <button id="btnPDFOrders"
+                        class="export-btn pdf-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 transition">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Orders (PDF)</span>
+                    </button>
+                    <button id="btnPDFRevenue"
+                        class="export-btn pdf-btn inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 transition">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Revenue (PDF)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Card -->
+    <div id="previewSection" class="hidden">
+        <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200">
+                <h3 id="previewTitle" class="text-sm font-semibold text-slate-800">Preview</h3>
+                <span class="text-[11px] text-slate-400 uppercase tracking-wide">Preview Only</span>
+            </div>
+            <div id="previewTableContainer" class="p-4 overflow-x-auto max-h-[500px] relative"></div>
+            <div id="downloadBtnContainer"
+                class="px-4 py-3 border-t border-slate-200 hidden flex items-center justify-end gap-2 bg-slate-50">
+                <button id="closePreviewBtn"
+                    class="text-xs text-slate-500 hover:text-slate-700 underline decoration-dotted underline-offset-2">Close</button>
+                <button id="downloadBtn"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded bg-green-600 text-white hover:bg-green-700 transition">
+                    <i class="fas fa-download"></i>
+                    <span>Download</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let activeBtn = null;
+
+        // SET ACTIVE BUTTON
+        function setActiveButton(btn, type) {
+            if (activeBtn) {
+                activeBtn.classList.remove('ring-2', 'ring-offset-2', 'ring-offset-slate-100', 'ring-blue-500', 'ring-red-500');
+            }
+            activeBtn = btn;
+            btn.classList.add('ring-2', 'ring-offset-2', 'ring-offset-slate-100');
+            if (type === 'csv') btn.classList.add('ring-blue-500');
+            if (type === 'pdf') btn.classList.add('ring-red-500');
+        }
+
+        // SHOW LOADING
+        function showLoading(container) {
+            container.innerHTML = `
+                <div class="loader-overlay">
+                    <div class="loader"></div>
+                </div>
+            `;
+        }
+
+        // FETCH CSV PREVIEW
+        async function fetchCSVPreview(type) {
+            const container = document.getElementById('previewTableContainer');
+            showLoading(container);
+
+            await new Promise(resolve => setTimeout(resolve, 700));
+
+            try {
+                const res = await fetch(`/api/reports/export/csv?type=${type}`);
+                if (!res.ok) throw new Error('Network response was not ok');
+                const text = await res.text();
+                const [headerLine, ...lines] = text.trim().split('\n');
+                const headers = headerLine.split(',');
+                const data = lines.map(line => {
+                    const values = line.split(',');
+                    return Object.fromEntries(headers.map((h, i) => [h, values[i]]));
+                });
+                return data;
+            } catch (e) {
+                alert('Failed to fetch CSV');
+                console.error(e);
+                return null;
+            }
+        }
+
+        // RENDER TABLE PREVIEW
+        function renderTablePreview(data, type) {
+            const container = document.getElementById('previewTableContainer');
+            container.innerHTML = '';
+            document.getElementById('previewTitle').textContent = `CSV Preview · ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            if (!data || !data.length) {
+                container.innerHTML = '<p class="text-center text-red-500 text-sm py-4">No data available.</p>';
+                return;
+            }
+            const table = document.createElement('table');
+            table.className = 'min-w-full border border-slate-200 divide-y divide-slate-200 text-xs table-auto';
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            Object.keys(data[0]).forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                th.className = 'px-3 py-2 bg-slate-50 text-slate-600 font-semibold uppercase text-[10px] text-left';
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            data.forEach((row, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40';
+                Object.values(row).forEach(val => {
+                    const td = document.createElement('td');
+                    td.textContent = val;
+                    td.className = 'px-3 py-2 border-b border-slate-100 text-slate-700 text-[11px]';
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            container.appendChild(table);
+
+            document.getElementById('previewSection').classList.remove('hidden');
+            document.getElementById('downloadBtnContainer').classList.remove('hidden');
+        }
+
+        // FETCH PDF PREVIEW
+        async function fetchPDFPreview(type) {
+            const container = document.getElementById('previewTableContainer');
+            showLoading(container);
+            await new Promise(resolve => setTimeout(resolve, 700));
+
+            try {
+                const res = await fetch(`/api/reports/export/pdf?type=${type}`);
+                if (!res.ok) throw new Error('Failed');
+                const blob = await res.blob();
+                const url = URL.createObjectURL(blob);
+                container.innerHTML = `<iframe src="${url}" class="w-full h-[600px] border border-slate-200 rounded-lg" frameborder="0"></iframe>`;
+                document.getElementById('previewTitle').textContent = `PDF Preview · ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+                document.getElementById('previewSection').classList.remove('hidden');
+                document.getElementById('downloadBtnContainer').classList.remove('hidden');
+                const downloadBtn = document.getElementById('downloadBtn');
+                downloadBtn.dataset.type = type;
+                downloadBtn.dataset.format = 'pdf';
+            } catch (e) {
+                alert('Failed to fetch PDF');
+                console.error(e);
+            }
+        }
+
+        // SETUP CSV BUTTON
+        function setupCSVButton(id, type) {
+            const btn = document.getElementById(id);
+            btn.addEventListener('click', async () => {
+                setActiveButton(btn, 'csv');
+                const data = await fetchCSVPreview(type);
+                if (data) renderTablePreview(data, type);
+                const downloadBtn = document.getElementById('downloadBtn');
+                downloadBtn.dataset.type = type;
+                downloadBtn.dataset.format = 'csv';
+            });
+        }
+
+        // SETUP PDF BUTTON
+        function setupPDFButton(id, type) {
+            const btn = document.getElementById(id);
+            btn.addEventListener('click', () => {
+                setActiveButton(btn, 'pdf');
+                fetchPDFPreview(type);
+            });
+        }
+
+        ['Users', 'Products', 'Sales', 'Orders', 'Revenue'].forEach(n => setupCSVButton(`btn${n}`, n.toLowerCase()));
+        ['Users', 'Sales', 'Orders', 'Revenue'].forEach(n => setupPDFButton(`btnPDF${n}`, n.toLowerCase()));
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const btn = document.getElementById('downloadBtn');
+            const type = btn.dataset.type;
+            const format = btn.dataset.format || 'csv';
+            if (!type) return;
+            window.location.href = `/api/reports/export/${format}?type=${type}`;
+        });
+
+        document.getElementById('closePreviewBtn').addEventListener('click', () => {
+            document.getElementById('previewSection').classList.add('hidden');
+            if (activeBtn) activeBtn.classList.remove('ring-2', 'ring-blue-500', 'ring-red-500');
+            activeBtn = null;
+        });
+    </script>
+
+    <style>
+        #previewTableContainer {
+            position: relative;
+            min-height: 200px;
+        }
+
+        .loader-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 250, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .loader {
+            border: 4px solid #ccc;
+            border-top-color: #3c4a55;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</div>

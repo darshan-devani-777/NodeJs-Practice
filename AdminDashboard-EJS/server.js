@@ -32,8 +32,14 @@ app.use("/api/blogs", require("./src/routes/blogRoutes"));
 app.use("/api/products", require("./src/routes/productRoutes"));
 app.use("/api/faqs" , require("./src/routes/faqRoutes"));
 app.use("/api/privacypolicy" , require("./src/routes/privacypolicyRoutes"));
+app.use("/api/terms-conditions", require("./src/routes/termsConditionRoutes"));
+app.use("/api/about-us", require("./src/routes/aboutUsRoutes"));
+app.use("/api/contact-us", require("./src/routes/contactUsRoutes"));
 app.use("/api/carts" , require("./src/routes/cartRoutes"));
 app.use("/api/orders" , require("./src/routes/orderRoutes"));
+app.use("/api/banners", require("./src/routes/bannerRoutes"));
+app.use("/api/landing-pages", require("./src/routes/landingPageRoutes"));
+app.use("/api/reports", require("./src/routes/reportRoutes"));
 
 // ================= GLOBAL ERROR HANDLER =================
 app.use((err, req, res, next) => {

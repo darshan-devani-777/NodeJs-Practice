@@ -4,12 +4,12 @@
     <div>
       <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 drop-shadow-md">
         <i class="fas fa-file-contract text-blue-400 animate-pulse"></i>
-        <span>Privacy Policy</span>
+        <span>Terms & Conditions</span>
       </h1>
     </div>
     <% if (user.role==='admin' ) { %>
-      <div id="policyActionBtnContainer">
-        <button id="policyActionBtn" onclick="openEditModal()"
+      <div id="termsActionBtnContainer">
+        <button id="termsActionBtn" onclick="openEditModal()"
           class="px-4 py-2 text-xs rounded bg-yellow-500 text-white hover:bg-yellow-600 transition flex items-center gap-2">
           Loading...
         </button>
@@ -17,15 +17,15 @@
       <% } %>
   </div>
 
-  <!-- POLICY CONTENT -->
-  <div id="policyContainer" class="space-y-3 [&>section]:space-y-2 [&>div]:space-y-1"></div>
+  <!-- TERMS CONTENT -->
+  <div id="termsContainer" class="space-y-3 [&>section]:space-y-2 [&>div]:space-y-1"></div>
 
   <!-- EDIT MODAL - CREATE/UPDATE  -->
   <% if (user.role==='admin' ) { %>
     <div id="editModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
       <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl flex flex-col">
         <div class="flex justify-between items-center p-6 border-b border-gray-200 shrink-0">
-          <h2 id="modalTitle" class="text-lg font-bold text-blue-800">Edit Privacy Policy</h2>
+          <h2 id="modalTitle" class="text-lg font-bold text-blue-800">Edit Terms & Conditions</h2>
           <button onclick="closeEditModal()" class="text-gray-500 hover:text-red-500 p-2 hover:bg-gray-100 rounded">
             <i class="fas fa-times text-lg"></i>
           </button>
@@ -33,25 +33,25 @@
 
         <!-- SCROLLABLE FORM -->
         <div class="flex-1 overflow-hidden flex flex-col max-h-[70vh]">
-          <form id="editForm" onsubmit="savePolicy(event)" class="flex-1 flex flex-col overflow-hidden h-full">
+          <form id="editForm" onsubmit="saveTerms(event)" class="flex-1 flex flex-col overflow-hidden h-full">
             <!-- EDITOR CONTAINER  -->
             <div class="flex-1 overflow-y-auto p-6 border-b bg-gray-50/50 min-h-[400px]">
-              <label class="block text-xs font-medium text-gray-700 mb-3 pb-1">Policy Content</label>
+              <label class="block text-xs font-medium text-gray-700 mb-3 pb-1">Terms Content</label>
 
-              <!-- NEW HELPER BUTTONS -->
+              <!-- HELPER BUTTONS -->
               <div class="mb-4 flex flex-wrap gap-2">
-                <button type="button" onclick="loadSampleData()"
+                <button type="button" onclick="loadSampleTermsData()"
                   class="px-4 py-2 text-xs bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-1 shadow-sm transition duration-300">
                   Load Sample
                 </button>
-                <button type="button" onclick="clearEditorData()"
+                <button type="button" onclick="clearTermsEditorData()"
                   class="px-4 py-2 text-xs bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center gap-1 shadow-sm transition duration-300">
                   Clear
                 </button>
               </div>
 
               <div class="w-full h-[450px]">
-                <textarea id="policyEditor" class="w-full h-full"></textarea>
+                <textarea id="termsEditor" class="w-full h-full"></textarea>
               </div>
             </div>
 
@@ -79,16 +79,16 @@
 </div>
 
 <style>
-  #policyContainer * {
+  #termsContainer * {
     line-height: 1.4 !important;
     margin-bottom: 0.125em !important;
   }
 
-  #policyContainer br {
+  #termsContainer br {
     display: none !important;
   }
 
-  #policyContainer p:empty {
+  #termsContainer p:empty {
     display: none !important;
   }
 
@@ -136,23 +136,23 @@
     color: #1e40af !important;
   }
 
-  #editModal #policyEditor {
+  #editModal #termsEditor {
     height: 100% !important;
     min-height: 350px !important;
   }
 </style>
 
 <script>
-  let policyData = [];
-  let policyEditorInstance;
+  let termsData = [];
+  let termsEditorInstance;
 
-  /* ---------------- INIT POLICY EDITOR ---------------- */
-  function initPolicyEditor() {
-    if (policyEditorInstance) return;
+  /* ---------------- INIT TERMS EDITOR ---------------- */
+  function initTermsEditor() {
+    if (termsEditorInstance) return;
 
     ClassicEditor
-      .create(document.querySelector('#policyEditor'), {
-        placeholder: 'Write your Privacy Policy here...',
+      .create(document.querySelector('#termsEditor'), {
+        placeholder: 'Write your Terms & Conditions here...',
         toolbar: [
           'undo', 'redo', '|', 'heading', '|',
           'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
@@ -177,61 +177,61 @@
       `
       })
       .then(editor => {
-        policyEditorInstance = editor;
+        termsEditorInstance = editor;
         const editable = editor.ui.view.editable.element;
-        editable.style.maxHeight = '320px'; 
-        editable.style.minHeight = '300px';  
+        editable.style.maxHeight = '320px';
+        editable.style.minHeight = '300px';
         editable.style.overflowY = 'auto';
       })
       .catch(err => console.error("CKEditor init error:", err));
   }
 
-  /* ---------------- FETCH POLICY ---------------- */
-  async function fetchPolicy() {
+  /* ---------------- FETCH TERMS ---------------- */
+  async function fetchTerms() {
     try {
-      const res = await fetch("/api/privacypolicy/view", { headers: { Accept: "application/json" } });
+      const res = await fetch("/api/terms-conditions/view", { headers: { Accept: "application/json" } });
       const data = await res.json();
 
       if (!data.success) {
-        const btn = document.getElementById("policyActionBtn");
+        const btn = document.getElementById("termsActionBtn");
         if (btn) {
-          btn.innerHTML = `<i class="fas fa-plus text-[10px]"></i> Create Policy`;
+          btn.innerHTML = `<i class="fas fa-plus text-[10px]"></i> Create Terms`;
           btn.onclick = openEditModal;
         }
-        policyData = [];
-        renderPolicy();
+        termsData = [];
+        renderTerms();
         return;
       }
 
-      policyData = data.data.sections || [];
-      renderPolicy();
+      termsData = data.data.sections || [];
+      renderTerms();
 
-      const btn = document.getElementById("policyActionBtn");
+      const btn = document.getElementById("termsActionBtn");
       if (btn) {
-        btn.innerHTML = `<i class="fas fa-edit text-[10px]"></i> Update Policy`;
+        btn.innerHTML = `<i class="fas fa-edit text-[10px]"></i> Update Terms`;
         btn.onclick = openEditModal;
       }
     } catch (err) {
-      showToast(err.message || "Failed to load Privacy Policy", "error");
-      const btn = document.getElementById("policyActionBtn");
+      showToast(err.message || "Failed to load Terms & Conditions", "error");
+      const btn = document.getElementById("termsActionBtn");
       if (btn) {
-        btn.innerHTML = `<i class="fas fa-plus text-[10px]"></i> Create Policy`;
+        btn.innerHTML = `<i class="fas fa-plus text-[10px]"></i> Create Terms`;
         btn.onclick = openEditModal;
       }
     }
   }
 
-  /* ---------------- RENDER POLICY ---------------- */
-  function renderPolicy() {
-    const container = document.getElementById("policyContainer");
+  /* ---------------- RENDER TERMS ---------------- */
+  function renderTerms() {
+    const container = document.getElementById("termsContainer");
     container.innerHTML = '';
 
-    if (!policyData.length) {
-      container.innerHTML = `<p class="text-gray-500 font-semibold">Policy Not Found. Please create...`;
+    if (!termsData.length) {
+      container.innerHTML = `<p class="text-gray-500 font-semibold">Terms Not Found. Please create...`;
       return;
     }
 
-    policyData.forEach((sec, index) => {
+    termsData.forEach((sec, index) => {
       const wrapper = document.createElement('section');
       wrapper.className = "py-2 first:pt-0 border-b border-slate-200 last:border-b-0";
 
@@ -241,42 +241,42 @@
         .replace(/<div>\s*<\/div>/gi, '');
 
       wrapper.innerHTML = `
-      <h3 class="font-bold text-lg text-blue-800 mb-2 mt-1 leading-tight">${sec.title}</h3>
-      <div class="text-sm text-gray-700 leading-5 prose prose-sm max-w-none m-0 p-0 [&_*]:m-0 [&_*]:p-0 [&_p]:m-0 [&_p]:mb-1 [&_p]:leading-5 [&_br]:hidden [&_p:empty]:hidden">
-        ${cleanContent}
-      </div>
-    `;
+        <h3 class="font-bold text-lg text-blue-800 mb-2 mt-1 leading-tight">${sec.title}</h3>
+        <div class="text-sm text-gray-700 leading-5 prose prose-sm max-w-none m-0 p-0 [&_*]:m-0 [&_*]:p-0 [&_p]:m-0 [&_p]:mb-1 [&_p]:leading-5 [&_br]:hidden [&_p:empty]:hidden">
+          ${cleanContent}
+        </div>
+      `;
       container.appendChild(wrapper);
     });
   }
 
   /* ---------------- OPEN EDIT MODAL ---------------- */
   async function openEditModal() {
-    initPolicyEditor();
+    initTermsEditor();
 
     try {
       await new Promise(resolve => {
-        const check = () => policyEditorInstance ? resolve() : setTimeout(check, 50);
+        const check = () => termsEditorInstance ? resolve() : setTimeout(check, 50);
         check();
       });
 
-      const btn = document.getElementById("policyActionBtn");
-      const isCreateMode = !policyData.length || (btn && btn.innerHTML.includes("Create"));
+      const btn = document.getElementById("termsActionBtn");
+      const isCreateMode = !termsData.length || (btn && btn.innerHTML.includes("Create"));
 
       if (isCreateMode) {
-        document.getElementById("modalTitle").textContent = "Create Privacy Policy";
-        const editable = policyEditorInstance.ui.view.editable.element;
-        editable.style.maxHeight = '450px';  
-        editable.style.minHeight = '400px'; 
-        policyEditorInstance.setData('');
+        document.getElementById("modalTitle").textContent = "Create Terms & Conditions";
+        const editable = termsEditorInstance.ui.view.editable.element;
+        editable.style.maxHeight = '450px';
+        editable.style.minHeight = '400px';
+        termsEditorInstance.setData('');
       } else {
-        document.getElementById("modalTitle").textContent = "Edit Privacy Policy";
-        const editable = policyEditorInstance.ui.view.editable.element;
-        editable.style.maxHeight = '320px';  
-        editable.style.minHeight = '300px';  
+        document.getElementById("modalTitle").textContent = "Edit Terms & Conditions";
+        const editable = termsEditorInstance.ui.view.editable.element;
+        editable.style.maxHeight = '320px';
+        editable.style.minHeight = '300px';
 
         let combinedHTML = '';
-        policyData.forEach(sec => {
+        termsData.forEach(sec => {
           combinedHTML += `<h3>${sec.title}</h3><div>${sec.content}</div>`;
         });
         combinedHTML = combinedHTML
@@ -286,7 +286,7 @@
           .replace(/\n\s*\n/g, '\n')
           .trim();
 
-        policyEditorInstance.setData(combinedHTML);
+        termsEditorInstance.setData(combinedHTML);
       }
 
       document.getElementById("editModal").classList.remove("hidden");
@@ -303,68 +303,73 @@
     document.getElementById("editModal").classList.remove("flex");
   }
 
-  /* ---------------- LOAD SAMPLE DATA ---------------- */
-  function loadSampleData() {
-    policyEditorInstance.setData(`
-<h3>Introduction</h3>
+  /* ---------------- LOAD SAMPLE TERMS DATA ---------------- */
+  function loadSampleTermsData() {
+    termsEditorInstance.setData(`
+<h3>Acceptance of Terms</h3>
 <p>
-This Privacy Policy explains how we collect, use, and protect your information when you use our website or services. It also outlines your rights regarding your personal data. By using our services, you consent to the practices described in this policy. We are committed to maintaining your trust and ensuring your data is handled responsibly.
+By accessing and using this website or our services, you agree to be bound by these Terms & Conditions, our Privacy Policy, and all applicable laws and regulations. If you do not agree with any part of these terms, you must not use our services. We reserve the right to modify these terms at any time, and continued use constitutes acceptance of changes.
 </p>
 
-<h3>Data Collection</h3>
+<h3>User Accounts</h3>
 <p>
-We collect personal information such as your name, email address, phone number, billing details, and usage data. Usage data may include IP address, browser type, pages visited, and time spent on our website. This information helps us improve our services, deliver personalized experiences, process transactions, and communicate important updates or promotional offers. We only collect data necessary for the functionality and enhancement of our services.
+To access certain features, you may need to create an account. You agree to provide accurate information and keep your account credentials confidential. You are responsible for all activities conducted through your account. Notify us immediately of any unauthorized use. We reserve the right to suspend or terminate accounts for violations of these terms.
 </p>
 
-<h3>Cookies</h3>
+<h3>Prohibited Activities</h3>
 <p>
-Our website uses cookies, web beacons, and similar tracking technologies to improve user experience. Cookies help remember your preferences, login details, and language settings. We may also use cookies for analytics to understand site traffic patterns, optimize performance, and identify errors. You can manage or disable cookies through your browser settings, though some website features may not function properly without them.
+You agree not to use our services for illegal purposes, to transmit malware, spam, or harmful content, or to interfere with our systems. Prohibited activities include harassment, fraud, unauthorized access to systems, and posting objectionable content. We may terminate access and report violations to authorities as required by law.
 </p>
 
-<h3>Third-Party Services</h3>
+<h3>Intellectual Property</h3>
 <p>
-We may share your information with trusted third-party service providers for analytics, marketing, payment processing, or customer support. These partners are carefully selected and required to maintain confidentiality and adhere to strict data protection standards. We do not sell or trade your personal information to unrelated third parties for marketing purposes.
+All content, trademarks, logos, and materials on this website are owned by us or our licensors. You may not reproduce, distribute, or create derivative works without prior written permission. Limited personal, non-commercial use is permitted, but commercial use requires our express approval.
 </p>
 
-<h3>Data Security</h3>
+<h3>Payments and Billing</h3>
 <p>
-We employ technical, administrative, and physical security measures to protect your personal information. These measures include encryption of sensitive data, secure storage systems, firewalls, and restricted access controls. Despite these efforts, no system can be completely secure, so we encourage you to take precautions such as keeping your passwords confidential and reporting suspicious activity immediately.
+All payments are processed securely through authorized payment gateways. You agree to pay all applicable fees and taxes. We are not responsible for payment processing errors outside our control. Refunds are subject to our refund policy. Subscription services auto-renew unless cancelled.
 </p>
 
-<h3>User Rights</h3>
+<h3>Limitation of Liability</h3>
 <p>
-You have rights regarding your personal information, including the right to access, correct, delete, or restrict the use of your data. You may also object to processing or request data portability. Requests can be made through our support channels, and we will respond in accordance with applicable laws. You can also unsubscribe from promotional communications at any time.
+Our services are provided "as is" without warranties. We are not liable for indirect, consequential, or incidental damages. Our total liability shall not exceed the amount paid by you in the past 12 months. This limitation applies to the fullest extent permitted by law.
 </p>
 
-<h3>Changes to This Policy</h3>
+<h3>Termination</h3>
 <p>
-We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We will post the updated policy on our website with a revised effective date. We encourage you to review this policy regularly to stay informed about how we protect your information.
+We may terminate or suspend your access at any time for violations of these terms or for business reasons. Upon termination, your right to use our services ends immediately. Certain provisions survive termination, including payment obligations, intellectual property rights, and liability limitations.
+</p>
+
+<h3>Governing Law</h3>
+<p>
+These terms are governed by the laws of [Your Jurisdiction]. Any disputes shall be resolved exclusively in the courts of [Your Jurisdiction]. You agree to submit to the personal jurisdiction of these courts.
 </p>
 
 <h3>Contact Us</h3>
 <p>
-If you have any questions, concerns, or requests regarding this Privacy Policy, you can contact us at privacy@yourcompany.com or through our contact/support page. Our team is committed to responding to inquiries promptly and addressing any concerns regarding your personal data.
+For questions about these Terms & Conditions, please contact us at [support@yourcompany.com](mailto:support@yourcompany.com) or through our contact page. We aim to respond to inquiries within 48 hours.
 </p>
-  `);
-    showToast("Sample data loaded! Edit and save.", "success");
+    `);
+    showToast("Sample Terms data loaded! Edit and save.", "success");
   }
 
-  /* ---------------- CLEAR EDITOR DATA ---------------- */
-  function clearEditorData() {
-    policyEditorInstance.setData('');
+  /* ---------------- CLEAR TERMS EDITOR DATA ---------------- */
+  function clearTermsEditorData() {
+    termsEditorInstance.setData('');
     showToast("Editor cleared!", "success");
   }
 
-  /* ---------------- SAVE POLICY ---------------- */
-  async function savePolicy(e) {
+  /* ---------------- SAVE TERMS ---------------- */
+  async function saveTerms(e) {
     e.preventDefault();
 
-    if (!policyEditorInstance) {
+    if (!termsEditorInstance) {
       showToast("Editor not ready", "error");
       return;
     }
 
-    let rawHTML = policyEditorInstance.getData()
+    let rawHTML = termsEditorInstance.getData()
       .replace(/<br\s*\/?>\s*/gi, '')
       .replace(/<p>\s*<\/p>/gi, '')
       .replace(/<div>\s*<\/div>/gi, '')
@@ -372,7 +377,7 @@ If you have any questions, concerns, or requests regarding this Privacy Policy, 
 
 
     if (!rawHTML) {
-      showToast("Policy cannot be empty", "error");
+      showToast("Terms cannot be empty", "error");
       return;
     }
 
@@ -405,7 +410,7 @@ If you have any questions, concerns, or requests regarding this Privacy Policy, 
       const allContent = tempDiv.innerHTML.trim();
       if (allContent) {
         sections.push({
-          title: "Privacy Policy",
+          title: "Terms & Conditions",
           content: allContent
         });
       }
@@ -429,7 +434,7 @@ If you have any questions, concerns, or requests regarding this Privacy Policy, 
 
     try {
       const response = await Promise.all([
-        fetch("/api/privacypolicy/upsert", {
+        fetch("/api/terms-conditions/upsert", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({ sections, isActive: true })
@@ -443,20 +448,20 @@ If you have any questions, concerns, or requests regarding this Privacy Policy, 
         throw new Error(apiResponse.message || "Failed to save");
       }
 
-      policyData = apiResponse.data.sections || [];
-      renderPolicy();
+      termsData = apiResponse.data.sections || [];
+      renderTerms();
       closeEditModal();
-      showToast("Privacy Policy saved successfully!");
+      showToast("Terms & Conditions saved successfully!");
 
-      const btn = document.getElementById("policyActionBtn");
+      const btn = document.getElementById("termsActionBtn");
       if (btn) {
-        btn.innerHTML = `<i class="fas fa-edit text-[10px]"></i> Update Policy`;
+        btn.innerHTML = `<i class="fas fa-edit text-[10px]"></i> Update Terms`;
         btn.onclick = openEditModal;
       }
 
     } catch (err) {
       console.error("Save error:", err);
-      showToast(err.message || "Failed to save policy", "error");
+      showToast(err.message || "Failed to save terms", "error");
     } finally {
       setTimeout(() => {
         spinner.classList.add("hidden");
@@ -470,12 +475,11 @@ If you have any questions, concerns, or requests regarding this Privacy Policy, 
   function showToast(msg, type = "success") {
     const toast = document.getElementById("toast");
     toast.textContent = msg;
-    toast.className = `fixed top-3 right-6 px-4 py-2 rounded shadow z-50 text-white text-sm ${type === "success" ? "bg-green-600" : "bg-red-600"
-      }`;
+    toast.className = `fixed top-3 right-6 px-4 py-2 rounded shadow z-50 text-white text-sm ${type === "success" ? "bg-green-600" : "bg-red-600"}`;
     toast.classList.remove("hidden");
     setTimeout(() => toast.classList.add("hidden"), 3000);
   }
 
   /* ---------------- DOM CONTENT LOADED ---------------- */
-  document.addEventListener("DOMContentLoaded", fetchPolicy);
+  document.addEventListener("DOMContentLoaded", fetchTerms);
 </script>

@@ -194,7 +194,7 @@
     </div>
 
     <!-- TOAST -->
-    <div id="toast" class="fixed top-6 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm">
+    <div id="toast" class="fixed top-3 right-2 md:right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm">
     </div>
 </div>
 
@@ -342,7 +342,7 @@
     function showToast(msg, type = "success") {
         const toast = document.getElementById("toast");
         toast.textContent = msg;
-        toast.className = `fixed top-6 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white ${type === "success" ? "bg-green-600" : "bg-red-600"}`;
+        toast.className = `fixed top-3 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white ${type === "success" ? "bg-green-600" : "bg-red-600"}`;
         toast.classList.remove("hidden");
         setTimeout(() => toast.classList.add("hidden"), 3000);
     }

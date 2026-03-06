@@ -10,6 +10,11 @@ const Cart = require("../models/Cart");
 const Order = require("../models/Order"); 
 const Faq = require("../models/Faq");
 const PrivacyPolicy = require("../models/PrivacyPolicy"); 
+const TermsCondition = require("../models/TermsCondition");
+const AboutUs = require("../models/AboutUs");
+const ContactUs = require("../models/ContactUs");
+const Banner = require("../models/Banner");
+const reportController = require("../controllers/reportController");
 
 // LOGIN
 router.get("/", (req, res) => res.redirect("/login"));
@@ -223,6 +228,103 @@ router.get("/privacy-policy", protect, authorizeRoles("user", "admin"), async (r
     res.status(500).send("Server error");
   }
 });
+
+// TERMS CONDITION
+router.get("/terms-condition", protect, authorizeRoles("user", "admin"), async (req, res) => {
+  try {
+    const terms = await TermsCondition.findOne();
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "terms-condition.ejs",
+      terms,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// ABOUT US
+router.get("/about-us", protect, authorizeRoles("user", "admin"), async (req, res) => {
+  try {
+    const about = await AboutUs.findOne();
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "about-us.ejs",
+      about,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// CONTACT US
+router.get("/contact-us", protect, authorizeRoles("user", "admin"), async (req, res) => {
+  try {
+    const contact = await ContactUs.findOne();
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "contact-us.ejs",
+      contact,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// BANNERS
+router.get("/banners", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    const banners = await Banner.find()
+      .populate("createdBy", "name email")
+      .sort({ _id: 1 });
+
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "banners.ejs",
+      banners,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// LANDING PAGE
+router.get("/landingPage", protect, authorizeRoles("admin"), async (req, res) => {
+  try {
+    res.render("layouts/header", {
+      user: req.user,
+      pageContent: "landingPage.ejs", 
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+});
+
+// ANALYTIC REPORTS
+router.get(
+  "/analytic-reports",
+  protect,
+  authorizeRoles("admin"),
+  (req, res) => {
+    try {
+      res.render("layouts/header", {
+        user: req.user,
+        pageContent: "analytic-reports.ejs", 
+      });
+    } catch (err) {
+      console.error("Render failed:", err.message);
+      res.status(500).send("Server error");
+    }
+  }
+);
 
 // SETTINGS
 router.get("/settings", protect, authorizeRoles("user", "admin"), (req, res) =>

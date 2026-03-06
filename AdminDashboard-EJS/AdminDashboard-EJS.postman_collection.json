@@ -5011,6 +5011,1995 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Terms-Condition",
+      "item": [
+        {
+          "name": "Create Terms-Condition",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5N2FlOTc3ZWViZmUxYzM5MThkYWJmMyIsImlhdCI6MTc3MjQzNTA4MywiZXhwIjoxNzcyNDM4NjgzfQ.WxOxCXukpBCralhhXaAlRKqt6xmHfCeHNDKGc8PjC40",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sections\": [\n    {\n      \"title\": \"Introduction\",\n      \"content\": \"These Terms and Conditions govern your access to and use of our website, products, and services. By accessing or using our platform, you agree to comply with and be legally bound by these terms. If you do not agree with any part of these terms, you must discontinue use of our services immediately.\"\n    },\n    {\n      \"title\": \"Eligibility\",\n      \"content\": \"By using our services, you represent and warrant that you are at least 18 years old or have the legal capacity to enter into a binding agreement under applicable law. If you are using the services on behalf of an organization, you confirm that you have the authority to bind that organization to these terms.\"\n    },\n    {\n      \"title\": \"User Accounts\",\n      \"content\": \"To access certain features, you may be required to create an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities conducted under your account. You agree to provide accurate, complete, and updated information at all times.\"\n    },\n    {\n      \"title\": \"Acceptable Use\",\n      \"content\": \"You agree not to misuse our services. Prohibited activities include violating laws, infringing intellectual property rights, distributing harmful software, attempting unauthorized access, or engaging in fraudulent or abusive behavior. We reserve the right to suspend or terminate accounts that violate these terms.\"\n    },\n    {\n      \"title\": \"Intellectual Property\",\n      \"content\": \"All content, trademarks, logos, designs, text, graphics, and software available on our platform are the property of the company or its licensors and are protected by intellectual property laws. You may not copy, reproduce, distribute, or create derivative works without prior written consent.\"\n    },\n    {\n      \"title\": \"Payments and Billing\",\n      \"content\": \"If you purchase paid services, you agree to provide valid payment information and authorize us to charge applicable fees. All fees are non-refundable unless otherwise stated. We reserve the right to modify pricing at any time with prior notice.\"\n    },\n    {\n      \"title\": \"Limitation of Liability\",\n      \"content\": \"To the maximum extent permitted by law, we shall not be liable for indirect, incidental, special, or consequential damages arising from your use of our services. Our total liability for any claims related to the service shall not exceed the amount paid by you, if any, for accessing the service.\"\n    },\n    {\n      \"title\": \"Termination\",\n      \"content\": \"We reserve the right to suspend or terminate your access to our services at any time, without prior notice, if you breach these terms or engage in harmful conduct. Upon termination, your right to use the services will immediately cease.\"\n    },\n    {\n      \"title\": \"Governing Law\",\n      \"content\": \"These Terms and Conditions shall be governed by and construed in accordance with the laws of the applicable jurisdiction. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the competent courts in that jurisdiction.\"\n    },\n    {\n      \"title\": \"Changes to Terms\",\n      \"content\": \"We may update these Terms and Conditions from time to time. Updated versions will be posted on our website with a revised effective date. Continued use of the services after changes become effective constitutes acceptance of the revised terms.\"\n    },\n    {\n      \"title\": \"Contact Information\",\n      \"content\": \"If you have any questions regarding these Terms and Conditions, you may contact us at support@yourcompany.com or through our official support channels.\"\n    }\n  ],\n  \"isActive\": true\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/terms-conditions/upsert",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "terms-conditions",
+                "upsert"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Terms-Condition",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": [\n    {\n      \"title\": \"Introduction\",\n      \"content\": \"These Terms and Conditions govern your access to and use of our website, products, and services. By accessing or using our platform, you agree to comply with and be legally bound by these terms. If you do not agree with any part of these terms, you must discontinue use of our services immediately.\"\n    },\n    {\n      \"title\": \"Eligibility\",\n      \"content\": \"By using our services, you represent and warrant that you are at least 18 years old or have the legal capacity to enter into a binding agreement under applicable law. If you are using the services on behalf of an organization, you confirm that you have the authority to bind that organization to these terms.\"\n    },\n    {\n      \"title\": \"User Accounts\",\n      \"content\": \"To access certain features, you may be required to create an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities conducted under your account. You agree to provide accurate, complete, and updated information at all times.\"\n    },\n    {\n      \"title\": \"Acceptable Use\",\n      \"content\": \"You agree not to misuse our services. Prohibited activities include violating laws, infringing intellectual property rights, distributing harmful software, attempting unauthorized access, or engaging in fraudulent or abusive behavior. We reserve the right to suspend or terminate accounts that violate these terms.\"\n    },\n    {\n      \"title\": \"Intellectual Property\",\n      \"content\": \"All content, trademarks, logos, designs, text, graphics, and software available on our platform are the property of the company or its licensors and are protected by intellectual property laws. You may not copy, reproduce, distribute, or create derivative works without prior written consent.\"\n    },\n    {\n      \"title\": \"Payments and Billing\",\n      \"content\": \"If you purchase paid services, you agree to provide valid payment information and authorize us to charge applicable fees. All fees are non-refundable unless otherwise stated. We reserve the right to modify pricing at any time with prior notice.\"\n    },\n    {\n      \"title\": \"Limitation of Liability\",\n      \"content\": \"To the maximum extent permitted by law, we shall not be liable for indirect, incidental, special, or consequential damages arising from your use of our services. Our total liability for any claims related to the service shall not exceed the amount paid by you, if any, for accessing the service.\"\n    },\n    {\n      \"title\": \"Termination\",\n      \"content\": \"We reserve the right to suspend or terminate your access to our services at any time, without prior notice, if you breach these terms or engage in harmful conduct. Upon termination, your right to use the services will immediately cease.\"\n    },\n    {\n      \"title\": \"Governing Law\",\n      \"content\": \"These Terms and Conditions shall be governed by and construed in accordance with the laws of the applicable jurisdiction. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the competent courts in that jurisdiction.\"\n    },\n    {\n      \"title\": \"Changes to Terms\",\n      \"content\": \"We may update these Terms and Conditions from time to time. Updated versions will be posted on our website with a revised effective date. Continued use of the services after changes become effective constitutes acceptance of the revised terms.\"\n    },\n    {\n      \"title\": \"Contact Information\",\n      \"content\": \"If you have any questions regarding these Terms and Conditions, you may contact us at support@yourcompany.com or through our official support channels.\"\n    }\n  ],\n  \"isActive\": true\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/terms-conditions/upsert",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "terms-conditions",
+                    "upsert"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "4000"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"fa0-85425FHTbHX937Svets1GXoXG08\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 03 Mar 2026 04:24:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Terms & Conditions created successfully\",\n    \"data\": {\n        \"sections\": [\n            {\n                \"title\": \"Introduction\",\n                \"content\": \"These Terms and Conditions govern your access to and use of our website, products, and services. By accessing or using our platform, you agree to comply with and be legally bound by these terms. If you do not agree with any part of these terms, you must discontinue use of our services immediately.\",\n                \"_id\": \"69a6629a19967886c7ef2a03\"\n            },\n            {\n                \"title\": \"Eligibility\",\n                \"content\": \"By using our services, you represent and warrant that you are at least 18 years old or have the legal capacity to enter into a binding agreement under applicable law. If you are using the services on behalf of an organization, you confirm that you have the authority to bind that organization to these terms.\",\n                \"_id\": \"69a6629a19967886c7ef2a04\"\n            },\n            {\n                \"title\": \"User Accounts\",\n                \"content\": \"To access certain features, you may be required to create an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities conducted under your account. You agree to provide accurate, complete, and updated information at all times.\",\n                \"_id\": \"69a6629a19967886c7ef2a05\"\n            },\n            {\n                \"title\": \"Acceptable Use\",\n                \"content\": \"You agree not to misuse our services. Prohibited activities include violating laws, infringing intellectual property rights, distributing harmful software, attempting unauthorized access, or engaging in fraudulent or abusive behavior. We reserve the right to suspend or terminate accounts that violate these terms.\",\n                \"_id\": \"69a6629a19967886c7ef2a06\"\n            },\n            {\n                \"title\": \"Intellectual Property\",\n                \"content\": \"All content, trademarks, logos, designs, text, graphics, and software available on our platform are the property of the company or its licensors and are protected by intellectual property laws. You may not copy, reproduce, distribute, or create derivative works without prior written consent.\",\n                \"_id\": \"69a6629a19967886c7ef2a07\"\n            },\n            {\n                \"title\": \"Payments and Billing\",\n                \"content\": \"If you purchase paid services, you agree to provide valid payment information and authorize us to charge applicable fees. All fees are non-refundable unless otherwise stated. We reserve the right to modify pricing at any time with prior notice.\",\n                \"_id\": \"69a6629a19967886c7ef2a08\"\n            },\n            {\n                \"title\": \"Limitation of Liability\",\n                \"content\": \"To the maximum extent permitted by law, we shall not be liable for indirect, incidental, special, or consequential damages arising from your use of our services. Our total liability for any claims related to the service shall not exceed the amount paid by you, if any, for accessing the service.\",\n                \"_id\": \"69a6629a19967886c7ef2a09\"\n            },\n            {\n                \"title\": \"Termination\",\n                \"content\": \"We reserve the right to suspend or terminate your access to our services at any time, without prior notice, if you breach these terms or engage in harmful conduct. Upon termination, your right to use the services will immediately cease.\",\n                \"_id\": \"69a6629a19967886c7ef2a0a\"\n            },\n            {\n                \"title\": \"Governing Law\",\n                \"content\": \"These Terms and Conditions shall be governed by and construed in accordance with the laws of the applicable jurisdiction. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the competent courts in that jurisdiction.\",\n                \"_id\": \"69a6629a19967886c7ef2a0b\"\n            },\n            {\n                \"title\": \"Changes to Terms\",\n                \"content\": \"We may update these Terms and Conditions from time to time. Updated versions will be posted on our website with a revised effective date. Continued use of the services after changes become effective constitutes acceptance of the revised terms.\",\n                \"_id\": \"69a6629a19967886c7ef2a0c\"\n            },\n            {\n                \"title\": \"Contact Information\",\n                \"content\": \"If you have any questions regarding these Terms and Conditions, you may contact us at support@yourcompany.com or through our official support channels.\",\n                \"_id\": \"69a6629a19967886c7ef2a0d\"\n            }\n        ],\n        \"isActive\": true,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"_id\": \"69a6629a19967886c7ef2a02\",\n        \"createdAt\": \"2026-03-03T04:24:58.069Z\",\n        \"updatedAt\": \"2026-03-03T04:24:58.069Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "About Us",
+      "item": [
+        {
+          "name": "Create AboutUs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUxNjc2NiwiZXhwIjoxNzcyNTIwMzY2fQ.V8YHCOaIr2cAYeNFWc8XKn0GzJw_TsSfQOVjJrEkueo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sections\": [\n    {\n      \"title\": \"Who We Are\",\n      \"content\": \"We are a forward-thinking company committed to delivering high-quality products and services that simplify and enhance everyday experiences. Our team consists of passionate professionals dedicated to innovation, integrity, and customer satisfaction.\"\n    },\n    {\n      \"title\": \"Our Mission\",\n      \"content\": \"Our mission is to provide reliable, efficient, and user-friendly solutions that create real value for our customers. We strive to continuously improve our offerings through innovation, feedback, and a deep understanding of market needs.\"\n    },\n    {\n      \"title\": \"Our Vision\",\n      \"content\": \"Our vision is to become a trusted leader in our industry by setting high standards for quality, transparency, and customer experience. We aim to build long-term relationships based on trust and excellence.\"\n    },\n    {\n      \"title\": \"What We Do\",\n      \"content\": \"We develop and deliver solutions designed to meet the evolving needs of individuals and businesses. Our services are built with a focus on performance, security, and scalability, ensuring a seamless and dependable user experience.\"\n    },\n    {\n      \"title\": \"Our Values\",\n      \"content\": \"Integrity, innovation, and customer commitment are at the core of everything we do. We believe in operating transparently, embracing change, and maintaining a customer-first mindset in every decision we make.\"\n    },\n    {\n      \"title\": \"Customer Commitment\",\n      \"content\": \"Our customers are at the heart of our business. We are dedicated to providing responsive support, listening to feedback, and continuously enhancing our services to exceed expectations.\"\n    },\n    {\n      \"title\": \"Security & Trust\",\n      \"content\": \"We prioritize the protection of user data and privacy. Our systems are designed with strong security practices to ensure that your information remains safe and confidential.\"\n    },\n    {\n      \"title\": \"Why Choose Us\",\n      \"content\": \"We combine expertise, innovation, and dedication to deliver solutions you can rely on. Our commitment to quality and continuous improvement sets us apart and ensures long-term value for our users.\"\n    },\n    {\n      \"title\": \"Our Future Goals\",\n      \"content\": \"We are constantly evolving and expanding our capabilities. Our goal is to introduce new features, enhance performance, and explore opportunities that drive growth while maintaining the highest standards of service.\"\n    },\n    {\n      \"title\": \"Contact Us\",\n      \"content\": \"If you would like to learn more about our company or have any inquiries, please contact us at support@yourcompany.com or through our official communication channels.\"\n    }\n  ],\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/about-us/upsert",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "about-us",
+                "upsert"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create AboutUs",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sections\": [\n    {\n      \"title\": \"Who We Are\",\n      \"content\": \"We are a forward-thinking company committed to delivering high-quality products and services that simplify and enhance everyday experiences. Our team consists of passionate professionals dedicated to innovation, integrity, and customer satisfaction.\"\n    },\n    {\n      \"title\": \"Our Mission\",\n      \"content\": \"Our mission is to provide reliable, efficient, and user-friendly solutions that create real value for our customers. We strive to continuously improve our offerings through innovation, feedback, and a deep understanding of market needs.\"\n    },\n    {\n      \"title\": \"Our Vision\",\n      \"content\": \"Our vision is to become a trusted leader in our industry by setting high standards for quality, transparency, and customer experience. We aim to build long-term relationships based on trust and excellence.\"\n    },\n    {\n      \"title\": \"What We Do\",\n      \"content\": \"We develop and deliver solutions designed to meet the evolving needs of individuals and businesses. Our services are built with a focus on performance, security, and scalability, ensuring a seamless and dependable user experience.\"\n    },\n    {\n      \"title\": \"Our Values\",\n      \"content\": \"Integrity, innovation, and customer commitment are at the core of everything we do. We believe in operating transparently, embracing change, and maintaining a customer-first mindset in every decision we make.\"\n    },\n    {\n      \"title\": \"Customer Commitment\",\n      \"content\": \"Our customers are at the heart of our business. We are dedicated to providing responsive support, listening to feedback, and continuously enhancing our services to exceed expectations.\"\n    },\n    {\n      \"title\": \"Security & Trust\",\n      \"content\": \"We prioritize the protection of user data and privacy. Our systems are designed with strong security practices to ensure that your information remains safe and confidential.\"\n    },\n    {\n      \"title\": \"Why Choose Us\",\n      \"content\": \"We combine expertise, innovation, and dedication to deliver solutions you can rely on. Our commitment to quality and continuous improvement sets us apart and ensures long-term value for our users.\"\n    },\n    {\n      \"title\": \"Our Future Goals\",\n      \"content\": \"We are constantly evolving and expanding our capabilities. Our goal is to introduce new features, enhance performance, and explore opportunities that drive growth while maintaining the highest standards of service.\"\n    },\n    {\n      \"title\": \"Contact Us\",\n      \"content\": \"If you would like to learn more about our company or have any inquiries, please contact us at support@yourcompany.com or through our official communication channels.\"\n    }\n  ],\n  \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/about-us/upsert",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "about-us",
+                    "upsert"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3026"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"bd2-S/bIe31592yZQ1ouyEXZaq7vZ/Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 03 Mar 2026 05:46:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"About Us created successfully\",\n    \"data\": {\n        \"sections\": [\n            {\n                \"title\": \"Who We Are\",\n                \"content\": \"We are a forward-thinking company committed to delivering high-quality products and services that simplify and enhance everyday experiences. Our team consists of passionate professionals dedicated to innovation, integrity, and customer satisfaction.\",\n                \"_id\": \"69a675abead886bf3957d98b\"\n            },\n            {\n                \"title\": \"Our Mission\",\n                \"content\": \"Our mission is to provide reliable, efficient, and user-friendly solutions that create real value for our customers. We strive to continuously improve our offerings through innovation, feedback, and a deep understanding of market needs.\",\n                \"_id\": \"69a675abead886bf3957d98c\"\n            },\n            {\n                \"title\": \"Our Vision\",\n                \"content\": \"Our vision is to become a trusted leader in our industry by setting high standards for quality, transparency, and customer experience. We aim to build long-term relationships based on trust and excellence.\",\n                \"_id\": \"69a675abead886bf3957d98d\"\n            },\n            {\n                \"title\": \"What We Do\",\n                \"content\": \"We develop and deliver solutions designed to meet the evolving needs of individuals and businesses. Our services are built with a focus on performance, security, and scalability, ensuring a seamless and dependable user experience.\",\n                \"_id\": \"69a675abead886bf3957d98e\"\n            },\n            {\n                \"title\": \"Our Values\",\n                \"content\": \"Integrity, innovation, and customer commitment are at the core of everything we do. We believe in operating transparently, embracing change, and maintaining a customer-first mindset in every decision we make.\",\n                \"_id\": \"69a675abead886bf3957d98f\"\n            },\n            {\n                \"title\": \"Customer Commitment\",\n                \"content\": \"Our customers are at the heart of our business. We are dedicated to providing responsive support, listening to feedback, and continuously enhancing our services to exceed expectations.\",\n                \"_id\": \"69a675abead886bf3957d990\"\n            },\n            {\n                \"title\": \"Security & Trust\",\n                \"content\": \"We prioritize the protection of user data and privacy. Our systems are designed with strong security practices to ensure that your information remains safe and confidential.\",\n                \"_id\": \"69a675abead886bf3957d991\"\n            },\n            {\n                \"title\": \"Why Choose Us\",\n                \"content\": \"We combine expertise, innovation, and dedication to deliver solutions you can rely on. Our commitment to quality and continuous improvement sets us apart and ensures long-term value for our users.\",\n                \"_id\": \"69a675abead886bf3957d992\"\n            },\n            {\n                \"title\": \"Our Future Goals\",\n                \"content\": \"We are constantly evolving and expanding our capabilities. Our goal is to introduce new features, enhance performance, and explore opportunities that drive growth while maintaining the highest standards of service.\",\n                \"_id\": \"69a675abead886bf3957d993\"\n            },\n            {\n                \"title\": \"Contact Us\",\n                \"content\": \"If you would like to learn more about our company or have any inquiries, please contact us at support@yourcompany.com or through our official communication channels.\",\n                \"_id\": \"69a675abead886bf3957d994\"\n            }\n        ],\n        \"isActive\": true,\n        \"author\": \"698040dc31aabf244444e654\",\n        \"_id\": \"69a675abead886bf3957d98a\",\n        \"createdAt\": \"2026-03-03T05:46:19.902Z\",\n        \"updatedAt\": \"2026-03-03T05:46:19.902Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "item": [
+        {
+          "name": "Create Contact Message",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODAyNWI0NTE0NDE4YmQxZWVlMDk3MCIsImlhdCI6MTc3MjUyMDcyOSwiZXhwIjoxNzcyNTI0MzI5fQ.eoK88X5SeKPuLXfEujakZo7zWsCHyoyzFyUlqTBn2gg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jack\",\n  \"email\": \"jack@gmail.com\", \n  \"subject\": \"Website Inquiry\",\n  \"message\": \"I have a question about your services...\",\n  \"phone\": \"9876543210\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/contact-us/submit",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "contact-us",
+                "submit"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Contact Message",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Jack\",\n  \"email\": \"jack@gmail.com\", \n  \"subject\": \"Website Inquiry\",\n  \"message\": \"I have a question about your services...\",\n  \"phone\": \"9876543210\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/contact-us/submit",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "contact-us",
+                    "submit"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "422"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1a6-aHtMxmZ2s7jhV4SXESQei25Sh10\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 03 Mar 2026 06:53:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Thank you! We will contact you within 24 hours.\",\n    \"data\": {\n        \"contact\": {\n            \"user\": \"698025b4514418bd1eee0970\",\n            \"name\": \"Jack\",\n            \"email\": \"jack@gmail.com\",\n            \"phone\": \"9876543210\",\n            \"subject\": \"Website Inquiry\",\n            \"message\": \"I have a question about your services...\",\n            \"isRead\": false,\n            \"replied\": false,\n            \"_id\": \"69a6857f6e7d39621712e4fd\",\n            \"createdAt\": \"2026-03-03T06:53:51.665Z\",\n            \"updatedAt\": \"2026-03-03T06:53:51.665Z\",\n            \"__v\": 0\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Contact Message",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTQ4OCwiZXhwIjoxNzcyNTI1MDg4fQ.mg7y_P5uJTXZq-h_8osaOLK17nET8uJeOv3bqM-Aaoc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/contact-us/view",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "contact-us",
+                "view"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Contact Message",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/contact-us/view",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "contact-us",
+                    "view"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1788"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6fc-5j5LkD5/tb7+X0s2UZLAOTrYelY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 03 Mar 2026 07:05:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Contact us messages retrieved successfully\",\n    \"success\": true,\n    \"data\": {\n        \"messages\": [\n            {\n                \"_id\": \"69a687bd6e7d39621712e521\",\n                \"user\": {\n                    \"_id\": \"69807e014630986400acdc25\",\n                    \"name\": \"Charlie Brown\",\n                    \"email\": \"charlie@example.com\",\n                    \"role\": \"user\"\n                },\n                \"name\": \"Charlie Brown\",\n                \"email\": \"charlie@example.com\",\n                \"phone\": \"9876543210\",\n                \"subject\": \"Pricing Details\",\n                \"message\": \"Hello, I would like to know more about your pricing plans and available discounts.\",\n                \"isRead\": false,\n                \"replied\": false,\n                \"createdAt\": \"2026-03-03T07:03:25.495Z\",\n                \"updatedAt\": \"2026-03-03T07:03:25.495Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"69a687176e7d39621712e516\",\n                \"user\": {\n                    \"_id\": \"698042f5c79a82295df45bd7\",\n                    \"name\": \"Denver\",\n                    \"email\": \"denver@gmail.com\",\n                    \"role\": \"user\"\n                },\n                \"name\": \"Denver\",\n                \"email\": \"denver@gmail.com\",\n                \"phone\": \"9323211903\",\n                \"subject\": \"General Inquiry\",\n                \"message\": \"Could you please provide more information about your services?\",\n                \"isRead\": false,\n                \"replied\": false,\n                \"createdAt\": \"2026-03-03T07:00:39.092Z\",\n                \"updatedAt\": \"2026-03-03T07:00:39.092Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"69a686a46e7d39621712e50e\",\n                \"user\": {\n                    \"_id\": \"697ae977eebfe1c3918dabf3\",\n                    \"name\": \"Peter Apps\",\n                    \"email\": \"peterapps70@gmail.com\",\n                    \"role\": \"user\"\n                },\n                \"name\": \"Peter\",\n                \"email\": \"peterapps70@gmail.com\",\n                \"phone\": \"9988776655\",\n                \"subject\": \"Technical Support\",\n                \"message\": \"I am facing issues while accessing my account dashboard. Kindly assist me.\",\n                \"isRead\": false,\n                \"replied\": false,\n                \"createdAt\": \"2026-03-03T06:58:44.969Z\",\n                \"updatedAt\": \"2026-03-03T06:58:44.969Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"69a6857f6e7d39621712e4fd\",\n                \"user\": {\n                    \"_id\": \"698025b4514418bd1eee0970\",\n                    \"name\": \"Jack\",\n                    \"email\": \"jack@gmail.com\"\n                },\n                \"name\": \"Jack\",\n                \"email\": \"jack@gmail.com\",\n                \"phone\": \"9876543210\",\n                \"subject\": \"Website Inquiry\",\n                \"message\": \"I have a question about your services...\",\n                \"isRead\": false,\n                \"replied\": false,\n                \"createdAt\": \"2026-03-03T06:53:51.665Z\",\n                \"updatedAt\": \"2026-03-03T06:53:51.665Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Mark As Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/contact-us/read/69a687bd6e7d39621712e521",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "contact-us",
+                "read",
+                "69a687bd6e7d39621712e521"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Mark As Read",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/contact-us/read/69a687bd6e7d39621712e521",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "contact-us",
+                    "read",
+                    "69a687bd6e7d39621712e521"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-X7KkQegzXrNzwyrfgPZsG82cqDI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 03 Mar 2026 07:08:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Marked as read successfully\",\n    \"success\": true\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Banners",
+      "item": [
+        {
+          "name": "Create Banner",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Summer Sale",
+                  "type": "text",
+                  "uuid": "ac09691f-9678-4272-b6fe-cca70c1b7f78"
+                },
+                {
+                  "key": "description",
+                  "value": "50% discount",
+                  "type": "text",
+                  "uuid": "2ca88ab6-40fc-4dad-9fde-8dac527de8f5"
+                },
+                {
+                  "key": "link",
+                  "value": "https://example.com",
+                  "type": "text",
+                  "uuid": "57938188-8037-4cce-b22b-51d96e707433"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "e65f018a-ceee-4c1b-a4f3-a4efbc7478f1",
+                  "src": "/Users/jahnavijoshi/Downloads/banner.webp"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/banners/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "banners",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Banner",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Summer Sale",
+                      "type": "text",
+                      "uuid": "ac09691f-9678-4272-b6fe-cca70c1b7f78"
+                    },
+                    {
+                      "key": "description",
+                      "value": "50% discount",
+                      "type": "text",
+                      "uuid": "2ca88ab6-40fc-4dad-9fde-8dac527de8f5"
+                    },
+                    {
+                      "key": "link",
+                      "value": "https://example.com",
+                      "type": "text",
+                      "uuid": "57938188-8037-4cce-b22b-51d96e707433"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "uuid": "e65f018a-ceee-4c1b-a4f3-a4efbc7478f1",
+                      "src": "/Users/jahnavijoshi/Downloads/banner.webp"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/banners/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "banners",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "441"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b9-87uEk/6cfOjyEwcb2roQTnWRPLY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 06:08:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Banner created successfully\",\n    \"data\": {\n        \"title\": \"Summer Sale\",\n        \"description\": \"50% discount\",\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1772690881/admin_dashboard/banners/apogacnivlgqsmm6e8wn.webp\",\n        \"link\": \"https://example.com\",\n        \"isActive\": true,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"_id\": \"69a91dc1e7df898cc22a0f13\",\n        \"createdAt\": \"2026-03-05T06:08:01.707Z\",\n        \"updatedAt\": \"2026-03-05T06:08:01.707Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All banner",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/banners/all-banners",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "banners",
+                "all-banners"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All banner",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/banners/all-banners",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "banners",
+                    "all-banners"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "523"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"20b-RP+wHI0DDLzEHlyfcpgavpwdnpw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 06:18:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Banners fetched successfully\",\n    \"count\": 1,\n    \"nextCursor\": null,\n    \"data\": [\n        {\n            \"_id\": \"69a91dc1e7df898cc22a0f13\",\n            \"title\": \"Summer Sale\",\n            \"description\": \"50% discount\",\n            \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1772690881/admin_dashboard/banners/apogacnivlgqsmm6e8wn.webp\",\n            \"link\": \"https://example.com\",\n            \"isActive\": true,\n            \"createdBy\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\"\n            },\n            \"createdAt\": \"2026-03-05T06:08:01.707Z\",\n            \"updatedAt\": \"2026-03-05T06:08:01.707Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Banner",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/banners/69a91dc1e7df898cc22a0f13",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "banners",
+                "69a91dc1e7df898cc22a0f13"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Banner",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/banners/69a91dc1e7df898cc22a0f13",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "banners",
+                    "69a91dc1e7df898cc22a0f13"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "507"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1fb-3jZVbf49GaYxON1p+OJ1BPGrLy4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 06:33:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Banner fetched successfully\",\n    \"data\": {\n        \"_id\": \"69a91dc1e7df898cc22a0f13\",\n        \"title\": \"Summer Sale\",\n        \"description\": \"50% discount\",\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1772690881/admin_dashboard/banners/apogacnivlgqsmm6e8wn.webp\",\n        \"link\": \"https://example.com\",\n        \"isActive\": true,\n        \"createdBy\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"createdAt\": \"2026-03-05T06:08:01.707Z\",\n        \"updatedAt\": \"2026-03-05T06:28:36.400Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Banner",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Summer Sale",
+                  "type": "text",
+                  "uuid": "aa60beae-171f-472e-a6c8-b631508adef8"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/banners/update/69a91dc1e7df898cc22a0f13",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "banners",
+                "update",
+                "69a91dc1e7df898cc22a0f13"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Banner",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Winter Sale",
+                      "type": "text",
+                      "uuid": "aa60beae-171f-472e-a6c8-b631508adef8"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/banners/update/69a91dc1e7df898cc22a0f13",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "banners",
+                    "update",
+                    "69a91dc1e7df898cc22a0f13"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "441"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b9-16QW+P2aaPxhPJJzVTkPM4DWbcE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 06:28:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Banner updated successfully\",\n    \"data\": {\n        \"_id\": \"69a91dc1e7df898cc22a0f13\",\n        \"title\": \"Winter Sale\",\n        \"description\": \"50% discount\",\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1772690881/admin_dashboard/banners/apogacnivlgqsmm6e8wn.webp\",\n        \"link\": \"https://example.com\",\n        \"isActive\": true,\n        \"createdBy\": \"698040dc31aabf244444e654\",\n        \"createdAt\": \"2026-03-05T06:08:01.707Z\",\n        \"updatedAt\": \"2026-03-05T06:28:01.032Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Banner",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/banners/delete/69a91dc1e7df898cc22a0f13",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "banners",
+                "delete",
+                "69a91dc1e7df898cc22a0f13"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Banner",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/banners/delete/69a91dc1e7df898cc22a0f13",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "banners",
+                    "delete",
+                    "69a91dc1e7df898cc22a0f13"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "516"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"204-VOldqWmPSxbxJp/GH3XulWP6u+Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 06:35:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Banner deleted successfully\",\n    \"deletedBanner\": {\n        \"_id\": \"69a91dc1e7df898cc22a0f13\",\n        \"title\": \"Summer Sale\",\n        \"description\": \"50% discount\",\n        \"image\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1772690881/admin_dashboard/banners/apogacnivlgqsmm6e8wn.webp\",\n        \"link\": \"https://example.com\",\n        \"isActive\": true,\n        \"createdBy\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"createdAt\": \"2026-03-05T06:08:01.707Z\",\n        \"updatedAt\": \"2026-03-05T06:33:44.772Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Landing Page",
+      "item": [
+        {
+          "name": "Create/Update Page",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sectionName\": \"hero\",\n  \"content\": {\n    \"title\": \"Welcome to our store\",\n    \"subtitle\": \"Best deals everyday\",\n    \"buttonText\": \"Shop Now\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/landing-pages/upsert-section",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "landing-pages",
+                "upsert-section"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Page",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sectionName\": \"hero\",\n  \"content\": {\n    \"title\": \"Welcome to our store\",\n    \"subtitle\": \"Best deals everyday\",\n    \"buttonText\": \"Shop Now\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/landing-pages/upsert-section",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "landing-pages",
+                    "upsert-section"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "427"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ab-BmkeJQmENUUTIBBlL/deOHccMLE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 07:01:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Section created successfully\",\n    \"data\": {\n        \"_id\": \"69a92a3c0dacea0dad6794b1\",\n        \"sectionName\": \"hero\",\n        \"__v\": 0,\n        \"content\": {\n            \"title\": \"Welcome to our store\",\n            \"subtitle\": \"Best deals everyday\",\n            \"buttonText\": \"Shop Now\"\n        },\n        \"createdAt\": \"2026-03-05T07:01:16.736Z\",\n        \"createdBy\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"isActive\": true,\n        \"updatedAt\": \"2026-03-05T07:01:16.736Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Sections",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjY5NDY0NCwiZXhwIjoxNzcyNjk4MjQ0fQ.IMfMoxKPq7VcsYfGYFbjtFnntcv4rEvEG7CaqYFsNhM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/landing-pages/all-sections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "landing-pages",
+                "all-sections"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Sections",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/landing-pages/all-sections",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "landing-pages",
+                    "all-sections"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "458"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ca-7b2HYN9maoiMXz9GRRrnmlwd+Gk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 07:10:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Sections fetched successfully\",\n    \"count\": 1,\n    \"nextCursor\": null,\n    \"data\": [\n        {\n            \"_id\": \"69a92a3c0dacea0dad6794b1\",\n            \"sectionName\": \"hero\",\n            \"__v\": 0,\n            \"content\": {\n                \"title\": \"Welcome to our store\",\n                \"subtitle\": \"Best deals everyday\",\n                \"buttonText\": \"Shop Now\"\n            },\n            \"createdAt\": \"2026-03-05T07:01:16.736Z\",\n            \"createdBy\": {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"role\": \"admin\"\n            },\n            \"isActive\": true,\n            \"updatedAt\": \"2026-03-05T07:01:16.736Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Section",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjY5NDY0NCwiZXhwIjoxNzcyNjk4MjQ0fQ.IMfMoxKPq7VcsYfGYFbjtFnntcv4rEvEG7CaqYFsNhM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/landing-pages/69a92a3c0dacea0dad6794b1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "landing-pages",
+                "69a92a3c0dacea0dad6794b1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Section",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/landing-pages/69a92a3c0dacea0dad6794b1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "landing-pages",
+                    "69a92a3c0dacea0dad6794b1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "427"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ab-SYdWCOOmS8L6pzMxdsPZuXeITFU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 07:13:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Section fetched successfully\",\n    \"data\": {\n        \"_id\": \"69a92a3c0dacea0dad6794b1\",\n        \"sectionName\": \"hero\",\n        \"__v\": 0,\n        \"content\": {\n            \"title\": \"Welcome to our store\",\n            \"subtitle\": \"Best deals everyday\",\n            \"buttonText\": \"Shop Now\"\n        },\n        \"createdAt\": \"2026-03-05T07:01:16.736Z\",\n        \"createdBy\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"isActive\": true,\n        \"updatedAt\": \"2026-03-05T07:01:16.736Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Section",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ODA0MGRjMzFhYWJmMjQ0NDQ0ZTY1NCIsImlhdCI6MTc3MjUyMTY2OSwiZXhwIjoxNzcyNTI1MjY5fQ.PzGvvwmsBZlWaFBIxRpFqGs0Ox6VxUiz3Vj-JOQYScI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1234/api/landing-pages/delete-section/69a92a3c0dacea0dad6794b1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "landing-pages",
+                "delete-section",
+                "69a92a3c0dacea0dad6794b1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Section",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1234/api/landing-pages/delete-section/69a92a3c0dacea0dad6794b1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "landing-pages",
+                    "delete-section",
+                    "69a92a3c0dacea0dad6794b1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "550"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"226-u9AjWnw2vAljIvNlBpfArmCJhpA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 05 Mar 2026 07:17:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Landing section deleted successfully\",\n    \"deletedSection\": {\n        \"_id\": \"69a92a3c0dacea0dad6794b1\",\n        \"sectionName\": \"hero\",\n        \"__v\": 0,\n        \"content\": {\n            \"title\": \"Welcome to our store\",\n            \"subtitle\": \"Best deals everyday\",\n            \"buttonText\": \"Shop Now\"\n        },\n        \"createdAt\": \"2026-03-05T07:01:16.736Z\",\n        \"createdBy\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        },\n        \"isActive\": true,\n        \"updatedAt\": \"2026-03-05T07:15:30.713Z\",\n        \"updatedBy\": {\n            \"_id\": \"698040dc31aabf244444e654\",\n            \"name\": \"Admin\",\n            \"email\": \"admin@example.com\",\n            \"role\": \"admin\"\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Analytic Reports",
+      "item": [
+        {
+          "name": "User Report",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "User Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/reports/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "reports",
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1880"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"758-dBFePcJRuxdx58ATmpiE9PWMutg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Mar 2026 04:38:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"User report retrieved successfully\",\n    \"data\": {\n        \"totalUsers\": 14,\n        \"monthlyStats\": [\n            {\n                \"_id\": {\n                    \"year\": 2026,\n                    \"month\": 2\n                },\n                \"totalUsers\": 13\n            },\n            {\n                \"_id\": {\n                    \"year\": 2026,\n                    \"month\": 1\n                },\n                \"totalUsers\": 1\n            }\n        ],\n        \"users\": [\n            {\n                \"_id\": \"699ff37450a569698d695e6d\",\n                \"name\": \"Dummy User\",\n                \"email\": \"dummy@test.com\",\n                \"createdAt\": \"2026-02-26T07:17:08.826Z\"\n            },\n            {\n                \"_id\": \"699fed18b65e8c88bf9d2cfe\",\n                \"name\": \"Manager User\",\n                \"email\": \"manager@test.com\",\n                \"createdAt\": \"2026-02-26T06:50:00.306Z\"\n            },\n            {\n                \"_id\": \"699bd4e228f6e7995caed181\",\n                \"name\": \"Justin\",\n                \"email\": \"justin@gmail.com\",\n                \"createdAt\": \"2026-02-23T04:17:38.391Z\"\n            },\n            {\n                \"_id\": \"698d5aced9465d26f1200214\",\n                \"name\": \"Nick N.\",\n                \"email\": \"nick@gmail.com\",\n                \"createdAt\": \"2026-02-12T04:45:02.030Z\"\n            },\n            {\n                \"_id\": \"69817905711ea030d21d5d74\",\n                \"name\": \"Marko\",\n                \"email\": \"marko@gmail.com\",\n                \"createdAt\": \"2026-02-03T04:26:45.794Z\"\n            },\n            {\n                \"_id\": \"69807e014630986400acdc24\",\n                \"name\": \"Bob Smith\",\n                \"email\": \"bob@example.com\",\n                \"createdAt\": \"2026-02-02T10:35:45.876Z\"\n            },\n            {\n                \"_id\": \"69807e014630986400acdc25\",\n                \"name\": \"Charlie Brown\",\n                \"email\": \"charlie@example.com\",\n                \"createdAt\": \"2026-02-02T10:35:45.876Z\"\n            },\n            {\n                \"_id\": \"69807e014630986400acdc26\",\n                \"name\": \"Diana Prince\",\n                \"email\": \"diana@example.com\",\n                \"createdAt\": \"2026-02-02T10:35:45.876Z\"\n            },\n            {\n                \"_id\": \"69807e014630986400acdc27\",\n                \"name\": \"Ethan Hunt\",\n                \"email\": \"ethan@example.com\",\n                \"createdAt\": \"2026-02-02T10:35:45.876Z\"\n            },\n            {\n                \"_id\": \"69806da312203c0220c93552\",\n                \"name\": \"Robin\",\n                \"email\": \"robin@gmail.com\",\n                \"createdAt\": \"2026-02-02T09:25:55.352Z\"\n            },\n            {\n                \"_id\": \"698042f5c79a82295df45bd7\",\n                \"name\": \"Denver\",\n                \"email\": \"denver@gmail.com\",\n                \"createdAt\": \"2026-02-02T06:23:49.655Z\"\n            },\n            {\n                \"_id\": \"698040dc31aabf244444e654\",\n                \"name\": \"Admin\",\n                \"email\": \"admin@example.com\",\n                \"createdAt\": \"2026-02-02T06:14:52.607Z\"\n            },\n            {\n                \"_id\": \"698025b4514418bd1eee0970\",\n                \"name\": \"Jack\",\n                \"email\": \"jack@gmail.com\",\n                \"createdAt\": \"2026-02-02T04:19:00.313Z\"\n            },\n            {\n                \"_id\": \"697ae977eebfe1c3918dabf3\",\n                \"name\": \"Peter Apps\",\n                \"email\": \"peterapps70@gmail.com\",\n                \"createdAt\": \"2026-01-29T05:00:39.833Z\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Product Report",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Product Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/reports/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "reports",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2260"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8d4-GGqj0LG5gKgTGU/lLEViaGT/n/U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Mar 2026 04:45:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Product report retrieved successfully\",\n    \"data\": {\n        \"totalProducts\": 12,\n        \"topProducts\": [\n            {\n                \"totalSold\": 20,\n                \"productId\": \"6992ed0205cd92fcb5a05e42\",\n                \"name\": \"Remote Control Car\",\n                \"price\": 1000,\n                \"createdAt\": \"2026-02-16T10:10:10.427Z\"\n            },\n            {\n                \"totalSold\": 19,\n                \"productId\": \"6992e93e05cd92fcb5a05e1e\",\n                \"name\": \"Casual TShirt\",\n                \"price\": 300,\n                \"createdAt\": \"2026-02-16T09:54:06.002Z\"\n            },\n            {\n                \"totalSold\": 17,\n                \"productId\": \"6992ea7905cd92fcb5a05e2a\",\n                \"name\": \"Basketball\",\n                \"price\": 70,\n                \"createdAt\": \"2026-02-16T09:59:21.482Z\"\n            },\n            {\n                \"totalSold\": 13,\n                \"productId\": \"6992e88705cd92fcb5a05e13\",\n                \"name\": \"Reclining Sofa\",\n                \"price\": 5000,\n                \"createdAt\": \"2026-02-16T09:51:03.856Z\"\n            },\n            {\n                \"totalSold\": 5,\n                \"productId\": \"6992ec5705cd92fcb5a05e3c\",\n                \"name\": \"Air Conditioner\",\n                \"price\": 35000,\n                \"createdAt\": \"2026-02-16T10:07:19.637Z\"\n            },\n            {\n                \"totalSold\": 2,\n                \"productId\": \"6992e58805cd92fcb5a05e07\",\n                \"name\": \"4K Smart LED TV\",\n                \"price\": 22000,\n                \"createdAt\": \"2026-02-16T09:38:16.654Z\"\n            }\n        ],\n        \"products\": [\n            {\n                \"_id\": \"6992ee8a05cd92fcb5a05e4e\",\n                \"title\": \"Organic Green Tea\",\n                \"price\": 120,\n                \"createdAt\": \"2026-02-16T10:16:42.880Z\"\n            },\n            {\n                \"_id\": \"6992edbc05cd92fcb5a05e48\",\n                \"title\": \"Car Dashboard Camera\",\n                \"price\": 2500,\n                \"createdAt\": \"2026-02-16T10:13:16.090Z\"\n            },\n            {\n                \"_id\": \"6992ed0205cd92fcb5a05e42\",\n                \"title\": \"Remote Control Car\",\n                \"price\": 1000,\n                \"createdAt\": \"2026-02-16T10:10:10.427Z\"\n            },\n            {\n                \"_id\": \"6992ec5705cd92fcb5a05e3c\",\n                \"title\": \"Air Conditioner\",\n                \"price\": 35000,\n                \"createdAt\": \"2026-02-16T10:07:19.637Z\"\n            },\n            {\n                \"_id\": \"6992ebc305cd92fcb5a05e36\",\n                \"title\": \"Blender\",\n                \"price\": 1200,\n                \"createdAt\": \"2026-02-16T10:04:51.309Z\"\n            },\n            {\n                \"_id\": \"6992eb2005cd92fcb5a05e30\",\n                \"title\": \"Learning JavaScript\",\n                \"price\": 150,\n                \"createdAt\": \"2026-02-16T10:02:08.286Z\"\n            },\n            {\n                \"_id\": \"6992ea7905cd92fcb5a05e2a\",\n                \"title\": \"Basketball\",\n                \"price\": 70,\n                \"createdAt\": \"2026-02-16T09:59:21.482Z\"\n            },\n            {\n                \"_id\": \"6992e9f505cd92fcb5a05e24\",\n                \"title\": \"Yoga Mat\",\n                \"price\": 100,\n                \"createdAt\": \"2026-02-16T09:57:09.576Z\"\n            },\n            {\n                \"_id\": \"6992e93e05cd92fcb5a05e1e\",\n                \"title\": \"Casual TShirt\",\n                \"price\": 300,\n                \"createdAt\": \"2026-02-16T09:54:06.002Z\"\n            },\n            {\n                \"_id\": \"6992e88705cd92fcb5a05e13\",\n                \"title\": \"Reclining Sofa\",\n                \"price\": 5000,\n                \"createdAt\": \"2026-02-16T09:51:03.856Z\"\n            },\n            {\n                \"_id\": \"6992e67a05cd92fcb5a05e0d\",\n                \"title\": \"Wooden Dining Table\",\n                \"price\": 7000,\n                \"createdAt\": \"2026-02-16T09:42:18.518Z\"\n            },\n            {\n                \"_id\": \"6992e58805cd92fcb5a05e07\",\n                \"title\": \"4K Smart LED TV\",\n                \"price\": 22000,\n                \"createdAt\": \"2026-02-16T09:38:16.654Z\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sales Report",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/sales",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "sales"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sales Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/reports/sales",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "reports",
+                    "sales"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1281"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"501-nDB/qZaN8POeSrTBiM/y6Wsr6nc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Mar 2026 04:56:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Sales report retrieved successfully\",\n    \"totalOrders\": 4,\n    \"totalRevenue\": 310890,\n    \"data\": [\n        {\n            \"_id\": \"69a5148507878ef6afa9fc67\",\n            \"orderDate\": \"2026-03-02T04:39:33.304Z\",\n            \"user\": {\n                \"name\": \"Charlie Brown\",\n                \"email\": \"charlie@example.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"Reclining Sofa\",\n                    \"quantity\": 13,\n                    \"price\": 5000,\n                    \"subtotal\": 65000\n                }\n            ],\n            \"subTotal\": 65000,\n            \"totalAmount\": 65000\n        },\n        {\n            \"_id\": \"69a1725b47be943e66043a4d\",\n            \"orderDate\": \"2026-02-27T10:30:51.115Z\",\n            \"user\": {\n                \"name\": \"Peter Apps\",\n                \"email\": \"peterapps70@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"4K Smart LED TV\",\n                    \"quantity\": 2,\n                    \"price\": 22000,\n                    \"subtotal\": 44000\n                }\n            ],\n            \"subTotal\": 44000,\n            \"totalAmount\": 44000\n        },\n        {\n            \"_id\": \"6997fde3fae186dbe2b56cea\",\n            \"orderDate\": \"2026-02-20T06:23:31.563Z\",\n            \"user\": {\n                \"name\": \"Robin\",\n                \"email\": \"robin@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"Air Conditioner\",\n                    \"quantity\": 5,\n                    \"price\": 35000,\n                    \"subtotal\": 175000\n                },\n                {\n                    \"productName\": \"Casual TShirt\",\n                    \"quantity\": 19,\n                    \"price\": 300,\n                    \"subtotal\": 5700\n                }\n            ],\n            \"subTotal\": 180700,\n            \"totalAmount\": 180700\n        },\n        {\n            \"_id\": \"6997fa8ffae186dbe2b56c11\",\n            \"orderDate\": \"2026-02-20T06:09:19.983Z\",\n            \"user\": {\n                \"name\": \"Denver\",\n                \"email\": \"denver@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"Remote Control Car\",\n                    \"quantity\": 20,\n                    \"price\": 1000,\n                    \"subtotal\": 20000\n                },\n                {\n                    \"productName\": \"Basketball\",\n                    \"quantity\": 17,\n                    \"price\": 70,\n                    \"subtotal\": 1190\n                }\n            ],\n            \"subTotal\": 21190,\n            \"totalAmount\": 21190\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Orders Report",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "orders"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Orders Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/reports/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "reports",
+                    "orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1530"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5fa-n4715B3UaL326gKV3G16zQ2PxHo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Mar 2026 05:00:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Order report generated successfully\",\n    \"totalOrders\": 4,\n    \"totalRevenue\": 310890,\n    \"statusSummary\": [\n        {\n            \"_id\": \"pending\",\n            \"totalOrders\": 2,\n            \"revenue\": 224700\n        },\n        {\n            \"_id\": \"cancelled\",\n            \"totalOrders\": 1,\n            \"revenue\": 21190\n        },\n        {\n            \"_id\": \"shipped\",\n            \"totalOrders\": 1,\n            \"revenue\": 65000\n        }\n    ],\n    \"data\": [\n        {\n            \"_id\": \"69a5148507878ef6afa9fc67\",\n            \"orderDate\": \"2026-03-02T04:39:33.304Z\",\n            \"status\": \"shipped\",\n            \"user\": {\n                \"name\": \"Charlie Brown\",\n                \"email\": \"charlie@example.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"Reclining Sofa\",\n                    \"quantity\": 13,\n                    \"price\": 5000,\n                    \"subtotal\": 65000\n                }\n            ],\n            \"subTotal\": 65000,\n            \"totalAmount\": 65000\n        },\n        {\n            \"_id\": \"69a1725b47be943e66043a4d\",\n            \"orderDate\": \"2026-02-27T10:30:51.115Z\",\n            \"status\": \"pending\",\n            \"user\": {\n                \"name\": \"Peter Apps\",\n                \"email\": \"peterapps70@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"4K Smart LED TV\",\n                    \"quantity\": 2,\n                    \"price\": 22000,\n                    \"subtotal\": 44000\n                }\n            ],\n            \"subTotal\": 44000,\n            \"totalAmount\": 44000\n        },\n        {\n            \"_id\": \"6997fde3fae186dbe2b56cea\",\n            \"orderDate\": \"2026-02-20T06:23:31.563Z\",\n            \"status\": \"pending\",\n            \"user\": {\n                \"name\": \"Robin\",\n                \"email\": \"robin@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"Air Conditioner\",\n                    \"quantity\": 5,\n                    \"price\": 35000,\n                    \"subtotal\": 175000\n                },\n                {\n                    \"productName\": \"Casual TShirt\",\n                    \"quantity\": 19,\n                    \"price\": 300,\n                    \"subtotal\": 5700\n                }\n            ],\n            \"subTotal\": 180700,\n            \"totalAmount\": 180700\n        },\n        {\n            \"_id\": \"6997fa8ffae186dbe2b56c11\",\n            \"orderDate\": \"2026-02-20T06:09:19.983Z\",\n            \"status\": \"cancelled\",\n            \"user\": {\n                \"name\": \"Denver\",\n                \"email\": \"denver@gmail.com\"\n            },\n            \"items\": [\n                {\n                    \"productName\": \"Remote Control Car\",\n                    \"quantity\": 20,\n                    \"price\": 1000,\n                    \"subtotal\": 20000\n                },\n                {\n                    \"productName\": \"Basketball\",\n                    \"quantity\": 17,\n                    \"price\": 70,\n                    \"subtotal\": 1190\n                }\n            ],\n            \"subTotal\": 21190,\n            \"totalAmount\": 21190\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Revenue Report",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/revenue",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "revenue"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Revenue Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/reports/revenue",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "reports",
+                    "revenue"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1163"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"48b-fZj7N3pv1vYqDc2oZ+VCWwzLfyA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Mar 2026 05:19:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Revenue report generated successfully\",\n    \"summary\": {\n        \"totalItemsSold\": 76,\n        \"subTotalRevenue\": 310890,\n        \"totalRevenue\": 512780,\n        \"totalOrders\": 4,\n        \"avgOrderValue\": 85463.33\n    },\n    \"monthlyRevenue\": [\n        {\n            \"_id\": {\n                \"year\": 2026,\n                \"month\": 3\n            },\n            \"totalOrders\": 1,\n            \"revenue\": 65000\n        },\n        {\n            \"_id\": {\n                \"year\": 2026,\n                \"month\": 2\n            },\n            \"totalOrders\": 3,\n            \"revenue\": 245890\n        }\n    ],\n    \"recentOrders\": [\n        {\n            \"_id\": \"69a5148507878ef6afa9fc67\",\n            \"user\": {\n                \"_id\": \"69807e014630986400acdc25\",\n                \"name\": \"Charlie Brown\",\n                \"email\": \"charlie@example.com\"\n            },\n            \"totalAmount\": 65000,\n            \"status\": \"shipped\",\n            \"createdAt\": \"2026-03-02T04:39:33.304Z\"\n        },\n        {\n            \"_id\": \"69a1725b47be943e66043a4d\",\n            \"user\": {\n                \"_id\": \"697ae977eebfe1c3918dabf3\",\n                \"name\": \"Peter Apps\",\n                \"email\": \"peterapps70@gmail.com\"\n            },\n            \"totalAmount\": 44000,\n            \"status\": \"pending\",\n            \"createdAt\": \"2026-02-27T10:30:51.115Z\"\n        },\n        {\n            \"_id\": \"6997fde3fae186dbe2b56cea\",\n            \"user\": {\n                \"_id\": \"69806da312203c0220c93552\",\n                \"name\": \"Robin\",\n                \"email\": \"robin@gmail.com\"\n            },\n            \"totalAmount\": 180700,\n            \"status\": \"pending\",\n            \"createdAt\": \"2026-02-20T06:23:31.563Z\"\n        },\n        {\n            \"_id\": \"6997fa8ffae186dbe2b56c11\",\n            \"user\": {\n                \"_id\": \"698042f5c79a82295df45bd7\",\n                \"name\": \"Denver\",\n                \"email\": \"denver@gmail.com\"\n            },\n            \"totalAmount\": 21190,\n            \"status\": \"cancelled\",\n            \"createdAt\": \"2026-02-20T06:09:19.983Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Export CSV",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/export/csv?type=products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "export",
+                "csv"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "products"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Export CSV",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+                },
+                "url": {
+                  "raw": "http://localhost:1234/api/reports/export/csv?type=products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1234",
+                  "path": [
+                    "api",
+                    "reports",
+                    "export",
+                    "csv"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "products"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv; charset=utf-8"
+                },
+                {
+                  "key": "Content-Disposition",
+                  "value": "attachment; filename=\"products-report.csv\""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "6630"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19e6-10Uommv9fxZuYDtzEQNdvnFYhnw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Mar 2026 05:27:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "\"_id\",\"title\",\"description\",\"price\",\"category\",\"subCategory\",\"tags\",\"brand\",\"attributes\",\"inventory\",\"image\",\"isApproved\",\"createdBy\",\"createdAt\",\"updatedAt\",\"__v\",\"updatedBy\",\"averageRating\",\"isFeatured\",\"reviewCount\",\"reviews\"\n\"6992e58805cd92fcb5a05e07\",\"4K Smart LED TV\",\"A 55-inch 4K Ultra HD LED TV with smart features and WiFi connectivity.\",22000,\"[\"\"Electronics\"\"]\",\"[\"\"TV, Smart TVs\"\"]\",\"[\"\"4K, LED, Smart TV\"\"]\",\"VisionPro\",\"{\"\"color\"\":\"\"Black\"\",\"\"size\"\":\"\"55 inches\"\"}\",58,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771234695/admin_dashboard/products/siryw2d0bde91j36tebb.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T09:38:16.654Z\",\"2026-02-27T10:30:51.125Z\",0,\"698040dc31aabf244444e654\",0,false,0,\n\"6992e67a05cd92fcb5a05e0d\",\"Wooden Dining Table\",\"A solid oak dining table with a classic design that fits perfectly in any dining room.\",7000,\"[\"\"Furniture\"\"]\",\"[\"\"Dining Tables, Wooden Furniture\"\"]\",\"[\"\"Dining, Wood, Table\"\"]\",\"HomeStyle\",\"{\"\"color\"\":\"\"Oak Brown\"\",\"\"size\"\":\"\"6 Seater\"\"}\",10,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771234937/admin_dashboard/products/xkz4gnuaefwrhu0cdvps.webp\",true,\"698040dc31aabf244444e654\",\"2026-02-16T09:42:18.518Z\",\"2026-02-27T06:26:48.687Z\",7,\"698040dc31aabf244444e654\",0,false,0,\"[]\"\n\"6992e88705cd92fcb5a05e13\",\"Reclining Sofa\",\"A luxurious reclining sofa with adjustable headrests and a comfortable cushion.\",5000,\"[\"\"Furniture\"\"]\",\"[\"\"Sofas, Living Room Furniture\"\"]\",\"[\"\"Sofa, Recliner, Comfort\"\"]\",\"LuxuryLiving\",\"{\"\"color\"\":\"\"Grey\"\",\"\"size\"\":\"\"3 Seater\"\"}\",2,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771235463/admin_dashboard/products/zk7zpr6xaga8n9lzqgat.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T09:51:03.856Z\",\"2026-03-02T04:39:33.308Z\",0,,0,false,0,\n\"6992e93e05cd92fcb5a05e1e\",\"Casual TShirt\",\"Soft cotton t-shirt with a simple yet stylish design, perfect for daily wear.\",300,\"[\"\"Clothing\"\"]\",\"[\"\"T-Shirts, Men's Wear\"\"]\",\"[\"\"Casual, T-Shirt, Men's Fashion\"\"]\",\"FashionPro\",\"{\"\"color\"\":\"\"Blue\"\",\"\"size\"\":\"\"Large\"\"}\",181,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771235644/admin_dashboard/products/zrt3jv5bc5qneorcuzbt.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T09:54:06.002Z\",\"2026-02-26T12:28:38.709Z\",1,\"698040dc31aabf244444e654\",0,false,0,\"[]\"\n\"6992e9f505cd92fcb5a05e24\",\"Yoga Mat\",\"Durable and non-slip yoga mat for comfortable practice during your yoga sessions.\",100,\"[\"\"Sports\"\"]\",\"[\"\"Yoga, Fitness Equipment\"\"]\",\"[\"\"Yoga, Fitness, Mat\"\"]\",\"FitGear\",\"{\"\"color\"\":\"\"Purple\"\",\"\"size\"\":\"\"Standard\"\"}\",120,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771235828/admin_dashboard/products/kjqbvudhycuhixgkwunn.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T09:57:09.576Z\",\"2026-02-16T09:57:09.576Z\",0,,,,,\n\"6992ea7905cd92fcb5a05e2a\",\"Basketball\",\"A high-quality basketball made for indoor and outdoor play.\",70,\"[\"\"Sports\"\"]\",\"[\"\"Basketball, Equipment\"\"]\",\"[\"\"Ball, Sports, Outdoor\"\"]\",\"SportFlex\",\"{\"\"color\"\":\"\"Orange\"\",\"\"size\"\":\"\"Standard\"\"}\",55,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771235960/admin_dashboard/products/rxcr77fl9vx7ndpqxawc.webp\",true,\"698040dc31aabf244444e654\",\"2026-02-16T09:59:21.482Z\",\"2026-02-27T06:50:51.140Z\",3,\"698040dc31aabf244444e654\",4.5,false,2,\"[\"\"69a13e0511901628a7fae6b9\"\",\"\"69a13ecb11901628a7fae702\"\"]\"\n\"6992eb2005cd92fcb5a05e30\",\"Learning JavaScript\",\"A comprehensive guide to learning JavaScript with easy-to-follow examples and exercises.\",150,\"[\"\"Books\"\"]\",\"[\"\"Programming, Technology\"\"]\",\"[\"\"JavaScript, Programming, Technology\"\"]\",\"TechBooks\",\"{\"\"color\"\":\"\"N/A\"\",\"\"size\"\":\"\"Paperback\"\"}\",80,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771236127/admin_dashboard/products/hxqvs4tgo5whzuwdcfsj.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T10:02:08.286Z\",\"2026-02-17T06:53:51.655Z\",0,\"698040dc31aabf244444e654\",,,,\n\"6992ebc305cd92fcb5a05e36\",\"Blender\",\"A high-speed blender perfect for smoothies, soups, and sauces with multiple blending modes.\",1200,\"[\"\"Home Appliances\"\"]\",\"[\"\"Blenders, Kitchen Appliances\"\"]\",\"[\"\"Blender, Kitchen, Appliance\"\"]\",\"HomeMaster\",\"{\"\"color\"\":\"\"Silver\"\",\"\"size\"\":\"\"Medium\"\"}\",40,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771236290/admin_dashboard/products/q4r582t98pzm9p3n4irr.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T10:04:51.309Z\",\"2026-02-23T04:19:22.270Z\",0,\"698040dc31aabf244444e654\",,,,\n\"6992ec5705cd92fcb5a05e3c\",\"Air Conditioner\",\"A 1.5 Ton air conditioner with a cooling capacity perfect for small to medium-sized rooms.\",35000,\"[\"\"Home Appliances\"\"]\",\"[\"\"AC\"\",\"\"Cooling Appliances\"\"]\",\"[\"\"Air Conditioner\"\",\"\"Cooling\"\",\"\"Home Appliance\"\"]\",\"CoolBreeze\",\"{\"\"color\"\":\"\"White\"\",\"\"size\"\":\"\"1.5 Ton\"\"}\",77,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771236438/admin_dashboard/products/ttvzmpu0u1fryfyzwkdv.webp\",false,\"698040dc31aabf244444e654\",\"2026-02-16T10:07:19.637Z\",\"2026-02-26T12:02:40.915Z\",2,\"698040dc31aabf244444e654\",0,false,0,\"[]\"\n\"6992ed0205cd92fcb5a05e42\",\"Remote Control Car\",\"A fast and durable remote control car designed for hours of outdoor fun.\",1000,\"[\"\"Toys and Games\"\"]\",\"[\"\"Outdoor Toys\"\",\"\"Remote Control Toys\"\"]\",\"[\"\"RC Car\"\",\"\"Toys\"\",\"\"Outdoor\"\"]\",\"Speedster\",\"{\"\"color\"\":\"\"Red\"\",\"\"size\"\":\"\"Standard\"\"}\",33,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771236609/admin_dashboard/products/qfwiiq8lazeygoobhjnw.webp\",true,\"698040dc31aabf244444e654\",\"2026-02-16T10:10:10.427Z\",\"2026-03-02T07:23:00.590Z\",3,\"698040dc31aabf244444e654\",0,true,0,\"[\"\"69a13d3211901628a7fae678\"\"]\"\n\"6992edbc05cd92fcb5a05e48\",\"Car Dashboard Camera\",\"A 1080p Full HD dashboard camera with motion detection and night vision for enhanced security.\",2500,\"[\"\"Automotive\"\"]\",\"[\"\"Car Accessories, Cameras\"\"]\",\"[\"\"Car Camera, Dashboard, Security\"\"]\",\"AutoVision\",\"{\"\"color\"\":\"\"Black\"\",\"\"size\"\":\"\"Standard\"\"}\",60,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771236795/admin_dashboard/products/we8bqakzmkxmskh7ouit.webp\",true,\"698040dc31aabf244444e654\",\"2026-02-16T10:13:16.090Z\",\"2026-03-02T06:04:54.592Z\",4,\"698040dc31aabf244444e654\",5,false,1,\"[\"\"69a52853a0d027a89474fbdf\"\"]\"\n\"6992ee8a05cd92fcb5a05e4e\",\"Organic Green Tea\",\"Premium organic green tea leaves, known for its antioxidant properties and fresh taste.\",120,\"[\"\"Food and Beverages\"\"]\",\"[\"\"Tea\"\",\"\"Beverages\"\"]\",\"[\"\"Green Tea\"\",\"\"Organic\"\",\"\"Beverage\"\"]\",\"TeaFresh\",\"{\"\"color\"\":\"\"Green\"\",\"\"size\"\":\"\"25 Tea Bags\"\"}\",33,\"https://res.cloudinary.com/dfciwmday/image/upload/v1771237002/admin_dashboard/products/qvetpajzm9rsm4fgpyha.webp\",true,\"698040dc31aabf244444e654\",\"2026-02-16T10:16:42.880Z\",\"2026-02-27T07:15:16.852Z\",4,\"698040dc31aabf244444e654\",4,false,1,\"[\"\"69a13bb011901628a7fae647\"\"]\""
+            }
+          ]
+        },
+        {
+          "name": "Export PDF",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Admin@123\"\n}\n"
+            },
+            "url": {
+              "raw": "http://localhost:1234/api/reports/export/pdf?type=users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1234",
+              "path": [
+                "api",
+                "reports",
+                "export",
+                "pdf"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "users"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }

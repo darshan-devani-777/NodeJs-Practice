@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const privacyPolicySchema = new mongoose.Schema(
+const aboutUsSchema = new mongoose.Schema(
   {
     sections: [
       {
@@ -14,10 +14,10 @@ const privacyPolicySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-privacyPolicySchema.statics.getActivePolicy = function () {
+aboutUsSchema.statics.getActiveAbout = function () {
   return this.findOne({ isActive: true })
     .sort({ updatedAt: -1 })
     .populate("author", "name email role");
 };
 
-module.exports = mongoose.model("PrivacyPolicy", privacyPolicySchema);
+module.exports = mongoose.model("AboutUs", aboutUsSchema);
