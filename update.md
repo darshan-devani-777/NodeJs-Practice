@@ -3033,3 +3033,203 @@ Project Name :- Admin Dashboard
                         -  Used Alpine.js for interactive dropdowns functionality
                         -  Configured EJS as the templating engine with dynamic view paths
                         -  Implemented routes by separating pageRoutes and authRoutes                                                                                
+Please find today's work updates below:
+Date:09-02-2026 
+Task Name :- LangChain Framework
+                    -  Read the official LangChain documentation
+                    -  R&D on how to configuring it & wrapping LLM models in Node.Js 
+                    -  Overview of it’s architecture and execution flow
+                    -  Learned about Prompt Templates and dynamic prompt methods
+                    -  Explored LLM vs Chat Models and their usage patterns
+
+Please find today's work updates below:
+Date:10-02-2026
+
+Task Name :- Nest.Js Project
+                    -  Revised core concepts & architecture of Nest.Js 
+                    -  Reviewed the existing NestJS project structure and codebase
+                    -  Analyzed Nest CLI commands for setup Project / Folders 
+
+Please find today's work updates below:
+Date:11-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Refined Bulk action buttons to allow individual actions per user
+                        -  Modified the Pagination / Activity-logs section for better navigation
+                        -  Fixed width issues in the Main content section
+                        -  Created Change Password API and integrated it into the Settings Page
+                        -  Enhanced Profile page to support switching user details and updating password section
+
+Please find today's work updates below:
+Date:12-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Implemented CRUD APIs for blogs with Publish/Unpublish functionality
+                        -  Added pagination using cursor-based fetch for the blogs
+                        -  Integrated search and sorting functionality based on Title/Content
+                          -  Created real-time stats section (Total/Published/Draft) blogs
+                        -  Designed Create/Edit Blog Modal with form validation 
+                        -  Implemented activity logging for all blog operations (create, update, delete, publish/unpublish)
+
+Please find today's work updates below:
+Date:13-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Added CK-TextEditor for the Create/Edit Blog modal form
+                        -  Implemented CRUD APIs for FAQs with Active/Inactive toggle
+                          -  Added cursor-based pagination for efficient FAQ fetching
+                        -  Integrated search and sorting functionality based on Question/Answer/Tags
+                          -  Created real-time Stats section (Total / Active / Inactive) FAQs
+                        -  Designed Create/Edit FAQ Modal with form validation 
+                        -  Implemented activity logging for all FAQ operations (create, update, delete, activate/deactivate)
+
+Please find today's work updates below:
+Date:16-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Implemented CRUD APIs for Product section
+                        -  Created API’s for Product Stats, Approving Seller Products, and Inventory Management
+                        -  Configured Cloudinary for handling product images
+                        -  Built Bulk Upload functionality to handle multiple products via CSV file
+                          -  Tested all API’s and inserted products into the database
+
+Please find today's work updates below:
+Date:17-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Integrated CRUD API’s for products in the product section
+                       -   Designed Create/Edit Product Modal with detailed input fields
+                       -   Added Approval toggle from the product table (Approve/Disapprove)
+                       -   Implemented search and sorting functionality based on product fields
+                       -   Built Bulk CSV upload for products to handle bulk uploading 
+
+Please find today's work updates below:
+Date:18-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Created CRUD API for the Privacy Policy sections
+                        -  Integrated CRUD API in the admin dashboard
+                        -  Designed Create/Edit Modal with rich text editor (CKEditor)
+                        -  Added dynamic Create / Update button based on existing policy
+                        -  Enabled Admin-only editing with toast notifications for actions
+
+Please find today's work updates below:
+Date:19-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Built CRUD APIs for user carts (add, update, remove, clear)
+                        -  Implemented cart stats aggregation (total carts, items, and value)
+                        -  Integrated Cart APIs with the admin dashboard 
+                        -  Designed modals for viewing cart details with item listing
+                        -  Added search, filter, and sort functionality for cart overview
+                        -  Tested All cart API’s and store data in the database
+
+Please find today's work updates below:
+Date:20-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Built Order Management APIs (Create, Fetch, Update status, Cancel)
+                        -  Created Order Stats API (Total Orders, Total Revenue, Status-wise Counts)
+                        -  Added tracking number auto-generation for shipped orders
+                        -  Managed real-time inventory updates on order creation and cancellation
+                        -  Added payment status handling (Pending, Paid, Failed, Refunded) 
+                       -   Integrated Orders APIs into the Admin Dashboard 
+                       -   Tested All order API’s
+
+Please find today's work updates below:
+Date:23-02-2026
+
+Project Name :- RBAC Dynamic 
+                        -  Implemented auth APIs (Register, Login, View Dashboard)
+                        -  Added Role & Permissions (Create Role, Assign Role, Permission Checks)
+                        -  Created Permission Request Workflow (User Request, Admin Review, SuperAdmin Approval)
+                        -  Built Audit Logging for all critical actions with trace IDs, IP
+                        -  Integrated Trace Middleware to generate trace IDs for each request
+                        -  Developed SuperAdmin APIs (Final Approve Permission, Audit Logs)
+
+Please find today's work updates below:
+Date:24-02-2026
+
+Project Name :- ABAC Dynamic
+                        -  Implemented Attribute-based access control in Auth API’s
+                        -  Configured CASL library to define abilities for each user 
+                        -  Applied dynamic access based on Role, Department and Status
+                        -  Integrated Department-level access for Admin operations
+                        -  Introduced time-based access control for dashboard access
+                        -  Added Global Account Status Lock (Active / Suspended) for system restriction
+
+Please find today's work updates below:
+Date:26-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Added user roles (Editor, Manager, Support) in the User model
+                        -  Implemented email verification status in the Register API
+                        -  Created Login History model for tracking user login activities
+                        -  Modified user registration charts to support weekly/monthly views
+                        -  Added Toggle Featured API for products to mark/unmark
+                        -  Built Low Stock Alerts API to fetch products with low inventory
+                        
+
+Please find today's work updates below:
+Date:27-02-2026
+
+Project Name :- Admin Dashboard
+                        -  Created Product Review model with rating and comment fields
+                        -  Implemented Add / Update / Delete review APIs with RBAC
+                        -  Integrated reviews API in the product section with action buttons
+                        -  Added Import / Export products functionality using CSV file
+                        -  Created Product View section to display product information
+                        -  Added Abandoned Cart system to manage carts based on certain time limits
+
+Please find today's work updates below:
+Date:02-03-2026
+
+Project Name :- Admin Dashboard
+                        -  Created separate Refund model to manage refund records
+                        -  Implemented Refund Request API for users
+                        -  Implemented Admin Approval and Processing API for refunds
+                        -  Added Refund History tracking with pagination and search
+                        -  Restored product inventory after successful refund processing
+                        -  Integrated refund section API into the order section 
+                        -  Generated unique Invoice Generation on successful payment
+                        -  Added Invoice PDF download endpoint
+
+Please find today's work updates below:
+Date:03-03-2026
+
+Project Name :- Admin Dashboard
+                        -  Created Terms and Conditions model with author reference
+                        -  Added Upsert functionality (create/update) content with validation
+                        -  Built About Us section with Create/Update endpoints
+                        -  Implemented Contact Us form submission, view, mark-as-read, and delete APIs
+                        -  Added cursor-based pagination for efficient message retrieval
+                        -  Tested T&C / About Us / Contact Us section APIs
+
+
+Please find today's work updates below:
+Date:05-03-2026
+ Project Name :- Admin Dashboard
+                        -  Created Banner section APIs with validation & cursor pagination
+                        -  Added admin access control for toggle banner visibility
+                        -  Created Landing page section APIs with section name & content structure
+                        -  Built toggle status endpoints for activating/deactivating sections
+                        -  Integrated Both section APIs into the admin dashboard
+                        
+
+Please find today's work updates below:
+Date:06-03-2026
+ Project Name :- Admin Dashboard
+                        -  Built Analytics Reports API with CSV & PDF export (Users, Products, Sales, Orders, Revenue)
+                        -  Developed Export API with proper aggregation and report summaries
+                        -  Implemented Preview Section for live Table/PDF view with download functionality
+                        - Created Download Endpoints supporting both CSV and PDF formats
+
+Please find today's work updates below:
+Date:09-03-2026
+  
+Project Name :- Admin Dashboard
+                        -  Improved user section with toggle-based status management
+                        -  Enhanced all section models and their action buttons
+                        -  Modified product section with display product info &  their action buttons 
+                        -  Implemented dynamic refund management with order status tracking
+                        -  Updated inventory management API for manage stocks efficiently 
