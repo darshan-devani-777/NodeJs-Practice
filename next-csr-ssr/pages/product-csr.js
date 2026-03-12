@@ -1,180 +1,105 @@
-"use client";
-import Link from "next/link";
+'use client'
+
 import { useEffect, useState } from "react";
 
 export default function ProductsCSR() {
-  const [allProducts, setAllProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Filters
-  const [searchTitle, setSearchTitle] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [maxPrice, setMaxPrice] = useState(1000);
-
-  // Pagination
-  const itemsPerPage = 8;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState([]);
+  const [loadTime, setLoadTime] = useState(null);
+  const [status, setStatus] = useState('🟡 Initializing...');
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products?limit=100")
-      .then((res) => res.json())
+    const start = performance.now();
+    console.log("🚀 === CSR FETCH STARTED (BROWSER ONLY) ===");
+    console.log("📍 Location: Client-side useEffect");
+    console.log("⏱️ Start time:", new Date().toISOString());
+    
+    setStatus('🔄 Fetching data from FakeStore API...');
+
+    fetch("https://fakestoreapi.com/products", { 
+      cache: 'no-store'
+    })
+      .then((res) => {
+        console.log("📡 Response received:", res.status);
+        return res.json();
+      })
       .then((data) => {
-        setAllProducts(data.products);
-        setLoading(false);
+        const end = performance.now();
+        const time = (end - start).toFixed(2);
+        
+        console.log(`✅ CSR FETCH COMPLETED in ${time}ms`);
+        console.log("📦 Products count:", data.length);
+        console.log("📍 Data visible ONLY in browser dev tools");
+        console.log("🌐 View page source - NO DATA HERE!");
+        console.log("═".repeat(50));
+
+        setProducts(data);
+        setLoadTime(time);
+        setStatus('✅ Loaded!');
+      })
+      .catch((error) => {
+        console.error("❌ CSR Fetch failed:", error);
+        setStatus('❌ Failed to load');
       });
   }, []);
 
-  // Extract category
-  const categories = [
-    ...new Set(
-      allProducts.map((p) =>
-        typeof p.category === "object" ? p.category.name : p.category
-      )
-    ),
-  ];
-
-  // Apply filters
-  const filteredProducts = allProducts.filter((product) => {
-    const titleMatch = product.title
-      .toLowerCase()
-      .includes(searchTitle.toLowerCase());
-
-    const categoryName =
-      typeof product.category === "object"
-        ? product.category.name
-        : product.category;
-
-    const categoryMatch = selectedCategory
-      ? categoryName === selectedCategory
-      : true;
-
-    const priceMatch = product.price <= maxPrice;
-
-    return titleMatch && categoryMatch && priceMatch;
-  });
-
-  // Pagination logic
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const startIdx = (currentPage - 1) * itemsPerPage;
-  const paginatedProducts = filteredProducts.slice(
-    startIdx,
-    startIdx + itemsPerPage
-  );
-
-  if (loading) {
-    return (
-      <div className="p-4 bg-gray-800">
-        <p className="text-white text-lg">Loading products...</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="p-4 bg-gray-800 min-h-screen text-white">
-      <h2 className="text-2xl font-bold mb-5 underline text-center">
-        Client Side Rendered Products
-      </h2>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center bg-white/20 backdrop-blur-xl px-8 py-4 rounded-3xl shadow-2xl mb-6">
+            <div className="w-4 h-4 bg-yellow-400 rounded-full mr-3 animate-pulse"></div>
+            <h1 className="text-5xl md:text-6xl font-black text-white drop-shadow-2xl">
+              CSR Products
+            </h1>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 text-white">
+              <div className="text-2xl font-bold">{status}</div>
+              <div className="text-sm opacity-90">Current State</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 text-white">
+              <div className="text-2xl font-bold text-blue-300">
+                {loadTime ? `${loadTime}ms` : '--'}
+              </div>
+              <div className="text-sm opacity-90">Client Fetch Time</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 text-white">
+              <div className="text-2xl font-bold text-green-300">{products.length}</div>
+              <div className="text-sm opacity-90">Products Loaded</div>
+            </div>
+          </div>
 
-      {/* Filter Section */}
-      <div className="flex flex-col md:flex-row gap-4 mb-6 justify-center items-center">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchTitle}
-          onChange={(e) => {
-            setSearchTitle(e.target.value);
-            setCurrentPage(1);
-          }}
-          className="px-3 py-2 rounded text-white border border-gray-500"
-        />
+          <div className="text-xl text-white/90 bg-black/20 rounded-2xl p-6 backdrop-blur-xl">
+            👀 <strong>CSR:</strong> Check browser console + View Page Source (empty data!)
+          </div>
+        </div>
 
-        <select
-          value={selectedCategory}
-          onChange={(e) => {
-            setSelectedCategory(e.target.value);
-            setCurrentPage(1);
-          }}
-          className="px-3 py-2 rounded text-white border border-gray-500"
-        >
-          <option value="">All Categories</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {products.map((p) => (
+            <div
+              key={p.id}
+              className="group bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-xl hover:shadow-3xl hover:-translate-y-3 transition-all duration-500 h-full border border-white/50 hover:border-indigo-300"
+            >
+              <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden mb-4">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors">
+                {p.title}
+              </h3>
+              <p className="text-xs text-gray-500 capitalize mb-3 font-medium tracking-wide">
+                {p.category}
+              </p>
+              <div className="text-2xl font-black text-emerald-600 drop-shadow-lg">
+                ${p.price}
+              </div>
+            </div>
           ))}
-        </select>
-
-        <div className="flex items-center gap-2">
-          <input
-            type="number"
-            min="0"
-            max="1000"
-            value={maxPrice}
-            onChange={(e) => {
-              setMaxPrice(Number(e.target.value));
-              setCurrentPage(1);
-            }}
-            className="px-3 py-2 rounded text-white border border-gray-500"
-          />
-          <span className="text-sm">Max Price: ${maxPrice}</span>
         </div>
-      </div>
-
-      {/* Product List */}
-      {paginatedProducts.length > 0 ? (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {paginatedProducts.map((p) => {
-            const categoryName =
-              typeof p.category === "object" ? p.category.name : p.category;
-
-            return (
-              <li
-                key={p.id}
-                className="border border-gray-300 rounded-lg shadow-sm p-4 bg-white hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
-              >
-                <Link href={`/csr-products/${p.id}`}>
-                  <img
-                    src={p.images[0]}
-                    alt={p.title}
-                    className="w-full h-40 object-contain mb-4"
-                  />
-                  <div className="text-center text-black">
-                    <h3 className="text-lg font-semibold text-blue-700 mb-1">
-                      Title: {p.title}
-                    </h3>
-                    <p className="text-sm font-semibold text-gray-500 mb-2 capitalize">
-                      Category: {categoryName}
-                    </p>
-                    <p className="text-base font-medium text-green-700">
-                      Price: ${p.price}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <div className="flex items-center justify-center h-96">
-          <p className="text-white text-2xl text-center">No products found.</p>
-        </div>
-      )}
-
-      {/* Pagination */}
-      <div className="mt-8 flex justify-center gap-3">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index + 1}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`px-3 py-1 rounded cursor-pointer hover:bg-gray-200 ${
-              currentPage === index + 1
-                ? "bg-blue-500 text-white"
-                : "bg-white text-black"
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
       </div>
     </div>
   );
