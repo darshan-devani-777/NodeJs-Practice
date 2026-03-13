@@ -30,7 +30,7 @@ export async function up() {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   `);
 
-  console.log("✅ users table created with refresh token support");
+  console.log("✅ users table created...");
 }
 
 export async function down() {
