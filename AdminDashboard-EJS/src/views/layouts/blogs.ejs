@@ -1,14 +1,13 @@
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+<div class="min-h-screen bg-white p-6">
 
     <!-- HEADER -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
         <div>
-            <h1
-                class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
-                <i class="fas fa-blog text-blue-400 animate-pulse"></i>
+            <h1 class="text-3xl font-bold text-black-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+                <i class="fas fa-blog text-black-400 animate-pulse"></i>
                 <span>Blogs Management</span>
             </h1>
-            <span class="text-base text-gray-600 font-semibold">
+            <span class="text-md text-gray-600 font-semibold">
                 Manage blogs, publish status & content
             </span>
         </div>
@@ -19,7 +18,7 @@
 
         <!-- Total Blogs -->
         <div
-            class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            class="bg-blue-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs text-blue-100 font-bold">Total Blogs</p>
@@ -32,7 +31,7 @@
 
         <!-- Published Blogs -->
         <div
-            class="bg-gradient-to-br from-green-400 via-green-500 to-green-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            class="bg-green-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs text-green-100 font-bold">Published Blogs</p>
@@ -45,7 +44,7 @@
 
         <!-- Draft Blogs -->
         <div
-            class="bg-gradient-to-br from-slate-400 via-slate-500 to-slate-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            class="bg-gray-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs text-slate-100 font-bold">Draft Blogs</p>
@@ -58,83 +57,88 @@
 
         <!-- New Blogs Today -->
         <div
-            class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 relative overflow-hidden group hover:scale-105 transition">
+            class="bg-yellow-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-xs text-indigo-100 font-bold">New Blogs (Today)</p>
+                    <p class="text-xs font-semibold text-yellow-50 drop-shadow">
+                        New Blogs (Today)
+                    </p>
                     <span id="newBlogs"
-                        class="text-3xl sm:text-4xl font-extrabold text-white font-mono animate-pulse">0</span>
+                        class="text-4xl font-extrabold text-white font-mono transition-all animate-pulse">
+                        0
+                    </span>
                 </div>
-                <i class="fas fa-pen-nib text-5xl text-indigo-200 opacity-80 group-hover:scale-125 transition"></i>
+                <i class="fas fa-pen-nib text-5xl text-yellow-200 opacity-80 group-hover:scale-125 transition"></i>
             </div>
         </div>
 
     </div>
 
-        <!-- SEARCH + SORT -->
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
+    <!-- SEARCH + SORT -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-6 w-full">
 
-            <!-- Left: Search + Sort -->
-            <div class="flex gap-2 w-full sm:w-auto">
-                <input type="text" id="searchInput"
-                    class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="Search blog title..." />
+        <!-- Search + Sort -->
+        <div class="flex gap-2 w-full sm:w-auto">
+            <input type="text" id="searchInput"
+                class="border border-gray-300 rounded px-2 py-2 w-full sm:w-56 text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-400"
+                placeholder="Search blog title..." />
 
-                <select id="sortSelect"
-                    class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <option value="desc">Sort: Newest First</option>
-                    <option value="asc">Sort: Oldest First</option>
-                </select>
+            <select id="sortSelect"
+                class="border border-gray-300 rounded px-2 py-2 text-xs bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-400">
+                <option value="desc">Sort: Newest First</option>
+                <option value="asc">Sort: Oldest First</option>
+            </select>
 
-                <button onclick="onSearch()"
-                    class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
-                    <i class="fas fa-search text-[10px]"></i>
-                    Search
-                </button>
-            </div>
-
-            <!-- Right: Create Blog Button -->
-            <div class="w-full sm:w-auto flex justify-start sm:justify-end">
-                <button onclick="openCreateBlogModal()"
-                    class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
-                    <i class="fas fa-plus text-[10px]"></i>
-                    Blogs
-                </button>
-            </div>
+            <button onclick="onSearch()"
+                class="flex items-center gap-1 px-3 py-2 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700">
+                <i class="fas fa-search text-[10px]"></i>
+                Search
+            </button>
         </div>
 
-    <!-- TABLE -->
-    <div class="bg-white rounded-xl shadow-lg border border-blue-100 overflow-x-auto">
-        <table class="w-full min-w-[700px] border border-gray-200 text-sm table-fixed">
-            <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white">
-                <tr>
-                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[60px] text-center">#</th>
+        <!-- Create Blog Button -->
+        <div class="w-full sm:w-auto flex justify-start sm:justify-end">
+            <button onclick="openCreateBlogModal()"
+                class="flex items-center gap-1 px-4 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">
+                <i class="fas fa-plus text-[10px]"></i>
+                Blogs
+            </button>
+        </div>
+    </div>
 
-                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+    <!-- TABLE -->
+    <div class="bg-white rounded-xl shadow-lg border border-black-100 overflow-x-auto">
+        <table class="w-full min-w-[700px] text-sm table-fixed">
+
+            <thead class="bg-gradient-to-r from-black-50 via-black-100 to-white">
+                <tr class="text-xs uppercase tracking-wider">
+                    <th class="px-4 py-3 font-bold text-black-700 w-[60px] text-center">#</th>
+
+                    <th class="px-4 py-3 font-bold text-black-700 text-center">
                         Title
                     </th>
 
-                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                    <th class="px-4 py-3 font-bold text-black-700 text-center">
                         Author
                     </th>
 
-                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                    <th class="px-4 py-3 font-bold text-black-700 text-center">
                         Status
                     </th>
 
-                    <th class="px-4 py-2 text-xs font-bold text-blue-700 text-center">
+                    <th class="px-4 py-3 font-bold text-black-700 text-center">
                         Created At
                     </th>
 
-                    <th class="px-4 py-2 text-xs font-bold text-blue-700 w-[140px] text-center">
-                        Action
+                    <th class="px-4 py-3 font-bold text-black-700 text-center w-[140px]">
+                        Actions
                     </th>
                 </tr>
             </thead>
 
-            <tbody id="blogsTable" class="divide-y font-mono">
-                <!-- rows via JS -->
+            <tbody id="blogsTable" class="divide-y divide-gray-200">
             </tbody>
+
         </table>
     </div>
 
@@ -152,7 +156,7 @@
 
             <!-- Header -->
             <div class="flex justify-between items-center mb-4">
-                <h2 id="blogModalTitle" class="text-lg font-bold text-blue-800">Create New Blog</h2>
+                <h2 id="blogModalTitle" class="text-lg font-bold text-gray-800">Create New Blog</h2>
                 <button onclick="closeCreateBlogModal()" class="text-gray-500 hover:text-red-500">
                     <i class="fas fa-times text-lg"></i>
                 </button>
@@ -286,17 +290,19 @@
 
             if (!data.success) {
                 showToast("Failed to load blogs", "error");
+
                 if (reset) {
                     tbody.innerHTML = `
-          <tr>
-            <td colspan="6"
-              class="text-center py-6 bg-white font-semibold text-red-600">
-              Failed to load blogs
-            </td>
-          </tr>
+        <tr>
+          <td colspan="6"
+          class="text-center py-8 text-red-600 font-semibold">
+            Failed to load blogs
+          </td>
+        </tr>
         `;
                     loadMoreBtn.classList.add("hidden");
                 }
+
                 return;
             }
 
@@ -307,12 +313,12 @@
 
             if (data.data.length === 0 && reset) {
                 tbody.innerHTML = `
-        <tr>
-          <td colspan="6"
-            class="text-center py-6 bg-white text-gray-500 font-semibold">
-            Blog not found
-          </td>
-        </tr>
+      <tr>
+        <td colspan="6"
+        class="text-center py-8 text-gray-500 font-semibold">
+          Blog not found
+        </td>
+      </tr>
       `;
                 loadMoreBtn.classList.add("hidden");
                 return;
@@ -321,79 +327,68 @@
             data.data.forEach((blog, i) => {
                 const tr = document.createElement("tr");
                 tr.setAttribute("data-id", blog._id);
+                tr.className = "border-b border-gray-100";
 
                 tr.innerHTML = `
-        <!-- INDEX -->
-        <td class="px-4 py-3 font-mono text-xs text-blue-900 w-[60px] text-center">
-          ${indexOffset + i + 1}.
-        </td>
 
-        <!-- TITLE -->
-        <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700 max-w-[200px] truncate text-center"
-            title="${escapeHTML(blog.title)}">
-          ${escapeHTML(blog.title)}
-        </td>
+<td class="px-4 py-3 text-xs font-semibold text-gray-500 text-center w-[60px]">
+${indexOffset + i + 1}.
+</td>
 
-        <!-- AUTHOR -->
-        <td class="px-4 py-3 font-mono text-sm text-blue-800 text-center">
-          ${escapeHTML(blog.author?.name || "-")}
-        </td>
+<td class="px-4 py-3 font-semibold text-black-800 text-sm text-center truncate max-w-[200px]"
+title="${escapeHTML(blog.title)}">
+${escapeHTML(blog.title)}
+</td>
 
-        <!-- STATUS -->
-        <td class="px-4 py-3 text-center">
-          <span
-            class="px-2 py-1 text-xs rounded font-bold tracking-wider
-              ${blog.isPublished
-                        ? "bg-green-600 text-white"
-                        : "bg-gray-400 text-white"}">
-            ${blog.isPublished ? "Published" : "Draft"}
-          </span>
-        </td>
+<td class="px-4 py-3 text-gray-700 text-sm text-center">
+${escapeHTML(blog.author?.name || "-")}
+</td>
 
-        <!-- CREATED AT -->
-        <td class="px-4 py-3 font-mono text-xs text-center max-w-[140px]">
-          <div>
-            ${blog.createdAt
-                        ? new Date(blog.createdAt).toLocaleDateString()
-                        : "-"}
-          </div>
-          <div class="text-gray-500 text-[10px]">
-            ${blog.createdAt
-                        ? new Date(blog.createdAt).toLocaleTimeString()
-                        : ""}
-          </div>
-        </td>
+<td class="px-4 py-3 text-center">
+<span class="px-3 py-1 text-xs font-semibold rounded-full ${blog.isPublished
+                        ? "bg-green-100 text-green-700"
+                        : "bg-gray-200 text-gray-600"
+                    }">
+${blog.isPublished ? "Published" : "Draft"}
+</span>
+</td>
 
-        <!-- ACTIONS -->
-        <td class="px-4 py-3 w-[140px] text-center">
-          <div class="flex gap-2 justify-center">
-            <button
-              onclick="togglePublish('${blog._id}', ${!blog.isPublished})"
-              class="px-2 py-1 text-xs bg-indigo-100 text-indigo-700 rounded
-                     hover:bg-indigo-300 transition duration-300"
-              title="Toggle Publish">
-              <i class="fas fa-toggle-${blog.isPublished ? "on" : "off"}"></i>
-            </button>
+<td class="px-4 py-3 text-center">
+<div class="text-black-900 text-xs font-medium">
+${blog.createdAt ? new Date(blog.createdAt).toLocaleDateString() : "-"}
+</div>
+<div class="text-gray-400 text-xs">
+${blog.createdAt ? new Date(blog.createdAt).toLocaleTimeString() : ""}
+</div>
+</td>
 
-            <button
-              onclick="openEditBlogModal('${blog._id}')"
-              class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded
-                    hover:bg-yellow-300 transition duration-300"
-              title="Edit">
-              <i class="fas fa-edit"></i>
-            </button>
+<td class="px-4 py-3 text-center w-[140px]">
+  <div class="flex justify-center gap-2">
 
-            <button
-              onclick="deleteBlog('${blog._id}')"
-              class="px-2 py-1 text-xs bg-red-100 text-red-700 rounded
-                     hover:bg-red-300 transition duration-300"
-              title="Delete">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </td>
-      `;
+    <button
+      onclick="togglePublish('${blog._id}', ${!blog.isPublished})"
+      class="w-7 h-7 flex items-center justify-center rounded-md bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
+      title="Toggle Publish">
+      <i class="fas fa-toggle-${blog.isPublished ? "on" : "off"} text-xs"></i>
+    </button>
 
+    <button
+      onclick="openEditBlogModal('${blog._id}')"
+      class="w-7 h-7 flex items-center justify-center rounded-md bg-yellow-100 text-yellow-600 hover:bg-yellow-200 transition"
+      title="Edit">
+      <i class="fas fa-edit text-xs"></i>
+    </button>
+
+    <button
+      onclick="deleteBlog('${blog._id}')"
+      class="w-7 h-7 flex items-center justify-center rounded-md bg-red-100 text-red-600 hover:bg-red-200 transition"
+      title="Delete">
+      <i class="fas fa-trash text-xs"></i>
+    </button>
+
+  </div>
+</td>
+`;
                 tbody.appendChild(tr);
             });
 
@@ -450,21 +445,27 @@
 
     /* ================= UPDATE BLOG ROW ================= */
     function updateBlogRow(blogId, isPublished) {
+
         const row = document.querySelector(`tr[data-id="${blogId}"]`);
         if (!row) return;
 
         const statusCell = row.children[3];
+
         statusCell.innerHTML = `
-    <span class="px-2 py-1 text-xs rounded font-bold tracking-wider
-      ${isPublished ? "bg-green-600 text-white" : "bg-gray-400 text-white"}">
-      ${isPublished ? "Published" : "Draft"}
+    <span class="px-3 py-1 text-xs font-semibold rounded-full
+    ${isPublished
+                ? "bg-green-100 text-green-700"
+                : "bg-gray-200 text-gray-600"}">
+    ${isPublished ? "Published" : "Draft"}
     </span>
-  `;
+`;
 
         const toggleBtn = row.querySelector("button[title='Toggle Publish']");
+
         toggleBtn.innerHTML = `
     <i class="fas fa-toggle-${isPublished ? "on" : "off"}"></i>
-  `;
+`;
+
         toggleBtn.setAttribute(
             "onclick",
             `togglePublish('${blogId}', ${!isPublished})`
@@ -515,7 +516,7 @@
 
         toast.textContent = msg;
         toast.className = `
-            fixed top-6 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white
+            fixed top-3 right-6 px-4 py-2 rounded shadow text-sm z-50 text-white
             ${type === "success" ? "bg-green-600" : "bg-red-600"}
         `;
         toast.classList.remove("hidden");
@@ -548,7 +549,7 @@
         modal.classList.remove("hidden");
         modal.classList.add("flex");
 
-        initBlogEditor(); 
+        initBlogEditor();
     }
 
     /* ================= EDIT MODAL ================= */

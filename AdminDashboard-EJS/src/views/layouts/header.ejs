@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script>
-    window.currentUser = <% - JSON.stringify(user || null) %>;
+    window.currentUser = <%- JSON.stringify(user || null) %>;
   </script>
   <!-- CKEditor 5 Classic -->
   <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
 </head>
 
-<body class="min-h-screen bg-gray-100 overflow-x-hidden flex flex-col">
+<body class="min-h-screen bg-white overflow-x-hidden flex flex-col">
   <div id="toast"
     class="fixed top-3 right-6 bg-green-600 text-white px-5 py-3 rounded-xl shadow-2xl opacity-0 pointer-events-none transform translate-y-[-20px] transition-all duration-300 z-[9999] font-medium text-sm">
   </div>
@@ -211,6 +211,7 @@
 
 
                                 <!-- Contact -->
+                                <% if (user.role==='admin' ) { %>
                                 <a href="/contact-us" data-active="contact-us"
                                   class="block px-4 py-2 rounded-lg hover:bg-blue-600/20 hover:text-blue-400 transition font-medium flex items-center gap-2 sidebar-link">
 
@@ -224,6 +225,7 @@
 
                                   <span class="sidebar-link-label">Contact Us</span>
                                 </a>
+                                <% } %>
 
                                 <!-- Banners -->
                                 <% if (user.role==='admin' ) { %>
@@ -329,7 +331,7 @@
       <div id="mainContent" class="flex flex-col flex-1 transition-all duration-300 <%= user ? 'ml-0 lg:ml-64' : '' %>">
         <!-- Top Navbar  -->
         <nav
-          class="w-full bg-gradient-to-br from-blue-50 via-white to-slate-100 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200">
+          class="w-full bg-gradient-to-br from-gray-50 via-white to-slate-100 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200">
           <div class="flex items-center justify-between px-4 py-2 w-full">
             <% if (!user) { %>
               <div class="flex items-center gap-3">
@@ -469,6 +471,8 @@
       </div>
 
       <script>
+
+        /* ---------------- OPEN SIDEBAR ---------------- */
         function openSidebar() {
           const sidebar = document.getElementById("sidebar");
           const overlay = document.getElementById("sidebarOverlay");
@@ -479,6 +483,7 @@
           if (window.innerWidth < 1024) document.body.style.overflow = "hidden";
         }
 
+        /* ---------------- CLOSE SIDEBAR ---------------- */
         function closeSidebar() {
           const sidebar = document.getElementById("sidebar");
           const overlay = document.getElementById("sidebarOverlay");
@@ -489,6 +494,7 @@
           document.body.style.overflow = "";
         }
 
+        /* ---------------- TOGGLE SIDEBAR ---------------- */
         function toggleSidebarWidth(ev) {
           ev.preventDefault();
           const sidebar = document.getElementById("sidebar");
@@ -522,10 +528,12 @@
           }
         }
 
+        /* ---------------- SIDEBAR LINK CLICK ---------------- */
         function sidebarLinkClick(e) {
           if (window.innerWidth < 1024) closeSidebar();
         }
 
+        /* ---------------- ADD EVENT LISTENER ---------------- */
         window.addEventListener("resize", function () {
           const sidebar = document.getElementById("sidebar");
           const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");

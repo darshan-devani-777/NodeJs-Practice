@@ -54,13 +54,34 @@ exports.addToCart = async (req, res) => {
     );
 
     if (existingItemIndex > -1) {
-      cart.items[existingItemIndex].quantity += quantity;
+
+      const existingQuantity = cart.items[existingItemIndex].quantity;
+      const newQuantity = existingQuantity + quantity;
+    
+      if (newQuantity > product.inventory) {
+        return res.status(400).json({
+          success: false,
+          message: `Only ${product.inventory} items available in stock`,
+        });
+      }
+    
+      cart.items[existingItemIndex].quantity = newQuantity;
+    
     } else {
+    
+      if (quantity > product.inventory) {
+        return res.status(400).json({
+          success: false,
+          message: `Only ${product.inventory} items available in stock`,
+        });
+      }
+    
       cart.items.push({
         product: productId,
         quantity,
         price: product.price,
       });
+    
     }
 
     await updateCartTotals(cart);
@@ -298,7 +319,7 @@ exports.getSpecificCart = async (req, res) => {
 };
 
 /* ------------------- UPDATE CART ITEM ------------------- */
-exports.updateCartItem = async (req, res) => {4
+exports.updateCartItem = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
     const userId = req.user._id;
@@ -337,10 +358,17 @@ exports.updateCartItem = async (req, res) => {4
     }
 
     const product = await Product.findById(productId);
-    if (!product || product.inventory < quantity) {
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    
+    if (quantity > product.inventory) {
       return res.status(400).json({
         success: false,
-        message: `Insufficient stock. Only ${product?.inventory || 0} items available`,
+        message: `Only ${product.inventory} items available in stock`,
       });
     }
 

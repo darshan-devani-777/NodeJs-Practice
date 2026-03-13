@@ -1,13 +1,13 @@
 <div class="flex flex-col min-h-screen">
-  <main class="flex-1 p-6 bg-gradient-to-br from-blue-50 via-white to-slate-100">
+  <main class="flex-1 p-6 bg-white">
 
     <!-- PAGE TITLE -->
     <div class="mb-8">
-      <h1 class="text-4xl font-extrabold text-blue-900 flex items-center gap-3">
-        <i class="fas fa-cog text-blue-400 animate-pulse"></i>
+      <h1 class="text-3xl font-bold text-black-900 flex items-center gap-3">
+        <i class="fas fa-cog text-black-400 animate-pulse"></i>
         Settings
       </h1>
-      <p class="text-gray-600 font-medium">
+      <p class="text-gray-600 font-semibold">
         Manage your profile and password settings
       </p>
     </div>
@@ -81,7 +81,7 @@
           </div>
 
           <div class="flex justify-end pt-4">
-            <button type="submit" id="updateProfileBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-[13px] font-semibold
+            <button type="submit" id="updateProfileBtn" class="bg-blue-600 text-white px-3 py-2 rounded-lg text-[12px] font-semibold
                    hover:bg-blue-700 transition duration-300 flex items-center gap-2">
               <svg id="updateProfileSpinner" class="hidden animate-spin h-4 w-4 text-white"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -168,7 +168,7 @@
 
           <!-- SUBMIT BUTTON -->
           <div class="flex justify-end pt-4">
-            <button type="submit" id="changePasswordBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg text-[13px] font-semibold
+            <button type="submit" id="changePasswordBtn" class="bg-red-600 text-white px-3 py-2 rounded-lg text-[12px] font-semibold
                    hover:bg-red-700 transition duration-300 flex items-center gap-2">
               <svg id="changePwdSpinner" class="hidden animate-spin h-4 w-4 text-white"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -187,8 +187,7 @@
 </div>
 
 <!-- TOAST -->
-<div id="toast" class="fixed top-6 right-4 px-4 py-2 rounded shadow hidden text-white text-sm z-50"></div>
-
+<div id="toast" class="fixed top-3 right-4 px-4 py-2 rounded shadow hidden text-white text-sm z-50"></div>
 
 <script>
   const profileTab = document.getElementById("profileTab");
@@ -198,9 +197,7 @@
   const sectionTitle = document.getElementById("sectionTitle");
   const sectionIcon = document.getElementById("sectionIcon");
 
-  /* ===============================
-             TAB RESET 
-  =============================== */
+// TAB RESET 
   function resetTabs() {
     profileTab.classList.remove(
       "bg-blue-50",
@@ -218,9 +215,7 @@
     passwordTab.classList.add("text-gray-600", "border-transparent");
   }
 
-  /* ===============================
-     PROFILE TAB
-  =============================== */
+// PROFILE TAB
   profileTab.addEventListener("click", () => {
     resetTabs();
 
@@ -238,9 +233,7 @@
     sectionIcon.className = "fas fa-user-circle text-blue-500";
   });
 
-  /* ===============================
-     PASSWORD TAB
-  =============================== */
+// PASSWORD TAB
   passwordTab.addEventListener("click", () => {
     resetTabs();
 
@@ -258,14 +251,10 @@
     sectionIcon.className = "fas fa-lock text-red-500";
   });
 
-  /* ===============================
-     DEFAULT TAB ON REFRESH
-  =============================== */
+// DEFAULT TAB ON REFRESH
   profileTab.click();
 
-  /* ===============================
-     PROFILE UPDATE
-  =============================== */
+// PROFILE UPDATE
   profileForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -314,9 +303,7 @@
     }, remaining > 0 ? remaining : 0);
   });
 
-  /* ===============================
-     PASSWORD CHANGE
-  =============================== */
+// PASSWORD CHANGE
   passwordForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     clearPasswordErrors();
@@ -381,15 +368,11 @@
     }, remaining > 0 ? remaining : 0);
   });
 
-  /* ===============================
-     AVATAR
-  =============================== */
+// AVATAR
   document.getElementById("profileAvatar").src =
     "https://robohash.org/" + Date.now();
 
-  /* ===============================
-     PASSWORD EYE TOGGLE
-  =============================== */
+// PASSWORD EYE TOGGLE
   function togglePwd(inputId, btn) {
     const input = document.getElementById(inputId);
     const icon = btn.querySelector("i");
@@ -405,6 +388,7 @@
     }
   }
 
+// CLEAR PASSWORD ERRORS
   function clearPasswordErrors() {
     ["oldPassword", "newPassword", "confirmPassword"].forEach(id => {
       const err = document.getElementById(id + "Error");
@@ -416,6 +400,7 @@
     });
   }
 
+// SHOW FIELD ERROR
   function showFieldError(field, message) {
     const err = document.getElementById(field + "Error");
     const input = document.getElementById(field);
@@ -425,6 +410,7 @@
     input.classList.add("border-red-500");
   }
 
+// SHOW TOAST
   function showToast(message, type = "success") {
     const toast = document.getElementById("toast");
 
@@ -443,6 +429,7 @@
     }, 3000);
   }
 
+// SET BUTTON LOADING
   function setButtonLoading(btnId, spinnerId, textId, isLoading, loadingText) {
     const btn = document.getElementById(btnId);
     const spinner = document.getElementById(spinnerId);

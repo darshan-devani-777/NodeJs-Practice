@@ -239,6 +239,19 @@ exports.getAllOrders = async (req, res) => {
     const city = req.query.city;
     const state = req.query.state;
 
+    let userIds = [];
+
+    if (search) {
+      const users = await User.find({
+        $or: [
+          { name: { $regex: search, $options: "i" } },
+          { email: { $regex: search, $options: "i" } }
+        ]
+      }).select("_id");
+
+      userIds = users.map(u => u._id);
+    }
+
     let query = {};
 
     if (search) {
@@ -247,8 +260,7 @@ exports.getAllOrders = async (req, res) => {
         { "shippingAddress.fullName": { $regex: search, $options: "i" } },
         { "shippingAddress.phone": { $regex: search, $options: "i" } },
         { notes: { $regex: search, $options: "i" } },
-        { "user.name": { $regex: search, $options: "i" } },
-        { "user.email": { $regex: search, $options: "i" } }
+        { user: { $in: userIds } }
       ];
     }
 
@@ -430,7 +442,7 @@ exports.cancelOrder = async (req, res) => {
       });
     }
 
-    if (order.status === "delivered" || order.status === "cancelled") {
+    if (["shipped", "delivered", "cancelled"].includes(order.status)) {
       return res.status(400).json({
         success: false,
         message: "Order cannot be cancelled",
@@ -795,7 +807,11 @@ exports.downloadInvoice = async (req, res) => {
   try {
     const { orderId } = req.params;
 
-    const order = await Order.findById(orderId)
+    const query = req.user.role === "admin"
+      ? { _id: orderId }
+      : { _id: orderId, user: req.user._id };
+
+    const order = await Order.findOne(query)
       .populate("items.product");
 
     if (!order) {

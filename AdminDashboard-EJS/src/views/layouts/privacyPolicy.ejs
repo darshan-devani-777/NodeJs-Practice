@@ -1,9 +1,9 @@
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+<div class="min-h-screen bg-white p-6">
   <!-- HEADER -->
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-3">
     <div>
-      <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 drop-shadow-md">
-        <i class="fas fa-file-contract text-blue-400 animate-pulse"></i>
+      <h1 class="text-3xl font-bold text-black-900 tracking-tight flex items-center gap-4 drop-shadow-md">
+        <i class="fas fa-file-contract text-black-400 animate-pulse"></i>
         <span>Privacy Policy</span>
       </h1>
     </div>
@@ -25,7 +25,7 @@
     <div id="editModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
       <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-xl shadow-2xl flex flex-col">
         <div class="flex justify-between items-center p-6 border-b border-gray-200 shrink-0">
-          <h2 id="modalTitle" class="text-lg font-bold text-blue-800">Edit Privacy Policy</h2>
+          <h2 id="modalTitle" class="text-lg font-bold text-gray-800">Edit Privacy Policy</h2>
           <button onclick="closeEditModal()" class="text-gray-500 hover:text-red-500 p-2 hover:bg-gray-100 rounded">
             <i class="fas fa-times text-lg"></i>
           </button>
@@ -58,7 +58,7 @@
             <!-- BUTTONS -->
             <div class="p-6 border-t bg-white flex justify-end gap-2 pt-4 shrink-0">
               <button type="submit"
-                class="px-6 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700 transition flex items-center gap-2">
+                class="px-5 py-2 text-[12px] rounded bg-blue-600 text-white hover:bg-blue-700 transition flex items-center gap-2">
                 <svg id="saveSpinner" class="hidden animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"
                   fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -67,7 +67,7 @@
                 <span id="saveBtnText">Save</span>
               </button>
               <button type="button" onclick="closeEditModal()"
-                class="px-6 py-2 text-sm rounded bg-gray-400 text-white hover:bg-gray-500">Cancel</button>
+                class="px-5 py-2 text-[12px] rounded bg-gray-400 text-white hover:bg-gray-500">Cancel</button>
             </div>
           </form>
         </div>
@@ -75,7 +75,7 @@
     </div>
     <% } %>
 
-      <div id="toast" class="fixed top-6 right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"></div>
+      <div id="toast" class="fixed top-3 right-6 px-4 py-2 rounded shadow hidden z-50 text-white text-sm"></div>
 </div>
 
 <style>
@@ -133,8 +133,9 @@
   #editModal .ck-content h3 {
     margin: 0.5em 0 0.25em 0 !important;
     font-size: 1.125rem !important;
-    color: #1e40af !important;
-  }
+    color: #000000 !important;
+    font-weight: 600 !important; 
+}
 
   #editModal #policyEditor {
     height: 100% !important;
@@ -167,7 +168,7 @@
         },
         contentStyle: `
         * { margin: 0 !important; padding: 0 !important; line-height: 1.4 !important; }
-        h3 { font-weight: bold; color: #1e40af; margin: 0 0 0.25em 0 !important; }
+        h3 { font-weight: bold; color: #000000 !important; margin: 0 0 0.25em 0 !important; }
         p { font-size: 0.875rem; color: #374151; margin: 0 0 0.125em 0 !important; }
         br { display: none !important; }
         strong { font-weight: bold; }
@@ -241,7 +242,7 @@
         .replace(/<div>\s*<\/div>/gi, '');
 
       wrapper.innerHTML = `
-      <h3 class="font-bold text-lg text-blue-800 mb-2 mt-1 leading-tight">${sec.title}</h3>
+      <h3 class="font-bold text-lg text-gray-800 mb-2 mt-1 leading-tight">${sec.title}</h3>
       <div class="text-sm text-gray-700 leading-5 prose prose-sm max-w-none m-0 p-0 [&_*]:m-0 [&_*]:p-0 [&_p]:m-0 [&_p]:mb-1 [&_p]:leading-5 [&_br]:hidden [&_p:empty]:hidden">
         ${cleanContent}
       </div>
@@ -446,7 +447,7 @@ If you have any questions, concerns, or requests regarding this Privacy Policy, 
       policyData = apiResponse.data.sections || [];
       renderPolicy();
       closeEditModal();
-      showToast("Privacy Policy saved successfully!");
+      showToast("Privacy Policy saved successfully");
 
       const btn = document.getElementById("policyActionBtn");
       if (btn) {

@@ -1,0 +1,71 @@
+import { db } from "../db";
+
+export const User = {
+
+  findByEmail: async (email: string) => {
+    const [rows]: any = await db.query(
+      "SELECT * FROM users WHERE email=?",
+      [email]
+    );
+    return rows[0];
+  },
+
+  findById: async (id: number) => {
+    const [rows]: any = await db.query(
+      "SELECT * FROM users WHERE id=?",
+      [id]
+    );
+    return rows[0];
+  },
+
+  create: async (
+    name: string,
+    email: string,
+    password: string,
+    token: string,
+    expire: Date
+  ) => {
+    const [result]: any = await db.query(
+      `INSERT INTO users 
+      (name,email,password,emailVerificationToken,emailVerificationExpire)
+      VALUES (?,?,?,?,?)`,
+      [name, email, password, token, expire]
+    );
+
+    return result.insertId;
+  },
+
+  verifyEmail: async (userId: number) => {
+    await db.query(
+      `UPDATE users 
+       SET isEmailVerified=1,
+       emailVerificationToken=NULL,
+       emailVerificationExpire=NULL
+       WHERE id=?`,
+      [userId]
+    );
+  },
+
+  updateResetToken: async (
+    userId: number,
+    token: string,
+    expire: Date
+  ) => {
+    await db.query(
+      `UPDATE users
+       SET resetPasswordToken=?, resetPasswordExpire=?
+       WHERE id=?`,
+      [token, expire, userId]
+    );
+  },
+
+  updatePassword: async (userId: number, password: string) => {
+    await db.query(
+      `UPDATE users
+       SET password=?, resetPasswordToken=NULL, resetPasswordExpire=NULL
+       WHERE id=?`,
+      [password, userId]
+    );
+  }
+
+};

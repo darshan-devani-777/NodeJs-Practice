@@ -1,23 +1,23 @@
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-100 p-6">
+<div class="min-h-screen bg-white p-6">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-10 gap-3">
     <div>
-      <h1 class="text-4xl font-extrabold text-blue-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
-        <i class="fas fa-tachometer-alt text-blue-300 animate-pulse"></i>
+      <h1 class="text-3xl font-bold text-black-900 tracking-tight flex items-center gap-4 mb-2 drop-shadow-md">
+        <i class="fas fa-tachometer-alt text-black-300 animate-pulse"></i>
         <span>
           <%= user.role==='admin' ? 'Admin Control Panel' : 'User Dashboard' %>
         </span>
       </h1>
-      <span class="text-base text-gray-600 font-semibold">Stay on top of your app, with live data & insights</span>
+      <span class="text-md text-gray-600 font-semibold">Stay on top of your app, with live data & insights</span>
     </div>
   </div>
 
   <!-- Cards -->
   <% if(user.role==='admin' ) { %>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 mb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 mb-10">
 
       <!-- Total Users -->
       <div
-        class="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
+        class="bg-blue-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-semibold text-blue-100 drop-shadow">
@@ -33,7 +33,7 @@
 
       <!-- Today's Registrations -->
       <div
-        class="bg-gradient-to-br from-green-400 via-green-500 to-emerald-700 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
+        class="bg-green-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-semibold text-green-100 drop-shadow">
@@ -49,7 +49,7 @@
 
       <!-- Active Users -->
       <div
-        class="bg-gradient-to-br from-yellow-400 via-orange-300 to-yellow-600 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
+        class="bg-yellow-500 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-semibold text-yellow-50 drop-shadow">
@@ -67,9 +67,9 @@
         </a>
       </div>
 
-      <!-- Activity Logs (shortcut) -->
+      <!-- Activity Logs -->
       <div
-        class="bg-gradient-to-br from-slate-400 via-gray-400 to-blue-400 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
+        class="bg-gray-400 rounded-xl p-6 shadow-xl flex flex-col gap-2 group hover:scale-105 active:scale-100 transition cursor-pointer relative overflow-hidden">
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm font-semibold text-gray-100 drop-shadow">
@@ -82,27 +82,28 @@
         <a href="/activity-logs" class="absolute right-2 bottom-2 text-xs text-gray-100 hover:underline">Go to Logs</a>
       </div>
     </div>
+
     <% } %>
 
-      <!-- User Welcome Section -->
+      <!-- User -->
       <div
-        class="bg-gradient-to-br from-white to-blue-50 rounded-3xl px-8 py-10 shadow-lg border-2 border-blue-100 mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-8">
+        class="bg-white rounded-3xl px-8 py-10 shadow-lg border-2 border-black-100 mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-8">
         <div>
-          <h2 class="text-2xl md:text-3xl font-extrabold text-blue-900 mb-2 flex items-center gap-3">
-            Welcome back, <span class="text-blue-600">
+          <h2 class="text-2xl md:text-2xl font-extrabold text-black-900 mb-2 flex items-center gap-3">
+            Welcome back, <span class="text-gray-500">
               <%= user.name %>
             </span>!
           </h2>
-          <p class="text-gray-600 text-base mb-1">
+          <p class="text-gray-600 text-sm mb-1">
             Here's a personalized snapshot of your account and the latest updates.
           </p>
           <div class="mt-3 flex flex-wrap gap-3">
-            <div class="flex items-center gap-2 px-3 py-1 bg-blue-100 rounded-lg text-blue-900 font-mono text-xs">
-              <i class="fas fa-envelope text-blue-400"></i>
+            <div class="flex items-center gap-2 px-3 py-1 bg-gray-200 rounded-lg text-black-900 font-mono text-xs">
+              <i class="fas fa-envelope text-black-400"></i>
               <%= user.email %>
             </div>
             <div
-              class="flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-lg text-blue-800 font-mono text-xs capitalize">
+              class="flex items-center gap-2 px-3 py-1 bg-gray-200 rounded-lg text-black-800 font-mono text-xs capitalize">
               <i class="fas fa-user-shield"></i>
               <%= user.role %>
             </div>
@@ -111,13 +112,13 @@
         <div class="flex flex-col sm:flex-row sm:gap-14 mt-6 sm:mt-0 items-start">
           <div class="text-sm mb-2">
             <span class="block text-gray-400 font-semibold mb-1">Email</span>
-            <span class="font-mono text-blue-800">
+            <span class="font-mono text-black-800">
               <%= user.email %>
             </span>
           </div>
           <div class="text-sm">
             <span class="block text-gray-400 font-semibold mb-1">Role</span>
-            <span class="capitalize font-mono text-blue-800">
+            <span class="capitalize font-mono text-black-800">
               <%= user.role %>
             </span>
           </div>
@@ -125,37 +126,37 @@
       </div>
 
       <% if(user.role==='admin' ) { %>
-        <!-- Section: Latest Registered Users -->
-        <div class="bg-white rounded-xl shadow-lg p-5 sm:p-7 mb-9 border border-blue-100 overflow-x-auto">
+        <!-- Latest Registered Users -->
+        <div class="bg-white rounded-xl shadow-lg p-5 sm:p-7 mb-9 border border-black-100 overflow-x-auto">
           <div class="flex items-center justify-between mb-4">
             <h2 class="text-lg sm:text-xl font-bold text-gray-800 flex items-center gap-2 flex-shrink-0">
-              <i class="fas fa-users text-blue-400"></i> Recent Users
+              <i class="fas fa-users text-black-400 animate-pulse"></i> Recent Users
             </h2>
             <a href="/users"
-              class="font-medium text-blue-600 hover:text-blue-800 underline text-sm transition duration-300 flex-shrink-0 ml-3">
+              class="font-medium text-gray-400 hover:text-gray-800 underline text-sm transition duration-300 flex-shrink-0 ml-3">
               Show All
             </a>
           </div>
 
           <div class="overflow-x-auto">
             <table class="w-full min-w-[400px] sm:min-w-[560px] border border-gray-200 rounded-lg overflow-hidden">
-              <thead class="bg-gradient-to-r from-blue-50 via-blue-100 to-white border-b border-gray-200">
+              <thead class="bg-gradient-to-r from-black-50 via-black-100 to-white border-b border-gray-200">
                 <tr>
                   <th
-                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-600 font-bold uppercase text-left tracking-widest">
+                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-black-600 font-bold uppercase text-left tracking-widest">
                     #</th>
                   <th
-                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-600 font-bold uppercase text-left tracking-widest">
+                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-black-600 font-bold uppercase text-left tracking-widest">
                     Name</th>
                   <th
-                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-600 font-bold uppercase text-left tracking-widest">
+                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-black-600 font-bold uppercase text-left tracking-widest">
                     Email</th>
                   <th
-                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-600 font-bold uppercase text-left tracking-widest">
+                    class="px-3 sm:px-4 py-2 text-xs sm:text-sm text-black-600 font-bold uppercase text-left tracking-widest">
                     Registered</th>
                 </tr>
               </thead>
-              <tbody id="usersTable" class="bg-white divide-y divide-blue-50 text-sm rounded-b-xl"></tbody>
+              <tbody id="usersTable" class="bg-white divide-y divide-black-50 text-sm rounded-b-xl"></tbody>
             </table>
           </div>
 
@@ -164,9 +165,9 @@
           </p>
         </div>
 
-        <!-- Section: User Registrations Chart -->
+        <!--  User Registrations Chart -->
         <div
-          class="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-lg border border-blue-100 p-7 mb-7">
+          class="bg-white rounded-xl shadow-lg border border-black-100 p-7 mb-7">
 
           <!-- Header Row -->
           <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
@@ -174,7 +175,7 @@
             <!-- Left Side -->
             <div class="flex flex-col">
               <div class="flex items-center gap-2">
-                <i class="fas fa-chart-line text-blue-400"></i>
+                <i class="fas fa-chart-line text-black-400 animate-pulse"></i>
                 <h2 class="text-xl font-bold text-gray-800">
                   Registrations Trend
                 </h2>
@@ -187,12 +188,12 @@
             <!-- Right Side -->
             <div class="flex gap-2">
               <button id="weeklyBtn"
-                class="px-3 py-1 text-xs font-bold bg-blue-600 text-white rounded-md transition hover:scale-105 active:scale-95">
+                class="px-3 py-1 text-xs font-semibold bg-gray-900 text-white rounded-md transition hover:scale-105 active:scale-95">
                 Weekly
               </button>
 
               <button id="monthlyBtn"
-                class="px-3 py-1 text-xs font-bold bg-blue-100 text-blue-700 rounded-md transition hover:scale-105 active:scale-95">
+                class="px-3 py-1 text-xs font-semibold bg-gray-200 text-black rounded-md transition hover:scale-105 active:scale-95">
                 Monthly
               </button>
             </div>
@@ -200,7 +201,7 @@
           </div>
 
           <!-- Chart -->
-          <canvas id="registrationsChart" class="w-full h-56 sm:h-64 rounded"></canvas>
+          <canvas id="registrationsChart" class="w-full h-48 sm:h-64 rounded"></canvas>
         </div>
         <% } %>
 </div>
@@ -209,21 +210,24 @@
 
 <% if (user.role==='admin' ) { %>
   <script>
+
+    // USER TABLE LOADER
     function showUserTableLoader() {
       const tbody = document.getElementById("usersTable");
       let skeletons = "";
       for (let i = 0; i < 6; i++) {
         skeletons += `<tr>
-        <td class="px-4 py-3"><div class="h-4 w-6 bg-blue-100 animate-pulse rounded"></div></td>
-        <td class="px-4 py-3"><div class="h-4 w-24 bg-blue-100 animate-pulse rounded"></div></td>
-        <td class="px-4 py-3"><div class="h-4 w-36 bg-blue-100 animate-pulse rounded"></div></td>
-        <td class="px-4 py-3"><div class="h-4 w-24 bg-blue-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-6 bg-black-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-24 bg-black-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-36 bg-black-100 animate-pulse rounded"></div></td>
+        <td class="px-4 py-3"><div class="h-4 w-24 bg-black-100 animate-pulse rounded"></div></td>
       </tr>`;
       }
       tbody.innerHTML = skeletons;
       document.getElementById("noDataMsg").classList.add("hidden");
     }
 
+    // USER & MATRICS
     async function fetchUsersAndMetrics() {
       try {
         showUserTableLoader();
@@ -270,11 +274,11 @@
           latestUsers.forEach((user, idx) => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-          <td class="px-4 py-3 font-mono text-xs text-blue-900">${idx + 1}.</td>
-          <td class="px-4 py-3 font-mono text-sm font-bold text-blue-700">
+          <td class="px-4 py-3 font-mono text-xs text-black-900">${idx + 1}.</td>
+          <td class="px-4 py-3 font-mono text-sm font-bold text-black-700">
             ${escapeHTML(user.name)}
           </td>
-          <td class="px-4 py-3 font-mono text-sm text-blue-800">
+          <td class="px-4 py-3 font-mono text-sm text-black-800">
             ${escapeHTML(user.email)}
           </td>
           <td class="px-4 py-3 font-mono text-xs text-slate-600">
@@ -332,7 +336,6 @@
           const ctx = document.getElementById("registrationsChart");
 
           if (window._regChart) window._regChart.destroy();
-
           window._regChart = new Chart(ctx, {
             type: "line",
             data: {
@@ -341,12 +344,11 @@
                 {
                   label: "Registrations",
                   data: counts,
-                  fill: true,
-                  backgroundColor: "rgba(59,130,246,0.13)",
-                  borderColor: "rgba(59,130,246,1)",
+                  fill: false,
+                  borderColor: "#000000",
                   borderWidth: 2,
                   tension: 0.32,
-                  pointBackgroundColor: "rgba(59,130,246,0.90)",
+                  pointBackgroundColor: "#000000",
                   pointRadius: 3,
                   borderDash: [4, 0],
                 },
@@ -356,7 +358,7 @@
               responsive: true,
               plugins: {
                 legend: { display: false },
-                tooltip: { enabled: true, backgroundColor: "#2563eb" },
+                tooltip: { enabled: true, backgroundColor: "#000000" },
               },
               scales: {
                 y: { beginAtZero: true },
@@ -373,11 +375,11 @@
         weeklyBtn.addEventListener("click", () => {
           renderChart("weekly");
 
-          weeklyBtn.classList.add("bg-blue-600", "text-white");
-          weeklyBtn.classList.remove("bg-blue-100", "text-blue-700");
+          weeklyBtn.classList.add("bg-gray-900", "text-white");
+          weeklyBtn.classList.remove("bg-gray-200", "text-black");
 
-          monthlyBtn.classList.remove("bg-blue-600", "text-white");
-          monthlyBtn.classList.add("bg-blue-100", "text-blue-700");
+          monthlyBtn.classList.remove("bg-gray-900", "text-white");
+          monthlyBtn.classList.add("bg-gray-200", "text-black");
 
           trendLabel.textContent = "(Last 7 Days)";
         });
@@ -385,11 +387,11 @@
         monthlyBtn.addEventListener("click", () => {
           renderChart("monthly");
 
-          monthlyBtn.classList.add("bg-blue-600", "text-white");
-          monthlyBtn.classList.remove("bg-blue-100", "text-blue-700");
+          monthlyBtn.classList.add("bg-gray-900", "text-white");
+          monthlyBtn.classList.remove("bg-gray-200", "text-black");
 
-          weeklyBtn.classList.remove("bg-blue-600", "text-white");
-          weeklyBtn.classList.add("bg-blue-100", "text-blue-700");
+          weeklyBtn.classList.remove("bg-gray-900", "text-white");
+          weeklyBtn.classList.add("bg-gray-200", "text-black");
 
           trendLabel.textContent = "(Last 12 Months)";
         });
@@ -423,6 +425,7 @@
       }
     }
 
+    // ANIMATE NUMBER
     function animateNumber(id, from, to, duration = 900) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -440,6 +443,7 @@
       requestAnimationFrame(step);
     }
 
+    // HTML
     function escapeHTML(str) {
       return String(str || "")
         .replace(/&/g, "&amp;")
