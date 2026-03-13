@@ -27,7 +27,7 @@ export async function up() {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   `)
 
-  console.log("✅ activity_logs table created")
+  console.log("✅ activity_logs table created...")
 }
 
 export async function down() {

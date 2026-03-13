@@ -25,7 +25,7 @@ export async function up() {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   `)
 
-  console.log("✅ login_history table created")
+  console.log("✅ login_history table created...")
 }
 
 export async function down() {
