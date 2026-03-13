@@ -2,7 +2,7 @@ import * as bcrypt from "bcryptjs"
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { db } from "../lib/db";
-import { generateJWT } from "../lib/jwt";
+import { generateJWT, generateRefreshToken } from "../lib/jwt";
 
 interface ApiResponse<T = any> {
   success: boolean;
@@ -32,12 +32,13 @@ export const registerUser = async (
   const emailToken = crypto.createHash("sha256").update(verificationToken).digest("hex");
   const expire = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-  await db.query(
-    `INSERT INTO users 
-     (name,email,password,emailVerificationToken,emailVerificationExpire)
+  const result: any = await db.query(
+    `INSERT INTO users (name,email,password,emailVerificationToken,emailVerificationExpire)
      VALUES (?,?,?,?,?)`,
     [name, email, hashedPassword, emailToken, expire]
   );
+
+  const insertedId = result[0].insertId;
 
   const verificationUrl = `${process.env.APP_URL}/api/auth/verify-email/${verificationToken}`;
   const transporter = nodemailer.createTransport({
@@ -68,6 +69,7 @@ export const registerUser = async (
   return {
     success: true,
     message: `Registration successful! Please check your email (${email}) to verify your account.`,
+    data: { user: { id: insertedId, name, email } },
     statusCode: 201
   };
 };
@@ -77,52 +79,39 @@ export const loginUser = async (email: string, password: string): Promise<ApiRes
   const [rows]: any = await db.query("SELECT * FROM users WHERE email=?", [email]);
 
   if (rows.length === 0) {
-    return {
-      success: false,
-      message: "Invalid email address or password.",
-      statusCode: 401
-    };
+    return { success: false, message: "Invalid email or password", statusCode: 401 };
   }
 
   const user = rows[0];
   const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
-    return {
-      success: false,
-      message: "Invalid email address or password.",
-      statusCode: 401
-    };
+    return { success: false, message: "Invalid email or password", statusCode: 401 };
   }
 
   if (!user.isEmailVerified) {
-    return {
-      success: false,
-      message: "Please verify your email address first. Check your inbox or spam folder.",
-      statusCode: 403
-    };
+    return { success: false, message: "Please verify your email first", statusCode: 403 };
   }
 
   if (!user.isActive) {
-    return {
-      success: false,
-      message: "Your account has been deactivated. Please contact support.",
-      statusCode: 403
-    };
+    return { success: false, message: "Your account has been deactivated", statusCode: 403 };
   }
 
   const token = generateJWT(user.id);
+  const { refreshToken, refreshTokenExpire } = generateRefreshToken();
+
+  await db.query(
+    `UPDATE users SET refreshToken=?, refreshTokenExpire=? WHERE id=?`,
+    [refreshToken, refreshTokenExpire, user.id]
+  );
 
   return {
     success: true,
     message: "User login successfully...",
     data: {
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      },
-      token
+      user: { id: user.id, name: user.name, email: user.email },
+      token,
+      refreshToken
     },
     statusCode: 200
   };
@@ -131,17 +120,18 @@ export const loginUser = async (email: string, password: string): Promise<ApiRes
 /* ------------------- FORGOT PASSWORD ------------------- */
 export const forgotPassword = async (email: string): Promise<ApiResponse> => {
   const [rows]: any = await db.query("SELECT * FROM users WHERE email=?", [email]);
-
-  const user = rows[0] || { name: "User" };
+  const user = rows[0] || { id: null, name: "User", email };
 
   const resetToken = crypto.randomBytes(20).toString("hex");
   const resetHash = crypto.createHash("sha256").update(resetToken).digest("hex");
   const expire = new Date(Date.now() + 10 * 60 * 1000);
 
-  await db.query(
-    `UPDATE users SET resetPasswordToken=?, resetPasswordExpire=? WHERE id=?`,
-    [resetHash, expire, user.id || 0]
-  );
+  if (user.id) {
+    await db.query(
+      `UPDATE users SET resetPasswordToken=?, resetPasswordExpire=? WHERE id=?`,
+      [resetHash, expire, user.id]
+    );
+  }
 
   const resetUrl = `${process.env.APP_URL}/auth/reset-password/${resetToken}`;
   const transporter = nodemailer.createTransport({
@@ -172,6 +162,7 @@ export const forgotPassword = async (email: string): Promise<ApiResponse> => {
   return {
     success: true,
     message: "If an account exists with this email, a password reset link has been sent.",
+    data: { user: { id: user.id, name: user.name, email: user.email } },
     statusCode: 200
   };
 };
@@ -183,27 +174,15 @@ export const resetPassword = async (
   confirmPassword: string
 ): Promise<ApiResponse> => {
   if (!password || !confirmPassword) {
-    return {
-      success: false,
-      message: "Password and confirm password are required.",
-      statusCode: 400
-    };
+    return { success: false, message: "Password and confirm password are required.", statusCode: 400 };
   }
 
   if (password !== confirmPassword) {
-    return {
-      success: false,
-      message: "Password and confirmPassword do not match. Please try again.",
-      statusCode: 400
-    };
+    return { success: false, message: "Password and confirmPassword do not match.", statusCode: 400 };
   }
 
   if (password.length < 8) {
-    return {
-      success: false,
-      message: "Password must be at least 8 characters long.",
-      statusCode: 400
-    };
+    return { success: false, message: "Password must be at least 8 characters long.", statusCode: 400 };
   }
 
   const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
@@ -213,47 +192,35 @@ export const resetPassword = async (
   );
 
   if (rows.length === 0) {
-    return {
-      success: false,
-      message: "Invalid or expired reset token. Please request a new password reset.",
-      statusCode: 400
-    };
+    return { success: false, message: "Invalid or expired reset token.", statusCode: 400 };
   }
 
+  const user = rows[0];
   const hashedPassword = await bcrypt.hash(password, 10);
   await db.query(
     `UPDATE users SET password=?, resetPasswordToken=NULL, resetPasswordExpire=NULL WHERE id=?`,
-    [hashedPassword, rows[0].id]
+    [hashedPassword, user.id]
   );
 
   return {
     success: true,
     message: "Password updated successfully! You can now login with your new password.",
+    data: { user: { id: user.id, name: user.name, email: user.email } },
     statusCode: 200
   };
 };
 
 /* ------------------- RESEND VERIFICATION EMAIL ------------------- */
 export const resendVerification = async (email: string): Promise<ApiResponse> => {
-
   const [rows]: any = await db.query("SELECT * FROM users WHERE email=?", [email]);
 
   if (rows.length === 0) {
-    return {
-      success: true,
-      message: "If an account exists with this email, a verification email has been sent.",
-      statusCode: 200
-    };
+    return { success: true, message: "If an account exists with this email, a verification email has been sent.", statusCode: 200 };
   }
 
   const user = rows[0];
-
   if (user.isEmailVerified) {
-    return {
-      success: false,
-      message: "Email already verified. Please login.",
-      statusCode: 400
-    };
+    return { success: false, message: "Email already verified. Please login.", statusCode: 400 };
   }
 
   const verificationToken = crypto.randomBytes(20).toString("hex");
@@ -261,14 +228,11 @@ export const resendVerification = async (email: string): Promise<ApiResponse> =>
   const expire = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
   await db.query(
-    `UPDATE users 
-     SET emailVerificationToken=?, emailVerificationExpire=? 
-     WHERE id=?`,
+    `UPDATE users SET emailVerificationToken=?, emailVerificationExpire=? WHERE id=?`,
     [emailToken, expire, user.id]
   );
 
   const verificationUrl = `${process.env.APP_URL}/api/auth/verify-email/${verificationToken}`;
-
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: Number(process.env.EMAIL_PORT),
@@ -283,10 +247,7 @@ export const resendVerification = async (email: string): Promise<ApiResponse> =>
     <h2>Email Verification</h2>
     <p>Hello ${user.name},</p>
     <p>Please verify your email address:</p>
-    <a href="${verificationUrl}" 
-    style="background:#007bff;color:white;padding:15px 30px;text-decoration:none;border-radius:6px;font-weight:bold;display:inline-block;">
-    Verify Email
-    </a>
+    <a href="${verificationUrl}" style="background:#007bff;color:white;padding:15px 30px;text-decoration:none;border-radius:6px;font-weight:bold;display:inline-block;">Verify Email</a>
     <p><small>This link will expire in 24 hours.</small></p>
   `;
 
@@ -300,6 +261,39 @@ export const resendVerification = async (email: string): Promise<ApiResponse> =>
   return {
     success: true,
     message: "Verification email sent again. Please check your inbox.",
+    data: { user: { id: user.id, name: user.name, email: user.email } },
+    statusCode: 200
+  };
+};
+
+/* ------------------- REFRESH TOKEN FLOW ------------------- */
+export const refreshTokenFlow = async (oldRefreshToken: string): Promise<ApiResponse> => {
+  const [rows]: any = await db.query(
+    `SELECT * FROM users WHERE refreshToken=? AND refreshTokenExpire > NOW()`,
+    [oldRefreshToken]
+  );
+
+  if (rows.length === 0) {
+    return { success: false, message: "Invalid or expired refresh token. Please login again.", statusCode: 401 };
+  }
+
+  const user = rows[0];
+  const newAccessToken = generateJWT(user.id);
+  const { refreshToken: newRefreshToken, refreshTokenExpire } = generateRefreshToken();
+
+  await db.query(
+    `UPDATE users SET refreshToken=?, refreshTokenExpire=? WHERE id=?`,
+    [newRefreshToken, refreshTokenExpire, user.id]
+  );
+
+  return {
+    success: true,
+    message: "Token refreshed successfully",
+    data: {
+      user: { id: user.id, name: user.name, email: user.email },
+      token: newAccessToken,
+      refreshToken: newRefreshToken
+    },
     statusCode: 200
   };
 };
