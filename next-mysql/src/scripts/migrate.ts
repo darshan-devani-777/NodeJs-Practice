@@ -4,7 +4,6 @@ import { db } from "../app/lib/db"
 
 async function migrate() {
 
-  // Ensure migrations table exists
   await db.execute(`
     CREATE TABLE IF NOT EXISTS migrations (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +15,6 @@ async function migrate() {
   const migrationDir = path.join(__dirname, "migrations")
   let files = fs.readdirSync(migrationDir).sort()
 
-  // Filter files if a specific migration file is passed as argument
   const migrationFile = process.argv[2]
   if (migrationFile) {
     files = files.filter(f => f === migrationFile)
