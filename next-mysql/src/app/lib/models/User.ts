@@ -26,7 +26,7 @@ export const User = {
     expire: Date
   ) => {
     const [result]: any = await db.query(
-      `INSERT INTO users 
+      `INSERT INTO users
       (name,email,password,emailVerificationToken,emailVerificationExpire)
       VALUES (?,?,?,?,?)`,
       [name, email, password, token, expire]
@@ -66,6 +66,26 @@ export const User = {
        WHERE id=?`,
       [password, userId]
     );
+  },
+
+  updateRefreshToken: async (
+    userId: number,
+    token: string,
+    expire: Date
+  ) => {
+    await db.query(
+      `UPDATE users SET refreshToken=?, refreshTokenExpire=? WHERE id=?`,
+      [token, expire, userId]
+    );
+  },
+
+  findByRefreshToken: async (token: string) => {
+    const [rows]: any = await db.query(
+      `SELECT id,name,email FROM users 
+       WHERE refreshToken=? AND refreshTokenExpire > NOW()`,
+      [token]
+    );
+    return rows[0];
   }
 
 };

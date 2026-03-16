@@ -1,7 +1,7 @@
 import * as bcrypt from "bcryptjs"
 import crypto from "crypto";
-import nodemailer from "nodemailer";
 import { db } from "../lib/db";
+import { sendEmail } from "../lib/mail";
 import { generateJWT, generateRefreshToken } from "../lib/jwt";
 
 interface ValidationErrors {
@@ -98,15 +98,6 @@ export const registerUser = async (
   const insertedId = result[0].insertId;
 
   const verificationUrl = `${process.env.APP_URL}/api/auth/verify-email/${verificationToken}`;
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER!,
-      pass: process.env.EMAIL_PASS!,
-    },
-  });
 
   const message = `
     <h2>Welcome ${trimmedName}!</h2>
@@ -116,12 +107,11 @@ export const registerUser = async (
     <p><small>This link will expire in 24 hours.</small></p>
   `;
 
-  await transporter.sendMail({
-    from: `"Admin Dashboard" <${process.env.EMAIL_USER}>`,
-    to: trimmedEmail,
-    subject: "Please Verify Your Email Address",
-    html: message,
-  });
+  await sendEmail(
+    trimmedEmail,
+    "Please Verify Your Email Address",
+    message
+  );
 
   return {
     success: true,
@@ -176,7 +166,7 @@ export const loginUser = async (
   }
 
   const user = rows[0];
-  
+
   const match = await bcrypt.compare(password!, user.password);
   if (!match) {
     return {
@@ -208,19 +198,24 @@ export const loginUser = async (
   const token = generateJWT(user.id);
   const { refreshToken, refreshTokenExpire } = generateRefreshToken();
 
+  const hashedToken = crypto
+  .createHash("sha256")
+  .update(refreshToken)
+  .digest("hex");
+
   await db.query(
     `UPDATE users SET refreshToken=?, refreshTokenExpire=? WHERE id=?`,
-    [refreshToken, refreshTokenExpire, user.id]
+    [hashedToken, refreshTokenExpire, user.id]
   );
 
   return {
     success: true,
     message: "User login successfully...",
     data: {
-      user: { 
-        id: user.id, 
-        name: user.name, 
-        email: user.email 
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
       },
       token,
       refreshToken
@@ -256,7 +251,7 @@ export const forgotPassword = async (
   const trimmedEmail = email!.trim().toLowerCase();
 
   const [rows]: any = await db.query("SELECT id, name FROM users WHERE email=?", [trimmedEmail]);
-  
+
   if (rows.length === 0) {
     return {
       success: false,
@@ -278,15 +273,6 @@ export const forgotPassword = async (
   );
 
   const resetUrl = `${process.env.APP_URL}/auth/reset-password/${resetToken}`;
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER!,
-      pass: process.env.EMAIL_PASS!,
-    },
-  });
 
   const message = `
     <h2>Reset Your Password</h2>
@@ -296,12 +282,11 @@ export const forgotPassword = async (
     <p><small>This link will expire in 10 minutes.</small></p>
   `;
 
-  await transporter.sendMail({
-    from: `"Admin Dashboard" <${process.env.EMAIL_USER}>`,
-    to: trimmedEmail,
-    subject: "Password Reset Request",
-    html: message,
-  });
+  await sendEmail(
+    trimmedEmail,
+    "Password Reset Request",
+    message
+  );
 
   return {
     success: true,
@@ -406,7 +391,7 @@ export const resendVerification = async (
   const trimmedEmail = email!.trim().toLowerCase();
 
   const [rows]: any = await db.query("SELECT id, name, isEmailVerified FROM users WHERE email=?", [trimmedEmail]);
-  
+
   if (rows.length === 0) {
     return {
       success: false,
@@ -437,15 +422,6 @@ export const resendVerification = async (
   );
 
   const verificationUrl = `${process.env.APP_URL}/api/auth/verify-email/${verificationToken}`;
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER!,
-      pass: process.env.EMAIL_PASS!,
-    },
-  });
 
   const message = `
     <h2>Email Verification</h2>
@@ -455,12 +431,11 @@ export const resendVerification = async (
     <p><small>This link will expire in 24 hours.</small></p>
   `;
 
-  await transporter.sendMail({
-    from: `"Admin Dashboard" <${process.env.EMAIL_USER}>`,
-    to: trimmedEmail,
-    subject: "Resend Email Verification",
-    html: message,
-  });
+  await sendEmail(
+    trimmedEmail,
+    "Resend Email Verification",
+    message
+  );
 
   return {
     success: true,
@@ -491,11 +466,15 @@ export const refreshTokenFlow = async (
     };
   }
 
-  const trimmedRefreshToken = oldRefreshToken!.trim();
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(oldRefreshToken!.trim())
+    .digest("hex");
 
   const [rows]: any = await db.query(
-    `SELECT id, name, email FROM users WHERE refreshToken=? AND refreshTokenExpire > NOW()`,
-    [trimmedRefreshToken]
+    `SELECT id, name, email FROM users 
+     WHERE refreshToken=? AND refreshTokenExpire > NOW()`,
+    [hashedToken]
   );
 
   if (rows.length === 0) {
@@ -521,10 +500,10 @@ export const refreshTokenFlow = async (
     success: true,
     message: "Token refreshed successfully",
     data: {
-      user: { 
-        id: user.id, 
-        name: user.name, 
-        email: user.email 
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
       },
       token: newAccessToken,
       refreshToken: newRefreshToken
