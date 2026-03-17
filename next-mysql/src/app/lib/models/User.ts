@@ -20,7 +20,6 @@ export const User = {
     return result.insertId;
   },
 
-  // NEW: Reset token validation
   findByResetToken: async (tokenHash: string) => {
     const [rows]: any = await db.query(
       `SELECT id, name, email FROM users 
@@ -30,7 +29,6 @@ export const User = {
     return rows[0];
   },
 
-  // NEW: Email verification token update
   updateEmailVerificationToken: async (userId: number, token: string, expire: Date) => {
     await db.query(
       `UPDATE users SET emailVerificationToken=?, emailVerificationExpire=? WHERE id=?`,
