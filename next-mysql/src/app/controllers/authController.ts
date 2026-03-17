@@ -1,8 +1,8 @@
 import * as bcrypt from "bcryptjs"
 import crypto from "crypto";
-import { db } from "../lib/db";
 import { sendEmail } from "../lib/mail";
 import { generateJWT, generateRefreshToken } from "../lib/jwt";
+import { User } from "../lib/models/User";
 
 interface ValidationErrors {
   name?: string;
@@ -71,11 +71,10 @@ export const registerUser = async (
   }
 
   const trimmedName = name!.trim();
-  const trimmedEmail = email!.toLowerCase().trim();
+  const trimmedEmail = email!.trim().toLowerCase();
 
-  const [existing]: any = await db.query("SELECT id FROM users WHERE email=?", [trimmedEmail]);
-
-  if (existing.length > 0) {
+  const existingUser = await User.findByEmail(trimmedEmail);
+  if (existingUser) {
     return {
       success: false,
       message: "Email already exists. Please use a different email address.",
@@ -89,13 +88,7 @@ export const registerUser = async (
   const emailToken = crypto.createHash("sha256").update(verificationToken).digest("hex");
   const expire = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-  const result: any = await db.query(
-    `INSERT INTO users (name,email,password,emailVerificationToken,emailVerificationExpire)
-     VALUES (?,?,?,?,?)`,
-    [trimmedName, trimmedEmail, hashedPassword, emailToken, expire]
-  );
-
-  const insertedId = result[0].insertId;
+  const insertedId = await User.create(trimmedName, trimmedEmail, hashedPassword, emailToken, expire);
 
   const verificationUrl = `${process.env.APP_URL}/api/auth/verify-email/${verificationToken}`;
 
@@ -107,11 +100,7 @@ export const registerUser = async (
     <p><small>This link will expire in 24 hours.</small></p>
   `;
 
-  await sendEmail(
-    trimmedEmail,
-    "Please Verify Your Email Address",
-    message
-  );
+  await sendEmail(trimmedEmail, "Please Verify Your Email Address", message);
 
   return {
     success: true,
@@ -154,9 +143,8 @@ export const loginUser = async (
 
   const trimmedEmail = email!.trim().toLowerCase();
 
-  const [rows]: any = await db.query("SELECT * FROM users WHERE email=?", [trimmedEmail]);
-
-  if (rows.length === 0) {
+  const user = await User.findByEmail(trimmedEmail);
+  if (!user) {
     return {
       success: false,
       message: "Invalid email or password",
@@ -164,8 +152,6 @@ export const loginUser = async (
       statusCode: 401
     };
   }
-
-  const user = rows[0];
 
   const match = await bcrypt.compare(password!, user.password);
   if (!match) {
@@ -196,17 +182,10 @@ export const loginUser = async (
   }
 
   const token = generateJWT(user.id);
-  const { refreshToken, refreshTokenExpire } = generateRefreshToken();
+  const { refreshToken: newRefreshToken, refreshTokenExpire } = generateRefreshToken();
 
-  const hashedToken = crypto
-  .createHash("sha256")
-  .update(refreshToken)
-  .digest("hex");
-
-  await db.query(
-    `UPDATE users SET refreshToken=?, refreshTokenExpire=? WHERE id=?`,
-    [hashedToken, refreshTokenExpire, user.id]
-  );
+  const hashedToken = crypto.createHash("sha256").update(newRefreshToken).digest("hex");
+  await User.updateRefreshToken(user.id, hashedToken, refreshTokenExpire);
 
   return {
     success: true,
@@ -218,7 +197,7 @@ export const loginUser = async (
         email: user.email
       },
       token,
-      refreshToken
+      refreshToken: newRefreshToken
     },
     statusCode: 200
   };
@@ -250,9 +229,8 @@ export const forgotPassword = async (
 
   const trimmedEmail = email!.trim().toLowerCase();
 
-  const [rows]: any = await db.query("SELECT id, name FROM users WHERE email=?", [trimmedEmail]);
-
-  if (rows.length === 0) {
+  const user = await User.findByEmail(trimmedEmail);
+  if (!user) {
     return {
       success: false,
       message: "No account found with this email address",
@@ -261,16 +239,11 @@ export const forgotPassword = async (
     };
   }
 
-  const user = rows[0];
-
   const resetToken = crypto.randomBytes(20).toString("hex");
   const resetHash = crypto.createHash("sha256").update(resetToken).digest("hex");
   const expire = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
-  await db.query(
-    `UPDATE users SET resetPasswordToken=?, resetPasswordExpire=? WHERE id=?`,
-    [resetHash, expire, user.id]
-  );
+  await User.updateResetToken(user.id, resetHash, expire);
 
   const resetUrl = `${process.env.APP_URL}/auth/reset-password/${resetToken}`;
 
@@ -282,11 +255,7 @@ export const forgotPassword = async (
     <p><small>This link will expire in 10 minutes.</small></p>
   `;
 
-  await sendEmail(
-    trimmedEmail,
-    "Password Reset Request",
-    message
-  );
+  await sendEmail(trimmedEmail, "Password Reset Request", message);
 
   return {
     success: true,
@@ -332,14 +301,10 @@ export const resetPassword = async (
   }
 
   const trimmedPassword = password!.trim();
-
   const hashedToken = crypto.createHash("sha256").update(token!).digest("hex");
-  const [rows]: any = await db.query(
-    `SELECT id, name, email FROM users WHERE resetPasswordToken=? AND resetPasswordExpire > NOW()`,
-    [hashedToken]
-  );
 
-  if (rows.length === 0) {
+  const user = await User.findByResetToken(hashedToken);
+  if (!user) {
     return {
       success: false,
       message: "Invalid or expired reset token",
@@ -348,13 +313,8 @@ export const resetPassword = async (
     };
   }
 
-  const user = rows[0];
-
   const hashedPassword = await bcrypt.hash(trimmedPassword, 10);
-  await db.query(
-    `UPDATE users SET password=?, resetPasswordToken=NULL, resetPasswordExpire=NULL WHERE id=?`,
-    [hashedPassword, user.id]
-  );
+  await User.updatePassword(user.id, hashedPassword);
 
   return {
     success: true,
@@ -390,9 +350,8 @@ export const resendVerification = async (
 
   const trimmedEmail = email!.trim().toLowerCase();
 
-  const [rows]: any = await db.query("SELECT id, name, isEmailVerified FROM users WHERE email=?", [trimmedEmail]);
-
-  if (rows.length === 0) {
+  const user = await User.findByEmail(trimmedEmail);
+  if (!user) {
     return {
       success: false,
       message: "No account found with this email address",
@@ -400,8 +359,6 @@ export const resendVerification = async (
       statusCode: 404
     };
   }
-
-  const user = rows[0];
 
   if (user.isEmailVerified) {
     return {
@@ -414,12 +371,9 @@ export const resendVerification = async (
 
   const verificationToken = crypto.randomBytes(20).toString("hex");
   const emailToken = crypto.createHash("sha256").update(verificationToken).digest("hex");
-  const expire = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+  const expire = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-  await db.query(
-    `UPDATE users SET emailVerificationToken=?, emailVerificationExpire=? WHERE id=?`,
-    [emailToken, expire, user.id]
-  );
+  await User.updateEmailVerificationToken(user.id, emailToken, expire);
 
   const verificationUrl = `${process.env.APP_URL}/api/auth/verify-email/${verificationToken}`;
 
@@ -431,11 +385,7 @@ export const resendVerification = async (
     <p><small>This link will expire in 24 hours.</small></p>
   `;
 
-  await sendEmail(
-    trimmedEmail,
-    "Resend Email Verification",
-    message
-  );
+  await sendEmail(trimmedEmail, "Resend Email Verification", message);
 
   return {
     success: true,
@@ -466,18 +416,10 @@ export const refreshTokenFlow = async (
     };
   }
 
-  const hashedToken = crypto
-    .createHash("sha256")
-    .update(oldRefreshToken!.trim())
-    .digest("hex");
+  const hashedToken = crypto.createHash("sha256").update(oldRefreshToken!.trim()).digest("hex");
 
-  const [rows]: any = await db.query(
-    `SELECT id, name, email FROM users 
-     WHERE refreshToken=? AND refreshTokenExpire > NOW()`,
-    [hashedToken]
-  );
-
-  if (rows.length === 0) {
+  const user = await User.findByRefreshToken(hashedToken);
+  if (!user) {
     return {
       success: false,
       message: "Invalid or expired refresh token. Please login again.",
@@ -486,15 +428,11 @@ export const refreshTokenFlow = async (
     };
   }
 
-  const user = rows[0];
-
   const newAccessToken = generateJWT(user.id);
   const { refreshToken: newRefreshToken, refreshTokenExpire } = generateRefreshToken();
 
-  await db.query(
-    `UPDATE users SET refreshToken=?, refreshTokenExpire=? WHERE id=?`,
-    [newRefreshToken, refreshTokenExpire, user.id]
-  );
+  const newHashedToken = crypto.createHash("sha256").update(newRefreshToken).digest("hex");
+  await User.updateRefreshToken(user.id, newHashedToken, refreshTokenExpire);
 
   return {
     success: true,
