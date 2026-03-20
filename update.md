@@ -8,8 +8,13 @@ https://web.skype.com/ or Skype software
 mailto:darshan.devani@tecocraft.com
 Darshan@#@112$
 
-* mongoDB Run :- 
-mongod --dbpath ~/mongodb-data
+ls -R  -> view folder structure
+Compress File     -  gzip filename
+Decompress File -  gunzip file.gz
+
+- Terminal Threw
+* mongoDB Run :-  mongod --dbpath ~/mongodb-data
+* PostgreSQL Start :-  pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/logfile start
 
 
 Please find today's work updates below:
@@ -3233,3 +3238,70 @@ Project Name :- Admin Dashboard
                         -  Modified product section with display product info &  their action buttons 
                         -  Implemented dynamic refund management with order status tracking
                         -  Updated inventory management API for manage stocks efficiently 
+
+Please find today's work updates below:
+Date:10-03-2026
+
+Project Name :- Admin Dashboard
+                        -  Updated the order section table with their action buttons 
+                        -  Modified the view order modal and improved the order detail information layout
+                        -  Enhanced the analytics report section and updated the preview mode 
+                        -  Updated the contact us section model with it’s status
+                         
+Please find today's work updates below:
+Date:11-03-2026
+
+Project Name :- Admin Dashboard
+                        -  Updated font title colors and background gradient effects across all sections
+                        -  Removed gradient effects from all stats cards
+                        -  Changed user registration charts with updated styling
+                        -  Modified all table views with new font colors and sizes
+                        -  Added new heading tags to Privacy Policy, Terms of Conditions, and About Us sections
+                        
+Please find today's work updates below:
+Date:12-03-2026
+
+Project Name :- Next.Js project
+                        -  Configured project in Next.Js with MySQL using CLI commands
+                        -  Created User , LoginHistory , ActivityLogs model 
+                        -  Implemented Register / Login / Forgot and Reset Password APIs
+                        -  Added database operations (isActive , verifyEmail) users
+                        -  Tested authentication API flows
+
+Please find today's work updates below:
+Date:13-03-2026
+
+Project Name :- Next.Js project
+                        -  Implemented recent email verification and refresh token flow 
+                        -  Created a seeder file to initialize admin users
+                        -  Built Migration scripts for users, login_history, and activity_logs tables
+                        -   Added a Rollback mechanism to manage table and their changes
+                        -   Set up backup scripts to generate complete backups of all tables and their data
+
+Please find today's work updates below:
+Date:16-03-2026 
+Project Name :- Next.Js project
+                        -  Implemented field validation in the Authentication APIs
+                        -  Added App Router structure for Auth API endpoints
+                        -  Revised core concepts of Next.js data fetching (SSR, SSG, CSR)
+                        -  Reviewed ServerSideProps/ StaticProps / ClientSide fetch methods
+
+Please find today's work updates below:
+Date:17-03-2026
+
+Project Name :- Tecocraft Admin Panel
+                        -  Reviewed the Tecocraft site Figma flow and its sections
+                        -  Created a feature list for implementing admin panel functionalities
+                        -  Reviewed the Tecocraft admin panel code
+                        -  Set up the Next.js server and ran Prisma generate commands
+                        -  Analyzed the Next.js setup with PostgreSQL database
+
+Please find today's work updates below:
+Date:19-03-2026
+                        
+Project Name :- Tecocraft Admin Panel
+                        -  Configured PostgreSQL database through environment setup
+                        -  Reviewed Authentication and Image Upload flows
+                        -  Created User, Logo, and Service section tables using migration scripts
+                        -  Added raw data to related sections in the database
+                        -  Tested existing Authentication API flows                         
