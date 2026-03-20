@@ -1069,7 +1069,7 @@
 // ******************* MapBox Library ********************//
 
 // Leaflet.Js / MapBox Library :- Use to tracking real time live location 
-// MAPBOX_TOKEN=pk.eyJ1IjoiamF5MDAxIiwiYSI6ImNtYWMxdGl5OTI3NG8ya3NibDNxbWFxbW8ifQ.Dnj5BcnOy36tvKY0AHrlvA
+// MAPBOX_TOKEN=MAPBOX_TOKEN_PUT
 
 // NEXT-Project :-
 // GITHUB_ID=Iv23liEUwWFQvGA8LW5G
@@ -2469,3 +2469,113 @@ It allows:
 - Automated summarization
 - Autonomous AI agents
 - Enterprise knowledge bases
+
+
+// **Git Management**
+1. Repo clone kiya ✅
+- tecocraft@Amin-Deraiya tecocraft-site % git branch
+* admin_panel
+  develop
+  main
+
+- git checkout admin_panel
+- tecocraft@Amin-Deraiya tecocraft-site % git status
+On branch admin_panel
+Your branch is up to date with 'origin/admin_panel'.
+
+nothing to commit, working tree clean
+
+**Pull Latest Changes**
+git pull origin admin_panel
+
+**Push Your Changes**
+After editing files:
+
+text
+git add .
+git commit -m "Your commit message here"
+git push origin admin_panel
+
+//  STASH 
+2. admin_panel branch pe ho (git checkout admin_panel) ✅
+3. Lekin aapne kuch files edit kar li hain (uncommitted changes)
+4. Ab dusre developer ka latest code pull karna hai
+
+**Step-by-Step Stash Use:**
+# 1. Current changes ko safe karo
+git stash push -m "Mera admin panel WIP"
+
+# 2. Clean branch pe pull karo
+git pull origin admin_panel
+
+# 3. Apne changes wapas lao
+git stash pop
+
+**Complete Example (Real Output):**
+$ git status
+On branch admin_panel
+Changes not staged for commit:
+  modified:   src/components/Dashboard.js
+  modified:   prisma/schema.prisma
+
+$ git stash push -m "Admin panel dashboard + prisma"
+Saved working directory... stash@{0}
+
+$ git pull origin admin_panel
+Updating abc123..def456
+Fast-forward
+
+$ git stash pop
+On branch admin_panel  
+Changes not staged for commit:
+  modified:   src/components/Dashboard.js
+  modified:   prisma/schema.prisma
+Dropped refs/stash@{0}
+
+**Pehle Kya Tha (git status)**
+text
+Changes not staged for commit:
+  modified:   src/components/Dashboard.js  
+  modified:   prisma/schema.prisma
+Matlab: Aapne 2 files mein changes kiye the, commit nahi kiya tha. Dirty working directory tha.
+
+Step 1: git stash push -m "Admin panel dashboard + prisma"
+text
+Saved working directory... stash@{0}
+Kya Hua:
+
+Aapke 2 files ke changes temporary safe box mein daal diye gaye
+
+✅ Working directory bilkul clean ho gaya
+
+stash@{0} = Aapka first stash (stack ke top pe)
+
+Step 2: git pull origin admin_panel
+text
+Updating abc123..def456
+Fast-forward
+Kya Hua:
+
+Dusre developer ke latest changes aapke local mein aa gaye
+
+Clean pull hua kyunki aapke changes stash mein the
+
+abc123..def456 = Remote se naye commits aaye
+
+Step 3: git stash pop
+text
+On branch admin_panel  
+Changes not staged for commit:
+  modified:   src/components/Dashboard.js
+  modified:   prisma/schema.prisma
+Dropped refs/stash@{0}
+Kya Hua (Do kaam ek saath):
+
+Apply: Aapke purane changes wapas aa gaye files mein
+
+Pop: stash@{0} delete ho gaya list se
+
+**Final Result = Perfect!**
+text
+Dusre developer ka code + Aapka code = Saath mein
+Ab aap git add ., git commit, git push kar sakte ho safely.
