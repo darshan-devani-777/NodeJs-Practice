@@ -2511,6 +2511,11 @@ git pull origin admin_panel
 # 3. Apne changes wapas lao
 git stash pop
 
+# 4. Commit and push
+git add .
+git commit -m "Admin panel updates"
+git push origin admin_panel
+
 **Complete Example (Real Output):**
 $ git status
 On branch admin_panel
