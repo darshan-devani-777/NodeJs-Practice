@@ -1,0 +1,1691 @@
+{
+  "info": {
+    "_postman_id": "f33477aa-218e-43c2-827a-b4e4614d1386",
+    "name": "RBAC-Dynamic",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4377776",
+    "_collection_link": "https://go.postman.co/collection/4377776-f33477aa-218e-43c2-827a-b4e4614d1386?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register SuperAdmin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"SuperAdmin\",\n  \"email\": \"superadmin@gmail.com\",\n  \"password\": \"SuperAdmin@123\",\n  \"role\": \"SuperAdmin\",\n  \"permissions\": [\n    \"APPROVE_PERMISSION\",\n    \"VIEW_AUDIT_LOGS\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register SuperAdmin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"SuperAdmin\",\n  \"email\": \"superadmin@gmail.com\",\n  \"password\": \"SuperAdmin@123\",\n  \"role\": \"SuperAdmin\",\n  \"permissions\": [\n    \"APPROVE_PERMISSION\",\n    \"VIEW_AUDIT_LOGS\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "424"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1a8-Eiyvytqc1mRhU3l6Itsj5TVS1HY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 06:23:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_781af4\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User registered successfully.\",\n    \"data\": {\n        \"name\": \"SuperAdmin\",\n        \"email\": \"superadmin@gmail.com\",\n        \"password\": \"$2b$10$8eeX6GdkIzkqvGvuEaTcv.GrwXi40uoFMP/L4fMwYi0WJBkFH5sHO\",\n        \"role\": \"SuperAdmin\",\n        \"permissions\": [\n            \"APPROVE_PERMISSION\",\n            \"VIEW_AUDIT_LOGS\"\n        ],\n        \"roles\": [],\n        \"_id\": \"699bf26ea2d1250fdbed6e7f\",\n        \"createdAt\": \"2026-02-23T06:23:42.253Z\",\n        \"updatedAt\": \"2026-02-23T06:23:42.253Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Register Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin1\",\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"Admin@123\",\n  \"role\": \"Admin\",\n  \"permissions\": [\n    \"USERS:CREATE\",\n    \"USERS:ASSIGN_ROLE\",\n    \"REVIEW_PERMISSION\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register Admin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Admin1\",\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"Admin@123\",\n  \"role\": \"Admin\",\n  \"permissions\": [\n    \"USERS:CREATE\",\n    \"USERS:ASSIGN_ROLE\",\n    \"REVIEW_PERMISSION\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "426"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1aa-x6/36fq2L4Sp2QmvuHF2Xydb3aI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 06:26:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_0a19a2\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User registered successfully.\",\n    \"data\": {\n        \"name\": \"Admin1\",\n        \"email\": \"admin@gmail.com\",\n        \"password\": \"$2b$10$exY4bCfkxrwVWJIWXVUp3e5TihNAorikERk03eHyva5PqdOhlvO1K\",\n        \"role\": \"Admin\",\n        \"permissions\": [\n            \"USERS:CREATE\",\n            \"USERS:ASSIGN_ROLE\",\n            \"REVIEW_PERMISSION\"\n        ],\n        \"roles\": [],\n        \"_id\": \"699bf302a2d1250fdbed6e81\",\n        \"createdAt\": \"2026-02-23T06:26:10.197Z\",\n        \"updatedAt\": \"2026-02-23T06:26:10.197Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"User1\",\n  \"email\": \"user@gmail.com\",\n  \"password\": \"User@123\",\n  \"role\": \"User\",\n  \"permissions\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"User1\",\n  \"email\": \"user@gmail.com\",\n  \"password\": \"User@123\",\n  \"role\": \"User\",\n  \"permissions\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "369"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"171-idB/huUmeKi6wGr0y+nwaivinB0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 06:27:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_4ca3db\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User registered successfully.\",\n    \"data\": {\n        \"name\": \"User1\",\n        \"email\": \"user@gmail.com\",\n        \"password\": \"$2b$10$OYvpvnIy06f3ihBLrXHqneLOYzK.N4dw0stBRug55Bvz0r0S9/HXG\",\n        \"role\": \"User\",\n        \"permissions\": [],\n        \"roles\": [],\n        \"_id\": \"699bf34da2d1250fdbed6e83\",\n        \"createdAt\": \"2026-02-23T06:27:25.833Z\",\n        \"updatedAt\": \"2026-02-23T06:27:25.833Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login SuperAdmin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@gmail.com\",\n  \"password\": \"SuperAdmin@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login SuperAdmin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"superadmin@gmail.com\",\n  \"password\": \"SuperAdmin@123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "669"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"29d-iupKNHwAFUopoJx+hu+FRq06qek\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 06:40:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_7c58a0\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User login successfully...\",\n    \"meta\": {\n        \"loginTime\": \"2026-02-23T06:40:11.272Z\",\n        \"tokenExpiry\": \"1h\"\n    },\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTliZjI2ZWEyZDEyNTBmZGJlZDZlN2YiLCJlbWFpbCI6InN1cGVyYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IlN1cGVyQWRtaW4iLCJpYXQiOjE3NzE4Mjg4MTEsImV4cCI6MTc3MTgzMjQxMX0.LkJsq1vKtJvQapi_Le16TDnxUknCKiTC4zbaV9vqj1E\",\n        \"user\": {\n            \"id\": \"699bf26ea2d1250fdbed6e7f\",\n            \"name\": \"SuperAdmin\",\n            \"email\": \"superadmin@gmail.com\",\n            \"role\": \"SuperAdmin\",\n            \"roles\": [],\n            \"permissions\": [\n                \"APPROVE_PERMISSION\",\n                \"VIEW_AUDIT_LOGS\"\n            ],\n            \"createdAt\": \"2026-02-23T06:23:42.253Z\",\n            \"updatedAt\": \"2026-02-23T06:23:42.253Z\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"Admin@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login Admin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"Admin@123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "658"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"292-MesauQyyIuHeeVeM8U4wSx0TmV8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 06:44:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_5043ef\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User login successfully...\",\n    \"meta\": {\n        \"loginTime\": \"2026-02-23T06:44:41.250Z\",\n        \"tokenExpiry\": \"1h\"\n    },\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTliZjMwMmEyZDEyNTBmZGJlZDZlODEiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTgyOTA4MSwiZXhwIjoxNzcxODMyNjgxfQ.e9fVtK6Y_mcSoF_Tfrwid76470hA81QTNNbVgQ95a-o\",\n        \"user\": {\n            \"id\": \"699bf302a2d1250fdbed6e81\",\n            \"name\": \"Admin1\",\n            \"email\": \"admin@gmail.com\",\n            \"role\": \"Admin\",\n            \"roles\": [],\n            \"permissions\": [\n                \"USERS:CREATE\",\n                \"USERS:ASSIGN_ROLE\",\n                \"REVIEW_PERMISSION\"\n            ],\n            \"createdAt\": \"2026-02-23T06:26:10.197Z\",\n            \"updatedAt\": \"2026-02-23T06:26:10.197Z\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \"email\": \"employee@test.com\",\n  \"password\": \"Employee@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"email\": \"user@gmail.com\",\n  \"password\": \"User@123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "598"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"256-C6/a15khIuwSMZjwbqYyLnRQBkY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 06:46:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_b13859\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User login successfully...\",\n    \"meta\": {\n        \"loginTime\": \"2026-02-23T06:46:08.644Z\",\n        \"tokenExpiry\": \"1h\"\n    },\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTliZjM0ZGEyZDEyNTBmZGJlZDZlODMiLCJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3NzE4MjkxNjgsImV4cCI6MTc3MTgzMjc2OH0.I5vySWS3dw-VWXoHNaWXZFHeVs9N2hiFd_MBfLneziE\",\n        \"user\": {\n            \"id\": \"699bf34da2d1250fdbed6e83\",\n            \"name\": \"User1\",\n            \"email\": \"user@gmail.com\",\n            \"role\": \"User\",\n            \"roles\": [],\n            \"permissions\": [],\n            \"createdAt\": \"2026-02-23T06:27:25.833Z\",\n            \"updatedAt\": \"2026-02-23T06:27:25.833Z\"\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Request Permission",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{UserToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permission\": \"DASHBOARD:VIEW\",\n  \"reason\": \"I need dashboard access\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/user/request-permission",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "user",
+                "request-permission"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Request Permission",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permission\": \"DASHBOARD:VIEW\",\n  \"reason\": \"I need dashboard access\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/user/request-permission",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "user",
+                    "request-permission"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "350"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"15e-VcKs8PLehhJyM0wy5vb/0HvJryc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 10:04:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_916763\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Permission request submitted successfully.\",\n    \"data\": {\n        \"user\": \"699bfce9c9a3aa51d51de920\",\n        \"permission\": \"DASHBOARD:VIEW\",\n        \"reason\": \"I need dashboard access\",\n        \"status\": \"PENDING_ADMIN\",\n        \"_id\": \"699c261a017cdf4f8fb2ff24\",\n        \"createdAt\": \"2026-02-23T10:04:10.094Z\",\n        \"updatedAt\": \"2026-02-23T10:04:10.094Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "View Dashboard",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTlkNGEwMmY1ODk1YjM5MjlhOWMyOWEiLCJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzcxOTE3MDU1LCJleHAiOjE3NzE5MjA2NTV9.72V6-d4-MNI9gfKlF6_FwM4-ipia2sxypSNnLwZ9qIE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1010/api/dashboard/view-dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "dashboard",
+                "view-dashboard"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "View Dashboard",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1010/api/dashboard/view-dashboard",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "dashboard",
+                    "view-dashboard"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "199"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c7-1wbo3ZH1Mi5qoIxmbajgi6YSSm8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 10:14:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_9206ec\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Dashboard accessed successfully.\",\n    \"data\": {\n        \"userId\": \"699bfce9c9a3aa51d51de920\",\n        \"name\": \"Employee1\",\n        \"role\": \"User\",\n        \"permissions\": [\n            \"DASHBOARD:VIEW\"\n        ]\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Admin Action",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTlkNDY1OTQxNzcyYTY0OTFmNjlkN2EiLCJlbWFpbCI6ImFkbWluMUBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3NzE5MTUyMjIsImV4cCI6MTc3MTkxODgyMn0.liQrT-eH5Mh0_6YarloDaCdfGJAexRAEeY3ciRR3O8I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"IT User\",\n  \"email\": \"user1@gmail.com\",\n  \"password\": \"123456\",\n  \"role\": \"User\",\n  \"department\": \"IT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/admin/create-user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "admin",
+                "create-user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"IT User\",\n  \"email\": \"user1@gmail.com\",\n  \"password\": \"123456\",\n  \"role\": \"User\",\n  \"department\": \"IT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/admin/create-user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "admin",
+                    "create-user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "946"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3b2-6FZvYOebkDAyHoybWwzl2SfrLf8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Feb 2026 06:49:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_320a51\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User created successfully by Admin.\",\n    \"data\": {\n        \"user\": {\n            \"name\": \"IT User\",\n            \"email\": \"user1@gmail.com\",\n            \"role\": \"User\",\n            \"department\": \"IT\",\n            \"location\": \"INDIA\",\n            \"status\": \"ACTIVE\",\n            \"roles\": [],\n            \"_id\": \"699d4a02f5895b3929a9c29a\",\n            \"createdAt\": \"2026-02-24T06:49:38.768Z\",\n            \"updatedAt\": \"2026-02-24T06:49:38.768Z\",\n            \"__v\": 0\n        },\n        \"auditLog\": {\n            \"traceId\": \"REQ_320a51\",\n            \"performedBy\": {\n                \"userId\": \"699d493885b362679f370dbe\",\n                \"email\": \"admin1@gmail.com\",\n                \"role\": \"Admin\"\n            },\n            \"target\": {\n                \"userId\": \"699d4a02f5895b3929a9c29a\",\n                \"email\": \"user1@gmail.com\",\n                \"role\": \"User\"\n            },\n            \"resource\": {\n                \"type\": \"USER\",\n                \"resourceId\": \"699d4a02f5895b3929a9c29a\"\n            },\n            \"action\": \"ADMIN_CREATED_USER\",\n            \"status\": \"SUCCESS\",\n            \"ipAddress\": \"::1\",\n            \"userAgent\": \"PostmanRuntime/7.51.1\",\n            \"newValues\": {\n                \"name\": \"IT User\",\n                \"email\": \"user1@gmail.com\",\n                \"role\": \"User\",\n                \"department\": \"IT\"\n            },\n            \"_id\": \"699d4a02f5895b3929a9c29c\",\n            \"createdAt\": \"2026-02-24T06:49:38.953Z\",\n            \"updatedAt\": \"2026-02-24T06:49:38.953Z\",\n            \"__v\": 0\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Assign Role",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{AdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleId\": \"699c154ac04baad5432bf0d9\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/admin/assign-role/699bfce9c9a3aa51d51de920",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "admin",
+                "assign-role",
+                "699bfce9c9a3aa51d51de920"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Assign Role",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleId\": \"699c154ac04baad5432bf0d9\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/admin/assign-role/699bfce9c9a3aa51d51de920",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "admin",
+                    "assign-role",
+                    "699bfce9c9a3aa51d51de920"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "766"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2fe-BCWzhTzybDYGRXRxZtlUUGeTD3w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 09:05:58 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_40734b\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Role assigned successfully.\",\n    \"data\": {\n        \"userId\": \"699bfce9c9a3aa51d51de920\",\n        \"assignedRole\": \"Manager\",\n        \"roles\": [\n            \"Manager\",\n            \"Manager\"\n        ],\n        \"permissions\": [\n            \"DASHBOARD:VIEW\",\n            \"REVIEW_PERMISSION\"\n        ],\n        \"auditLog\": {\n            \"traceId\": \"REQ_40734b\",\n            \"performedBy\": {\n                \"userId\": \"699bf302a2d1250fdbed6e81\",\n                \"email\": \"admin@gmail.com\",\n                \"role\": \"Admin\"\n            },\n            \"target\": {\n                \"userId\": \"699bfce9c9a3aa51d51de920\",\n                \"email\": \"employee@test.com\"\n            },\n            \"resource\": {\n                \"type\": \"ROLE\",\n                \"resourceId\": \"699c154ac04baad5432bf0d9\"\n            },\n            \"action\": \"ROLE_ASSIGNED\",\n            \"status\": \"SUCCESS\",\n            \"ipAddress\": \"::1\",\n            \"oldValues\": {\n                \"roles\": [\n                    \"Manager\"\n                ]\n            },\n            \"newValues\": {\n                \"roles\": [\n                    \"Manager\",\n                    \"Manager\"\n                ]\n            },\n            \"_id\": \"699c187642fd2d7394221b75\",\n            \"createdAt\": \"2026-02-23T09:05:58.670Z\",\n            \"updatedAt\": \"2026-02-23T09:05:58.670Z\",\n            \"__v\": 0\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Review Request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTliZjMwMmEyZDEyNTBmZGJlZDZlODEiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTkxNjA1MSwiZXhwIjoxNzcxOTE5NjUxfQ.VPluhz_vZ7kbcAB0lZ2iS17P7NE5T25lSI0hVLxeNbA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"APPROVE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/admin/review-request/699d4bfbf5895b3929a9c2ad",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "admin",
+                "review-request",
+                "699d4bfbf5895b3929a9c2ad"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Review Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"APPROVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/admin/review-request/699c261a017cdf4f8fb2ff24",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "admin",
+                    "review-request",
+                    "699c261a017cdf4f8fb2ff24"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "749"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2ed-/Y0k+eseTCNrgbOzX35B7f2/Ueo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 10:12:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_6d2ac5\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Request PENDING_SUPERADMIN\",\n    \"data\": {\n        \"requestId\": \"699c261a017cdf4f8fb2ff24\",\n        \"oldStatus\": \"PENDING_ADMIN\",\n        \"newStatus\": \"PENDING_SUPERADMIN\",\n        \"auditLog\": {\n            \"traceId\": \"REQ_6d2ac5\",\n            \"performedBy\": {\n                \"userId\": \"699bf302a2d1250fdbed6e81\",\n                \"email\": \"admin@gmail.com\",\n                \"role\": \"Admin\"\n            },\n            \"target\": {\n                \"userId\": \"699bfce9c9a3aa51d51de920\",\n                \"email\": \"employee@test.com\"\n            },\n            \"resource\": {\n                \"type\": \"PERMISSION_REQUEST\",\n                \"resourceId\": \"699c261a017cdf4f8fb2ff24\"\n            },\n            \"action\": \"ADMIN_REVIEWED_REQUEST\",\n            \"status\": \"SUCCESS\",\n            \"ipAddress\": \"::1\",\n            \"oldValues\": {\n                \"status\": \"PENDING_ADMIN\"\n            },\n            \"newValues\": {\n                \"status\": \"PENDING_SUPERADMIN\"\n            },\n            \"_id\": \"699c2801017cdf4f8fb2ff2c\",\n            \"createdAt\": \"2026-02-23T10:12:17.149Z\",\n            \"updatedAt\": \"2026-02-23T10:12:17.149Z\",\n            \"__v\": 0\n        }\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SuperAdmin Action",
+      "item": [
+        {
+          "name": "Create Admin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SuperAdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"IT Admin\",\n  \"email\": \"admin1@gmail.com\",\n  \"password\": \"123456\",\n  \"role\": \"Admin\",\n  \"department\": \"IT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Admin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"IT Admin\",\n  \"email\": \"admin1@gmail.com\",\n  \"password\": \"123456\",\n  \"role\": \"Admin\",\n  \"department\": \"IT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "339"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"153-ecfBx23UinfVKS4YZzpX9JH0gfc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Feb 2026 06:46:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_222806\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"User registered successfully.\",\n    \"data\": {\n        \"name\": \"IT Admin\",\n        \"email\": \"admin1@gmail.com\",\n        \"role\": \"Admin\",\n        \"department\": \"IT\",\n        \"location\": \"INDIA\",\n        \"status\": \"ACTIVE\",\n        \"roles\": [],\n        \"_id\": \"699d493885b362679f370dbe\",\n        \"createdAt\": \"2026-02-24T06:46:16.133Z\",\n        \"updatedAt\": \"2026-02-24T06:46:16.133Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Role",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SuperAdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Manager\",\n  \"permissions\": [\"DASHBOARD:VIEW\",\"REVIEW_PERMISSION\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1010/api/superadmin/create-role",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "superadmin",
+                "create-role"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Role",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Manager\",\n  \"permissions\": [\"DASHBOARD:VIEW\",\"REVIEW_PERMISSION\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:1010/api/superadmin/create-role",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "superadmin",
+                    "create-role"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "280"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"118-KO5BkSA2G9BZ04WJyiXiDpypQh0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 08:52:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_1849c5\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Role created successfully.\",\n    \"data\": {\n        \"name\": \"Manager\",\n        \"permissions\": [\n            \"DASHBOARD:VIEW\",\n            \"REVIEW_PERMISSION\"\n        ],\n        \"_id\": \"699c154ac04baad5432bf0d9\",\n        \"createdAt\": \"2026-02-23T08:52:26.690Z\",\n        \"updatedAt\": \"2026-02-23T08:52:26.690Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Final Approve",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SuperAdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1010/api/superadmin/final-approve/699c261a017cdf4f8fb2ff24",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "superadmin",
+                "final-approve",
+                "699c261a017cdf4f8fb2ff24"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Final Approve",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1010/api/superadmin/final-approve/699c261a017cdf4f8fb2ff24",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "superadmin",
+                    "final-approve",
+                    "699c261a017cdf4f8fb2ff24"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "96"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"60-CcqB74qNt45sBUpp0x7kZ5xij5M\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 10:14:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_5abf4d\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Permission fully approved by SuperAdmin.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "View AuditLogs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SuperAdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1010/api/superadmin/audit-logs",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "superadmin",
+                "audit-logs"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "View AuditLogs",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1010/api/superadmin/audit-logs",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "superadmin",
+                    "audit-logs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "5324"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"14cc-PD6oByvAYrN+11XTugx7w/xLM4c\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 10:21:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_7d0b2e\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Audit logs fetched successfully.\",\n    \"meta\": {\n        \"total\": 13,\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalPages\": 2,\n        \"data\": [\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf26ea2d1250fdbed6e7f\",\n                    \"email\": \"superadmin@gmail.com\",\n                    \"role\": \"SuperAdmin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"PERMISSION_REQUEST\",\n                    \"resourceId\": \"699c261a017cdf4f8fb2ff24\"\n                },\n                \"_id\": \"699c286c017cdf4f8fb2ff34\",\n                \"traceId\": \"REQ_5abf4d\",\n                \"action\": \"SUPERADMIN_APPROVED\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"createdAt\": \"2026-02-23T10:14:04.939Z\",\n                \"updatedAt\": \"2026-02-23T10:14:04.939Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf302a2d1250fdbed6e81\",\n                    \"email\": \"admin@gmail.com\",\n                    \"role\": \"Admin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"PERMISSION_REQUEST\",\n                    \"resourceId\": \"699c261a017cdf4f8fb2ff24\"\n                },\n                \"_id\": \"699c2801017cdf4f8fb2ff2c\",\n                \"traceId\": \"REQ_6d2ac5\",\n                \"action\": \"ADMIN_REVIEWED_REQUEST\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"oldValues\": {\n                    \"status\": \"PENDING_ADMIN\"\n                },\n                \"newValues\": {\n                    \"status\": \"PENDING_SUPERADMIN\"\n                },\n                \"createdAt\": \"2026-02-23T10:12:17.149Z\",\n                \"updatedAt\": \"2026-02-23T10:12:17.149Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\",\n                    \"role\": \"User\"\n                },\n                \"resource\": {\n                    \"type\": \"PERMISSION_REQUEST\",\n                    \"resourceId\": \"699c261a017cdf4f8fb2ff24\"\n                },\n                \"_id\": \"699c261a017cdf4f8fb2ff26\",\n                \"traceId\": \"REQ_916763\",\n                \"action\": \"USER_REQUESTED_PERMISSION\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"newValues\": {\n                    \"permission\": \"DASHBOARD:VIEW\",\n                    \"reason\": \"I need dashboard access\"\n                },\n                \"createdAt\": \"2026-02-23T10:04:10.103Z\",\n                \"updatedAt\": \"2026-02-23T10:04:10.103Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf26ea2d1250fdbed6e7f\",\n                    \"email\": \"superadmin@gmail.com\",\n                    \"role\": \"SuperAdmin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"PERMISSION_REQUEST\",\n                    \"resourceId\": \"699c1d3404065eabfb96cca9\"\n                },\n                \"_id\": \"699c240d048ea0a7baaed084\",\n                \"traceId\": \"REQ_991a67\",\n                \"action\": \"SUPERADMIN_APPROVED\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"createdAt\": \"2026-02-23T09:55:25.194Z\",\n                \"updatedAt\": \"2026-02-23T09:55:25.194Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf302a2d1250fdbed6e81\",\n                    \"email\": \"admin@gmail.com\",\n                    \"role\": \"Admin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"PERMISSION_REQUEST\",\n                    \"resourceId\": \"699c1d3404065eabfb96cca9\"\n                },\n                \"_id\": \"699c1ec0f227a17367d8baa4\",\n                \"traceId\": \"REQ_0e975a\",\n                \"action\": \"ADMIN_REVIEWED_REQUEST\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"oldValues\": {\n                    \"status\": \"PENDING_ADMIN\"\n                },\n                \"newValues\": {\n                    \"status\": \"PENDING_SUPERADMIN\"\n                },\n                \"createdAt\": \"2026-02-23T09:32:48.698Z\",\n                \"updatedAt\": \"2026-02-23T09:32:48.698Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\",\n                    \"role\": \"User\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"PERMISSION_REQUEST\",\n                    \"resourceId\": \"699c1d3404065eabfb96cca9\"\n                },\n                \"_id\": \"699c1d3404065eabfb96ccab\",\n                \"traceId\": \"REQ_bb05b4\",\n                \"action\": \"USER_REQUESTED_PERMISSION\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"userAgent\": \"PostmanRuntime/7.51.1\",\n                \"newValues\": {\n                    \"permission\": \"REVIEW_PERMISSION\",\n                    \"reason\": \"Need access to review tasks\",\n                    \"status\": \"PENDING_ADMIN\"\n                },\n                \"createdAt\": \"2026-02-23T09:26:12.555Z\",\n                \"updatedAt\": \"2026-02-23T09:26:12.555Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf302a2d1250fdbed6e81\",\n                    \"email\": \"admin@gmail.com\",\n                    \"role\": \"Admin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"ROLE\",\n                    \"resourceId\": \"699c154ac04baad5432bf0d9\"\n                },\n                \"_id\": \"699c187642fd2d7394221b75\",\n                \"traceId\": \"REQ_40734b\",\n                \"action\": \"ROLE_ASSIGNED\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"oldValues\": {\n                    \"roles\": [\n                        \"Manager\"\n                    ]\n                },\n                \"newValues\": {\n                    \"roles\": [\n                        \"Manager\",\n                        \"Manager\"\n                    ]\n                },\n                \"createdAt\": \"2026-02-23T09:05:58.670Z\",\n                \"updatedAt\": \"2026-02-23T09:05:58.670Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf302a2d1250fdbed6e81\",\n                    \"email\": \"admin@gmail.com\",\n                    \"role\": \"Admin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\"\n                },\n                \"resource\": {\n                    \"type\": \"ROLE\",\n                    \"resourceId\": \"699c154ac04baad5432bf0d9\"\n                },\n                \"_id\": \"699c165cc04baad5432bf0e6\",\n                \"traceId\": \"REQ_4fcf27\",\n                \"action\": \"ROLE_ASSIGNED\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"oldValues\": {\n                    \"roles\": []\n                },\n                \"newValues\": {\n                    \"roles\": [\n                        \"Manager\"\n                    ]\n                },\n                \"createdAt\": \"2026-02-23T08:57:00.112Z\",\n                \"updatedAt\": \"2026-02-23T08:57:00.112Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf26ea2d1250fdbed6e7f\",\n                    \"email\": \"superadmin@gmail.com\",\n                    \"role\": \"SuperAdmin\"\n                },\n                \"resource\": {\n                    \"type\": \"ROLE\",\n                    \"resourceId\": \"699c154ac04baad5432bf0d9\"\n                },\n                \"_id\": \"699c154ac04baad5432bf0db\",\n                \"traceId\": \"REQ_1849c5\",\n                \"action\": \"ROLE_CREATED\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"newValues\": {\n                    \"name\": \"Manager\",\n                    \"permissions\": [\n                        \"DASHBOARD:VIEW\",\n                        \"REVIEW_PERMISSION\"\n                    ]\n                },\n                \"createdAt\": \"2026-02-23T08:52:26.698Z\",\n                \"updatedAt\": \"2026-02-23T08:52:26.698Z\",\n                \"__v\": 0\n            },\n            {\n                \"performedBy\": {\n                    \"userId\": \"699bf302a2d1250fdbed6e81\",\n                    \"email\": \"admin@gmail.com\",\n                    \"role\": \"Admin\"\n                },\n                \"target\": {\n                    \"userId\": \"699bfce9c9a3aa51d51de920\",\n                    \"email\": \"employee@test.com\",\n                    \"role\": \"User\"\n                },\n                \"resource\": {\n                    \"type\": \"USER\",\n                    \"resourceId\": \"699bfce9c9a3aa51d51de920\"\n                },\n                \"_id\": \"699bfce9c9a3aa51d51de922\",\n                \"traceId\": \"REQ_1184e3\",\n                \"action\": \"ADMIN_CREATED_USER\",\n                \"status\": \"SUCCESS\",\n                \"ipAddress\": \"::1\",\n                \"userAgent\": \"PostmanRuntime/7.51.1\",\n                \"newValues\": {\n                    \"name\": \"Employee1\",\n                    \"email\": \"employee@test.com\",\n                    \"role\": \"User\"\n                },\n                \"createdAt\": \"2026-02-23T07:08:25.780Z\",\n                \"updatedAt\": \"2026-02-23T07:08:25.780Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "View AuditLogs_By_TraceID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{SuperAdminToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1010/api/superadmin/audit-logs/by-traceID/REQ_5abf4d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1010",
+              "path": [
+                "api",
+                "superadmin",
+                "audit-logs",
+                "by-traceID",
+                "REQ_5abf4d"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "View AuditLogs_By_TraceID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:1010/api/superadmin/audit-logs/by-traceID/REQ_5abf4d",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "1010",
+                  "path": [
+                    "api",
+                    "superadmin",
+                    "audit-logs",
+                    "by-traceID",
+                    "REQ_5abf4d"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "575"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"23f-eOIeGUcl5fgKE2/y+IErMuflVNg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Feb 2026 11:17:48 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"traceId\": \"REQ_b73c0d\",\n    \"status\": \"SUCCESS\",\n    \"message\": \"Fetched 1 log(s) for traceId REQ_5abf4d\",\n    \"data\": [\n        {\n            \"performedBy\": {\n                \"userId\": \"699bf26ea2d1250fdbed6e7f\",\n                \"email\": \"superadmin@gmail.com\",\n                \"role\": \"SuperAdmin\"\n            },\n            \"target\": {\n                \"userId\": \"699bfce9c9a3aa51d51de920\",\n                \"email\": \"employee@test.com\"\n            },\n            \"resource\": {\n                \"type\": \"PERMISSION_REQUEST\",\n                \"resourceId\": \"699c261a017cdf4f8fb2ff24\"\n            },\n            \"_id\": \"699c286c017cdf4f8fb2ff34\",\n            \"traceId\": \"REQ_5abf4d\",\n            \"action\": \"SUPERADMIN_APPROVED\",\n            \"status\": \"SUCCESS\",\n            \"ipAddress\": \"::1\",\n            \"createdAt\": \"2026-02-23T10:14:04.939Z\",\n            \"updatedAt\": \"2026-02-23T10:14:04.939Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "SuperAdminToken",
+      "value": ""
+    },
+    {
+      "key": "AdminToken",
+      "value": ""
+    },
+    {
+      "key": "UserToken",
+      "value": ""
+    }
+  ]
+}

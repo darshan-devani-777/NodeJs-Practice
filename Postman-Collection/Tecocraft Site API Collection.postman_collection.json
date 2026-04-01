@@ -1,0 +1,1436 @@
+{
+  "info": {
+    "_postman_id": "3e6e1ff3-f8ef-4c24-a0b3-d391b8846870",
+    "name": "Tecocraft Site API Collection",
+    "description": "API collection for Auth, OTP, Logos, Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4377776",
+    "_collection_link": "https://go.postman.co/collection/4377776-3e6e1ff3-f8ef-4c24-a0b3-d391b8846870?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"peterapps70@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/forgot-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"peterapps70@gmail.com\",\n  \"otp\": \"761917\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/verify-otp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "verify-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"51b945f5dc80adaaea0d59b545963d20:874ee728c6e58ef93108b85423b2602bd9086fb1583b1cc9e47e6043da11de54\",\n  \"password\": \"PeterAppss@123\",\n  \"otp\":\"483424\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/reset-password",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Logos",
+      "item": [
+        {
+          "name": "Create Logo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "src": [
+                    "",
+                    "/Users/jahnavijoshi/Downloads/building.png"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/logos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "logos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Logo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "logo",
+                      "type": "file",
+                      "src": [
+                        "",
+                        "/Users/jahnavijoshi/Downloads/building.png"
+                      ]
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/logos",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "logos"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Mar 2026 11:50:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Logo uploaded successfully\",\n    \"data\": {\n        \"id\": 8,\n        \"image_url\": \"/uploads/logos/1774266651035-\",\n        \"created_at\": \"2026-03-23T11:50:51.036Z\",\n        \"updated_at\": \"2026-03-23T11:50:51.036Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Logos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/logos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "logos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Logos",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/logos",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "logos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization"
+                },
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Mar 2026 05:08:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Logos fetched successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalItems\": 6,\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10\n    },\n    \"data\": {\n        \"logos\": [\n            {\n                \"id\": 13,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774434965/logos/1774434962971-image-144.png.png\",\n                \"created_at\": \"2026-03-25T10:36:05.813Z\",\n                \"updated_at\": \"2026-03-25T10:36:05.813Z\"\n            },\n            {\n                \"id\": 12,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774434945/logos/1774434937883-image-143.png.png\",\n                \"created_at\": \"2026-03-25T10:35:45.568Z\",\n                \"updated_at\": \"2026-03-25T10:35:45.568Z\"\n            },\n            {\n                \"id\": 11,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774434926/logos/1774434923614-image-142.png.png\",\n                \"created_at\": \"2026-03-25T10:35:27.124Z\",\n                \"updated_at\": \"2026-03-25T10:35:27.124Z\"\n            },\n            {\n                \"id\": 10,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774434913/logos/1774434911442-image-141.png.png\",\n                \"created_at\": \"2026-03-25T10:35:14.496Z\",\n                \"updated_at\": \"2026-03-25T10:35:14.496Z\"\n            },\n            {\n                \"id\": 9,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774434901/logos/1774434899398-image-140.png.png\",\n                \"created_at\": \"2026-03-25T10:35:02.194Z\",\n                \"updated_at\": \"2026-03-25T10:35:02.194Z\"\n            },\n            {\n                \"id\": 8,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774434888/logos/1774434886335-image-139.png.png\",\n                \"created_at\": \"2026-03-25T10:34:49.470Z\",\n                \"updated_at\": \"2026-03-25T10:34:49.470Z\"\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Logo",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "src": "/Users/jahnavijoshi/Downloads/Logo.png"
+                },
+                {
+                  "key": "oldImage",
+                  "value": "/uploads/logos/1773910040614-Home.png",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/logos/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "logos",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Logo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/logos/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "logos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Web Development",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Website development service",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/Users/jahnavijoshi/Downloads/building.png"
+                },
+                {
+                  "key": "type",
+                  "value": "CARD",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/services",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "services"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Service",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Web Development",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Website development service",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": "/Users/jahnavijoshi/Downloads/building.png"
+                    },
+                    {
+                      "key": "type",
+                      "value": "CARD",
+                      "type": "text"
+                    },
+                    {
+                      "key": "status",
+                      "value": "1",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/services",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "services"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 23 Mar 2026 11:51:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Service created successfully\",\n    \"data\": {\n        \"id\": 12,\n        \"title\": \"Web Development\",\n        \"description\": \"Website development service\",\n        \"type\": \"CARD\",\n        \"image_url\": \"\",\n        \"status\": 1,\n        \"created_at\": \"2026-03-23T11:51:35.246Z\",\n        \"updated_at\": \"2026-03-23T11:51:35.246Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/services",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "services"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Services",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/services",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "services"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization"
+                },
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Mar 2026 05:09:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Services fetched successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalItems\": 7,\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10\n    },\n    \"data\": [\n        {\n            \"id\": 12,\n            \"title\": \"UI/UX Design\",\n            \"description\": \"Our professional UI/UX design services will help you improve user interaction with your product. We develop website and mobile application designs that support user interaction through responsive design and achieve business goals through conversion optimization.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774437066/services/1774437064666-Group-13-%286%29.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:11:07.418Z\",\n            \"updated_at\": \"2026-03-25T11:11:07.418Z\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"QA Testing\",\n            \"description\": \"Our complete software testing services provide assurance for system reliability and operational capabilities. Our quality assurance process includes functional, performance, and security testing to eliminate bugs and risks.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774437028/services/1774437026617-Group-13-%285%29.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:10:29.430Z\",\n            \"updated_at\": \"2026-03-25T11:10:29.430Z\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Real-Time Software Solutions\",\n            \"description\": \"Our company creates specialized real-time software solutions which help various industries improve their operational processes and achieve higher productivity and make informed business choices.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774436993/services/1774436991514-Group-13-%284%29.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:09:54.156Z\",\n            \"updated_at\": \"2026-03-25T11:09:54.156Z\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Digital Marketing\",\n            \"description\": \"Our digital marketing services which deliver measurable results will help increase your brand visibility while you acquire potential customers through our SEO and PPC management and social media marketing and email marketing services that support your business development.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774436957/services/1774436955670-Group-13-%283%29.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:09:18.530Z\",\n            \"updated_at\": \"2026-03-25T11:09:18.530Z\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Web, CMS & eCommerce Development\",\n            \"description\": \"We provide complete website development services which include CMS and eCommerce solutions that operate with optimal speed and user-friendly design to achieve high conversion rates. Our responsive web development delivers consistent performance across different devices.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774436892/services/1774436890347-Group-13-%282%29.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:08:13.670Z\",\n            \"updated_at\": \"2026-03-25T11:08:13.670Z\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Mobile App Development\",\n            \"description\": \"We provide custom mobile app development services to build high-quality, feature-rich Android and iOS applications that help businesses scale, engage users, and drive measurable growth.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774436730/services/1774436727745-Group-13.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:04:00.328Z\",\n            \"updated_at\": \"2026-03-25T11:05:30.793Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"AI Solutions\",\n            \"description\": \"We provide AI solutions for businesses through our AI consulting services, enterprise AI solutions, agentic AI systems and generative AI integration services which help businesses automate their operations while they grow their organizations through modern AI technology.\",\n            \"type\": \"CARD\",\n            \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774436845/services/1774436840458-Group-13-%281%29.png.png\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-25T11:00:11.049Z\",\n            \"updated_at\": \"2026-03-25T11:07:26.062Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Web Development",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Updated description",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "value": ""
+                },
+                {
+                  "key": "oldImage",
+                  "value": "/uploads/services/1773918827916-building.png",
+                  "type": "text"
+                },
+                {
+                  "key": "type",
+                  "value": "CARD",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/services/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "services",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/services/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "services",
+                "5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "item": [
+        {
+          "name": "Create Portfolio",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Yourtime",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.",
+                  "type": "text"
+                },
+                {
+                  "key": "category_id",
+                  "value": "5",
+                  "type": "text"
+                },
+                {
+                  "key": "user_id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/Users/jahnavijoshi/Desktop/Tecocraft-Assets/Portfolios/image 145.png"
+                },
+                {
+                  "key": "isWeb",
+                  "value": "0",
+                  "type": "text",
+                  "uuid": "0f5d789e-336c-4f48-b020-94597ec2e29f"
+                },
+                {
+                  "key": "isAndroid",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "9960a4fc-7df5-4083-b3c8-0f3b38c596f5"
+                },
+                {
+                  "key": "isIos",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "8014f5a9-58fe-4d2f-a1a0-3a6f4801ebfb"
+                },
+                {
+                  "key": "android_image",
+                  "type": "file",
+                  "uuid": "c95b307a-ad91-447a-918b-22e56cf42ac7",
+                  "src": "/Users/jahnavijoshi/Downloads/android.png"
+                },
+                {
+                  "key": "ios_image",
+                  "type": "file",
+                  "uuid": "efba7a75-4685-41c4-ab5f-df5b310a77e4",
+                  "src": "/Users/jahnavijoshi/Downloads/ios.png"
+                },
+                {
+                  "key": "web_image",
+                  "type": "file",
+                  "uuid": "a115210f-5792-44ec-8aa0-dae7be09a445",
+                  "src": "/Users/jahnavijoshi/Downloads/web.png",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/portfolio",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "portfolio"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Portfolio",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Yourtime",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.",
+                      "type": "text"
+                    },
+                    {
+                      "key": "category_id",
+                      "value": "5",
+                      "type": "text"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "status",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "src": "/Users/jahnavijoshi/Desktop/Tecocraft-Assets/Portfolios/image 145.png"
+                    },
+                    {
+                      "key": "isWeb",
+                      "value": "0",
+                      "type": "text",
+                      "uuid": "0f5d789e-336c-4f48-b020-94597ec2e29f"
+                    },
+                    {
+                      "key": "isAndroid",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "9960a4fc-7df5-4083-b3c8-0f3b38c596f5"
+                    },
+                    {
+                      "key": "isIos",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "8014f5a9-58fe-4d2f-a1a0-3a6f4801ebfb"
+                    },
+                    {
+                      "key": "android_image",
+                      "type": "file",
+                      "uuid": "c95b307a-ad91-447a-918b-22e56cf42ac7",
+                      "src": "/Users/jahnavijoshi/Downloads/android.png"
+                    },
+                    {
+                      "key": "ios_image",
+                      "type": "file",
+                      "uuid": "efba7a75-4685-41c4-ab5f-df5b310a77e4",
+                      "src": "/Users/jahnavijoshi/Downloads/ios.png"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/portfolio",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "portfolio"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization"
+                },
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Mar 2026 07:06:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Portfolio created successfully\",\n    \"data\": {\n        \"id\": 33,\n        \"title\": \"Yourtime\",\n        \"slug\": \"yourtime\",\n        \"description\": \"YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.\",\n        \"portfolio_url\": \"https://yourdomain.com/portfolio/yourtime\",\n        \"category_id\": 5,\n        \"user_id\": 1,\n        \"status\": 1,\n        \"isWeb\": false,\n        \"isAndroid\": true,\n        \"isIOS\": true,\n        \"web_image_url\": null,\n        \"android_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774508779/portfolio/android/1774508778857-android.png.png\",\n        \"ios_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774508780/portfolio/ios/1774508780061-ios.png.png\",\n        \"created_at\": \"2026-03-26T07:06:21.040Z\",\n        \"updated_at\": \"2026-03-26T07:06:21.040Z\",\n        \"category\": {\n            \"id\": 5,\n            \"name\": \"App Development\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:17:47.899Z\",\n            \"updated_at\": \"2026-03-26T04:39:46.841Z\"\n        },\n        \"images\": [\n            {\n                \"id\": 30,\n                \"portfolio_id\": 33,\n                \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774508778/portfolio/1774508774569-image-145.png.png\",\n                \"created_at\": \"2026-03-26T07:06:21.044Z\"\n            }\n        ],\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"Super Admin\",\n            \"email\": \"admin@example.com\"\n        },\n        \"image_urls\": {\n            \"web\": null,\n            \"android\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774508779/portfolio/android/1774508778857-android.png.png\",\n            \"ios\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774508780/portfolio/ios/1774508780061-ios.png.png\"\n        }\n    },\n    \"errors\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Portfolios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/portfolio?page=1&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "portfolio"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Portfolios",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/portfolio?page=1&limit=10",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "portfolio"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization"
+                },
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Mar 2026 08:22:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Portfolios fetched successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalItems\": 4,\n        \"hasNextPage\": false,\n        \"hasPrevPage\": false,\n        \"limit\": 10\n    },\n    \"data\": [\n        {\n            \"id\": 36,\n            \"title\": \"Nhat Quang\",\n            \"slug\": \"nhat-quang\",\n            \"description\": \"YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.\",\n            \"portfolio_url\": \"https://yourdomain.com/portfolio/nhat-quang\",\n            \"category_id\": 1,\n            \"user_id\": 1,\n            \"status\": 0,\n            \"isWeb\": true,\n            \"isAndroid\": false,\n            \"isIOS\": false,\n            \"web_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774513296/portfolio/web/1774513294152-web.png.png\",\n            \"android_image_url\": null,\n            \"ios_image_url\": null,\n            \"created_at\": \"2026-03-26T07:14:45.409Z\",\n            \"updated_at\": \"2026-03-26T08:21:36.867Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Web Developement\",\n                \"status\": 0,\n                \"created_at\": \"2026-03-24T10:15:54.563Z\",\n                \"updated_at\": \"2026-03-26T04:40:08.083Z\"\n            },\n            \"images\": [\n                {\n                    \"id\": 33,\n                    \"portfolio_id\": 36,\n                    \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774509284/portfolio/1774509281005-image-148.png.png\",\n                    \"created_at\": \"2026-03-26T07:14:45.413Z\"\n                }\n            ],\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"Super Admin\",\n                \"email\": \"admin@example.com\"\n            }\n        },\n        {\n            \"id\": 35,\n            \"title\": \"Trim\",\n            \"slug\": \"trim\",\n            \"description\": \"YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.\",\n            \"portfolio_url\": \"https://yourdomain.com/portfolio/trim\",\n            \"category_id\": 5,\n            \"user_id\": 1,\n            \"status\": 0,\n            \"isWeb\": false,\n            \"isAndroid\": true,\n            \"isIOS\": true,\n            \"web_image_url\": null,\n            \"android_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774513251/portfolio/android/1774513246857-android.png.png\",\n            \"ios_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774513252/portfolio/ios/1774513252186-ios.png.png\",\n            \"created_at\": \"2026-03-26T07:13:06.173Z\",\n            \"updated_at\": \"2026-03-26T08:20:53.415Z\",\n            \"category\": {\n                \"id\": 5,\n                \"name\": \"App Development\",\n                \"status\": 0,\n                \"created_at\": \"2026-03-24T10:17:47.899Z\",\n                \"updated_at\": \"2026-03-26T04:39:46.841Z\"\n            },\n            \"images\": [\n                {\n                    \"id\": 32,\n                    \"portfolio_id\": 35,\n                    \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774509183/portfolio/1774509180421-image-147.png.png\",\n                    \"created_at\": \"2026-03-26T07:13:06.181Z\"\n                }\n            ],\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"Super Admin\",\n                \"email\": \"admin@example.com\"\n            }\n        },\n        {\n            \"id\": 34,\n            \"title\": \"Gate Guardian\",\n            \"slug\": \"gate-guardian\",\n            \"description\": \"YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.\",\n            \"portfolio_url\": \"https://yourdomain.com/portfolio/gate-guardian\",\n            \"category_id\": 1,\n            \"user_id\": 1,\n            \"status\": 0,\n            \"isWeb\": true,\n            \"isAndroid\": false,\n            \"isIOS\": false,\n            \"web_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774510224/portfolio/web/1774510221862-web.png.png\",\n            \"android_image_url\": null,\n            \"ios_image_url\": null,\n            \"created_at\": \"2026-03-26T07:11:05.257Z\",\n            \"updated_at\": \"2026-03-26T07:30:24.720Z\",\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Web Developement\",\n                \"status\": 0,\n                \"created_at\": \"2026-03-24T10:15:54.563Z\",\n                \"updated_at\": \"2026-03-26T04:40:08.083Z\"\n            },\n            \"images\": [\n                {\n                    \"id\": 31,\n                    \"portfolio_id\": 34,\n                    \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774509063/portfolio/1774509060427-image-146.png.png\",\n                    \"created_at\": \"2026-03-26T07:11:05.282Z\"\n                }\n            ],\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"Super Admin\",\n                \"email\": \"admin@example.com\"\n            }\n        },\n        {\n            \"id\": 33,\n            \"title\": \"Yourtime\",\n            \"slug\": \"yourtime\",\n            \"description\": \"YourTime is an online tutoring app that connects any university student who wants to learn and graduate university professionals who can teach them from anywhere and anytime.\",\n            \"portfolio_url\": \"https://yourdomain.com/portfolio/yourtime\",\n            \"category_id\": 5,\n            \"user_id\": 1,\n            \"status\": 1,\n            \"isWeb\": false,\n            \"isAndroid\": true,\n            \"isIOS\": true,\n            \"web_image_url\": null,\n            \"android_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774510163/portfolio/android/1774510161261-android.png.png\",\n            \"ios_image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774510164/portfolio/ios/1774510164009-ios.png.png\",\n            \"created_at\": \"2026-03-26T07:06:21.040Z\",\n            \"updated_at\": \"2026-03-26T07:29:25.017Z\",\n            \"category\": {\n                \"id\": 5,\n                \"name\": \"App Development\",\n                \"status\": 0,\n                \"created_at\": \"2026-03-24T10:17:47.899Z\",\n                \"updated_at\": \"2026-03-26T04:39:46.841Z\"\n            },\n            \"images\": [\n                {\n                    \"id\": 30,\n                    \"portfolio_id\": 33,\n                    \"image_url\": \"https://res.cloudinary.com/dfciwmday/image/upload/v1774508778/portfolio/1774508774569-image-145.png.png\",\n                    \"created_at\": \"2026-03-26T07:06:21.044Z\"\n                }\n            ],\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"Super Admin\",\n                \"email\": \"admin@example.com\"\n            }\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Portfolio",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Updated title",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "Updated description",
+                  "type": "text",
+                  "uuid": "b3ff913e-8c6d-4e40-a1f7-62bd8955b99a",
+                  "disabled": true
+                },
+                {
+                  "key": "category_id",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "7e7c09d4-1484-4106-a489-9bf03e6c6a96",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "96a620db-e4fd-47a6-8bc2-3fdb16e6d780"
+                },
+                {
+                  "key": "isWeb",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "1e78c4ad-c6f8-4226-a422-26bdb72b4cda",
+                  "disabled": true
+                },
+                {
+                  "key": "isAndroid",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "396d1dd6-1247-406a-beff-d13f561942a1",
+                  "disabled": true
+                },
+                {
+                  "key": "isIos",
+                  "value": "0",
+                  "type": "text",
+                  "uuid": "b0b6b389-927a-442d-9258-7fbb80801750",
+                  "disabled": true
+                },
+                {
+                  "key": "web_image",
+                  "type": "file",
+                  "uuid": "f85f660d-b7b0-46f2-ad26-23ece7f2ee4a",
+                  "src": "/Users/jahnavijoshi/Downloads/web.png",
+                  "disabled": true
+                },
+                {
+                  "key": "android_image",
+                  "type": "file",
+                  "uuid": "b12e1a57-bb34-497c-80a5-8f92cee33ae5",
+                  "src": "/Users/jahnavijoshi/Downloads/android.png",
+                  "disabled": true
+                },
+                {
+                  "key": "ios_image",
+                  "type": "file",
+                  "uuid": "6386e105-5579-4b9b-a663-66f459820691",
+                  "src": "/Users/jahnavijoshi/Downloads/ios.png",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/portfolio/33",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "portfolio",
+                "33"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Portfolio",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "CyberSecurityyyyy",
+                      "type": "text"
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/portfolio/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "portfolio",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Mar 2026 10:46:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Portfolio updated successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"CyberSecurityyyyy\",\n        \"slug\": \"cybersecurityyyyy\",\n        \"description\": \"Modern web design platform\",\n        \"portfolio_url\": \"https://yourdomain.com/portfolio/cybersecurityyyyy\",\n        \"category_id\": 1,\n        \"user_id\": 1,\n        \"status\": 1,\n        \"created_at\": \"2026-03-24T10:22:31.827Z\",\n        \"updated_at\": \"2026-03-24T10:46:43.956Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Portfolio",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/portfolio/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "portfolio",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Portfolio-Category",
+      "item": [
+        {
+          "name": "Get Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/portfolio-category",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "portfolio-category"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Category",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/api/portfolio-category",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "portfolio-category"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, PUT, DELETE, OPTIONS"
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization"
+                },
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Mar 2026 05:10:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Categories fetched successfully\",\n    \"pagination\": {\n        \"currentPage\": 1,\n        \"totalPages\": 1,\n        \"totalItems\": 9,\n        \"limit\": 10\n    },\n    \"data\": [\n        {\n            \"id\": 9,\n            \"name\": \"Cybersecurity\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:19:01.454Z\",\n            \"updated_at\": \"2026-03-26T04:24:55.652Z\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Cloud Development\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:18:28.049Z\",\n            \"updated_at\": \"2026-03-26T04:39:32.411Z\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Game Development\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:18:10.002Z\",\n            \"updated_at\": \"2026-03-26T04:39:37.443Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Video Editing\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:17:56.852Z\",\n            \"updated_at\": \"2026-03-26T04:39:42.428Z\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"App Development\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:17:47.899Z\",\n            \"updated_at\": \"2026-03-26T04:39:46.841Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"SEO Optimization\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:17:35.079Z\",\n            \"updated_at\": \"2026-03-26T04:39:52.848Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Digital Marketing\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:17:10.533Z\",\n            \"updated_at\": \"2026-03-26T04:39:57.304Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"UI/UX Design\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:16:53.527Z\",\n            \"updated_at\": \"2026-03-26T04:40:02.242Z\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Web Developement\",\n            \"status\": 0,\n            \"created_at\": \"2026-03-24T10:15:54.563Z\",\n            \"updated_at\": \"2026-03-26T04:40:08.083Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Web Design\",\n  \"status\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/portfolio-category",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "portfolio-category"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Category",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Web Design\",\n  \"status\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/portfolio-category",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "portfolio-category"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Mar 2026 07:04:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Web Design\",\n        \"status\": 1,\n        \"created_at\": \"2026-03-24T07:04:02.834Z\",\n        \"updated_at\": \"2026-03-24T07:04:02.834Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Category Name\",\n  \"status\": \"1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/portfolio-category/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "portfolio-category",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Category",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Category Name\",\n  \"status\": \"1\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/api/portfolio-category/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "api",
+                    "portfolio-category",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "vary",
+                  "value": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 24 Mar 2026 07:07:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Category updated successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Updated Category Name\",\n        \"status\": 1,\n        \"created_at\": \"2026-03-24T07:04:02.834Z\",\n        \"updated_at\": \"2026-03-24T07:07:59.001Z\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,1905 @@
+{
+  "info": {
+    "_postman_id": "66269278-91db-46f4-acfc-b57222b3cd7d",
+    "name": "Event-Booking-System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4377776",
+    "_collection_link": "https://go.postman.co/collection/4377776-66269278-91db-46f4-acfc-b57222b3cd7d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Denver\",\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/register-user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "register-user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Denver\",\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/auth/register-user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "auth",
+                    "register-user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "136"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"88-hll1/sWEACQpyS2DxM8zPiDL5Uc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 01 Dec 2025 09:22:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 201,\n    \"message\": \"User registered successfully...\",\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"Denver\",\n        \"email\": \"denver@gmail.com\",\n        \"role\": \"USER\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login-user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login-user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"denver@gmail.com\",\n  \"password\": \"denver@123\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/auth/login-user",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "auth",
+                    "login-user"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "518"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"206-3JuYaFPLArusddLSnMQoX6Xxsy0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 01 Dec 2025 09:24:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"User login successfully...\",\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"Denver\",\n        \"email\": \"denver@gmail.com\",\n        \"role\": \"USER\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbnZlckBnbWFpbC5jb20iLCJzdWIiOjEwLCJpYXQiOjE3NjQ1ODEwNDUsImV4cCI6MTc2NDU4NDY0NX0.rMRFuQB8Ck6Yx4XgiomUXOGcmf8RXrvUaleYJS2889U\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlbnZlckBnbWFpbC5jb20iLCJzdWIiOjEwLCJpYXQiOjE3NjQ1ODEwNDUsImV4cCI6MTc2NTE4NTg0NX0.jIVbxDpPf4l6RJPBV3z_rn-rVXFCeuEx8JtXLifVaLk\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Create Event",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjUzNzAwLCJleHAiOjE3NjQ2NTczMDB9.fDfl4-Nof7iMSz8C3L9o_IjYU7L7GGtlGHdSpvfjapA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Music Concert",
+                  "type": "text",
+                  "uuid": "cf3b6311-cf32-4a49-852f-a96c61a95d14"
+                },
+                {
+                  "key": "description",
+                  "value": "A live music concert featuring popular bands.",
+                  "type": "text",
+                  "uuid": "caa6c17d-5813-4d23-87af-224b27db201a"
+                },
+                {
+                  "key": "venue",
+                  "value": "Stadium A",
+                  "type": "text",
+                  "uuid": "9f3c2f18-5451-4424-9c22-55f1ea74da9b"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2025-12-15T18:00:00.000Z",
+                  "type": "text",
+                  "uuid": "b39ce0c6-500b-44ff-9034-fb67546a9207"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2025-12-15T22:00:00.000Z",
+                  "type": "text",
+                  "uuid": "fba26c30-2251-4d61-8526-89eb78e9bf26"
+                },
+                {
+                  "key": "category",
+                  "value": "Music",
+                  "type": "text",
+                  "uuid": "ba0a8eb6-995c-4712-95b5-50e2953c4ad0"
+                },
+                {
+                  "key": "bannerImage",
+                  "type": "file",
+                  "uuid": "a06bf273-2cd3-4e51-aa0d-b06a1973cc52",
+                  "src": "/Users/jahnavijoshi/Downloads/building.png"
+                },
+                {
+                  "key": "createdBy",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "9e1897ad-ef3b-4b8d-9894-f85c834a98df",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/events/create-event",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "events",
+                "create-event"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Event",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Music Concert",
+                      "type": "text",
+                      "uuid": "cf3b6311-cf32-4a49-852f-a96c61a95d14"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A live music concert featuring popular bands.",
+                      "type": "text",
+                      "uuid": "caa6c17d-5813-4d23-87af-224b27db201a"
+                    },
+                    {
+                      "key": "venue",
+                      "value": "Stadium A",
+                      "type": "text",
+                      "uuid": "9f3c2f18-5451-4424-9c22-55f1ea74da9b"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2025-12-15T18:00:00.000Z",
+                      "type": "text",
+                      "uuid": "b39ce0c6-500b-44ff-9034-fb67546a9207"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-12-15T22:00:00.000Z",
+                      "type": "text",
+                      "uuid": "fba26c30-2251-4d61-8526-89eb78e9bf26"
+                    },
+                    {
+                      "key": "category",
+                      "value": "Music",
+                      "type": "text",
+                      "uuid": "ba0a8eb6-995c-4712-95b5-50e2953c4ad0"
+                    },
+                    {
+                      "key": "bannerImage",
+                      "type": "file",
+                      "uuid": "a06bf273-2cd3-4e51-aa0d-b06a1973cc52",
+                      "src": "/Users/jahnavijoshi/Downloads/building.png"
+                    },
+                    {
+                      "key": "createdBy",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "9e1897ad-ef3b-4b8d-9894-f85c834a98df",
+                      "disabled": true
+                    }
+                  ],
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/events/create-event",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "events",
+                    "create-event"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "645"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"285-K7s0ROsARYuOMR3GLNrdGqv9dX0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 05:50:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 201,\n    \"message\": \"Event created successfully...\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Music Concert\",\n        \"description\": \"A live music concert featuring popular bands.\",\n        \"venue\": \"Stadium A\",\n        \"startDate\": \"2025-12-15T18:00:00.000Z\",\n        \"endDate\": \"2025-12-15T22:00:00.000Z\",\n        \"category\": \"Music\",\n        \"bannerImageUrl\": \"uploads/bannerImage-1764654653088-83607552.png\",\n        \"createdBy\": {\n            \"id\": 1,\n            \"name\": \"Admin\",\n            \"email\": \"admin@gmail.com\",\n            \"password\": \"$2b$10$yppl/gAbimpnB4i6z7kY7..wVhr9U1WKMbYtMe/y0Z5oCz7I0JR1.\",\n            \"role\": \"ADMIN\",\n            \"createdAt\": \"2025-12-01T10:51:38.677Z\",\n            \"updatedAt\": \"2025-12-01T10:51:38.677Z\",\n            \"deletedAt\": null\n        },\n        \"updatedAt\": \"2025-12-02T05:50:53.122Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Event",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjYzOTcwLCJleHAiOjE3NjQ2Njc1NzB9.gisCqlueJwajudpBE2SKLZZ1WAHDkuN7r-1f4CmMoC4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/events/get-all-event",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "events",
+                "get-all-event"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Music",
+                  "disabled": true
+                },
+                {
+                  "key": "venue",
+                  "value": "Mega Arena",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "rock",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "newest",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2025-12-21",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2025-12-23",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Event",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/events/get-all-event",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "events",
+                    "get-all-event"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "Music",
+                      "disabled": true
+                    },
+                    {
+                      "key": "venue",
+                      "value": "Mega Arena",
+                      "disabled": true
+                    },
+                    {
+                      "key": "keyword",
+                      "value": "rock",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sort",
+                      "value": "newest",
+                      "disabled": true
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2025-12-21",
+                      "disabled": true
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-12-23",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3646"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e3e-+ZtJqIYTzO+ti/7Me8kiQqdMhTI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 08:45:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Events fetched successfully...\",\n    \"pagination\": {\n        \"total\": 9,\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalPages\": 1\n    },\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"Music Concert\",\n            \"description\": \"A live music concert featuring popular bands.\",\n            \"venue\": \"Stadium A\",\n            \"startDate\": \"2025-12-15T18:00:00.000Z\",\n            \"endDate\": \"2025-12-15T22:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764658504901-940548624.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:55:04.000Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 11,\n            \"title\": \"Indie Rock Showcase\",\n            \"description\": \"A night dedicated to the best indie rock bands.\",\n            \"venue\": \"Underground Club\",\n            \"startDate\": \"2025-12-19T20:30:00.000Z\",\n            \"endDate\": \"2025-12-16T21:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764656081719-62328185.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:14:41.724Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Hip Hop Jam\",\n            \"description\": \"A thrilling night of live hip-hop performances and freestyle battles.\",\n            \"venue\": \"Urban Arena\",\n            \"startDate\": \"2025-12-19T20:30:00.000Z\",\n            \"endDate\": \"2025-12-19T23:30:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764656016682-747111299.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:13:36.688Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Acoustic Vibes\",\n            \"description\": \"An intimate acoustic concert featuring singer-songwriters.\",\n            \"venue\": \"The Coffee House\",\n            \"startDate\": \"2025-12-14T19:00:00.000Z\",\n            \"endDate\": \"2025-12-14T22:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655969096-29579687.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:12:49.100Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 8,\n            \"title\": \"EDM Madness\",\n            \"description\": \"A high-energy electronic dance music event with top DJs.\",\n            \"venue\": \"Mega Arena\",\n            \"startDate\": \"2025-12-25T22:00:00.000Z\",\n            \"endDate\": \"2025-12-26T05:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655919590-413374201.jpg\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:11:59.595Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Jazz Under the Stars\",\n            \"description\": \"Enjoy a night of smooth jazz by the beach with stunning views.\",\n            \"venue\": \"Seaside Park\",\n            \"startDate\": \"2025-12-12T20:00:00.000Z\",\n            \"endDate\": \"2025-12-12T23:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655869961-45306302.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:11:09.970Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Classical Night\",\n            \"description\": \"A serene evening of live classical music by world-renowned orchestras.\",\n            \"venue\": \"Grand Concert Hall\",\n            \"startDate\": \"2025-12-18T18:30:00.000Z\",\n            \"endDate\": \"2025-12-18T21:30:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655811360-260735665.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:10:11.364Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Pop Fiesta\",\n            \"description\": \"A vibrant concert featuring top pop artists and DJs.\",\n            \"venue\": \"Beachfront Pavilion\",\n            \"startDate\": \"2025-12-10T21:00:00.000Z\",\n            \"endDate\": \"2025-12-11T01:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655759012-525084150.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:09:19.017Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Rock Legends Live\",\n            \"description\": \"An unforgettable night with legendary rock bands performing live.\",\n            \"venue\": \"Arena X\",\n            \"startDate\": \"2025-12-20T19:00:00.000Z\",\n            \"endDate\": \"2025-12-20T23:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655682967-546904845.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:08:02.983Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Event",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjU1NTk2LCJleHAiOjE3NjQ2NTkxOTZ9.uJwgVd0ofqdLHvPdrgnClqVDtXj_u8g9bpN47CVU74I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Music Concert",
+                  "type": "text",
+                  "uuid": "cf3b6311-cf32-4a49-852f-a96c61a95d14"
+                },
+                {
+                  "key": "description",
+                  "value": "A live music concert featuring popular bands.",
+                  "type": "text",
+                  "uuid": "caa6c17d-5813-4d23-87af-224b27db201a"
+                },
+                {
+                  "key": "venue",
+                  "value": "Stadium A",
+                  "type": "text",
+                  "uuid": "9f3c2f18-5451-4424-9c22-55f1ea74da9b"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2025-12-15T18:00:00.000Z",
+                  "type": "text",
+                  "uuid": "b39ce0c6-500b-44ff-9034-fb67546a9207"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2025-12-15T22:00:00.000Z",
+                  "type": "text",
+                  "uuid": "fba26c30-2251-4d61-8526-89eb78e9bf26"
+                },
+                {
+                  "key": "category",
+                  "value": "Music",
+                  "type": "text",
+                  "uuid": "ba0a8eb6-995c-4712-95b5-50e2953c4ad0"
+                },
+                {
+                  "key": "bannerImage",
+                  "type": "file",
+                  "uuid": "a06bf273-2cd3-4e51-aa0d-b06a1973cc52",
+                  "src": "/Users/jahnavijoshi/Downloads/building.png"
+                },
+                {
+                  "key": "createdBy",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "9e1897ad-ef3b-4b8d-9894-f85c834a98df",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/events/get-specific-event/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "events",
+                "get-specific-event",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Event",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Music Concert",
+                      "type": "text",
+                      "uuid": "cf3b6311-cf32-4a49-852f-a96c61a95d14"
+                    },
+                    {
+                      "key": "description",
+                      "value": "A live music concert featuring popular bands.",
+                      "type": "text",
+                      "uuid": "caa6c17d-5813-4d23-87af-224b27db201a"
+                    },
+                    {
+                      "key": "venue",
+                      "value": "Stadium A",
+                      "type": "text",
+                      "uuid": "9f3c2f18-5451-4424-9c22-55f1ea74da9b"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2025-12-15T18:00:00.000Z",
+                      "type": "text",
+                      "uuid": "b39ce0c6-500b-44ff-9034-fb67546a9207"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-12-15T22:00:00.000Z",
+                      "type": "text",
+                      "uuid": "fba26c30-2251-4d61-8526-89eb78e9bf26"
+                    },
+                    {
+                      "key": "category",
+                      "value": "Music",
+                      "type": "text",
+                      "uuid": "ba0a8eb6-995c-4712-95b5-50e2953c4ad0"
+                    },
+                    {
+                      "key": "bannerImage",
+                      "type": "file",
+                      "uuid": "a06bf273-2cd3-4e51-aa0d-b06a1973cc52",
+                      "src": "/Users/jahnavijoshi/Downloads/building.png"
+                    },
+                    {
+                      "key": "createdBy",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "9e1897ad-ef3b-4b8d-9894-f85c834a98df",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/events/get-specific-event/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "events",
+                    "get-specific-event",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "399"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18f-bNA/9DDYoLH5pkxJ+VXaRZqT8eM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 06:39:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Event fetched successfully...\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Music Concert\",\n        \"description\": \"A live music concert featuring popular bands.\",\n        \"venue\": \"Stadium A\",\n        \"startDate\": \"2025-12-15T18:00:00.000Z\",\n        \"endDate\": \"2025-12-15T22:00:00.000Z\",\n        \"category\": \"Music\",\n        \"bannerImageUrl\": \"uploads/bannerImage-1764654653088-83607552.png\",\n        \"updatedAt\": \"2025-12-02T05:50:53.122Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Event",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjU1NTk2LCJleHAiOjE3NjQ2NTkxOTZ9.uJwgVd0ofqdLHvPdrgnClqVDtXj_u8g9bpN47CVU74I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Music Concert",
+                  "type": "text",
+                  "uuid": "cf3b6311-cf32-4a49-852f-a96c61a95d14",
+                  "disabled": true
+                },
+                {
+                  "key": "description",
+                  "value": "A live music concert featuring popular bands.",
+                  "type": "text",
+                  "uuid": "caa6c17d-5813-4d23-87af-224b27db201a",
+                  "disabled": true
+                },
+                {
+                  "key": "venue",
+                  "value": "Stadium A",
+                  "type": "text",
+                  "uuid": "9f3c2f18-5451-4424-9c22-55f1ea74da9b",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2025-12-15T18:00:00.000Z",
+                  "type": "text",
+                  "uuid": "b39ce0c6-500b-44ff-9034-fb67546a9207",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2025-12-15T22:00:00.000Z",
+                  "type": "text",
+                  "uuid": "fba26c30-2251-4d61-8526-89eb78e9bf26",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "Music",
+                  "type": "text",
+                  "uuid": "ba0a8eb6-995c-4712-95b5-50e2953c4ad0",
+                  "disabled": true
+                },
+                {
+                  "key": "bannerImage",
+                  "type": "file",
+                  "uuid": "a06bf273-2cd3-4e51-aa0d-b06a1973cc52",
+                  "src": "/Users/jahnavijoshi/Downloads/property2.png"
+                },
+                {
+                  "key": "createdBy",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "9e1897ad-ef3b-4b8d-9894-f85c834a98df",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/events/update-event/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "events",
+                "update-event",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Event",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "title",
+                      "value": "Music Concert",
+                      "type": "text",
+                      "uuid": "cf3b6311-cf32-4a49-852f-a96c61a95d14",
+                      "disabled": true
+                    },
+                    {
+                      "key": "description",
+                      "value": "A live music concert featuring popular bands.",
+                      "type": "text",
+                      "uuid": "caa6c17d-5813-4d23-87af-224b27db201a",
+                      "disabled": true
+                    },
+                    {
+                      "key": "venue",
+                      "value": "Stadium A",
+                      "type": "text",
+                      "uuid": "9f3c2f18-5451-4424-9c22-55f1ea74da9b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2025-12-15T18:00:00.000Z",
+                      "type": "text",
+                      "uuid": "b39ce0c6-500b-44ff-9034-fb67546a9207",
+                      "disabled": true
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2025-12-15T22:00:00.000Z",
+                      "type": "text",
+                      "uuid": "fba26c30-2251-4d61-8526-89eb78e9bf26",
+                      "disabled": true
+                    },
+                    {
+                      "key": "category",
+                      "value": "Music",
+                      "type": "text",
+                      "uuid": "ba0a8eb6-995c-4712-95b5-50e2953c4ad0",
+                      "disabled": true
+                    },
+                    {
+                      "key": "bannerImage",
+                      "type": "file",
+                      "uuid": "a06bf273-2cd3-4e51-aa0d-b06a1973cc52",
+                      "src": "/Users/jahnavijoshi/Downloads/property2.png"
+                    },
+                    {
+                      "key": "createdBy",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "9e1897ad-ef3b-4b8d-9894-f85c834a98df",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/events/update-event/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "events",
+                    "update-event",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "400"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"190-/LTOmRag+LLfEF7zSNB1l5pEgPA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 06:55:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Event updated successfully...\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Music Concert\",\n        \"description\": \"A live music concert featuring popular bands.\",\n        \"venue\": \"Stadium A\",\n        \"startDate\": \"2025-12-15T18:00:00.000Z\",\n        \"endDate\": \"2025-12-15T22:00:00.000Z\",\n        \"category\": \"Music\",\n        \"bannerImageUrl\": \"uploads/bannerImage-1764658504901-940548624.png\",\n        \"updatedAt\": \"2025-12-02T06:55:04.000Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Event",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjU1NTk2LCJleHAiOjE3NjQ2NTkxOTZ9.uJwgVd0ofqdLHvPdrgnClqVDtXj_u8g9bpN47CVU74I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/events/delete-event/13",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "events",
+                "delete-event",
+                "13"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Event",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/events/delete-event/13",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "events",
+                    "delete-event",
+                    "13"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "427"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ab-nXyBnSYe2sZGXn49rtu3Vfh6YyQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 06:57:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Event deleted successfully...\",\n    \"data\": {\n        \"title\": \"Country Stars Live\",\n        \"description\": \"A celebration of country music with performances by legendary artists.\",\n        \"venue\": \"Western Ranch\",\n        \"startDate\": \"2025-12-30T18:00:00.000Z\",\n        \"endDate\": \"2025-12-30T22:00:00.000Z\",\n        \"category\": \"Music\",\n        \"bannerImageUrl\": \"uploads/bannerImage-1764656197682-868396794.png\",\n        \"updatedAt\": \"2025-12-02T06:16:37.693Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Create Ticket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjY3Njg2LCJleHAiOjE3NjQ2NzEyODZ9.m6yFHsqk1deCp3aMrurpsd8uEEJr93SsmaZt3a03FTw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventId\": 4,\n  \"price\": 100,\n  \"quantity\": 50,\n  \"availableCount\": 50,\n  \"type\": \"Regular\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/tickets/create-ticket",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "tickets",
+                "create-ticket"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Ticket",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eventId\": 4,\n  \"price\": 100,\n  \"quantity\": 50,\n  \"availableCount\": 50,\n  \"type\": \"Regular\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/tickets/create-ticket",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "tickets",
+                    "create-ticket"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "640"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"280-7vTYiWanr1iKOYM/CVKaEyEnqtw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 09:34:54 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 201,\n    \"message\": \"Ticket created successfully\",\n    \"data\": {\n        \"ticketId\": 1,\n        \"event\": {\n            \"id\": 4,\n            \"title\": \"Rock Legends Live\",\n            \"description\": \"An unforgettable night with legendary rock bands performing live.\",\n            \"venue\": \"Arena X\",\n            \"startDate\": \"2025-12-20T19:00:00.000Z\",\n            \"endDate\": \"2025-12-20T23:00:00.000Z\",\n            \"category\": \"Music\",\n            \"bannerImageUrl\": \"uploads/bannerImage-1764655682967-546904845.png\",\n            \"createdAt\": \"2025-12-02T07:29:35.000Z\",\n            \"updatedAt\": \"2025-12-02T06:08:02.983Z\",\n            \"deletedAt\": null\n        },\n        \"price\": 100,\n        \"quantity\": 50,\n        \"availableCount\": 50,\n        \"type\": \"Regular\",\n        \"createdAt\": \"2025-12-02T09:34:54.031Z\",\n        \"updatedAt\": \"2025-12-02T09:34:54.031Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Ticket / Get TicketByEventId",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjY3Njg2LCJleHAiOjE3NjQ2NzEyODZ9.m6yFHsqk1deCp3aMrurpsd8uEEJr93SsmaZt3a03FTw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tickets/get-all-tickets-by-event/all=true",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "tickets",
+                "get-all-tickets-by-event",
+                "all=true"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Ticket / Get TicketByEventId",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/tickets/get-all-tickets-by-event/all=true",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "tickets",
+                    "get-all-tickets-by-event",
+                    "all=true"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "960"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3c0-TnurLqvjmnLjjtGPfeLNoxXHMI0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 09:49:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"All tickets fetched successfully...\",\n    \"data\": [\n        {\n            \"ticketId\": 1,\n            \"price\": \"100.00\",\n            \"quantity\": 50,\n            \"availableCount\": 50,\n            \"type\": \"Regular\",\n            \"createdAt\": \"2025-12-02T09:34:54.031Z\",\n            \"updatedAt\": \"2025-12-02T09:34:54.031Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"ticketId\": 2,\n            \"price\": \"200.00\",\n            \"quantity\": 70,\n            \"availableCount\": 70,\n            \"type\": \"Regular\",\n            \"createdAt\": \"2025-12-02T09:36:27.670Z\",\n            \"updatedAt\": \"2025-12-02T09:36:27.670Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"ticketId\": 3,\n            \"price\": \"1000.00\",\n            \"quantity\": 100,\n            \"availableCount\": 100,\n            \"type\": \"VIP\",\n            \"createdAt\": \"2025-12-02T09:37:15.443Z\",\n            \"updatedAt\": \"2025-12-02T09:37:15.443Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"ticketId\": 4,\n            \"price\": \"30.00\",\n            \"quantity\": 200,\n            \"availableCount\": 200,\n            \"type\": \"Free\",\n            \"createdAt\": \"2025-12-02T09:38:25.769Z\",\n            \"updatedAt\": \"2025-12-02T09:38:25.769Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"ticketId\": 5,\n            \"price\": \"10.00\",\n            \"quantity\": 300,\n            \"availableCount\": 300,\n            \"type\": \"Free\",\n            \"createdAt\": \"2025-12-02T09:39:06.149Z\",\n            \"updatedAt\": \"2025-12-02T09:39:06.149Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Ticket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjY3Njg2LCJleHAiOjE3NjQ2NzEyODZ9.m6yFHsqk1deCp3aMrurpsd8uEEJr93SsmaZt3a03FTw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tickets/get-specific-ticket/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "tickets",
+                "get-specific-ticket",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Ticket",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/tickets/get-specific-ticket/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "tickets",
+                    "get-specific-ticket",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "246"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f6-pZVxxMUU2ril6Y4ztGzxb1vCVWs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 09:53:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Ticket fetched successfully...\",\n    \"data\": {\n        \"ticketId\": 1,\n        \"price\": \"100.00\",\n        \"quantity\": 50,\n        \"availableCount\": 50,\n        \"type\": \"Regular\",\n        \"createdAt\": \"2025-12-02T09:34:54.031Z\",\n        \"updatedAt\": \"2025-12-02T09:34:54.031Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Ticket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjY3Njg2LCJleHAiOjE3NjQ2NzEyODZ9.m6yFHsqk1deCp3aMrurpsd8uEEJr93SsmaZt3a03FTw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"price\":120\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/tickets/update-ticket/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "tickets",
+                "update-ticket",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update Ticket",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"price\":120\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/tickets/update-ticket/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "tickets",
+                    "update-ticket",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "190"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"be-Oh0+SUXrvIiNoaSo/wTRsvNwDvs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 10:07:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Ticket updated successfully...\",\n    \"data\": {\n        \"ticketId\": 1,\n        \"price\": 120,\n        \"createdAt\": \"2025-12-02T09:34:54.031Z\",\n        \"updatedAt\": \"2025-12-02T10:07:39.000Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Ticket",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjY3Njg2LCJleHAiOjE3NjQ2NzEyODZ9.m6yFHsqk1deCp3aMrurpsd8uEEJr93SsmaZt3a03FTw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/tickets/delete-ticket/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "tickets",
+                "delete-ticket",
+                "5"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete Ticket",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/tickets/delete-ticket/5",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "tickets",
+                    "delete-ticket",
+                    "5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "266"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10a-3RR8HX+fNvE9AQumfHPvomKFoY4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 10:08:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Ticket deleted successfully...\",\n    \"data\": {\n        \"ticketId\": 5,\n        \"price\": \"10.00\",\n        \"quantity\": 300,\n        \"availableCount\": 300,\n        \"type\": \"Free\",\n        \"createdAt\": \"2025-12-02T09:39:06.149Z\",\n        \"updatedAt\": \"2025-12-02T10:08:36.000Z\",\n        \"deletedAt\": \"2025-12-02T10:08:36.815Z\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjcyNzMwLCJleHAiOjE3NjQ2NzYzMzB9.boSgWYLzZqBuiEc5fA15xPNES8zcJaSuV8fuIXiV4qY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticketId\": 4,\n  \"quantity\": 30\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/bookings/create-booking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bookings",
+                "create-booking"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Booking",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ticketId\": 4,\n  \"quantity\": 30\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/bookings/create-booking",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "bookings",
+                    "create-booking"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "652"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"28c-/mpfn+LzwSTBdMwEL4VbTiuVyVE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 11:23:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 201,\n    \"message\": \"Booking created successfully...\",\n    \"data\": {\n        \"bookingId\": 3,\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"Admin\",\n            \"email\": \"admin@gmail.com\",\n            \"password\": \"$2b$10$yppl/gAbimpnB4i6z7kY7..wVhr9U1WKMbYtMe/y0Z5oCz7I0JR1.\",\n            \"role\": \"ADMIN\",\n            \"createdAt\": \"2025-12-01T10:51:38.677Z\",\n            \"updatedAt\": \"2025-12-01T10:51:38.677Z\",\n            \"deletedAt\": null\n        },\n        \"ticket\": {\n            \"ticketId\": 4,\n            \"price\": \"30.00\",\n            \"quantity\": 200,\n            \"availableCount\": 170,\n            \"type\": \"Free\",\n            \"createdAt\": \"2025-12-02T09:38:25.769Z\",\n            \"updatedAt\": \"2025-12-02T11:23:27.000Z\",\n            \"deletedAt\": null\n        },\n        \"quantity\": 30,\n        \"bookingNumber\": \"BOOK-Y40NUOYI\",\n        \"createdAt\": \"2025-12-02T11:23:27.497Z\",\n        \"updatedAt\": \"2025-12-02T11:23:27.497Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjcyNzMwLCJleHAiOjE3NjQ2NzYzMzB9.boSgWYLzZqBuiEc5fA15xPNES8zcJaSuV8fuIXiV4qY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/bookings/get-all-booking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bookings",
+                "get-all-booking"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get All Booking",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/bookings/get-all-booking",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "bookings",
+                    "get-all-booking"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "385"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"181-gm1Hd8pGDxTxqdKVJ9vloEK0N1g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 11:28:45 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Bookings fetched successfully...\",\n    \"data\": [\n        {\n            \"bookingId\": 1,\n            \"quantity\": 2,\n            \"bookingNumber\": \"BOOK-FYHPAR6T\",\n            \"createdAt\": \"2025-12-02T11:12:34.451Z\",\n            \"updatedAt\": \"2025-12-02T11:12:34.451Z\",\n            \"deletedAt\": null\n        },\n        {\n            \"bookingId\": 3,\n            \"quantity\": 30,\n            \"bookingNumber\": \"BOOK-Y40NUOYI\",\n            \"createdAt\": \"2025-12-02T11:23:27.497Z\",\n            \"updatedAt\": \"2025-12-02T11:23:27.497Z\",\n            \"deletedAt\": null\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Specific Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0NjcyNzMwLCJleHAiOjE3NjQ2NzYzMzB9.boSgWYLzZqBuiEc5fA15xPNES8zcJaSuV8fuIXiV4qY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/bookings/get-specific-booking/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bookings",
+                "get-specific-booking",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Specific Booking",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/bookings/get-specific-booking/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "bookings",
+                    "get-specific-booking",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "225"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e1-CXbDTWq+4j2+NpHQ+99iNVg3yFE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 11:27:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"Booking fetched successfully...\",\n    \"data\": {\n        \"bookingId\": 1,\n        \"quantity\": 2,\n        \"bookingNumber\": \"BOOK-FYHPAR6T\",\n        \"createdAt\": \"2025-12-02T11:12:34.451Z\",\n        \"updatedAt\": \"2025-12-02T11:12:34.451Z\",\n        \"deletedAt\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Count Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZXMiOlsiQURNSU4iXSwiaWF0IjoxNzY0Njc2MDc2LCJleHAiOjE3NjQ2Nzk2NzZ9.vxBZlX6lkRZY6-YslMHCtQokvNCUISxwUqyqvOg-TWE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/bookings/count-booking",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bookings",
+                "count-booking"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Count Booking",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/bookings/count-booking",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "bookings",
+                    "count-booking"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "78"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4e-Fgy+Vi7gLuzKLFWztu0vH8ZYdPw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 02 Dec 2025 11:48:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"statusCode\": 200,\n    \"message\": \"User has 2 booking(s)\",\n    \"data\": {\n        \"bookingCount\": 2\n    }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
