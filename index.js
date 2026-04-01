@@ -2584,3 +2584,27 @@ Pop: stash@{0} delete ho gaya list se
 text
 Dusre developer ka code + Aapka code = Saath mein
 Ab aap git add ., git commit, git push kar sakte ho safely.
+
+
+* webmail
+https://www.tecocraft.com/webmail
+mailto:darshan.devani@tecocraft.com
+Darshan@#@112
+
+* Skype
+https://web.skype.com/ or Skype software
+mailto:darshan.devani@tecocraft.com
+Darshan@#@112$
+
+peterapps70@gmail.com
+United@@999$$
+
+ls -R  -> view folder structure
+Compress File     -  gzip filename
+Decompress File -  gunzip file.gz
+
+* mongoDB Run :-  mongod --dbpath ~/mongodb-data
+* PostgreSQL Start :-  pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/logfile start
+
+Tecocraft new air
+Teco@@2406
