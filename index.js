@@ -2674,3 +2674,118 @@ DOCX to PDF API :-
     * LibreOffice: Free & open-source / No MS Word dependency
     * Docx2pdf: Requires MS Word installed (paid license)
                               : Works only on Windows/macOS
+
+// Authentication Flows :-                               
+       
+                              Auth (Folder)
+                              ├── 1. Register User (Signup)
+                              ├── 2. Verify OTP
+                              ├── 3. Login
+                              ├── 4. Regenerate Access Token
+                              ├── 5. Forget Password
+                              ├── 6. Verify Password Reset OTP
+                              ├── 7. Reset Password
+                              ├── 8. Change Password
+                              ├── 9. Resend Signup OTP
+                              └── 10. Resend Password Reset OTP     
+                              
+                              1. Register User
+                              POST /auth/register
+                              Content-Type: multipart/form-data (if uploading profile image) or application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com",
+                                "password": "SecurePass123!",
+                                "first_name": "John",
+                                "last_name": "Doe"
+                              }
+                              If uploading a profile image, use form-data with keys: email, password, first_name, last_name, and profile_image (type: File).
+                              
+                              2. Verify OTP (Registration)
+                              POST /auth/verify-otp
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com",
+                                "otp": "123456"
+                              }
+
+                              3. Login User
+                              POST /auth/login
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com",
+                                "password": "SecurePass123!"
+                              }
+
+                              4. Regenerate Access Token
+                              POST /auth/refresh-token
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                              }
+
+                              5. Forgot Password
+                              POST /auth/forgot-password
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com"
+                              }
+
+                              6. Verify Password Reset OTP
+                              POST /auth/verify-reset-otp
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com",
+                                "otp": "654321"
+                              }
+
+                              7. Reset Password
+                              POST /auth/reset-password
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com",
+                                "password": "NewSecurePass456!",
+                                "otp": "654321"
+                              }
+                              
+                              8. Change Password (Authenticated)
+                              POST /auth/change-password
+                              Headers: Authorization: Bearer <accessToken>
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "old_password": "SecurePass123!",
+                                "new_password": "NewSecurePass456!"
+                              }
+
+                              9. Resend Verification OTP
+                              POST /auth/resend-verification-otp
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com"
+                              }
+                              
+                              10. Resend Password Reset OTP
+                              POST /auth/resend-reset-otp
+                              Content-Type: application/json
+                              
+                              json
+                              {
+                                "email": "john.doe@example.com"
+                              }                              
