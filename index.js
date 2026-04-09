@@ -2608,3 +2608,30 @@ Decompress File -  gunzip file.gz
 
 Tecocraft new air
 Teco@@2406
+
+// Node.js PDF to DOCX Libraries :-
+
+| Library                       | Text        | Tables      | Images      | OCR | Type                      |
+| ----------------------------- | ----------- | ----------- | ----------- | --- | ------------------------- |
+| pdf2docx-js                   | ⚠️ Basic    | ❌ Poor      | ⚠️ Basic    | ❌   | Free/Open-source        |
+| @pdftron/pdfnet-node (Apryse) | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Free trial)     |
+| @nutrient-io/sdk-node         | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Commercial)     |
+| Aspose.PDF for Node.js        | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Commercial)     |
+| ConvertAPI (Node.js SDK)      | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (250 free/month) |
+| Zamzar API                    | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Free tier)      |
+| libreoffice-convert + pdf-lib | ⚠️ Basic    | ⚠️ Basic    | ✅ Good      | ❌   | Free/Open-source        |
+
+// Python PDF to DOCX Libraries :-
+
+| Library                      | Text        | Tables      | Images      | OCR | Type                      |
+| ---------------------------- | ----------- | ----------- | ----------- | --- | ---------------------     |
+| pdf2docx                     | ✅ Excellent | ✅ Excellent | ✅ Good      | ❌   | Free/Open-source      |
+| PyMuPDF (fitz) + python-docx | ✅ Good      | ⚠️ Basic    | ✅ Good      | ❌   | Free/Open-source       | 
+| pdfplumber + python-docx     | ✅ Good      | ✅ Excellent | ❌ None      | ❌   | Free/Open-source      |
+| Camelot + python-docx        | ⚠️ Basic    | ✅ Excellent | ❌ None      | ❌   | Free/Open-source       |
+| IronPDF for Python           | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Commercial)     |
+| Aspose.PDF for Python        | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Commercial)     |
+| Aspose.Words for Python      | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Commercial)     |
+| GroupDocs.Conversion Cloud   | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Free trial)     |
+| ConvertAPI (Python SDK)      | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (250 free/month) |
+| Zamzar API                   | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Free tier)      |

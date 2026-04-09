@@ -3382,3 +3382,61 @@ Task Name :- n8n workflow
                     -  Reviewed it’s key features and use cases
                     -  Implemented a demo setup of n8n flows using raw/Json data
                     -  Tested demo flows using the n8n editor                             
+
+Please find today's work updates below:
+Date:01-04-2026  
+
+Project Name :- Tecocraft Site
+                        -  Reviewed the backend side code and it’s structure
+                        -  Analyzed the existing Cloudinary image upload feature
+                        -  Inspected all Prisma models across sections and their inter-relations        
+
+Please find today's work updates below:
+Date:02-04-2026   
+
+Project Name :- Tecocraft Site
+                        -  Reviewed backend side product section code
+
+Project Name :- PDF to DOCX
+                        -  Set up demo for PDF to DOCX conversion API
+                        -  Configured pdf-parse, pdf2pic, and Tesseract libraries via CLI
+                        -  Created PDF service for PDF to DOCX conversion
+                        -  Implemented OCR-based text extraction for table data
+                        -  Tested PDF to DOCX conversion flows using API endpoint
+
+Please find today's work updates below:
+Date:03-04-2026
+
+Project Name :- PDF to DOCX
+                        -  Explored cloud-based libraries for converting PDF to DOCX files
+                        -  Identified alternatives to handle text, table, and image-based PDF layouts
+                        -  Configured Python environment with required dependencies
+                        -  Installed the pdfToDocx Python library and set up python scripts
+                        -  Implemented Node.js server to integrate Python scripts
+                        -  Tested multiple PDF-to-DOCX conversion scenarios
+
+Please find today's work updates below:
+Date:06-04-2026
+
+Project Name :- PDF to DOCX 
+                        -  Overview of an alternative libraries for converting PDF to PPTX / PDF to EXCEL files
+                        -  Reviewed  Node.js-based conversion libraries
+                        -  Reviewed Python-based conversion libraries with support text, table, and image-based PDF layouts
+
+Please find today's work updates below:
+Date:07-04-2026
+
+Project Name :- PDF to PPTX / EXCEL
+                        -  Overview of pdf2pptx and pdf2excel Python-based libraries
+                        -  Installed both libraries via CLI and wrote their Python scripts
+                        -  Configured Node.js server along with conversion services
+                        -  Implemented endpoints for conversion, downloadURL, and logs APIs
+                        -  Tested pdf2pptx and pdf2excel conversion flows
+
+Please find today's work updates below:
+Date:08-04-2026
+
+Project Name :- PDF to DOCX 
+                        -  Found a free, open-source library alternative to cloud-based solutions
+                        -  Created an API description and flow for PDF to DOCX conversion
+                        -  Overview of the reverse flow for DOCX to PDF conversion                    
