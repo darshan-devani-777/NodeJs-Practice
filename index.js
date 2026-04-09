@@ -2645,6 +2645,7 @@ PDF to DOCX API :-
 * Image-based PDFs possible only via external cloud libraries
     * Libraries: ConvertAPI, GroupDocs, others
     * Limitation: Free libraries extract only text (no formatting/tables/images), can't generate proper DOCX files, and scanned PDFs need paid OCR engines 
+
 ➤ Based on Python Stack
 * Possible to convert PDF to DOCX 
 * Supports text, tables, and image-based PDF layouts
