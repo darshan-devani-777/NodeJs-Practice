@@ -2635,3 +2635,41 @@ Teco@@2406
 | GroupDocs.Conversion Cloud   | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Free trial)     |
 | ConvertAPI (Python SDK)      | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (250 free/month) |
 | Zamzar API                   | ✅ Excellent | ✅ Excellent | ✅ Excellent | ✅   | Paid (Free tier)      |
+
+PDF to DOCX API :-
+
+➤ Based on Node.js Stack
+* Possible to convert PDF to DOCX 
+* Supports only normal text and table-based text extraction
+    * Libraries: pdf-parse, pdf2pic, Tesseract 
+* Image-based PDFs possible only via external cloud libraries
+    * Libraries: ConvertAPI, GroupDocs, others
+    * Limitation: Free libraries extract only text (no formatting/tables/images), can't generate proper DOCX files, and scanned PDFs need paid OCR engines 
+➤ Based on Python Stack
+* Possible to convert PDF to DOCX 
+* Supports text, tables, and image-based PDF layouts
+    * Library: pdf2docx 
+* Required: Python environment / Python scripts 
+➤ Note (Python Stack)
+* Supports all cases, but limited accuracy in complex PDF files 
+* Renders accurately in most online DOCX viewers, but may differ in Google Docs
+
+DOCX to PDF API :-
+
+➤ Based on Node.js Stack
+* Possible to convert DOCX to PDF 
+* Supports only text, tables, images, and formatting
+    * Libraries: libreoffice-convert, docx2pdf-converter 
+* Cloud APIs possible (no setup)
+    * Libraries: ConvertAPI , others 
+    * Limitation: Free libraries need LibreOffice/MS Word setup, and high-quality conversion may require paid APIs 
+
+➤ Based on Python Stack
+* Possible to convert DOCX to PDF 
+* Supports text, tables, images, and complex layouts
+    * Library: LibreOffice CLI, docx2pdf, Aspose.Words 
+* Required: Python environment / Python scripts
+    * Limitation: Needs LibreOffice or MS Word 
+    * LibreOffice: Free & open-source / No MS Word dependency
+    * Docx2pdf: Requires MS Word installed (paid license)
+                              : Works only on Windows/macOS
