@@ -3440,3 +3440,51 @@ Project Name :- PDF to DOCX
                         -  Found a free, open-source library alternative to cloud-based solutions
                         -  Created an API description and flow for PDF to DOCX conversion
                         -  Overview of the reverse flow for DOCX to PDF conversion                    
+
+Please find today's work updates below:
+Date:09-04-2026
+
+Project Name :- DOCX to PDF
+                        -  Integrated DOCX → PDF conversion flow
+                        -  Implemented subprocess-based LibreOffice headless mode 
+                        -   Added file path, temp file management, and JSON response formatting
+                        -   Tested multi-format DOCX → PDF conversion
+
+Project Name :- Dynamic-Link 
+                        -  Reviewed the Dynamic-Link backend codebase
+                        -  Migrated existing codebase to PostgreSQL database with Prisma ORM
+                        -  Generated Prisma client and ran all schema migration files
+                        -   Executed demo seeder script to populate database with initial test data
+
+Please find today's work updates below:
+Date:10-04-2026
+
+Project Name :- Dynamic-Link 
+                        -  Reviewed the Authentication codebase flows
+                        -  Implemented AES‑256 encryption for API requests and responses using CryptoJS
+                        -  Created reusable Encryption/Decryption functions to decrypt incoming encrypted details 
+                        -   Added encrypted responses across all APIs for secure response delivery
+                        -   Tested all auth flows via API endpoints 
+
+Please find today's work updates below:
+Date:13-04-2026
+
+Project Name :- Dynamic-Link 
+                        -  Reviewed authentication API validation flows
+                        -  Analyzed pending redirect link API logic
+                        
+              MISC :-  Overview of the FastAPI platform
+                        :-  Explored AI-based FastAPI endpoints for integrating external services
+
+
+Please find today's work updates below:
+Date:14-04-2026
+
+Project Name :- Dynamic-Link 
+                        -  Refined the User Prisma model to include fullName field
+                        -  Generated and applied migration scripts to sync the new fullName field
+                        -  Added user name handling (fullName OR first + last) names 
+                        -  Implemented auto merge/split logic for name processing
+                        -  Updated validation and API responses for consistent name structure
+                        -  Identified the issue of pending redirect API response
+                        -  Added encryption / decryption flow for user‑section APIs                        
