@@ -3487,4 +3487,92 @@ Project Name :- Dynamic-Link
                         -  Implemented auto merge/split logic for name processing
                         -  Updated validation and API responses for consistent name structure
                         -  Identified the issue of pending redirect API response
-                        -  Added encryption / decryption flow for user‑section APIs                        
+                        -  Added encryption / decryption flow for user‑section APIs  
+
+Please find today's work updates below:
+Date:15-04-2026
+
+Project Name :- Dynamic-Link 
+                        -  Reviewed the existing Prisma schema models & references
+                        -  Reviewed static content API flows ( Terms & Conditions / Privacy Policy / About Us / Contact Form )
+                        
+Please find today's work updates below:
+Date:16-04-2026
+
+Project Name :- Dynamic-Link 
+                        -  Overview of Dynamic Link and Deep Linking concepts
+                        -  Analyzed reusable utilities that support this codebase
+                        -  Reviewed the pricing plan and subscription APIs flow
+                        -  Reviewed the project creation, Dynamic Link generation, and Short URL creation codebase
+
+Please find today's work updates below:
+Date:17-04-2026
+
+Project Name :- Tecocraft Site
+                        -  Resolved backend startup issues caused by version conflicts
+                       -   Configured PostgreSQL database with Prisma migration setup
+                        -  Reviewed Inquiry model schema and their APIs flow
+                        -  Reviewed Contact Form & Testimonial section backend code
+
+Please find today's work updates below:
+Date:20-04-2026
+
+Project Name :- Tecocraft Site
+                        -  Reviewed existing backend side codebase 
+                        -  Checked below all modules dynamic API flows:
+                            :-  Home page logos  
+                            :-  Blog data and blog categories
+                            :-  Portfolio data & Product data 
+                            :-  Testimonials data 
+                            :-  Inquiry & Contact form services 
+                        -  Created postman collection for all section API endpoints 
+
+Please find today's work updates below:
+Date:22-04-2026
+
+Project Name :- Tecocraft Site
+                        -  Implemented CaseStudySection model with flexible JSON content
+                        -  Defined CaseStudySectionType enum for structured sections
+                        -  Added order field for precise section sequencing
+                        -  Built nested sections create/update in CaseStudy CRUD APIs
+                        -  Added Zod enum validation for section types                         -  Enabled flexible JSON content (cards, bullets, text, lists)
+                        -  Implemented sections ordering in detail page API response
+
+Please find today's work updates below:
+Date:23-04-2026
+
+Project Name :- Tecocraft Site
+                        -  Reverted old Prisma versions and NPM packages
+                        -  Configured the backend server with Prisma client support
+                        -  Analysed the Careers section Figma flows
+                        -  Reviewed the Case Study section figma flow and setup the flow for dynamic data                         
+
+Please find today's work updates below:
+Date:24-04-2026
+
+Project Name :- Tecocraft Site
+                        -  Created the update profile API flow and tested the API
+                        -  Reviewed the career page Figma flow
+                        -  Implemented the dynamic Prisma model for the career section
+                        -  Created the career content and application section APIs
+                        -  Ongoing API testing for the career section
+
+Please find today's work updates below:
+Date:27-04-2026
+
+Project Name :- Tecocraft Site
+                       -   Refined career section nested data flow to created separate data layer flow
+                        -  Tested the career content and application section API flows
+                        -  Created newsletter section model with their action functions & route handlers
+                        -  Generated the Prisma model and it’s migration file
+                        -  Working on modifying  responses to handle unusual response data 
+
+Please find today's work updates below:
+Date:28-04-2026
+                   
+Project Name :- Tecocraft Site
+                        -  Implemented slug-based GET APIs for the  career section
+                        -  Added pagination with fullData field in career section
+                        -  Modified API responses to return only required data
+                        -  Analyzed Figma designs and notes to identify statistics data fields
+                        -  Designed Prisma model for company statistics section flow                                              
