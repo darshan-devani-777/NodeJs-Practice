@@ -3757,3 +3757,91 @@ Project Name :- Tecocraft Site
                         -  Implemented FAQs section functionalities with nested Q&A items for AI Solution pages
                         -  Added dynamic CTA buttons section to AI Solution pages
                         -  Implemented button IDs as JSON array with auto-generated page URLs (id, name, url)
+
+Please find today's work updates below:
+Date:27-05-2026
+
+Project Name :- Tecocraft Site
+                        -  Resolved production-side TypeScript errors in backend codebase
+                        -  Analysed Figma design flow for development pages category Main page structure
+                        -  Created development pages category Main page Prisma models 
+                        -  Generated updated migration file for Main page model
+                        -  Implemented Main page section action functions and route handlers
+
+Please find today's work updates below:
+Date:28-05-2026                        
+
+Project Name :- Tecocraft Site
+                        -  Implemented a separate AI TechStack section for AI Solution pages
+                        -  Created action functions and their route handlers for the AI TechStack section
+                        -  Added Icon and Banner Image fields to the Development Pages Category model
+                        -  Included Icon and Banner Image in the response of the related service section for a dynamic navbar 
+                        -  Tested the following section API flows :-
+                               - Development Pages Main Section
+                               - Related Service Section
+                               - AI TechStack Section 
+
+Please find today's work updates below:
+Date:29-05-2026   
+
+Project Name :- Tecocraft Site
+                        -  Added Technology Use schema globally to manage technology items
+                        -  Created Junction table of technology section schema
+                        -  Updated Main page / AI Solution techStack section to use shared Technology Use schema
+                        -  Implemented ServiceIds field with Auto-generated button links based on categorySlug / Page Name
+                        -  Tested Main Page section / Technology Use section flow
+
+                        
+Please find today's work updates below:
+Date:01-06-2026 
+
+Project Name :- Tecocraft Site
+                        -  Resolved duplicate mainPage variable error in category API route
+                        -  Added orderBy field to getDevelopmentPage (single, category, grouped) response 
+                        -  Implemented SEO support field for category Main page schema 
+                        -  Updated category API route to support multi-category tech stack
+                        -  Created JSON to HTML Convertor function for rich text editor content
+                        -  Applied Convertor function in development pages response flow
+
+Please find today's work updates below:
+Date:02-06-2026 
+
+Project Name :- Tecocraft Site
+                        -  Implemented IndustryItems globally with CRUD operations
+                        -  Refined AI solution industries to use global industry items
+                        -  Refined Main page industries to use global industry items
+                        -  Created separate industry items route handlers 
+                        -  Updated related services API to include all categories (with or without pages)
+                        -  Added cascade soft delete/restore functionalities for case study nested sections
+
+Please find today's work updates below:
+Date:03-06-2026 
+
+Project Name :- Tecocraft Site
+                        -  Generated title-based slug uniqueness to avoid duplicate case study sections
+                        -  Added order field to categories function in development pages response
+                        -  Created separate CoreFeature model for case study section
+                        -  Added JSON field for TechStack section in case study model
+                        -  Tested both case study types: Client Product & Tecocraft Product
+
+Please find today's work updates below:
+Date:04-06-2026 
+
+Project Name :- Tecocraft Site
+                        -  Added a Category field (MOBILE_APP / WEB_APP) to case studies
+                        -  Generated updated migration file for the category field
+                        -  Refactored existing action functions and route handlers to include category
+                        -  Added category filtering to getCaseStudy (single and list queries)
+                        -  Tested category flow for case study sections
+
+
+Please find today's work updates below:
+Date:05-06-2026 
+
+Concepts :- 
+                 -  Reviewed various types of Payment Gateway Integration methods
+                 -  Reviewed Stripe / RazorPay / GooglePay SDK concepts
+                 -  Analyzed Transaction flow, Webhook handling process
+                        
+ Project Name :- Tecocraft Site
+                         - Updated TecocraftProductOthers.description from String to JSON to support rich text editor content
