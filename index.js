@@ -2791,4 +2791,56 @@ DOCX to PDF API :-
                               }                              
 
 // **Company Policy**                              
- https://docs.google.com/document/d/1mCjwmmxKKS30m71w-L1ePjjzi2tu-fy4-bixTZ04opM/edit                              
+ https://docs.google.com/document/d/1mCjwmmxKKS30m71w-L1ePjjzi2tu-fy4-bixTZ04opM/edit             
+ 
+/******************************************************************************************/
+/* BACKUP THE DATABSES *//********************************************************************************************/
+
+ // Backup the MySQL database
+ - Backup one database - mysqldump -u root -p database_name > database_name_backup.sql
+ - Restore - mysql -u root -p database_name < database_name_backup.sql
+ - Backup all databases - mysqldump --all-databases	pg_dumpall
+
+ // Backup the PostgreSQL database
+ - Backup one database - pg_dump -U postgres database_name > database_name_backup.sql
+ - Restore - psql -U postgres database_name < database_name_backup.sql
+ - Backup all databases - pg_dumpall
+
+ // Backup the MongoDB database
+ - Backup one database - mongodump --db database_name
+ - Restore - mongorestore --db database_name database_name_backup.json
+ - Backup all databases - mongodump --out backup_dir
+ - Restore - mongorestore --dir backup_dir
+
+ // Backup Production Database (MySQL)
+ mysqldump \
+ -u root \
+ -p \
+ --single-transaction \
+ --routines \
+ --events \
+ --triggers \
+ database_name > database_name_$(date +%F_%H-%M-%S).sql
+
+ // Restore Production Database (MySQL)
+ -mysql -u root -p database_name < database_name_backup.sql
+ -Backup all databases - mysqldump --all-databases
+
+ // Backup Production Database (PostgreSQL)
+-pg_dump \
+-h localhost \
+-p 5432 \
+-U postgres \
+-Fc \
+database_name \
+> database_name_$(date +%F_%H-%M-%S).backup.sql
+
+// Restore Production Database (PostgreSQL)
+-pg_restore -U postgres -d database_name database_name_$(date +%F_%H-%M-%S).backup.sql
+
+// Backup Production Database (MongoDB)
+-mongodump --db database_name --out backup_dir
+-mongorestore --dir backup_dir
+
+// Restore Production Database (MongoDB)
+-mongorestore --dir backup_dir

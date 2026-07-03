@@ -3845,3 +3845,216 @@ Concepts :-
                         
  Project Name :- Tecocraft Site
                          - Updated TecocraftProductOthers.description from String to JSON to support rich text editor content
+
+Please find today's work updates below:
+Date:10-06-2026 
+
+Concepts :-  Revised the backend concepts :-
+                 -   Clustering and Worker Threads
+                 -   Streams and Buffers
+                 -   Microservices architecture 
+                 -   Message Brokers system
+
+Please find today's work updates below:
+Date:11-06-2026 
+
+Concepts :-  Backend concepts :-
+                 -   Implemented a demo project using Clustering method
+                 -   Created an Express server with provide API endpoints
+                 -   Defined a Master process and assigned it a cluster ID
+                 -   Initialized a Fork strategy to restart worker processes after crashes
+                 
+Project Name :- Tecocraft Site
+                        -  Analyzed the CMS sections (Privacy Policy, Terms and Conditions, FAQs)
+                        -   Implemented Prisma models for Policy, Terms, and FAQ sections based on the CMS types
+
+Please find today's work updates below:
+Date:12-06-2026
+
+Project Name :- Tecocraft Site
+                        -  Implemented action functions for (Privacy Policy, Terms and Conditions, FAQs)
+                        -  Created route handlers for the Policy and FAQ sections
+                        
+Concepts :-  Backend concepts :-
+                 -   Setup a demo project of Microservices Architecture 
+                 -   Defined User / Product Service with their independent express server 
+                 -   Added API Gateway interface to combined Microservices
+                 -   Tested the both Microservices architecture workflow
+ 
+Please find today's work updates below:
+Date:15-06-2026
+
+Project Name :- Tecocraft Site
+                        -  Generated updated migration file for (Privacy Policy, Terms and Conditions, FAQs)
+                        -  Added a category field to the FAQs section
+                        -  Tested the flow of Privacy Policy / Terms and Conditions / FAQs
+                        -  Checked the Authentication code flow, along with its validations and custom messages
+                        -  Refined validation rules in the Blog and Inquiry model schemas
+
+Please find today's work updates below:
+Date:16-06-2026
+
+Other Tasks :- 
+                     -  Learned the concept of a SaaS-based subscription system 
+                     -  Explored the concept of the multi-tenant subscription flow (Super Admin → Clients → Users)
+
+
+Project Name :- Diabetes Pharmacy
+                        -  Configured the backend project setup with a MySQL database
+                        -  Ran all migration files and seeder files using CLI
+                        -  Reviewed the backend codebase for product creation and Stripe Webhook payment handling
+                        -  Added a sellerEmail key field to the product model schema
+                        -  Created an order notifications helper function to notify sellers via email on payment success, failure, and refunds
+
+Please find today's work updates below:
+Date:17-06-2026
+
+Project Name :- Diabetes Pharmacy
+                        -  Implemented separate General Details prisma schema
+                        -  Created CRUD APIs with reference of emails key field to store JSON data 
+                        -  Implemented new email templates & notifications triggers function (Payment Failed, Shipped, Delivered)
+                        -  Extended store notification system to support shipped/delivered events
+                        -  Refined Stripe webhook to send payment failed email to customer on failed payment
+                        -  Refined admin order update to auto-send shipped & delivered emails when order status changes
+
+
+Project Name :- Tecocraft Site
+                        -  Added new applicationLdJson key field to SEO model
+                        -  Updated seo-actions (upsert/get) to handle new field
+                        -  Added applicationLdJson to API route responses (fullData + paginated)
+
+Please find today's work updates below:
+Date:18-06-2026
+
+Project Name :- Diabetes Pharmacy
+                        -  Implemented notification triggers for order cancellations (customer & admin)
+                        -  Extended general email notifications with "cancelled" event type
+                        -  Tested all notifications email flows: succeeded, failed, refunded, shipped, delivered, cancelled
+                        -  Added freeDeliveryThreshold field to GeneralDetail prisma schema
+                        -  Updated general-details CRUD API to support freeDeliveryThreshold field
+                        -  Included delivery charge calculation that applies free delivery when subtotal meets threshold  
+
+Please find today's work updates below:
+Date:19-06-2026
+
+Project Name :- Diabetes Pharmacy
+                        -  R&D on Royal Mail & DHL shipping management platform
+                        -  Designed detailed flow diagrams for integrating these third-party services 
+                        
+Project Name :- Tecocraft Site
+                        -  Refined Zod validation schemas for Product and Service 	modules
+                        -  Improved Error response formats to return meaningful validation messages	                    
+  
+Please find today's work updates below:
+Date:22-06-2026
+
+Project Name :- Tecocraft Site
+                        -  Added a case study and an additional features section, made optional with flag-based validation
+
+Project Name :- Diabetes Pharmacy
+                        -  R&D on different CAPTCHA validation methods 
+                        -  Learned about Google reCAPTCHA (V3), Google reCAPTCHA (V2), and Cloudflare Turnstile validation platforms
+                        -  Analyzed checkbox-type and invisible CAPTCHA validation for a login process
+
+
+Please find today's work updates below:
+Date:23-06-2026
+
+Project Name :- Diabetes Pharmacy
+                        -  Added an Image field and a hasVariantType key to the category model
+                        -  Added isBestSeller and variant flags to the product schema
+                        -  Generated updated migration files for category / product model
+                        -  Implemented category variant type and product variants with admin UI
+                        -  Updated category/product APIs to accept variants based on different product variant type
+                        -  Refined the create / update product models to included product variant flow
+
+find today's work updates below:
+Date:24-06-2026
+
+Project Name :- Diabetes Pharmacy
+                        -  Refined the product variant workflow to support a dedicated schema management approach
+                        -  Generated updated database migrations to reflect the schema changes
+                        - Established relationships for the product variant type and productId field across the Cart, Inventory, Wishlist, and Order modules
+                        -  Implemented Cloudflare Turnstile CAPTCHA verification
+                        -  Integrated the CAPTCHA flow into the following section :-
+                              - User/Admin login flow
+                              - Contact Us section 
+                              - Coupon section
+
+find today's work updates below:
+Date:25-06-2026
+
+Project Name :- Diabetes Pharmacy
+                          -  Implemented Cloudflare Turnstile CAPTCHA verification
+                        -  Integrated the CAPTCHA flow into the following section :-
+                              - Purchase order checkout section
+                              - Track order section
+                        -  Tested the captcha verification flow :- Authentication / Contact Us / Cart / Checkout / Order modules
+                        -  Created a one-time coupon usage restriction workflow per user 
+                        -  Added appropriate validation messages for expired and already-used coupons 
+
+find today's work updates below:
+Date:26-06-2026
+
+Project Name :- Diabetes Pharmacy
+                           -  Reviewed Royal Mail Shipping, Tracking, Pricing, and Manifest API capabilities
+                         -  Analyzed the end-to-end backend integration workflow for the e-commerce shipping process
+                         -  Identified backend responsibilities, including weight calculation, packaging logic, and shipment management
+                         -  Documented the API usage flow, credentials process, and shipment lifecycle from order creation to delivery tracking
+                         -  Reviewed DHL express shipping service flow
+
+Please find today's work updates below:
+Date:29-06-2026
+
+Project Name :- Tecocraft Site
+                        -  Implemented Cloudflare Turnstile CAPTCHA verification flow 
+                        -  Configured a backend verification utility to validate Cloudflare Turnstile CAPTCHA verification token using credentials 
+                        -  Integrated the CAPTCHA flow into the following section :-
+                              - Admin login flow
+                              - Contact form section
+                              - Inquiry section
+                              - Newsletter subscription on the blog section
+
+Project Name :- Diabetes Pharmacy
+                        -  Tested Royal Mail Sandbox API integration flow
+                        -  Created dynamic shipping calculation raw functionalities in the seeder file
+                        -  Added Royal Mail Sandbox API client with token auth
+                        
+      
+Please find today's work updates below:
+Date:30-06-2026
+
+Project Name :- Tecocraft Site
+                        -  Analysed dynamic SEO management system for all page types
+                        -   Reviewed the existing SEO code flow for the development pages section
+                        
+Project Name :- Diabetes Pharmacy
+                        -  Added Royal Mail Shipping V2 API to the sandbox integration 
+                        -  Included the base URL for the Royal Mail shipping api endpoint in the seeder file
+                        -  Requested approval for the Royal Mail shipping API sandbox integration
+                        -  Implemented platformMobile flag to skip CAPTCHA for mobile app
+
+ find today's work updates below:
+Date:01-07-2026
+
+Project Name :- Tecocraft Site
+                        -  Implemented SEO data workflows for the Blog, Case Study, Product, and Portfolio sections
+                        -  Added auto-generation of canonical URLs based on the slug 
+                        -  Integrated SEO upsert logic into create, update, and delete operations
+                        -  Enhanced the GET function to include and return the SEO field in the API response
+
+Project Name :- Prega Center
+                        -  Configured backend setup with MySQL database
+                        -  Implemented login rate limiting with environment-based configuration
+                        -  Created loginRateLimiter middleware to track failed login attempts
+                        -  Integrated attempt tracking in loginUser flow for a blocks users after 3 failed attempts for 30 minutes time interval 
+
+find today's work updates below:
+Date:02-07-2026
+
+Project Name :- Tecocraft Site
+                        -  Added Turnstile CAPTCHA verification flow for a CareerApplication form
+                        -  Currently working on fixing the canonical URL auto generation issue
+
+Project Name :- Prega Center
+                        -  Created separate get IP function with use it in rateLimiting middleware
