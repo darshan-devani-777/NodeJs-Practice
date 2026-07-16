@@ -4058,3 +4058,108 @@ Project Name :- Tecocraft Site
 
 Project Name :- Prega Center
                         -  Created separate get IP function with use it in rateLimiting middleware
+
+find today's work updates below:
+Date:03-07-2026
+
+Project Name :- Tecocraft Site
+                        -  Resolved issue of automatic generation of canonical URLs for the Blogs, Products, Portfolio, and Case Study sections
+      
+Project Name :- Dynamic Link
+                        -  Fixed Prisma migration issue related to the User model
+
+Project Name :- Prega Center
+                        -  Currently working on changing the AboutUs section HeroImage
+
+Other Task :- R&D on the following points:-                     -  Investigate methods for backing up MySQL and PostgreSQL databases
+                    -  How to Restoring existing databases and applying them to another database 
+
+find today's work updates below:
+Date:06-07-2026  Project Name :- Prega Center
+                        -  Added file size storage validation message to handle appropriate error messages for a AboutUs section
+                        -  Reviewed the workflow for the Article, Article Tag, and Article Topics sections
+                        -  Reviewed the EJS code flow / admin related seeder files
+                        -  Added the baby-names type to the article tags system
+                        -  Included dropdown options for the newly introduced field
+                        -  Tested the creation workflow for the Article, Article Tag, and Article Topics sections
+
+Here's the commit message for all the changes:
+
+find today's work updates below:
+Date:07-07-2026
+
+Project Name :- Prega center
+                        -  Implemented admin panel for Article Tags and Article Topics management section
+                        -  Added CRUD operation for an Article Tags and Article Topics section 
+                        -  Tested the creation flow of Article Tags -> Articles Topics -> Articles 
+                        -  Added Validation messages for a Change password page
+              
+Project Name :- Tecocraft Site
+                        -  Included condition wise flow of canonical URL for Solutions & Industries development pages
+
+find today's work updates below:
+Date:08-07-2026
+
+Project Name :- Prega Center
+                        -  Refactored Auth flow with enhanced validation error messages and clarified JSON responses
+                        -  Tested Authentication module step-by-step to validate the entire auth flow
+                        -  Improved updateProfile API with image removal and file validation
+                        -  Added remove_image flag to explicitly delete profile image from Cloudinary and DB
+                        -  Included Multer fileFilter with custom error to allowed formats list
+
+
+find today's work updates below:
+Date:09-07-2026
+
+Project Name :- Prega Center
+                        -  Implemented global trim middleware for automatic input sanitization
+                        -  Applied middleware globally in server file for all routes
+                        -  Added flag during user register time to prevent registering with emails from soft-deleted accounts
+                        -  Included type query parameter to filter articles by associated tag's exact type
+                        -   Refined getCoupons API with added proper searching parameter
+                        -   Added missing validation to update endpoints across multiple modules ( TermsOfUse / FAQs / Feedbacks )
+
+find today's work updates below:
+Date:10-07-2026          
+
+Project Name :- Prega Center
+                        -  Added custom validation to following Section :-                         -  PrivacyPolicy, AboutUs, ContactForm, Blog, ArticleTag, Article, and Post
+                        -  Created updated postman collection of All sections with its testing endpoints
+                        -  Checked each section backend APIs workflow through the postman side
+
+Project Name :- Diabetes Pharmacy 
+                        -  Implemented functionalities to prevent Turnstile token wastage on invalid submissions
+                        -  Added above flow to the following sections :- 
+                             -  Login ( User / Admin ) , Contact Us , Track Order , Cart , Checkout sections
+
+find today's work updates below:
+Date:13-07-2026 
+
+Project Name :- Prega Center
+                        -  Added custom validation to following Section :-                         -  Communities, Groups, Contacts, Courses, and Purchase Section
+                        -  Checked each section backend APIs workflow through the postman side  Project Name :- Diabetes Pharmacy
+                        -  Added automatic Turnstile widget reset before each form submission to generate a fresh token
+                        -  Updated TurnstileWidget to support resetKey prop for forced resetToken 
+
+find today's work updates below:
+Date:14-07-2026 
+
+Project Name :- Diabetes Pharmacy
+                        -  Added product name field validation for maximum characters limit 
+                        -  Implemented reset turnstile captcha token flow on Google Pay cancel / failure in checkout section
+                        -  Integrated MyDHL API for dynamic international shipping rates 
+                        -  Created reusable DHL client module with Basic Auth setup
+                        -  Added DHL rates fetching logic with it’s service module as well as there API endpoint
+                       -   Included shipping utility helpers for DHL rate identification
+                       -   Updated checkout page to show DHL rates for non-UK customers
+                      
+find today's work updates below:
+Date:15-07-2026 
+
+Project Name :- Diabetes Pharmacy
+                        -  Refined DHL rate helper function to included estimated delivery Date / Time / Total days count functionalities
+                         - Updated checkout page to show DHL rates for non-UK customers with estimated delivery date & time & total days count
+
+Project Name :- Dynamic Link
+                        -  Reviewed the new Public Api flow to generate link 
+                        -  Created updated postman collection for a Link generation section
